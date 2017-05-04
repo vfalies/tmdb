@@ -2,111 +2,152 @@
 
 namespace Vfac\Tmdb;
 
-require 'Tmdb.php';
-
-class Movie extends \Vfac\Tmdb\Tmdb
+class Movie
 {
 
-    public function getMovie($query, $year = null)
+    private $_data = null;
+
+    /**
+     * Constructor
+     * @param stdClass $data
+     */
+    public function __construct(\stdClass $data)
     {
-        $raw      = $this->sendRequest('search/movie', $query, $year);
-        $response = json_decode($raw);
-
-        if (is_null($response) || $response === false)
-        {
-            throw new Exception('Movie search failed : ' . var_export($this->response, true), 2001);
-        }
-
-        $this->query['query'] = $query;
-        $this->query['info']  = $year;
-        $this->response       = $response;
-
-        return $this;
+        $this->_data = $data;
     }
 
-// SUCCESS
-
-    /*
-     * {
-      "adult": false,
-      "backdrop_path": "/wSJPjqp2AZWQ6REaqkMuXsCIs64.jpg",
-      "belongs_to_collection": null,
-      "budget": 63000000,
-      "genres": [
-      {
-      "id": 18,
-      "name": "Drama"
-      }
-      ],
-      "homepage": "http://www.foxmovies.com/movies/fight-club",
-      "id": 550,
-      "imdb_id": "tt0137523",
-      "original_language": "en",
-      "original_title": "Fight Club",
-      "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
-      "popularity": 11.628088,
-      "poster_path": "/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg",
-      "production_companies": [
-      {
-      "name": "Regency Enterprises",
-      "id": 508
-      },
-      {
-      "name": "Fox 2000 Pictures",
-      "id": 711
-      },
-      {
-      "name": "Taurus Film",
-      "id": 20555
-      },
-      {
-      "name": "Linson Films",
-      "id": 54050
-      },
-      {
-      "name": "Atman Entertainment",
-      "id": 54051
-      },
-      {
-      "name": "Knickerbocker Films",
-      "id": 54052
-      }
-      ],
-      "production_countries": [
-      {
-      "iso_3166_1": "DE",
-      "name": "Germany"
-      },
-      {
-      "iso_3166_1": "US",
-      "name": "United States of America"
-      }
-      ],
-      "release_date": "1999-10-15",
-      "revenue": 100853753,
-      "runtime": 139,
-      "spoken_languages": [
-      {
-      "iso_639_1": "en",
-      "name": "English"
-      }
-      ],
-      "status": "Released",
-      "tagline": "How much can you know about yourself if you've never been in a fight?",
-      "title": "Fight Club",
-      "video": false,
-      "vote_average": 8.2,
-      "vote_count": 7506
-      }
+    /**
+     * Get movie title
+     * @return string|null
      */
+    public function getTitle()
+    {
+        if (isset($this->_data->title))
+        {
+            return $this->_data->title;
+        }
+        return null;
+    }
 
-// FAILURE
-    /*
-      {
-      "page": 1,
-      "results": [],
-      "total_results": 0,
-      "total_pages": 1
-      }
+    /**
+     * Get movie overview
+     * @return string|null
      */
+    public function getOverview()
+    {
+        if (isset($this->_data->overview))
+        {
+            return $this->_data->overview;
+        }
+        return null;
+    }
+
+    /**
+     * Get movie release date
+     * @return string|null
+     */
+    public function getReleaseDate()
+    {
+        if (isset($this->_data->release_date))
+        {
+            return $this->_data->release_date;
+        }
+        return null;
+    }
+
+    /**
+     * Get movie original title
+     * @return string|null
+     */
+    public function getOriginalTitle()
+    {
+        if (isset($this->_data->original_title))
+        {
+            return $this->_data->original_title;
+        }
+        return null;
+    }
+
+    /**
+     * Get movie note
+     * @return number|null
+     */
+    public function getNote()
+    {
+        if (isset($this->_data->vote_average))
+        {
+            return $this->_data->vote_average;
+        }
+        return null;
+    }
+
+    /**
+     * Get movie id
+     * @return int|null
+     */
+    public function getId()
+    {
+        if (isset($this->_data->id))
+        {
+            return $this->_data->id;
+        }
+        return null;
+    }
+
+    /**
+     * Get movie genres
+     * @return array|null
+     */
+    public function getGenres()
+    {
+        if (isset($this->_data->genre_ids))
+        {
+            return var_export($this->_data->genre_ids, true);
+        }
+        return null;
+    }
+
+    /**
+     * Get movie poster
+     * @return string|null
+     */
+    public function getPoster()
+    {
+        if (isset($this->_data->poster_path))
+        {
+            return $this->_data->poster_path;
+        }
+        return null;
+    }
+
+    /**
+     * Get movie backdrop
+     * @return string|null
+     */
+    public function getBackdrop()
+    {
+        if (isset($this->_data->backdrop_path))
+        {
+            return $this->_data->backdrop_path;
+        }
+        return null;
+    }
+
+    /**
+     * Magical method
+     * @param string $name
+     * @return mixed
+     * @throws \Exception
+     */
+    public function __get($name)
+    {
+        switch ($name)
+        {
+            case 'raw':
+                return var_export($this->_data, true);
+            default:
+                throw new \Exception("Unknown property ($name) for movie.");
+        }
+    }
+
 }

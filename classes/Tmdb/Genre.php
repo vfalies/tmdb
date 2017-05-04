@@ -1,8 +1,8 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace \Vfac\Tmdb;
 
-class TVShow
+class Genre
 {
 
     private $_data = null;
@@ -12,4 +12,5 @@ class TVShow
         $this->_data = $data;
     }
 
+    
 }
