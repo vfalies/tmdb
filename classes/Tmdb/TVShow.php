@@ -1,10 +1,10 @@
 <?php
 
-namespace Rag\Tmdb;
+namespace Vfac\Tmdb;
 
 require 'Tmdb.php';
 
-class TVShow extends \Rag\Tmdb
+class TVShow extends \Vfac\Tmdb
 {
 
     public function searchTV($query)

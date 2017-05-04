@@ -1,24 +1,25 @@
 <?php
 
-namespace Rag\Tmdb;
+namespace Vfac\Tmdb;
 
 require 'Tmdb.php';
 
-class Movie extends \Rag\Tmdb\Tmdb
+class Movie extends \Vfac\Tmdb\Tmdb
 {
 
     public function getMovie($query, $year = null)
     {
-        $this->response = $this->sendRequest('search/movie', $query, $year);
-        $response       = json_decode($raw);
+        $raw      = $this->sendRequest('search/movie', $query, $year);
+        $response = json_decode($raw);
 
         if (is_null($response) || $response === false)
         {
-            throw new Exception('Movie search failed : '.var_export($this->response, true), 2001);
+            throw new Exception('Movie search failed : ' . var_export($this->response, true), 2001);
         }
 
         $this->query['query'] = $query;
         $this->query['info']  = $year;
+        $this->response       = $response;
 
         return $this;
     }

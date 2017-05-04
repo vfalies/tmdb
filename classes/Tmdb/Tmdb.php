@@ -1,6 +1,6 @@
 <?php
 
-namespace Rag\Tmdb;
+namespace Vfac\Tmdb;
 
 /**
  * Tmdb wrapper core class
