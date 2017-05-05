@@ -9,15 +9,13 @@ class Tmdb
 {
 
     // Private variables
-    private $api_key       = null;                              // API Key
-    private $language      = 'fr-FR';                           // Default language for API response
-    private $base_api_url  = 'https://api.themoviedb.org/3/';   // Base URL of the API
-    private $include_adult = false;                             // Include adult content in search result
+    private $api_key         = null;                              // API Key
+    private $language        = 'fr-FR';                           // Default language for API response
+    private $base_api_url    = 'https://api.themoviedb.org/3/';   // Base URL of the API
+    private $include_adult   = false;                             // Include adult content in search result
     // Protected variables
-    protected $response    = null; // Raw response of the API
-    protected $infos       = null; // Informations from API response
-
-    // Public variables
+    protected $response      = null; // Raw response of the API
+    protected $configuration = null; // API configuration
 
     /**
      * Constructor
@@ -25,11 +23,14 @@ class Tmdb
      */
     public function __construct($api_key)
     {
-        if (!extension_loaded('curl'))
+        if ( ! extension_loaded('curl'))
         {
             throw new \Exception('cUrl extension is not loaded', 1003);
         }
         $this->api_key = $api_key;
+
+        // Get API configuration
+        $this->getConfiguration();
     }
 
     /**
@@ -42,7 +43,7 @@ class Tmdb
     private function sendRequest($action, $query = null, $options = array())
     {
         // Url construction
-        $url = $this->base_api_url . $action;
+        $url = $this->base_api_url.$action;
 
         // Parameters
         $params                  = [];
@@ -50,7 +51,7 @@ class Tmdb
         $params['language']      = $this->language;
         $params['page']          = 1;
         $params['include_adult'] = $this->include_adult;
-        if (!is_null($query))
+        if ( ! is_null($query))
         {
             $params['query'] = $query;
         }
@@ -58,7 +59,7 @@ class Tmdb
         $params = array_merge($params, $options);
 
         // URL with paramters construction
-        $url = $url . '?' . http_build_query($params);
+        $url = $url.'?'.http_build_query($params);
 
         // Initialisation
         $ch = curl_init($url);
@@ -73,17 +74,16 @@ class Tmdb
         curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
         curl_setopt($ch, CURLOPT_ENCODING, "");
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-
         // cUrl execution
         $result = curl_exec($ch);
         if ($result === false)
         {
-            throw new \Exception('cUrl failed : ' . var_export(curl_getinfo($ch), true), 1004);
+            throw new \Exception('cUrl failed : '.var_export(curl_getinfo($ch), true), 1004);
         }
         // cUrl HTTP Code response
         if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200)
         {
-            throw new \Exception('Incorrect HTTP Code response : ' . var_export(curl_getinfo($ch), true), 1005);
+            throw new \Exception('Incorrect HTTP Code response : '.var_export(curl_getinfo($ch), true), 1005);
         }
 
         // cUrl closing
@@ -92,11 +92,7 @@ class Tmdb
         $response = json_decode($result);
         if (is_null($response) || $response === false)
         {
-            throw new \Exception('Movie search failed : ' . var_export($this->response, true), 2001);
-        }
-        if (!isset($response->results))
-        {
-            throw new  \Exception('Incorrect API Response', 2002);
+            throw new \Exception('Movie search failed : '.var_export($this->response, true), 2001);
         }
 
         return $response;
@@ -120,7 +116,11 @@ class Tmdb
 
     public function getConfiguration()
     {
-        return $this->sendRequest('configuration');
+        if (is_null($this->configuration))
+        {
+            $this->configuration = $this->sendRequest('configuration');
+        }
+        return $this->configuration;
     }
 
     public function searchMovie($query, $options = array())
@@ -128,7 +128,7 @@ class Tmdb
         $params = [];
         if (isset($options['year']))
         {
-            if (!is_numeric($options['year']))
+            if ( ! is_numeric($options['year']))
             {
                 throw new \Exception('year param must be an integer');
             }
@@ -140,7 +140,7 @@ class Tmdb
         $result = [];
         foreach ($response->results as $data)
         {
-            $movie = new Movie($data);
+            $movie = new Movie($data, $this->configuration);
             array_push($result, $movie);
         }
 
@@ -154,7 +154,7 @@ class Tmdb
         $result = [];
         foreach ($response->results as $data)
         {
-            $movie = new TVShow($data);
+            $movie = new TVShow($data, $this->configuration);
             array_push($result, $movie);
         }
 
@@ -168,7 +168,7 @@ class Tmdb
         $result = [];
         foreach ($response->genres as $data)
         {
-            $genre = new Genre($data);
+            $genre = new Genre($data, $this->configuration);
             array_push($result, $genre);
         }
 

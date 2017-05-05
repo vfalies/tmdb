@@ -4,16 +4,19 @@ namespace Vfac\Tmdb;
 
 class Movie
 {
-
+    // Private loaded data
     private $_data = null;
+    private $_conf = null;
 
     /**
      * Constructor
      * @param stdClass $data
+     * @param stdClass $configuration
      */
-    public function __construct(\stdClass $data)
+    public function __construct(\stdClass $data, \stdClass $configuration)
     {
         $this->_data = $data;
+        $this->_conf = $configuration;
     }
 
     /**
@@ -109,26 +112,44 @@ class Movie
 
     /**
      * Get movie poster
+     * @param string $size
      * @return string|null
      */
-    public function getPoster()
+    public function getPoster($size = 'w185')
     {
+        if (!isset($this->_conf->images->base_url))
+        {
+            throw new \Exception('base_url configuration not found');
+        }
+        if (!in_array($size, $this->_conf->images->poster_sizes))
+        {
+            throw new \Exception('Incorrect poster size : '.$size);
+        }
         if (isset($this->_data->poster_path))
         {
-            return $this->_data->poster_path;
+            return $this->_conf->images->base_url.$size.$this->_data->poster_path;
         }
         return null;
     }
 
     /**
      * Get movie backdrop
+     * @param string $size
      * @return string|null
      */
-    public function getBackdrop()
+    public function getBackdrop($size = 'w780')
     {
+        if (!isset($this->_conf->images->base_url))
+        {
+            throw new \Exception('base_url configuration not found');
+        }
+        if (!in_array($size, $this->_conf->images->backdrop_sizes))
+        {
+            throw new \Exception('Incorrect backdrop size : '.$size);
+        }
         if (isset($this->_data->backdrop_path))
         {
-            return $this->_data->backdrop_path;
+            return $this->_conf->images->base_url.$size.$this->_data->backdrop_path;
         }
         return null;
     }

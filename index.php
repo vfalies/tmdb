@@ -22,9 +22,6 @@ foreach ($results as $movie)
         {$movie->getPoster()}<br />
         {$movie->getBackdrop()}<br />
         {$movie->getGenres()}<br />
-        <pre>
-        {$movie->raw}
-        </pre>
         <hr />
 RES;
 }
