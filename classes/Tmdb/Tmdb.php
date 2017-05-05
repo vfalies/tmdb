@@ -119,11 +119,18 @@ class Tmdb
      */
     private function getConfiguration()
     {
-        if (is_null($this->configuration))
+        try
         {
-            $this->configuration = $this->sendRequest('configuration');
+            if (is_null($this->configuration))
+            {
+                $this->configuration = $this->sendRequest('configuration');
+            }
+            return $this->configuration;
         }
-        return $this->configuration;
+        catch (Exception $ex)
+        {
+            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
+        }
     }
 
     /**
@@ -135,29 +142,36 @@ class Tmdb
      */
     public function searchMovie($query, array $options = array())
     {
-        $params = [];
-        if (isset($options['year']))
+        try
         {
-            if ( ! is_numeric($options['year']))
+            $params = [];
+            if (isset($options['year']))
             {
-                throw new \Exception('year param must be an integer');
+                if ( ! is_numeric($options['year']))
+                {
+                    throw new \Exception('year param must be an integer');
+                }
+                $params['year'] = (int) $options['year'];
             }
-            $params['year'] = (int) $options['year'];
+
+            $response = $this->sendRequest('search/movie', $query, $params);
+
+            $result = [];
+            foreach ($response->results as $data)
+            {
+                $data->_conf   = $this->getConfiguration();
+                $data->_genres = $this->getMovieGenres();
+
+                $movie = new Movie($data);
+                array_push($result, $movie);
+            }
+
+            return $result;
         }
-
-        $response = $this->sendRequest('search/movie', $query, $params);
-
-        $result = [];
-        foreach ($response->results as $data)
+        catch (Exception $ex)
         {
-            $data->_conf   = $this->getConfiguration();
-            $data->_genres = $this->getMovieGenres();
-
-            $movie = new Movie($data);
-            array_push($result, $movie);
+            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
         }
-
-        return $result;
     }
 
     /**
@@ -168,11 +182,18 @@ class Tmdb
      */
     public function getMovieDetails($movie_id, array $options = array())
     {
-        $response          = $this->sendRequest('movie/'.(int) $movie_id);
-        $response->_conf   = $this->getConfiguration();
+        try
+        {
+            $response        = $this->sendRequest('movie/'.(int) $movie_id);
+            $response->_conf = $this->getConfiguration();
 
-        $result = new Movie($response);
-        return $result;
+            $result = new Movie($response);
+            return $result;
+        }
+        catch (Exception $ex)
+        {
+            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
+        }
     }
 
     /**
@@ -183,16 +204,23 @@ class Tmdb
      */
     public function searchTVShow($query, array $options = array())
     {
-        $response = $this->sendRequest('search/tv', $query);
-
-        $result = [];
-        foreach ($response->results as $data)
+        try
         {
-            $movie = new TVShow($data, $this->configuration);
-            array_push($result, $movie);
-        }
+            $response = $this->sendRequest('search/tv', $query);
 
-        return $result;
+            $result = [];
+            foreach ($response->results as $data)
+            {
+                $movie = new TVShow($data);
+                array_push($result, $movie);
+            }
+
+            return $result;
+        }
+        catch (Exception $ex)
+        {
+            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
+        }
     }
 
     /**
@@ -201,18 +229,25 @@ class Tmdb
      */
     private function getMovieGenres()
     {
-        if (is_null($this->genres))
+        try
         {
-            $genres = $this->sendRequest('genre/movie/list');
-
-            $this->genres = [];
-            foreach ($genres->genres as $genre)
+            if (is_null($this->genres))
             {
-                $this->genres[$genre->id] = $genre->name;
-            }
-        }
+                $genres = $this->sendRequest('genre/movie/list');
 
-        return $this->genres;
+                $this->genres = [];
+                foreach ($genres->genres as $genre)
+                {
+                    $this->genres[$genre->id] = $genre->name;
+                }
+            }
+
+            return $this->genres;
+        }
+        catch (Exception $ex)
+        {
+            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
+        }
     }
 
 }
