@@ -15,12 +15,14 @@ class Tmdb
     private $include_adult   = false;                             // Include adult content in search result
     // Protected variables
     protected $response      = null; // Raw response of the API
-    protected $configuration = null; // API configuration
+    protected $configuration = null; // API Configuration
+    protected $genres        = null; // API Genres
 
     /**
      * Constructor
      * @param string $api_key TMDB API Key
      */
+
     public function __construct($api_key)
     {
         if ( ! extension_loaded('curl'))
@@ -28,9 +30,6 @@ class Tmdb
             throw new \Exception('cUrl extension is not loaded', 1003);
         }
         $this->api_key = $api_key;
-
-        // Get API configuration
-        $this->getConfiguration();
     }
 
     /**
@@ -114,7 +113,7 @@ class Tmdb
         $this->language = $language;
     }
 
-    public function getConfiguration()
+    private function getConfiguration()
     {
         if (is_null($this->configuration))
         {
@@ -140,7 +139,10 @@ class Tmdb
         $result = [];
         foreach ($response->results as $data)
         {
-            $movie = new Movie($data, $this->configuration);
+            $data->_conf   = $this->getConfiguration();
+            $data->_genres = $this->getMovieGenres();
+
+            $movie = new Movie($data);
             array_push($result, $movie);
         }
 
@@ -161,18 +163,20 @@ class Tmdb
         return $result;
     }
 
-    public function getGenres()
+    private function getMovieGenres()
     {
-        $response = $this->sendRequest('genres');
-
-        $result = [];
-        foreach ($response->genres as $data)
+        if (is_null($this->genres))
         {
-            $genre = new Genre($data, $this->configuration);
-            array_push($result, $genre);
+            $genres = $this->sendRequest('genre/movie/list');
+
+            $this->genres = [];
+            foreach ($genres->genres as $genre)
+            {
+                $this->genres[$genre->id] = $genre->name;
+            }
         }
 
-        return $result;
+        return $this->genres;
     }
 
 }

@@ -25,6 +25,4 @@ foreach ($results as $movie)
         <hr />
 RES;
 }
-//var_dump($VfacTmdb->getConfiguration());
-
 //var_dump($RagTmdb->searchTV('Black mirror'));
