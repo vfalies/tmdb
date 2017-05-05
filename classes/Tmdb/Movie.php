@@ -101,12 +101,23 @@ class Movie
      */
     public function getGenres()
     {
+        // Search results node
         if (isset($this->_data->genre_ids))
         {
             $genres = [];
             foreach ($this->_data->genre_ids as $genre_id)
             {
                 $genres[$genre_id] = $this->_data->_genres[$genre_id];
+            }
+            return var_export($genres, true);
+        }
+        // Movie details node
+        if (isset($this->_data->genres))
+        {
+            $genres = [];
+            foreach ($this->_data->genres as $genre)
+            {
+                $genres[$genre->id] = $genre->name;
             }
             return var_export($genres, true);
         }

@@ -9,7 +9,10 @@ $api_key = '62dfe9839b8937e595e325a4144702ad';
 $VfacTmdb = new Vfac\Tmdb\Tmdb($api_key);
 $VfacTmdb->setLanguage('fr-FR');
 
-$results = $VfacTmdb->searchMovie('star wars');
+$results = [];
+//$results = $VfacTmdb->searchMovie('star wars');
+$results[] = $VfacTmdb->getMovieDetails(11); // star wars
+
 foreach ($results as $movie)
 {
     echo <<<RES
@@ -25,4 +28,4 @@ foreach ($results as $movie)
         <hr />
 RES;
 }
-//var_dump($RagTmdb->searchTV('Black mirror'));
+

@@ -113,6 +113,10 @@ class Tmdb
         $this->language = $language;
     }
 
+    /**
+     * Get API Configuration
+     * @return array
+     */
     private function getConfiguration()
     {
         if (is_null($this->configuration))
@@ -122,7 +126,14 @@ class Tmdb
         return $this->configuration;
     }
 
-    public function searchMovie($query, $options = array())
+    /**
+     * Search a movie
+     * @param string $query
+     * @param array $options
+     * @return array
+     * @throws \Exception
+     */
+    public function searchMovie($query, array $options = array())
     {
         $params = [];
         if (isset($options['year']))
@@ -149,7 +160,28 @@ class Tmdb
         return $result;
     }
 
-    public function searchTVShow($query)
+    /**
+     * Get  movie details
+     * @param int $movie_id
+     * @param array $options
+     * @return \Vfac\Tmdb\Movie
+     */
+    public function getMovieDetails($movie_id, array $options = array())
+    {
+        $response          = $this->sendRequest('movie/'.(int) $movie_id);
+        $response->_conf   = $this->getConfiguration();
+
+        $result = new Movie($response);
+        return $result;
+    }
+
+    /**
+     * Search a TV Show
+     * @param string $query
+     * @param array $options
+     * @return array
+     */
+    public function searchTVShow($query, array $options = array())
     {
         $response = $this->sendRequest('search/tv', $query);
 
@@ -163,6 +195,10 @@ class Tmdb
         return $result;
     }
 
+    /**
+     * Get movie genres list
+     * @return array
+     */
     private function getMovieGenres()
     {
         if (is_null($this->genres))
