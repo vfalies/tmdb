@@ -27,5 +27,6 @@ foreach ($results as $movie)
         {$movie->getGenres()}<br />
         <hr />
 RES;
+    echo $movie->raw;
 }
 
