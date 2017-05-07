@@ -6,7 +6,7 @@ class Movie
 {
 
     // Private loaded data
-    private $_data   = null;
+    private $_data = null;
 
     /**
      * Constructor
@@ -131,17 +131,17 @@ class Movie
      */
     public function getPoster($size = 'w185')
     {
-        if ( ! isset($this->_data->_conf->images->base_url))
+        if (!isset($this->_data->_conf->images->base_url))
         {
             throw new \Exception('base_url configuration not found');
         }
-        if ( ! in_array($size, $this->_data->_conf->images->poster_sizes))
+        if (!in_array($size, $this->_data->_conf->images->poster_sizes))
         {
-            throw new \Exception('Incorrect poster size : '.$size);
+            throw new \Exception('Incorrect poster size : ' . $size);
         }
         if (isset($this->_data->poster_path))
         {
-            return $this->_data->_conf->images->base_url.$size.$this->_data->poster_path;
+            return $this->_data->_conf->images->base_url . $size . $this->_data->poster_path;
         }
         return null;
     }
@@ -153,36 +153,27 @@ class Movie
      */
     public function getBackdrop($size = 'w780')
     {
-        if ( ! isset($this->_data->_conf->images->base_url))
+        if (!isset($this->_data->_conf->images->base_url))
         {
             throw new \Exception('base_url configuration not found');
         }
-        if ( ! in_array($size, $this->_data->_conf->images->backdrop_sizes))
+        if (!in_array($size, $this->_data->_conf->images->backdrop_sizes))
         {
-            throw new \Exception('Incorrect backdrop size : '.$size);
+            throw new \Exception('Incorrect backdrop size : ' . $size);
         }
         if (isset($this->_data->backdrop_path))
         {
-            return $this->_data->_conf->images->base_url.$size.$this->_data->backdrop_path;
+            return $this->_data->_conf->images->base_url . $size . $this->_data->backdrop_path;
         }
         return null;
     }
 
-    /**
-     * Magical method
-     * @param string $name
-     * @return mixed
-     * @throws \Exception
-     */
-    public function __get($name)
+    public function getRaw()
     {
-        switch ($name)
-        {
-            case 'raw':
-                return var_export($this->_data, true);
-            default:
-                throw new \Exception("Unknown property ($name) for movie.");
-        }
+        $raw = $this->_data;
+        unset($raw->_conf);
+        unset($raw->_genres);
+        return $raw;
     }
 
 }
