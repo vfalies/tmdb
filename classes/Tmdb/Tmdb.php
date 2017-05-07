@@ -25,7 +25,7 @@ class Tmdb
 
     public function __construct($api_key)
     {
-        if ( ! extension_loaded('curl'))
+        if (!extension_loaded('curl'))
         {
             throw new \Exception('cUrl extension is not loaded', 1003);
         }
@@ -42,7 +42,7 @@ class Tmdb
     private function sendRequest($action, $query = null, $options = array())
     {
         // Url construction
-        $url = $this->base_api_url.$action;
+        $url = $this->base_api_url . $action;
 
         // Parameters
         $params                  = [];
@@ -50,7 +50,7 @@ class Tmdb
         $params['language']      = $this->language;
         $params['page']          = 1;
         $params['include_adult'] = $this->include_adult;
-        if ( ! is_null($query))
+        if (!is_null($query))
         {
             $params['query'] = $query;
         }
@@ -58,7 +58,7 @@ class Tmdb
         $params = array_merge($params, $options);
 
         // URL with paramters construction
-        $url = $url.'?'.http_build_query($params);
+        $url = $url . '?' . http_build_query($params);
 
         // Initialisation
         $ch = curl_init($url);
@@ -77,12 +77,12 @@ class Tmdb
         $result = curl_exec($ch);
         if ($result === false)
         {
-            throw new \Exception('cUrl failed : '.var_export(curl_getinfo($ch), true), 1004);
+            throw new \Exception('cUrl failed : ' . var_export(curl_getinfo($ch), true), 1004);
         }
         // cUrl HTTP Code response
         if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200)
         {
-            throw new \Exception('Incorrect HTTP Code response : '.var_export(curl_getinfo($ch), true), 1005);
+            throw new \Exception('Incorrect HTTP Code response : ' . var_export(curl_getinfo($ch), true), 1005);
         }
 
         // cUrl closing
@@ -91,7 +91,7 @@ class Tmdb
         $response = json_decode($result);
         if (is_null($response) || $response === false)
         {
-            throw new \Exception('Movie search failed : '.var_export($this->response, true), 2001);
+            throw new \Exception('Movie search failed : ' . var_export($this->response, true), 2001);
         }
 
         return $response;
@@ -144,16 +144,7 @@ class Tmdb
     {
         try
         {
-            $params = [];
-            if (isset($options['year']))
-            {
-                if ( ! is_numeric($options['year']))
-                {
-                    throw new \Exception('year param must be an integer');
-                }
-                $params['year'] = (int) $options['year'];
-            }
-
+            $params   = $this->checkOptions($options);
             $response = $this->sendRequest('search/movie', $query, $params);
 
             $result = [];
@@ -175,6 +166,64 @@ class Tmdb
     }
 
     /**
+     * Check options rules before send request
+     * @param array $options
+     * @return array
+     * @throws \Exception
+     */
+    private function checkOptions(array $options)
+    {
+        $params = [];
+        foreach ($options as $key => $value)
+        {
+            switch ($key)
+            {
+                case 'year':
+                    $params[$key] = $this->checkYear($value);
+                    break;
+                case 'language':
+                    $params[$key] = $this->checkLanguage($value);
+                    break;
+                default:
+                    throw new \Exception('Unknown options');
+            }
+        }
+        return $params;
+    }
+
+    /**
+     * Check year format
+     * @param mixed $year
+     * @return int
+     * @throws \Exception
+     */
+    private function checkYear($year)
+    {
+        if (!is_numeric($year))
+        {
+            throw new \Exception('year param must be an integer');
+        }
+        $year = (int) $year;
+        return $year;
+    }
+
+    /**
+     * Check language format (ISO 639-1)
+     * @param string $language
+     * @return string
+     * @throws \Exception
+     */
+    private function checkLanguage($language)
+    {
+        $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
+        if ($check === 0 || $check === false)
+        {
+            throw new \Exception("Incorrect language code : $language", 1001);
+        }
+        return $language;
+    }
+
+    /**
      * Get  movie details
      * @param int $movie_id
      * @param array $options
@@ -184,7 +233,8 @@ class Tmdb
     {
         try
         {
-            $response        = $this->sendRequest('movie/'.(int) $movie_id);
+            $params          = $this->checkOptions($options);
+            $response        = $this->sendRequest('movie/' . (int) $movie_id, null, $params);
             $response->_conf = $this->getConfiguration();
 
             $result = new Movie($response);
@@ -206,7 +256,8 @@ class Tmdb
     {
         try
         {
-            $response = $this->sendRequest('search/tv', $query);
+            $params   = $this->checkOptions($options);
+            $response = $this->sendRequest('search/tv', $query, $params);
 
             $result = [];
             foreach ($response->results as $data)
