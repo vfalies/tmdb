@@ -1,5 +1,5 @@
 {
-    "name": "vfac/tmdb",
+    "name": "ragol/vfactmdb",
     "description": "A PHP Wrapper for The Internet Movie Database API 3",
     "type": "library",
     "license": "MIT",
