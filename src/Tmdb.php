@@ -130,6 +130,7 @@ class Tmdb
             $params   = $this->checkOptions($options);
             $response = $this->sendRequest('search/movie', $query, $params);
 
+            $this->data = new \stdClass();
             $this->data->_conf   = $this->getConfiguration();
             $this->data->_genres = $this->getMovieGenres();
 
