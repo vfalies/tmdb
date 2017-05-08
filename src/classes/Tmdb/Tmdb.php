@@ -13,6 +13,7 @@ class Tmdb
     private $language        = 'fr-FR';                           // Default language for API response
     private $base_api_url    = 'https://api.themoviedb.org/3/';   // Base URL of the API
     private $include_adult   = false;                             // Include adult content in search result
+    private $page            = 1;                                 // API Page result
     private $data            = null;
     // Protected variables
     protected $response      = null; // Raw response of the API
@@ -46,11 +47,8 @@ class Tmdb
         $url = $this->base_api_url . $action;
 
         // Parameters
-        $params                  = [];
-        $params['api_key']       = $this->api_key;
-        $params['language']      = $this->language;
-        $params['page']          = 1;
-        $params['include_adult'] = $this->include_adult;
+        $params            = [];
+        $params['api_key'] = $this->api_key;
         if (!is_null($query))
         {
             $params['query'] = $query;
@@ -160,7 +158,12 @@ class Tmdb
      */
     private function checkOptions(array $options)
     {
-        $params = [];
+        $params                  = [];
+        // Set default options
+        $params['language']      = $this->language;
+        $params['include_adult'] = $this->include_adult;
+        $params['page']          = $this->page;
+        // Check options
         foreach ($options as $key => $value)
         {
             switch ($key)
@@ -171,10 +174,17 @@ class Tmdb
                 case 'language':
                     $params[$key] = $this->checkLanguage($value);
                     break;
+                case 'include_adult':
+                    $params[$key] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+                    break;
+                case 'page':
+                    $params[$key] = (int) $value;
+                    break;
                 default:
                     throw new \Exception('Unknown options');
             }
         }
+        $params = $this->setDefaultOptions($params);
         return $params;
     }
 
