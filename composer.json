@@ -15,8 +15,8 @@
         "ext-curl": "*"
     },
     "autoload": {
-        "psr-0": {
-            "tmdb": "src/"
+        "psr-4": {
+            "Vfac\\Tmdb\\": "src/"
         }
     }
 }
