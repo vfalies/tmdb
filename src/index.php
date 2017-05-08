@@ -7,11 +7,10 @@ require 'classes/Tmdb/TVShow.php';
 $api_key = '62dfe9839b8937e595e325a4144702ad';
 
 $VfacTmdb = new Vfac\Tmdb\Tmdb($api_key);
-$VfacTmdb->setLanguage('fr-FR');
 
 $results = [];
-//$results = $VfacTmdb->searchMovie('star wars');
-$results[] = $VfacTmdb->getMovieDetails(11); // star wars
+//$results = $VfacTmdb->searchMovie('star wars', array('language' => 'fr-FR'));
+$results[] = $VfacTmdb->getMovieDetails(11, array('language' => 'fr-FR')); // star wars
 
 foreach ($results as $movie)
 {
