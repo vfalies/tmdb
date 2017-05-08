@@ -16,9 +16,20 @@ class Movie
      */
     public function __construct(\Vfac\Tmdb\Tmdb $tmdb)
     {
-        $this->_data   = $tmdb->data->_infos;
-        $this->_conf   = $tmdb->data->_conf;
-        $this->_genres = $tmdb->data->_genres;
+        try
+        {
+            if (!isset($tmdb->data->_infos) || is_null($tmdb->data->_infos))
+            {
+                throw new \Exception('Incorrect Movie information');
+            }
+            $this->_data   = $tmdb->data->_infos;
+            $this->_conf   = $tmdb->data->_conf;
+            $this->_genres = $tmdb->data->_genres;
+        }
+        catch (\Exception $ex)
+        {
+            throw new \Exception($ex->getMessage(), $ex - getCode(), $ex);
+        }
     }
 
     /**

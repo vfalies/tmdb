@@ -110,7 +110,7 @@ class Tmdb
             }
             return $this->configuration;
         }
-        catch (Exception $ex)
+        catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
         }
@@ -144,7 +144,7 @@ class Tmdb
 
             return $result;
         }
-        catch (Exception $ex)
+        catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
         }
@@ -236,7 +236,7 @@ class Tmdb
             $result = new Movie($response);
             return $result;
         }
-        catch (Exception $ex)
+        catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
         }
@@ -264,7 +264,7 @@ class Tmdb
 
             return $result;
         }
-        catch (Exception $ex)
+        catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
         }
@@ -291,10 +291,26 @@ class Tmdb
 
             return $this->genres;
         }
-        catch (Exception $ex)
+        catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
         }
     }
 
+    /**
+     * Magical getter
+     * @param string $name
+     * @return mixed
+     * @throws \Exception
+     */
+    public function __get($name)
+    {
+        switch ($name)
+        {
+            case 'data':
+                return $this->data;
+            default:
+                throw new \Exception('Unknown property : '.$name);
+        }
+    }
 }
