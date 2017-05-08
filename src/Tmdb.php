@@ -184,7 +184,6 @@ class Tmdb
                     throw new \Exception('Unknown options');
             }
         }
-        $params = $this->setDefaultOptions($params);
         return $params;
     }
 
