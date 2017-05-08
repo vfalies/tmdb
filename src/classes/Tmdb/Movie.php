@@ -6,15 +6,19 @@ class Movie
 {
 
     // Private loaded data
-    private $_data = null;
+    private $_data   = null;
+    private $_conf   = null;
+    private $_genres = null;
 
     /**
      * Constructor
-     * @param stdClass $data
+     * @param stdClass $tmdb
      */
-    public function __construct(\stdClass $data)
+    public function __construct(\Vfac\Tmdb\Tmdb $tmdb)
     {
-        $this->_data = $data;
+        $this->_data   = $tmdb->data->_infos;
+        $this->_conf   = $tmdb->data->_conf;
+        $this->_genres = $tmdb->data->_genres;
     }
 
     /**
@@ -107,7 +111,7 @@ class Movie
             $genres = [];
             foreach ($this->_data->genre_ids as $genre_id)
             {
-                $genres[$genre_id] = $this->_data->_genres[$genre_id];
+                $genres[$genre_id] = $this->_genres[$genre_id];
             }
             return var_export($genres, true);
         }
@@ -131,17 +135,17 @@ class Movie
      */
     public function getPoster($size = 'w185')
     {
-        if (!isset($this->_data->_conf->images->base_url))
+        if (!isset($this->_conf->images->base_url))
         {
             throw new \Exception('base_url configuration not found');
         }
-        if (!in_array($size, $this->_data->_conf->images->poster_sizes))
+        if (!in_array($size, $this->_conf->images->poster_sizes))
         {
             throw new \Exception('Incorrect poster size : ' . $size);
         }
         if (isset($this->_data->poster_path))
         {
-            return $this->_data->_conf->images->base_url . $size . $this->_data->poster_path;
+            return $this->_conf->images->base_url . $size . $this->_data->poster_path;
         }
         return null;
     }
@@ -153,17 +157,17 @@ class Movie
      */
     public function getBackdrop($size = 'w780')
     {
-        if (!isset($this->_data->_conf->images->base_url))
+        if (!isset($this->_conf->images->base_url))
         {
             throw new \Exception('base_url configuration not found');
         }
-        if (!in_array($size, $this->_data->_conf->images->backdrop_sizes))
+        if (!in_array($size, $this->_conf->images->backdrop_sizes))
         {
             throw new \Exception('Incorrect backdrop size : ' . $size);
         }
         if (isset($this->_data->backdrop_path))
         {
-            return $this->_data->_conf->images->base_url . $size . $this->_data->backdrop_path;
+            return $this->_conf->images->base_url . $size . $this->_data->backdrop_path;
         }
         return null;
     }

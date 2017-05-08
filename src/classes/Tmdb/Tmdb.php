@@ -13,6 +13,7 @@ class Tmdb
     private $language        = 'fr-FR';                           // Default language for API response
     private $base_api_url    = 'https://api.themoviedb.org/3/';   // Base URL of the API
     private $include_adult   = false;                             // Include adult content in search result
+    private $data            = null;
     // Protected variables
     protected $response      = null; // Raw response of the API
     protected $configuration = null; // API Configuration
@@ -98,22 +99,6 @@ class Tmdb
     }
 
     /**
-     * Set default language code for API response
-     * @param string $language
-     * @throws Exception
-     */
-    public function setLanguage($language)
-    {
-        $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
-        if ($check === 0 || $check === false)
-        {
-            throw new \Exception("Incorrect language code : $language", 1001);
-        }
-
-        $this->language = $language;
-    }
-
-    /**
      * Get API Configuration
      * @return array
      */
@@ -147,13 +132,15 @@ class Tmdb
             $params   = $this->checkOptions($options);
             $response = $this->sendRequest('search/movie', $query, $params);
 
+            $this->data->_conf   = $this->getConfiguration();
+            $this->data->_genres = $this->getMovieGenres();
+
             $result = [];
             foreach ($response->results as $data)
             {
-                $data->_conf   = $this->getConfiguration();
-                $data->_genres = $this->getMovieGenres();
+                $this->data->_infos = $data;
 
-                $movie = new Movie($data);
+                $movie = new Movie($this);
                 array_push($result, $movie);
             }
 
