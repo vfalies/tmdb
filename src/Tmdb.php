@@ -16,7 +16,6 @@ class Tmdb
     private $page            = 1;                                 // API Page result
     private $data            = null;
     // Protected variables
-    protected $response      = null; // Raw response of the API
     protected $configuration = null; // API Configuration
     protected $genres        = null; // API Genres
 
@@ -90,7 +89,7 @@ class Tmdb
         $response = json_decode($result);
         if (is_null($response) || $response === false)
         {
-            throw new \Exception('Movie search failed : ' . var_export($this->response, true), 2001);
+            throw new \Exception('Movie search failed : ' . var_export($result, true), 2001);
         }
 
         return $response;
