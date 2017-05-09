@@ -26,7 +26,7 @@ class Tmdb
 
     public function __construct($api_key)
     {
-        if (!extension_loaded('curl'))
+        if ( ! extension_loaded('curl'))
         {
             throw new \Exception('cUrl extension is not loaded', 1003);
         }
@@ -43,12 +43,12 @@ class Tmdb
     private function sendRequest($action, $query = null, $options = array())
     {
         // Url construction
-        $url = $this->base_api_url . $action;
+        $url = $this->base_api_url.$action;
 
         // Parameters
         $params            = [];
         $params['api_key'] = $this->api_key;
-        if (!is_null($query))
+        if ( ! is_null($query))
         {
             $params['query'] = $query;
         }
@@ -56,7 +56,7 @@ class Tmdb
         $params = array_merge($params, $options);
 
         // URL with paramters construction
-        $url = $url . '?' . http_build_query($params);
+        $url = $url.'?'.http_build_query($params);
 
         // Initialisation
         $ch = curl_init($url);
@@ -75,12 +75,12 @@ class Tmdb
         $result = curl_exec($ch);
         if ($result === false)
         {
-            throw new \Exception('cUrl failed : ' . var_export(curl_getinfo($ch), true), 1004);
+            throw new \Exception('cUrl failed : '.var_export(curl_getinfo($ch), true), 1004);
         }
         // cUrl HTTP Code response
         if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200)
         {
-            throw new \Exception('Incorrect HTTP Code response : ' . var_export(curl_getinfo($ch), true), 1005);
+            throw new \Exception('Incorrect HTTP Code response : '.var_export(curl_getinfo($ch), true), 1005);
         }
 
         // cUrl closing
@@ -89,7 +89,7 @@ class Tmdb
         $response = json_decode($result);
         if (is_null($response) || $response === false)
         {
-            throw new \Exception('Movie search failed : ' . var_export($result, true), 2001);
+            throw new \Exception('Movie search failed : '.var_export($result, true), 2001);
         }
 
         return $response;
@@ -126,10 +126,15 @@ class Tmdb
     {
         try
         {
+            $query = trim($query);
+            if (empty($query))
+            {
+                throw new \Exception('query parameter can not be empty');
+            }
             $params   = $this->checkOptions($options);
             $response = $this->sendRequest('search/movie', $query, $params);
 
-            $this->data = new \stdClass();
+            $this->data          = new \stdClass();
             $this->data->_conf   = $this->getConfiguration();
             $this->data->_genres = $this->getMovieGenres();
 
@@ -195,7 +200,7 @@ class Tmdb
      */
     private function checkYear($year)
     {
-        if (!is_numeric($year))
+        if ( ! is_numeric($year))
         {
             throw new \Exception('year param must be an integer');
         }
@@ -230,7 +235,7 @@ class Tmdb
         try
         {
             $params          = $this->checkOptions($options);
-            $response        = $this->sendRequest('movie/' . (int) $movie_id, null, $params);
+            $response        = $this->sendRequest('movie/'.(int) $movie_id, null, $params);
             $response->_conf = $this->getConfiguration();
 
             $result = new Movie($response);
@@ -252,6 +257,11 @@ class Tmdb
     {
         try
         {
+            $query = trim($query);
+            if (empty($query))
+            {
+                throw new \Exception('query parameter can not be empty');
+            }
             $params   = $this->checkOptions($options);
             $response = $this->sendRequest('search/tv', $query, $params);
 
@@ -313,4 +323,5 @@ class Tmdb
                 throw new \Exception('Unknown property : '.$name);
         }
     }
+
 }
