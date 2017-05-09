@@ -35,9 +35,9 @@ class Tmdb
 
     /**
      * Send cUrl request to TMDB API
-     * @param string $action
-     * @param string $query
-     * @param array $options
+     * @param string $action API action to request
+     * @param string|null $query Query of the request (optional)
+     * @param array $options Array of options of the request (optional)
      * @return json string
      */
     private function sendRequest($action, $query = null, $options = array())
@@ -111,14 +111,14 @@ class Tmdb
         }
         catch (\Exception $ex)
         {
-            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
     }
 
     /**
      * Search a movie
-     * @param string $query
-     * @param array $options
+     * @param string $query Query string to search like a movie
+     * @param array $options Array of options for the search
      * @return array
      * @throws \Exception
      */
@@ -146,13 +146,13 @@ class Tmdb
         }
         catch (\Exception $ex)
         {
-            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
     }
 
     /**
      * Check options rules before send request
-     * @param array $options
+     * @param array $options Array of options to validate
      * @return array
      * @throws \Exception
      */
@@ -189,8 +189,8 @@ class Tmdb
 
     /**
      * Check year format
-     * @param mixed $year
-     * @return int
+     * @param mixed $year year to validate
+     * @return int year validated
      * @throws \Exception
      */
     private function checkYear($year)
@@ -204,9 +204,9 @@ class Tmdb
     }
 
     /**
-     * Check language format (ISO 639-1)
-     * @param string $language
-     * @return string
+     * Check language
+     * @param string $language Language string with format ISO 639-1
+     * @return string Language string validated
      * @throws \Exception
      */
     private function checkLanguage($language)
@@ -221,8 +221,8 @@ class Tmdb
 
     /**
      * Get  movie details
-     * @param int $movie_id
-     * @param array $options
+     * @param int $movie_id TMDB movie id to search it
+     * @param array $options Array of options for the request
      * @return \Vfac\Tmdb\Movie
      */
     public function getMovieDetails($movie_id, array $options = array())
@@ -238,14 +238,14 @@ class Tmdb
         }
         catch (\Exception $ex)
         {
-            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
     }
 
     /**
      * Search a TV Show
-     * @param string $query
-     * @param array $options
+     * @param string $query Query string to search like a TV Show
+     * @param array $options Array of options for the request
      * @return array
      */
     public function searchTVShow($query, array $options = array())
@@ -266,7 +266,7 @@ class Tmdb
         }
         catch (\Exception $ex)
         {
-            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
     }
 
@@ -293,7 +293,7 @@ class Tmdb
         }
         catch (\Exception $ex)
         {
-            throw new \Exception($ex->getMessage, $ex->getCode(), $ex);
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
     }
 
@@ -308,7 +308,7 @@ class Tmdb
         switch ($name)
         {
             case 'data':
-                return $this->data;
+                return $this->$name;
             default:
                 throw new \Exception('Unknown property : '.$name);
         }
