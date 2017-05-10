@@ -229,17 +229,45 @@ class Tmdb
      * @param int $movie_id TMDB movie id to search it
      * @param array $options Array of options for the request
      * @return \Vfac\Tmdb\Movie
+     * @throws \Exception
      */
     public function getMovieDetails($movie_id, array $options = array())
     {
         try
         {
-            $params          = $this->checkOptions($options);
-            $response        = $this->sendRequest('movie/'.(int) $movie_id, null, $params);
-            $response->_conf = $this->getConfiguration();
+            $params = $this->checkOptions($options);
 
-            $result = new Movie($response);
-            return $result;
+            $this->data          = new \stdClass();
+            $this->data->_conf   = $this->getConfiguration();
+            $this->data->_genres = $this->getMovieGenres();
+            $this->data->_infos  = $this->sendRequest('movie/'.(int) $movie_id, null, $params);
+
+            return new Movie($this);
+        }
+        catch (\Exception $ex)
+        {
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        }
+    }
+
+    /**
+     * Get collection details
+     * @param int $collection_id
+     * @param array $options
+     * @return \Vfac\Tmdb\Collection
+     * @throws \Exception
+     */
+    public function getCollectionDetails($collection_id, array $options = array())
+    {
+        try
+        {
+            $params   = $this->checkOptions($options);
+
+            $this->data          = new \stdClass();
+            $this->data->_conf   = $this->getConfiguration();
+            $this->data->_infos  = $this->sendRequest('collection/'.(int) $collection_id, null, $params);
+
+            return new Collection($this);
         }
         catch (\Exception $ex)
         {

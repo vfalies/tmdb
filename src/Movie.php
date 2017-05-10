@@ -12,11 +12,11 @@ class Movie
 
     /**
      * Constructor
-     * @param stdClass $tmdb
+     * @param \Vfac\Tmdb\Tmdb $tmdb
      */
     public function __construct(\Vfac\Tmdb\Tmdb $tmdb)
     {
-        if (!isset($tmdb->data->_infos) || is_null($tmdb->data->_infos))
+        if ( ! isset($tmdb->data->_infos) || is_null($tmdb->data->_infos))
         {
             throw new \Exception('Incorrect Movie information');
         }
@@ -104,6 +104,45 @@ class Movie
     }
 
     /**
+     * Get IMDB movie id
+     * @return int
+     */
+    public function getIMDBId()
+    {
+        if (isset($this->_data->imdb_id))
+        {
+            return $this->_data->imdb_id;
+        }
+        return null;
+    }
+
+    /**
+     * Get movie tagline
+     * @return string
+     */
+    public function getTagLine()
+    {
+        if (isset($this->_data->tagline))
+        {
+            return $this->_data->tagline;
+        }
+        return null;
+    }
+
+    /**
+     * Get collection id
+     * @return int
+     */
+    public function getCollectionId()
+    {
+        if ( ! empty($this->_data->belongs_to_collection))
+        {
+            return (int) $this->_data->belongs_to_collection->id;
+        }
+        return null;
+    }
+
+    /**
      * Get movie genres
      * @return array|null
      */
@@ -139,16 +178,16 @@ class Movie
      */
     public function getPoster($size = 'w185')
     {
-        if (!isset($this->_conf->images->base_url))
-        {
-            throw new \Exception('base_url configuration not found');
-        }
-        if (!in_array($size, $this->_conf->images->poster_sizes))
-        {
-            throw new \Exception('Incorrect poster size : ' . $size);
-        }
         if (isset($this->_data->poster_path))
         {
+            if ( ! isset($this->_conf->images->base_url))
+            {
+                throw new \Exception('base_url configuration not found');
+            }
+            if ( ! in_array($size, $this->_conf->images->poster_sizes))
+            {
+                throw new \Exception('Incorrect poster size : '.$size);
+            }
             return $this->_conf->images->base_url . $size . $this->_data->poster_path;
         }
         return null;
@@ -161,21 +200,25 @@ class Movie
      */
     public function getBackdrop($size = 'w780')
     {
-        if (!isset($this->_conf->images->base_url))
-        {
-            throw new \Exception('base_url configuration not found');
-        }
-        if (!in_array($size, $this->_conf->images->backdrop_sizes))
-        {
-            throw new \Exception('Incorrect backdrop size : ' . $size);
-        }
         if (isset($this->_data->backdrop_path))
         {
+            if ( ! isset($this->_conf->images->base_url))
+            {
+                throw new \Exception('base_url configuration not found');
+            }
+            if ( ! in_array($size, $this->_conf->images->backdrop_sizes))
+            {
+                throw new \Exception('Incorrect backdrop size : '.$size);
+            }
             return $this->_conf->images->base_url . $size . $this->_data->backdrop_path;
         }
         return null;
     }
 
+    /**
+     * Get raw API response
+     * @return string
+     */
     public function getRaw()
     {
         $raw = $this->_data;
