@@ -28,4 +28,12 @@ class TVShow
         }
     }
 
+    /**
+     * Get TV show id
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }

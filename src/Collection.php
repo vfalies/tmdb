@@ -40,11 +40,7 @@ class Collection
      */
     public function getId()
     {
-        if (isset($this->_data->id))
-        {
-            return (int) $this->_data->id;
-        }
-        throw new \Exception('Collection ID can not be found');
+        return $this->id;
     }
 
     /**

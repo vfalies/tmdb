@@ -128,15 +128,11 @@ class Movie
 
     /**
      * Get movie id
-     * @return int|null
+     * @return int
      */
     public function getId()
     {
-        if (isset($this->_data->id))
-        {
-            return $this->_data->id;
-        }
-        return null;
+        return $this->id;
     }
 
     /**
