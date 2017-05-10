@@ -58,6 +58,44 @@ class Search
     }
 
     /**
+     * Search a TV Show
+     * @param string $query Query string to search like a TV Show
+     * @param array $options Array of options for the request
+     * @return Generator
+     */
+    public function searchTVShow($query, array $options = array())
+    {
+        try
+        {
+            $query = trim($query);
+            if (empty($query))
+            {
+                throw new \Exception('query parameter can not be empty');
+            }
+            $params   = $this->checkOptions($options);
+            $response = $this->sendRequest('search/tv', $query, $params);
+
+            foreach ($response->results as $result)
+            {
+                $tvshow                 = new \stdClass();
+                $tvshow->id             = $result->id;
+                $tvshow->overview       = $result->overview;
+                $tvshow->first_air_date = $result->first_air_date;
+                $tvshow->original_name  = $result->original_name;
+                $tvshow->name           = $result->name;
+                $tvshow->poster         = $result->original_title;
+                $tvshow->backdrop       = $result->backdrop_path;
+
+                yield $tvshow;
+            }
+        }
+        catch (\Exception $ex)
+        {
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        }
+    }
+
+    /**
      * Get movie details
      * @param int $movie_id
      * @param array $options
@@ -95,4 +133,5 @@ class Search
 
         return $tv;
     }
+
 }

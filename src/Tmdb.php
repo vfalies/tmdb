@@ -14,7 +14,6 @@ class Tmdb
     private $base_api_url    = 'https://api.themoviedb.org/3/';   // Base URL of the API
     private $include_adult   = false;                             // Include adult content in search result
     private $page            = 1;                                 // API Page result
-    private $data            = null;
     // Protected variables
     protected $configuration = null; // API Configuration
     protected $genres        = null; // API Genres
@@ -182,40 +181,6 @@ class Tmdb
             throw new \Exception("Incorrect language code : $language", 1001);
         }
         return $language;
-    }
-
-    /**
-     * Search a TV Show
-     * @param string $query Query string to search like a TV Show
-     * @param array $options Array of options for the request
-     * @return array
-     */
-    public function searchTVShow($query, array $options = array())
-    {
-        try
-        {
-            $query = trim($query);
-            if (empty($query))
-            {
-                throw new \Exception('query parameter can not be empty');
-            }
-            $params   = $this->checkOptions($options);
-            $response = $this->sendRequest('search/tv', $query, $params);
-
-            $result = [];
-            foreach ($response->results as $data)
-            {
-                $tvshow = new TVShow($data);
-                /// yield $tvshow ?
-                array_push($result, $tvshow);
-            }
-
-            return $result;
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
     }
 
     /**
