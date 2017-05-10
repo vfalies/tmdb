@@ -144,6 +144,7 @@ class Tmdb
                 $this->data->_infos = $data;
 
                 $movie = new Movie($this);
+                // yield $movie ?
                 array_push($result, $movie);
             }
 
@@ -296,8 +297,9 @@ class Tmdb
             $result = [];
             foreach ($response->results as $data)
             {
-                $movie = new TVShow($data);
-                array_push($result, $movie);
+                $tvshow = new TVShow($data);
+                /// yield $tvshow ?
+                array_push($result, $tvshow);
             }
 
             return $result;
