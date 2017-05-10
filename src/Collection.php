@@ -20,7 +20,7 @@ class Collection
     {
         try
         {
-            $this->id    = $collection_id;
+            $this->id    = (int) $collection_id;
             $this->_tmdb = $tmdb;
             $this->_conf = $this->_tmdb->getConfiguration();
 

@@ -67,4 +67,10 @@ class Search
         return $collection;
     }
 
+    public function getTVShow($tv_id, array $options = array())
+    {
+        $tv = new TVShow($this->_tmdb, $tv_id, $options);
+
+        return $tv;
+    }
 }

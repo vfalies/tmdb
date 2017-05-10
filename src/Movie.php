@@ -19,7 +19,7 @@ class Movie
     {
         try
         {
-            $this->id      = $movie_id;
+            $this->id      = (int) $movie_id;
             $this->_tmdb   = $tmdb;
             $this->_conf   = $this->_tmdb->getConfiguration();
             $this->_genres = $this->getGenres();
