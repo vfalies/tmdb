@@ -8,6 +8,10 @@ class Search
     private $_tmdb = null;
     private $_conf = null;
 
+    /**
+     * Constructor
+     * @param \Vfac\Tmdb\Tmdb $tmdb
+     */
     public function __construct(Tmdb $tmdb)
     {
         $this->_tmdb = $tmdb;
@@ -53,6 +57,12 @@ class Search
         }
     }
 
+    /**
+     * Get movie details
+     * @param int $movie_id
+     * @param array $options
+     * @return \Vfac\Tmdb\Movie
+     */
     public function getMovie($movie_id, array $options = array())
     {
         $movie = new Movie($this->_tmdb, $movie_id, $options);
@@ -60,6 +70,12 @@ class Search
         return $movie;
     }
 
+    /**
+     * Get collection details
+     * @param int $collection_id
+     * @param array $options
+     * @return \Vfac\Tmdb\Collection
+     */
     public function getCollection($collection_id, array $options = array())
     {
         $collection = new Collection($this->_tmdb, $collection_id, $options);
@@ -67,6 +83,12 @@ class Search
         return $collection;
     }
 
+    /**
+     * Get TV Show details
+     * @param int $tv_id
+     * @param array $options
+     * @return \Vfac\Tmdb\TVShow
+     */
     public function getTVShow($tv_id, array $options = array())
     {
         $tv = new TVShow($this->_tmdb, $tv_id, $options);
