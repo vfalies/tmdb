@@ -19,10 +19,13 @@ use Vfac\Tmdb;
 $tmdb = new Tmdb('your_api_key');
 
 // Search a movie
-$responses = $tmdb->searchMovie('star wars');
+$search    = new Search($tmdb);
+$responses = $search->movie('star wars');
 
 // Get title of the first result in API response
-echo $responses[0]->getTitle();
+$movie        = $search->getMovie($responses->current()->id);
+
+echo $movie->getTitle();
 ```
 
 ## Documentation

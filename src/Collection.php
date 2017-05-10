@@ -4,24 +4,33 @@ namespace Vfac\Tmdb;
 
 class Collection
 {
+
     // Private loaded data
     private $_data = null;
     private $_conf = null;
+    private $id    = null;
+    private $_tmdb = null;
 
     /**
      * Constructor
      * @param \Vfac\Tmdb\Tmdb $tmdb
      * @throws \Exception
      */
-    public function __construct(\Vfac\Tmdb\Tmdb $tmdb)
+    public function __construct(\Vfac\Tmdb\Tmdb $tmdb, $collection_id, array $options = array())
     {
-        if ( ! isset($tmdb->data->_infos) || is_null($tmdb->data->_infos))
+        try
         {
-            throw new \Exception('Incorrect Movie information');
-        }
+            $this->id    = $collection_id;
+            $this->_tmdb = $tmdb;
+            $this->_conf = $this->_tmdb->getConfiguration();
 
-        $this->_data   = $tmdb->data->_infos;
-        $this->_conf   = $tmdb->data->_conf;
+            $params      = $this->_tmdb->checkOptions($options);
+            $this->_data = $this->_tmdb->sendRequest('collection/'.(int) $collection_id, null, $params);
+        }
+        catch (\Exception $ex)
+        {
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        }
     }
 
     /**
@@ -70,7 +79,7 @@ class Collection
             {
                 throw new \Exception('Incorrect poster size : '.$size);
             }
-            return $this->_conf->images->base_url . $size . $this->_data->poster_path;
+            return $this->_conf->images->base_url.$size.$this->_data->poster_path;
         }
         throw new \Exception('Collection poster path can not be found');
     }
@@ -93,17 +102,18 @@ class Collection
             {
                 throw new \Exception('Incorrect backdrop size : '.$size);
             }
-            return $this->_conf->images->base_url . $size . $this->_data->backdrop_path;
+            return $this->_conf->images->base_url.$size.$this->_data->backdrop_path;
         }
         throw new \Exception('Collection backdrop path can not be found');
     }
 
     public function getParts()
     {
-        if (!empty($this->_data->parts))
+        if ( ! empty($this->_data->parts))
         {
-            
+
         }
         return null;
     }
+
 }

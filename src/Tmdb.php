@@ -40,7 +40,7 @@ class Tmdb
      * @param array $options Array of options of the request (optional)
      * @return json string
      */
-    private function sendRequest($action, $query = null, $options = array())
+    public function sendRequest($action, $query = null, $options = array())
     {
         // Url construction
         $url = $this->base_api_url.$action;
@@ -99,7 +99,7 @@ class Tmdb
      * Get API Configuration
      * @return array
      */
-    private function getConfiguration()
+    public function getConfiguration()
     {
         try
         {
@@ -116,53 +116,12 @@ class Tmdb
     }
 
     /**
-     * Search a movie
-     * @param string $query Query string to search like a movie
-     * @param array $options Array of options for the search
-     * @return array
-     * @throws \Exception
-     */
-    public function searchMovie($query, array $options = array())
-    {
-        try
-        {
-            $query = trim($query);
-            if (empty($query))
-            {
-                throw new \Exception('query parameter can not be empty');
-            }
-            $params   = $this->checkOptions($options);
-            $response = $this->sendRequest('search/movie', $query, $params);
-
-            $this->data          = new \stdClass();
-            $this->data->_conf   = $this->getConfiguration();
-            $this->data->_genres = $this->getMovieGenres();
-
-            $result = [];
-            foreach ($response->results as $data)
-            {
-                $this->data->_infos = $data;
-
-                $movie = new Movie($this);
-                // yield $movie ?
-                array_push($result, $movie);
-            }
-
-            return $result;
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
-    }
-
-    /**
      * Check options rules before send request
      * @param array $options Array of options to validate
      * @return array
      * @throws \Exception
      */
-    private function checkOptions(array $options)
+    public function checkOptions(array $options)
     {
         $params                  = [];
         // Set default options
@@ -226,57 +185,6 @@ class Tmdb
     }
 
     /**
-     * Get  movie details
-     * @param int $movie_id TMDB movie id to search it
-     * @param array $options Array of options for the request
-     * @return \Vfac\Tmdb\Movie
-     * @throws \Exception
-     */
-    public function getMovieDetails($movie_id, array $options = array())
-    {
-        try
-        {
-            $params = $this->checkOptions($options);
-
-            $this->data          = new \stdClass();
-            $this->data->_conf   = $this->getConfiguration();
-            $this->data->_genres = $this->getMovieGenres();
-            $this->data->_infos  = $this->sendRequest('movie/'.(int) $movie_id, null, $params);
-
-            return new Movie($this);
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
-    }
-
-    /**
-     * Get collection details
-     * @param int $collection_id
-     * @param array $options
-     * @return \Vfac\Tmdb\Collection
-     * @throws \Exception
-     */
-    public function getCollectionDetails($collection_id, array $options = array())
-    {
-        try
-        {
-            $params   = $this->checkOptions($options);
-
-            $this->data          = new \stdClass();
-            $this->data->_conf   = $this->getConfiguration();
-            $this->data->_infos  = $this->sendRequest('collection/'.(int) $collection_id, null, $params);
-
-            return new Collection($this);
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
-    }
-
-    /**
      * Search a TV Show
      * @param string $query Query string to search like a TV Show
      * @param array $options Array of options for the request
@@ -303,33 +211,6 @@ class Tmdb
             }
 
             return $result;
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
-    }
-
-    /**
-     * Get movie genres list
-     * @return array
-     */
-    private function getMovieGenres()
-    {
-        try
-        {
-            if (is_null($this->genres))
-            {
-                $genres = $this->sendRequest('genre/movie/list');
-
-                $this->genres = [];
-                foreach ($genres->genres as $genre)
-                {
-                    $this->genres[$genre->id] = $genre->name;
-                }
-            }
-
-            return $this->genres;
         }
         catch (\Exception $ex)
         {

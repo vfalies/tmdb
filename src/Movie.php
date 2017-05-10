@@ -5,24 +5,60 @@ namespace Vfac\Tmdb;
 class Movie
 {
 
-    // Private loaded data
-    private $_data   = null;
+    private $_tmdb   = null;
     private $_conf   = null;
     private $_genres = null;
+    private $_data   = null;
+    private $id      = null;
 
     /**
      * Constructor
      * @param \Vfac\Tmdb\Tmdb $tmdb
      */
-    public function __construct(\Vfac\Tmdb\Tmdb $tmdb)
+    public function __construct(Tmdb $tmdb, $movie_id, array $options = array())
     {
-        if ( ! isset($tmdb->data->_infos) || is_null($tmdb->data->_infos))
+        try
         {
-            throw new \Exception('Incorrect Movie information');
+            $this->id      = $movie_id;
+            $this->_tmdb   = $tmdb;
+            $this->_conf   = $this->_tmdb->getConfiguration();
+            $this->_genres = $this->getGenres();
+
+            // Get movie details
+            $params      = $this->_tmdb->checkOptions($options);
+            $this->_data = $this->_tmdb->sendRequest('movie/'.(int) $movie_id, null, $params);
         }
-        $this->_data   = $tmdb->data->_infos;
-        $this->_conf   = $tmdb->data->_conf;
-        $this->_genres = $tmdb->data->_genres;
+        catch (Exception $ex)
+        {
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        }
+    }
+
+    /**
+     * Get movie genres list
+     * @return array
+     */
+    public function getGenres()
+    {
+        try
+        {
+            if (is_null($this->_genres))
+            {
+                $genres = $this->_tmdb->sendRequest('genre/movie/list');
+
+                $this->_genres = [];
+                foreach ($genres->genres as $genre)
+                {
+                    $this->genres[$genre->id] = $genre->name;
+                }
+            }
+
+            return $this->genres;
+        }
+        catch (\Exception $ex)
+        {
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        }
     }
 
     /**
@@ -143,35 +179,6 @@ class Movie
     }
 
     /**
-     * Get movie genres
-     * @return array|null
-     */
-    public function getGenres()
-    {
-        // Search results node
-        if (isset($this->_data->genre_ids))
-        {
-            $genres = [];
-            foreach ($this->_data->genre_ids as $genre_id)
-            {
-                $genres[$genre_id] = $this->_genres[$genre_id];
-            }
-            return var_export($genres, true);
-        }
-        // Movie details node
-        if (isset($this->_data->genres))
-        {
-            $genres = [];
-            foreach ($this->_data->genres as $genre)
-            {
-                $genres[$genre->id] = $genre->name;
-            }
-            return var_export($genres, true);
-        }
-        return null;
-    }
-
-    /**
      * Get movie poster
      * @param string $size
      * @return string|null
@@ -188,7 +195,7 @@ class Movie
             {
                 throw new \Exception('Incorrect poster size : '.$size);
             }
-            return $this->_conf->images->base_url . $size . $this->_data->poster_path;
+            return $this->_conf->images->base_url.$size.$this->_data->poster_path;
         }
         return null;
     }
@@ -210,7 +217,7 @@ class Movie
             {
                 throw new \Exception('Incorrect backdrop size : '.$size);
             }
-            return $this->_conf->images->base_url . $size . $this->_data->backdrop_path;
+            return $this->_conf->images->base_url.$size.$this->_data->backdrop_path;
         }
         return null;
     }
