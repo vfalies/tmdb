@@ -177,7 +177,7 @@ class Movie
     /**
      * Get movie poster
      * @param string $size
-     * @return string|null
+     * @return string
      */
     public function getPoster($size = 'w185')
     {
