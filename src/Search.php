@@ -22,7 +22,7 @@ class Search
      * Search a movie
      * @param string $query Query string to search like a movie
      * @param array $options Array of options for the search
-     * @return Generator
+     * @return Generator|SearchMovieResult
      * @throws \Exception
      */
     public function searchMovie($query, array $options = array())
@@ -39,14 +39,7 @@ class Search
 
             foreach ($response->results as $result)
             {
-                $movie                 = new \stdClass();
-                $movie->id             = $result->id;
-                $movie->overview       = $result->overview;
-                $movie->release_date   = $result->release_date;
-                $movie->original_title = $result->original_title;
-                $movie->title          = $result->title;
-                $movie->poster         = $result->original_title;
-                $movie->backdrop       = $result->backdrop_path;
+                $movie = new SearchMovieResult($result);
 
                 yield $movie;
             }

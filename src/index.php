@@ -4,11 +4,10 @@ require 'Tmdb.php';
 require 'Search.php';
 require 'Movie.php';
 require 'Collection.php';
-require 'MediaFactory.php';
+require 'SearchMovieResult.php';
 
 use Vfac\Tmdb\Tmdb;
 use Vfac\Tmdb\Search;
-use Vfac\Tmdb\MediaFactory;
 
 $tmdb = new Tmdb('62dfe9839b8937e595e325a4144702ad');
 
@@ -24,7 +23,7 @@ $results = $search->searchMovie('star wars', array('language' => 'fr-FR'));
 //    echo '</pre>';
 //}
 
-$res = $search->getMovie($results->current()->id);
+$res = $search->getMovie($results->current()->getId());
 
 echo '<pre>';
 var_dump($res->getTitle().' ('.$res->getReleaseDate().')');
@@ -33,4 +32,9 @@ var_dump('Collection : '.$res->getCollectionId());
 $collection = $search->getCollection($res->getCollectionId(), array('language' => 'fr-FR'));
 
 var_dump($collection->getName());
+
+foreach ($collection->getParts() as $part)
+{
+    var_dump($part->getTitle());
+}
 echo '</pre>';

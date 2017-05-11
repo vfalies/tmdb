@@ -103,11 +103,19 @@ class Collection
         throw new \Exception('Collection backdrop path can not be found');
     }
 
+    /**
+     * Get collection parts
+     * @return Generator|SearchMovieResult
+     */
     public function getParts()
     {
         if ( ! empty($this->_data->parts))
         {
-
+            foreach ($this->_data->parts as $part)
+            {
+                $movie = new SearchMovieResult($part);
+                yield $movie;
+            }
         }
         return null;
     }
