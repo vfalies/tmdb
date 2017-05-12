@@ -13,6 +13,11 @@ class SearchTVShowResult
     private $poster_path    = null;
     private $backdrop_path  = null;
 
+    /**
+     * Constructor
+     * @param \stdClass $result
+     * @throws \Exception
+     */
     public function __construct(\stdClass $result)
     {
         // Valid input object

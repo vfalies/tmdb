@@ -54,7 +54,7 @@ class Search
      * Search a TV Show
      * @param string $query Query string to search like a TV Show
      * @param array $options Array of options for the request
-     * @return Generator
+     * @return Generator|SearchTVShowResult
      */
     public function searchTVShow($query, array $options = array())
     {
