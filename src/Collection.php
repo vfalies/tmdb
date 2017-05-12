@@ -117,7 +117,6 @@ class Collection
                 yield $movie;
             }
         }
-        return null;
     }
 
 }
