@@ -2,46 +2,41 @@
 
 namespace Vfac\Tmdb;
 
-class SearchMovieResult
+class SearchTVShowResult
 {
 
     private $id             = null;
     private $overview       = null;
-    private $release_date   = null;
-    private $original_title = null;
-    private $title          = null;
+    private $first_air_date = null;
+    private $original_name  = null;
+    private $name           = null;
     private $poster_path    = null;
     private $backdrop_path  = null;
 
-    /**
-     * Constructor
-     * @param \stdClass $result
-     * @throws \Exception
-     */
     public function __construct(\stdClass $result)
     {
         // Valid input object
         $properties = get_object_vars($this);
         foreach ($properties as $property => $value)
         {
-            if (!property_exists($result, $property))
+            if ( ! property_exists($result, $property))
             {
-                throw new \Exception('Incorrect input for '.__CLASS__.' object. Property "' . $property . '" not found');
+                throw new \Exception('Incorrect input for '.__CLASS__.' object. Property "'.$property.'" not found');
             }
         }
 
         // Populate data
         $this->id             = $result->id;
         $this->overview       = $result->overview;
-        $this->release_date   = $result->release_date;
-        $this->original_title = $result->original_title;
-        $this->title          = $result->title;
+        $this->first_air_date = $result->first_air_date;
+        $this->original_name  = $result->original_name;
+        $this->name           = $result->name;
         $this->poster_path    = $result->poster_path;
         $this->backdrop_path  = $result->backdrop_path;
     }
 
     /**
-     * Get movie ID
+     * Get tvshow ID
      * @return int
      */
     public function getId()
@@ -50,7 +45,7 @@ class SearchMovieResult
     }
 
     /**
-     * Get movie overview
+     * Get tvshow overview
      * @return string
      */
     public function getOverview()
@@ -59,34 +54,34 @@ class SearchMovieResult
     }
 
     /**
-     * Get movie release date
+     * Get tvshow first air date
      * @return string
      */
-    public function getReleaseDate()
+    public function getFirstAirDate()
     {
-        return $this->release_date;
+        return $this->first_air_date;
     }
 
     /**
-     * Get movie original title
+     * Get tvshow original name
      * @return string
      */
-    public function getOriginalTitle()
+    public function getOriginalName()
     {
-        return $this->original_title;
+        return $this->original_name;
     }
 
     /**
-     * Get movie title
+     * Get tvshow name
      * @return string
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**
-     * Get movie poster
+     * Get tvshow poster
      * @return string
      */
     public function getPoster()
@@ -95,7 +90,7 @@ class SearchMovieResult
     }
 
     /**
-     * Get movie backdrop
+     * Get tvshow backdrop
      * @return string
      */
     public function getBackdrop()

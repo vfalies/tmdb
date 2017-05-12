@@ -70,14 +70,7 @@ class Search
 
             foreach ($response->results as $result)
             {
-                $tvshow                 = new \stdClass();
-                $tvshow->id             = $result->id;
-                $tvshow->overview       = $result->overview;
-                $tvshow->first_air_date = $result->first_air_date;
-                $tvshow->original_name  = $result->original_name;
-                $tvshow->name           = $result->name;
-                $tvshow->poster         = $result->original_title;
-                $tvshow->backdrop       = $result->backdrop_path;
+                $tvshow = new SearchTVShowResult($result);
 
                 yield $tvshow;
             }
