@@ -19,6 +19,40 @@ class Search
     }
 
     /**
+     * Search specify item
+     * @param string $item item to search : movie / tv / collection
+     * @param string $query Query string to search like a $item
+     * @param array $options Array of options for the request
+     * @param string $result_class class name of the wanted result
+     * @return Generator|$result_class
+     * @throws \Exception
+     */
+    private function searchItem($item, $query, array $options, $result_class)
+    {
+        try
+        {
+            $query = trim($query);
+            if (empty($query))
+            {
+                throw new \Exception('query parameter can not be empty');
+            }
+            $params   = $this->_tmdb->checkOptions($options);
+            $response = $this->_tmdb->sendRequest('search/'.$item, $query, $params);
+
+            foreach ($response->results as $result)
+            {
+                $element = new $result_class($result);
+
+                yield $element;
+            }
+        }
+        catch (Exception $ex)
+        {
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        }
+    }
+
+    /**
      * Search a movie
      * @param string $query Query string to search like a movie
      * @param array $options Array of options for the search
@@ -29,20 +63,7 @@ class Search
     {
         try
         {
-            $query = trim($query);
-            if (empty($query))
-            {
-                throw new \Exception('query parameter can not be empty');
-            }
-            $params   = $this->_tmdb->checkOptions($options);
-            $response = $this->_tmdb->sendRequest('search/movie', $query, $params);
-
-            foreach ($response->results as $result)
-            {
-                $movie = new SearchMovieResult($result);
-
-                yield $movie;
-            }
+            $this->searchItem('movie', $query, $options, 'SearchMovieResult');
         }
         catch (\Exception $ex)
         {
@@ -61,20 +82,7 @@ class Search
     {
         try
         {
-            $query = trim($query);
-            if (empty($query))
-            {
-                throw new \Exception('query parameter can not be empty');
-            }
-            $params   = $this->checkOptions($options);
-            $response = $this->sendRequest('search/tv', $query, $params);
-
-            foreach ($response->results as $result)
-            {
-                $tvshow = new SearchTVShowResult($result);
-
-                yield $tvshow;
-            }
+            $this->searchItem('tv', $query, $options, 'SearchTVShowResult');
         }
         catch (\Exception $ex)
         {
@@ -93,20 +101,7 @@ class Search
     {
         try
         {
-            $query = trim($query);
-            if (empty($query))
-            {
-                throw new \Exception('query parameter can not be empty');
-            }
-            $params   = $this->checkOptions($options);
-            $response = $this->sendRequest('search/collection', $query, $params);
-
-            foreach ($response->results as $result)
-            {
-                $collection = new SearchCollectionResult($result);
-
-                yield $collection;
-            }
+            $this->searchItem('collection', $query, $options, 'SearchCollectionResult');
         }
         catch (\Exception $ex)
         {
