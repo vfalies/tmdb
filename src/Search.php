@@ -55,6 +55,7 @@ class Search
      * @param string $query Query string to search like a TV Show
      * @param array $options Array of options for the request
      * @return Generator|SearchTVShowResult
+     * @throws \Exception
      */
     public function searchTVShow($query, array $options = array())
     {
@@ -73,6 +74,38 @@ class Search
                 $tvshow = new SearchTVShowResult($result);
 
                 yield $tvshow;
+            }
+        }
+        catch (\Exception $ex)
+        {
+            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        }
+    }
+
+    /**
+     * Search a collection
+     * @param string $query Query string to search like a collection
+     * @param array $options Array of option for the request
+     * @return Generator|SearchCollectionResult
+     * @throws \Exception
+     */
+    public function searchCollection($query, array $options = array())
+    {
+        try
+        {
+            $query = trim($query);
+            if (empty($query))
+            {
+                throw new \Exception('query parameter can not be empty');
+            }
+            $params   = $this->checkOptions($options);
+            $response = $this->sendRequest('search/collection', $query, $params);
+
+            foreach ($response->results as $result)
+            {
+                $collection = new SearchCollectionResult($result);
+
+                yield $collection;
             }
         }
         catch (\Exception $ex)
