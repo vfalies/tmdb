@@ -5,8 +5,11 @@ namespace Vfac\Tmdb;
 class Search
 {
 
-    private $_tmdb = null;
-    private $_conf = null;
+    private $_tmdb         = null;
+    private $_conf         = null;
+    private $page          = 1; // Page number of the search result
+    private $total_pages   = 1; // Total pages of the search result
+    private $total_results = 1; // Total results of the search result
 
     /**
      * Constructor
@@ -38,6 +41,10 @@ class Search
             }
             $params   = $this->_tmdb->checkOptions($options);
             $response = $this->_tmdb->sendRequest('search/'.$item, $query, $params);
+
+            $this->page          = (int) $response->page;
+            $this->total_pages   = (int) $response->total_pages;
+            $this->total_results = (int) $response->total_results;
 
             foreach ($response->results as $result)
             {
@@ -146,6 +153,25 @@ class Search
         $tv = new TVShow($this->_tmdb, $tv_id, $options);
 
         return $tv;
+    }
+
+    /**
+     * Magical getter
+     * @param string $name
+     * @return mixed
+     * @throws \Exception
+     */
+    public function __get($name)
+    {
+        switch ($name)
+        {
+            case 'page':
+            case 'total_pages':
+            case 'total_results':
+                return $this->$name;
+            default:
+                throw new \Exception('Unknown property : '.$name);
+        }
     }
 
 }
