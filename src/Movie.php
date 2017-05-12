@@ -28,7 +28,7 @@ class Movie
             $params      = $this->_tmdb->checkOptions($options);
             $this->_data = $this->_tmdb->sendRequest('movie/'.(int) $movie_id, null, $params);
         }
-        catch (Exception $ex)
+        catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }

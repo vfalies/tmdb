@@ -53,7 +53,7 @@ class Search
                 yield $element;
             }
         }
-        catch (Exception $ex)
+        catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
@@ -156,22 +156,30 @@ class Search
     }
 
     /**
-     * Magical getter
-     * @param string $name
-     * @return mixed
-     * @throws \Exception
+     * Get page from result search
+     * @return int
      */
-    public function __get($name)
+    public function getPage()
     {
-        switch ($name)
-        {
-            case 'page':
-            case 'total_pages':
-            case 'total_results':
-                return $this->$name;
-            default:
-                throw new \Exception('Unknown property : '.$name);
-        }
+        return $this->page;
+    }
+
+    /**
+     * Get total page from result search
+     * @return int
+     */
+    public function getTotalPages()
+    {
+        return $this->total_pages;
+    }
+
+    /**
+     * Get total results from search
+     * @return int
+     */
+    public function getTotalResults()
+    {
+        return $this->total_results;
     }
 
 }
