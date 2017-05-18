@@ -77,9 +77,10 @@ class Tmdb
             throw new \Exception('cUrl failed : '.var_export(curl_getinfo($ch), true), 1004);
         }
         // cUrl HTTP Code response
-        if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200)
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if ($http_code !== 200)
         {
-            throw new \Exception('Incorrect HTTP Code response : '.var_export(curl_getinfo($ch), true), 1005);
+            throw new \Exception('Incorrect HTTP Code ('.$http_code.') response : '.var_export(curl_getinfo($ch), true), 1005);
         }
 
         // cUrl closing
