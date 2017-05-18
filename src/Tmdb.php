@@ -88,7 +88,7 @@ class Tmdb
                 $message->message = 'Request rate limit exceeded';
                 $message->headers = var_export(curl_getinfo($ch, CURLINFO_HEADER_OUT), true);
 
-                throw new \Exception($message, 1006);
+                throw new \Exception(json_encode($message), 1006);
             }
             throw new \Exception('Incorrect HTTP Code ('.$http_code.') response : '.var_export(curl_getinfo($ch), true), 1005);
         }
