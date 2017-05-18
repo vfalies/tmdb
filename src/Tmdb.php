@@ -70,6 +70,8 @@ class Tmdb
         curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
         curl_setopt($ch, CURLOPT_ENCODING, "");
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true); // To gets header in curl_getinfo()
+        
         // cUrl execution
         $result = curl_exec($ch);
         if ($result === false)
@@ -80,6 +82,14 @@ class Tmdb
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($http_code !== 200)
         {
+            if ($http_code == 429)
+            {
+                $message = new \stdClass();
+                $message->message = 'Request rate limit exceeded';
+                $message->headers = var_export(curl_getinfo($ch, CURLINFO_HEADER_OUT), true);
+
+                throw new \Exception(json_encode($message), 1006);
+            }
             throw new \Exception('Incorrect HTTP Code ('.$http_code.') response : '.var_export(curl_getinfo($ch), true), 1005);
         }
 
