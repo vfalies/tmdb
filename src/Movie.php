@@ -22,7 +22,7 @@ class Movie
             $this->id      = (int) $movie_id;
             $this->_tmdb   = $tmdb;
             $this->_conf   = $this->_tmdb->getConfiguration();
-            $this->_genres = $this->getGenres();
+            $this->_genres = $this->getAllGenres();
 
             // Get movie details
             $params      = $this->_tmdb->checkOptions($options);
@@ -35,10 +35,10 @@ class Movie
     }
 
     /**
-     * Get movie genres list
+     * Get all movie genres list
      * @return array
      */
-    public function getGenres()
+    public function getAllGenres()
     {
         try
         {
@@ -59,6 +59,19 @@ class Movie
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
+    }
+
+    /**
+     * Get movie genres
+     * @return array
+     */
+    public function getGenres()
+    {
+        if (isset($this->_data->genres))
+        {
+            return $this->_data->genres;
+        }
+        return null;
     }
 
     /**
