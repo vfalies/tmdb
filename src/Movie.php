@@ -2,7 +2,7 @@
 
 namespace Vfac\Tmdb;
 
-class Movie
+class Movie implements Interfaces\Movie
 {
 
     private $_tmdb   = null;
