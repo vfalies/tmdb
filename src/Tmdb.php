@@ -37,9 +37,9 @@ class Tmdb
      * @param string $action API action to request
      * @param string $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
-     * @return json string
+     * @return \stdClass
      */
-    public function sendRequest(string $action, string $query = null, array $options = array()) : string
+    public function sendRequest(string $action, string $query = null, array $options = array()) : \stdClass
     {
         // Url construction
         $url = $this->base_api_url.$action;
@@ -101,15 +101,14 @@ class Tmdb
         {
             throw new \Exception('Movie search failed : '.var_export($result, true), 2001);
         }
-
         return $response;
     }
 
     /**
      * Get API Configuration
-     * @return array
+     * @return \stdClass
      */
-    public function getConfiguration() : array
+    public function getConfiguration() : \stdClass
     {
         try
         {

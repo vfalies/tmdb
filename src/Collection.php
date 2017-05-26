@@ -113,7 +113,7 @@ class Collection
         {
             foreach ($this->_data->parts as $part)
             {
-                $movie = new SearchMovieResult($part);
+                $movie = new Results\Movie($part);
                 yield $movie;
             }
         }
