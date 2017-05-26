@@ -2,7 +2,7 @@
 
 namespace Vfac\Tmdb\Results;
 
-class Collection
+class Collection implements \Vfac\Tmdb\Interfaces\Results
 {
 
     private $id            = null;
@@ -38,7 +38,7 @@ class Collection
      * Get collection ID
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -47,7 +47,7 @@ class Collection
      * Get collection name
      * @return string
      */
-    public function getName()
+    public function getTitle() : string
     {
         return $this->name;
     }
@@ -56,7 +56,7 @@ class Collection
      * Get collection poster
      * @return string
      */
-    public function getPoster()
+    public function getPoster() : string
     {
         return $this->poster_path;
     }
@@ -65,9 +65,23 @@ class Collection
      * Get collection backdrop
      * @return string
      */
-    public function getBackdrop()
-    {
+    public function getBackdrop() : string
+   {
         return $this->backdrop_path;
     }
 
+    public function getOriginalTitle(): string
+    {
+        return $this->name;
+    }
+
+    public function getOverview(): string
+    {
+        return $this->overview;
+    }
+
+    public function getReleaseDate(): string
+    {
+        throw new Exception('Not applicable');
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace Vfac\Tmdb\Results;
 
-class TVShow
+class TVShow implements \Vfac\Tmdb\Interfaces\Results
 {
 
     private $id             = null;
@@ -44,7 +44,7 @@ class TVShow
      * Get tvshow ID
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -53,7 +53,7 @@ class TVShow
      * Get tvshow overview
      * @return string
      */
-    public function getOverview()
+    public function getOverview() : int
     {
         return $this->overview;
     }
@@ -62,7 +62,7 @@ class TVShow
      * Get tvshow first air date
      * @return string
      */
-    public function getFirstAirDate()
+    public function getReleaseDate() : string
     {
         return $this->first_air_date;
     }
@@ -71,7 +71,7 @@ class TVShow
      * Get tvshow original name
      * @return string
      */
-    public function getOriginalName()
+    public function getOriginalTitle() : string
     {
         return $this->original_name;
     }
@@ -80,7 +80,7 @@ class TVShow
      * Get tvshow name
      * @return string
      */
-    public function getName()
+    public function getTitle() : string
     {
         return $this->name;
     }
@@ -89,7 +89,7 @@ class TVShow
      * Get tvshow poster
      * @return string
      */
-    public function getPoster()
+    public function getPoster() : string
     {
         return $this->poster_path;
     }
@@ -98,9 +98,8 @@ class TVShow
      * Get tvshow backdrop
      * @return string
      */
-    public function getBackdrop()
+    public function getBackdrop() : string
     {
         return $this->backdrop_path;
     }
-
 }

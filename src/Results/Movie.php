@@ -2,7 +2,7 @@
 
 namespace Vfac\Tmdb\Results;
 
-class Movie
+class Movie implements \Vfac\Tmdb\Interfaces\Results
 {
 
     private $id             = null;
@@ -26,7 +26,7 @@ class Movie
         {
             if (!property_exists($result, $property))
             {
-                throw new \Exception('Incorrect input for '.__CLASS__.' object. Property "' . $property . '" not found');
+                throw new \Exception('Incorrect input for ' . __CLASS__ . ' object. Property "' . $property . '" not found');
             }
         }
 
