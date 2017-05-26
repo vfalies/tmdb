@@ -25,7 +25,6 @@ class Movie
             $this->id      = (int) $movie_id;
             $this->_tmdb   = $tmdb;
             $this->_conf   = $this->_tmdb->getConfiguration();
-            $this->_genres = $this->getAllGenres();
 
             // Get movie details
             $params      = $this->_tmdb->checkOptions($options);
