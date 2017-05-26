@@ -10,11 +10,11 @@ class TVShow
     private $_conf = null;
     private $_data = null;
 
-    public function __construct(Tmdb $tmdb, $tv_id, array $options = array())
+    public function __construct(Tmdb $tmdb,int $tv_id, array $options = array())
     {
         try
         {
-            $this->id    = (int) $tv_id;
+            $this->id    = $tv_id;
             $this->_tmdb = $tmdb;
             $this->_conf = $this->_tmdb->getConfiguration();
 
@@ -32,7 +32,7 @@ class TVShow
      * Get TV show id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
