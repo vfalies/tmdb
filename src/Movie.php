@@ -5,11 +5,11 @@ namespace Vfac\Tmdb;
 class Movie implements Interfaces\Movie
 {
 
-    private $_tmdb   = null;
-    private $_conf   = null;
-    private $_genres = null;
-    private $_data   = null;
-    private $id      = null;
+    private $tmdb   = null;
+    private $conf   = null;
+    private $genres = null;
+    private $data   = null;
+    private $id     = null;
 
     /**
      * Constructor
@@ -22,13 +22,13 @@ class Movie implements Interfaces\Movie
     {
         try
         {
-            $this->id      = (int) $movie_id;
-            $this->_tmdb   = $tmdb;
-            $this->_conf   = $this->_tmdb->getConfiguration();
+            $this->id   = (int) $movie_id;
+            $this->tmdb = $tmdb;
+            $this->conf = $this->tmdb->getConfiguration();
 
             // Get movie details
-            $params      = $this->_tmdb->checkOptions($options);
-            $this->_data = $this->_tmdb->sendRequest('movie/' . $movie_id, null, $params);
+            $params     = $this->tmdb->checkOptions($options);
+            $this->data = $this->tmdb->sendRequest('movie/' . $movie_id, null, $params);
         }
         catch (\Exception $ex)
         {
@@ -40,15 +40,15 @@ class Movie implements Interfaces\Movie
      * Get all movie genres list
      * @return array
      */
-    public function getAllGenres() : array
+    public function getAllGenres(): array
     {
         try
         {
-            if (is_null($this->_genres))
+            if (is_null($this->genres))
             {
-                $genres = $this->_tmdb->sendRequest('genre/movie/list');
+                $genres = $this->tmdb->sendRequest('genre/movie/list');
 
-                $this->_genres = [];
+                $this->genres = [];
                 foreach ($genres->genres as $genre)
                 {
                     $this->genres[$genre->id] = $genre->name;
@@ -67,11 +67,11 @@ class Movie implements Interfaces\Movie
      * Get movie genres
      * @return array
      */
-    public function getGenres() : array
+    public function getGenres(): array
     {
-        if (isset($this->_data->genres))
+        if (isset($this->data->genres))
         {
-            return $this->_data->genres;
+            return $this->data->genres;
         }
         return null;
     }
@@ -80,11 +80,11 @@ class Movie implements Interfaces\Movie
      * Get movie title
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
-        if (isset($this->_data->title))
+        if (isset($this->data->title))
         {
-            return $this->_data->title;
+            return $this->data->title;
         }
         return null;
     }
@@ -93,11 +93,11 @@ class Movie implements Interfaces\Movie
      * Get movie overview
      * @return string
      */
-    public function getOverview() : string
+    public function getOverview(): string
     {
-        if (isset($this->_data->overview))
+        if (isset($this->data->overview))
         {
-            return $this->_data->overview;
+            return $this->data->overview;
         }
         return null;
     }
@@ -106,11 +106,11 @@ class Movie implements Interfaces\Movie
      * Get movie release date
      * @return string
      */
-    public function getReleaseDate() : string
+    public function getReleaseDate(): string
     {
-        if (isset($this->_data->release_date))
+        if (isset($this->data->release_date))
         {
-            return $this->_data->release_date;
+            return $this->data->release_date;
         }
         return null;
     }
@@ -119,11 +119,11 @@ class Movie implements Interfaces\Movie
      * Get movie original title
      * @return string
      */
-    public function getOriginalTitle() : string
+    public function getOriginalTitle(): string
     {
-        if (isset($this->_data->original_title))
+        if (isset($this->data->original_title))
         {
-            return $this->_data->original_title;
+            return $this->data->original_title;
         }
         return null;
     }
@@ -132,11 +132,11 @@ class Movie implements Interfaces\Movie
      * Get movie note
      * @return float
      */
-    public function getNote() : float
+    public function getNote(): float
     {
-        if (isset($this->_data->vote_average))
+        if (isset($this->data->vote_average))
         {
-            return $this->_data->vote_average;
+            return $this->data->vote_average;
         }
         return null;
     }
@@ -145,7 +145,7 @@ class Movie implements Interfaces\Movie
      * Get movie id
      * @return int
      */
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -154,11 +154,11 @@ class Movie implements Interfaces\Movie
      * Get IMDB movie id
      * @return int
      */
-    public function getIMDBId() : int
+    public function getIMDBId(): int
     {
-        if (isset($this->_data->imdb_id))
+        if (isset($this->data->imdb_id))
         {
-            return $this->_data->imdb_id;
+            return $this->data->imdb_id;
         }
         return null;
     }
@@ -167,11 +167,11 @@ class Movie implements Interfaces\Movie
      * Get movie tagline
      * @return string
      */
-    public function getTagLine() : string
+    public function getTagLine(): string
     {
-        if (isset($this->_data->tagline))
+        if (isset($this->data->tagline))
         {
-            return $this->_data->tagline;
+            return $this->data->tagline;
         }
         return null;
     }
@@ -180,11 +180,11 @@ class Movie implements Interfaces\Movie
      * Get collection id
      * @return int
      */
-    public function getCollectionId() : int
+    public function getCollectionId(): int
     {
-        if ( ! empty($this->_data->belongs_to_collection))
+        if (!empty($this->data->belongs_to_collection))
         {
-            return (int) $this->_data->belongs_to_collection->id;
+            return (int) $this->data->belongs_to_collection->id;
         }
         return null;
     }
@@ -194,19 +194,19 @@ class Movie implements Interfaces\Movie
      * @param string $size
      * @return string
      */
-    public function getPoster(string $size = 'w185') : string
+    public function getPoster(string $size = 'w185'): string
     {
-        if (isset($this->_data->poster_path))
+        if (isset($this->data->poster_path))
         {
-            if ( ! isset($this->_conf->images->base_url))
+            if (!isset($this->conf->images->base_url))
             {
                 throw new \Exception('base_url configuration not found');
             }
-            if ( ! in_array($size, $this->_conf->images->poster_sizes))
+            if (!in_array($size, $this->conf->images->poster_sizes))
             {
-                throw new \Exception('Incorrect poster size : '.$size);
+                throw new \Exception('Incorrect poster size : ' . $size);
             }
-            return $this->_conf->images->base_url.$size.$this->_data->poster_path;
+            return $this->conf->images->base_url . $size . $this->data->poster_path;
         }
         return null;
     }
@@ -216,20 +216,21 @@ class Movie implements Interfaces\Movie
      * @param string $size
      * @return string|null
      */
-    public function getBackdrop(string $size = 'w780') : string
+    public function getBackdrop(string $size = 'w780'): string
     {
-        if (isset($this->_data->backdrop_path))
+        if (isset($this->data->backdrop_path))
         {
-            if ( ! isset($this->_conf->images->base_url))
+            if (!isset($this->conf->images->base_url))
             {
                 throw new \Exception('base_url configuration not found');
             }
-            if ( ! in_array($size, $this->_conf->images->backdrop_sizes))
+            if (!in_array($size, $this->conf->images->backdrop_sizes))
             {
-                throw new \Exception('Incorrect backdrop size : '.$size);
+                throw new \Exception('Incorrect backdrop size : ' . $size);
             }
-            return $this->_conf->images->base_url.$size.$this->_data->backdrop_path;
+            return $this->conf->images->base_url . $size . $this->data->backdrop_path;
         }
         return null;
     }
+
 }

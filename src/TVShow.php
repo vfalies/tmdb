@@ -5,22 +5,22 @@ namespace Vfac\Tmdb;
 class TVShow
 {
 
-    private $id    = null;
-    private $_tmdb = null;
-    private $_conf = null;
-    private $_data = null;
+    private $id   = null;
+    private $tmdb = null;
+    private $conf = null;
+    private $data = null;
 
-    public function __construct(Tmdb $tmdb,int $tv_id, array $options = array())
+    public function __construct(Tmdb $tmdb, int $tv_id, array $options = array())
     {
         try
         {
-            $this->id    = $tv_id;
-            $this->_tmdb = $tmdb;
-            $this->_conf = $this->_tmdb->getConfiguration();
+            $this->id   = $tv_id;
+            $this->tmdb = $tmdb;
+            $this->conf = $this->tmdb->getConfiguration();
 
             // Get tvshow details
-            $params      = $this->_tmdb->checkOptions($options);
-            $this->_data = $this->_tmdb->sendRequest('tv/'.(int) $tv_id, null, $params);
+            $params     = $this->tmdb->checkOptions($options);
+            $this->data = $this->tmdb->sendRequest('tv/' . (int) $tv_id, null, $params);
         }
         catch (\Exception $ex)
         {
@@ -32,8 +32,9 @@ class TVShow
      * Get TV show id
      * @return int
      */
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
+
 }

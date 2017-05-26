@@ -6,10 +6,10 @@ class Collection
 {
 
     // Private loaded data
-    private $_data = null;
-    private $_conf = null;
-    private $id    = null;
-    private $_tmdb = null;
+    private $data = null;
+    private $conf = null;
+    private $id   = null;
+    private $tmdb = null;
 
     /**
      * Constructor
@@ -20,12 +20,12 @@ class Collection
     {
         try
         {
-            $this->id    = (int) $collection_id;
-            $this->_tmdb = $tmdb;
-            $this->_conf = $this->_tmdb->getConfiguration();
+            $this->id   = (int) $collection_id;
+            $this->tmdb = $tmdb;
+            $this->conf = $this->tmdb->getConfiguration();
 
-            $params      = $this->_tmdb->checkOptions($options);
-            $this->_data = $this->_tmdb->sendRequest('collection/'.(int) $collection_id, null, $params);
+            $params     = $this->tmdb->checkOptions($options);
+            $this->data = $this->tmdb->sendRequest('collection/' . (int) $collection_id, null, $params);
         }
         catch (\Exception $ex)
         {
@@ -38,7 +38,7 @@ class Collection
      * @return int
      * @throws \Exception
      */
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -48,11 +48,11 @@ class Collection
      * @return string
      * @throws \Exception
      */
-    public function getName() : string
+    public function getName(): string
     {
-        if (isset($this->_data->name))
+        if (isset($this->data->name))
         {
-            return $this->_data->name;
+            return $this->data->name;
         }
         throw new \Exception('Collection name can not be found');
     }
@@ -63,19 +63,19 @@ class Collection
      * @return string
      * @throws \Exception
      */
-    public function getPoster($size = 'w185') : string
+    public function getPoster($size = 'w185'): string
     {
-        if (isset($this->_data->poster_path))
+        if (isset($this->data->poster_path))
         {
-            if ( ! isset($this->_conf->images->base_url))
+            if (!isset($this->conf->images->base_url))
             {
                 throw new \Exception('base_url configuration not found');
             }
-            if ( ! in_array($size, $this->_conf->images->poster_sizes))
+            if (!in_array($size, $this->conf->images->poster_sizes))
             {
-                throw new \Exception('Incorrect poster size : '.$size);
+                throw new \Exception('Incorrect poster size : ' . $size);
             }
-            return $this->_conf->images->base_url.$size.$this->_data->poster_path;
+            return $this->conf->images->base_url . $size . $this->data->poster_path;
         }
         throw new \Exception('Collection poster path can not be found');
     }
@@ -86,19 +86,19 @@ class Collection
      * @return string
      * @throws \Exception
      */
-    public function getBackdrop($size = 'w780') : string
+    public function getBackdrop($size = 'w780'): string
     {
-        if (isset($this->_data->backdrop_path))
+        if (isset($this->data->backdrop_path))
         {
-            if ( ! isset($this->_conf->images->base_url))
+            if (!isset($this->conf->images->base_url))
             {
                 throw new \Exception('base_url configuration not found');
             }
-            if ( ! in_array($size, $this->_conf->images->backdrop_sizes))
+            if (!in_array($size, $this->conf->images->backdrop_sizes))
             {
-                throw new \Exception('Incorrect backdrop size : '.$size);
+                throw new \Exception('Incorrect backdrop size : ' . $size);
             }
-            return $this->_conf->images->base_url.$size.$this->_data->backdrop_path;
+            return $this->conf->images->base_url . $size . $this->data->backdrop_path;
         }
         throw new \Exception('Collection backdrop path can not be found');
     }
@@ -107,11 +107,11 @@ class Collection
      * Get collection parts
      * @return Generator|SearchMovieResult
      */
-    public function getParts() : \Generator
+    public function getParts(): \Generator
     {
-        if ( ! empty($this->_data->parts))
+        if (!empty($this->data->parts))
         {
-            foreach ($this->_data->parts as $part)
+            foreach ($this->data->parts as $part)
             {
                 $movie = new Results\Movie($part);
                 yield $movie;
