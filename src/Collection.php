@@ -38,7 +38,7 @@ class Collection
      * @return int
      * @throws \Exception
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -48,7 +48,7 @@ class Collection
      * @return string
      * @throws \Exception
      */
-    public function getName()
+    public function getName() : string
     {
         if (isset($this->_data->name))
         {
@@ -63,7 +63,7 @@ class Collection
      * @return string
      * @throws \Exception
      */
-    public function getPoster($size = 'w185')
+    public function getPoster($size = 'w185') : string
     {
         if (isset($this->_data->poster_path))
         {
@@ -86,7 +86,7 @@ class Collection
      * @return string
      * @throws \Exception
      */
-    public function getBackdrop($size = 'w780')
+    public function getBackdrop($size = 'w780') : string
     {
         if (isset($this->_data->backdrop_path))
         {
@@ -107,7 +107,7 @@ class Collection
      * Get collection parts
      * @return Generator|SearchMovieResult
      */
-    public function getParts()
+    public function getParts() : \Generator
     {
         if ( ! empty($this->_data->parts))
         {
