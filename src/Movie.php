@@ -40,7 +40,7 @@ class Movie implements Interfaces\Movie
      * Get all movie genres list
      * @return array
      */
-    public function getAllGenres()
+    public function getAllGenres() : array
     {
         try
         {
@@ -67,7 +67,7 @@ class Movie implements Interfaces\Movie
      * Get movie genres
      * @return array
      */
-    public function getGenres()
+    public function getGenres() : array
     {
         if (isset($this->_data->genres))
         {
@@ -78,9 +78,9 @@ class Movie implements Interfaces\Movie
 
     /**
      * Get movie title
-     * @return string|null
+     * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         if (isset($this->_data->title))
         {
@@ -91,9 +91,9 @@ class Movie implements Interfaces\Movie
 
     /**
      * Get movie overview
-     * @return string|null
+     * @return string
      */
-    public function getOverview()
+    public function getOverview() : string
     {
         if (isset($this->_data->overview))
         {
@@ -104,9 +104,9 @@ class Movie implements Interfaces\Movie
 
     /**
      * Get movie release date
-     * @return string|null
+     * @return string
      */
-    public function getReleaseDate()
+    public function getReleaseDate() : string
     {
         if (isset($this->_data->release_date))
         {
@@ -117,9 +117,9 @@ class Movie implements Interfaces\Movie
 
     /**
      * Get movie original title
-     * @return string|null
+     * @return string
      */
-    public function getOriginalTitle()
+    public function getOriginalTitle() : string
     {
         if (isset($this->_data->original_title))
         {
@@ -130,9 +130,9 @@ class Movie implements Interfaces\Movie
 
     /**
      * Get movie note
-     * @return number|null
+     * @return float
      */
-    public function getNote()
+    public function getNote() : float
     {
         if (isset($this->_data->vote_average))
         {
@@ -145,7 +145,7 @@ class Movie implements Interfaces\Movie
      * Get movie id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -154,7 +154,7 @@ class Movie implements Interfaces\Movie
      * Get IMDB movie id
      * @return int
      */
-    public function getIMDBId()
+    public function getIMDBId() : int
     {
         if (isset($this->_data->imdb_id))
         {
@@ -167,7 +167,7 @@ class Movie implements Interfaces\Movie
      * Get movie tagline
      * @return string
      */
-    public function getTagLine()
+    public function getTagLine() : string
     {
         if (isset($this->_data->tagline))
         {
@@ -180,7 +180,7 @@ class Movie implements Interfaces\Movie
      * Get collection id
      * @return int
      */
-    public function getCollectionId()
+    public function getCollectionId() : int
     {
         if ( ! empty($this->_data->belongs_to_collection))
         {
@@ -194,7 +194,7 @@ class Movie implements Interfaces\Movie
      * @param string $size
      * @return string
      */
-    public function getPoster(string $size = 'w185')
+    public function getPoster(string $size = 'w185') : string
     {
         if (isset($this->_data->poster_path))
         {
@@ -216,7 +216,7 @@ class Movie implements Interfaces\Movie
      * @param string $size
      * @return string|null
      */
-    public function getBackdrop(string $size = 'w780')
+    public function getBackdrop(string $size = 'w780') : string
     {
         if (isset($this->_data->backdrop_path))
         {

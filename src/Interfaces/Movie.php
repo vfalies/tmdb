@@ -9,78 +9,78 @@ interface Movie
      * Get all movie genres list
      * @return array
      */
-    public function getAllGenres();
+    public function getAllGenres() : array;
 
     /**
      * Get movie genres
      * @return array
      */
-    public function getGenres();
+    public function getGenres() : array;
     /**
      * Get movie title
-     * @return string|null
+     * @return string
      */
-    public function getTitle();
+    public function getTitle() : string;
 
     /**
      * Get movie overview
-     * @return string|null
+     * @return string
      */
-    public function getOverview();
+    public function getOverview() : string;
 
     /**
      * Get movie release date
-     * @return string|null
+     * @return string
      */
-    public function getReleaseDate();
+    public function getReleaseDate() : string;
 
     /**
      * Get movie original title
-     * @return string|null
+     * @return string
      */
-    public function getOriginalTitle();
+    public function getOriginalTitle() : string;
 
     /**
      * Get movie note
-     * @return number|null
+     * @return float
      */
-    public function getNote();
+    public function getNote() : float;
 
     /**
      * Get movie id
      * @return int
      */
-    public function getId();
+    public function getId() : int;
 
     /**
      * Get IMDB movie id
      * @return int
      */
-    public function getIMDBId();
+    public function getIMDBId() : int;
 
     /**
      * Get movie tagline
      * @return string
      */
-    public function getTagLine();
+    public function getTagLine() : string;
 
     /**
      * Get collection id
      * @return int
      */
-    public function getCollectionId();
+    public function getCollectionId() : int;
 
     /**
      * Get movie poster
      * @param string $size
      * @return string
      */
-    public function getPoster(string $size = 'w185');
+    public function getPoster(string $size = 'w185') : string;
 
     /**
      * Get movie backdrop
      * @param string $size
-     * @return string|null
+     * @return string
      */
-    public function getBackdrop(string $size = 'w780');
+    public function getBackdrop(string $size = 'w780') : string;
 }
