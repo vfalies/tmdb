@@ -5,7 +5,7 @@ namespace Vfac\Tmdb;
 /**
  * Tmdb wrapper core class
  */
-class Tmdb
+class Tmdb implements Interfaces\TmdbInterface
 {
 
     // Private variables
