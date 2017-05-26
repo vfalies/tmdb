@@ -14,8 +14,11 @@ class Movie
     /**
      * Constructor
      * @param \Vfac\Tmdb\Tmdb $tmdb
+     * @param int $movie_id
+     * @param array $options
+     * @throws Exception
      */
-    public function __construct(Tmdb $tmdb, $movie_id, array $options = array())
+    public function __construct(Tmdb $tmdb, int $movie_id, array $options = array())
     {
         try
         {
@@ -26,7 +29,7 @@ class Movie
 
             // Get movie details
             $params      = $this->_tmdb->checkOptions($options);
-            $this->_data = $this->_tmdb->sendRequest('movie/'.(int) $movie_id, null, $params);
+            $this->_data = $this->_tmdb->sendRequest('movie/' . $movie_id, null, $params);
         }
         catch (\Exception $ex)
         {
@@ -192,7 +195,7 @@ class Movie
      * @param string $size
      * @return string
      */
-    public function getPoster($size = 'w185')
+    public function getPoster(string $size = 'w185')
     {
         if (isset($this->_data->poster_path))
         {
@@ -214,7 +217,7 @@ class Movie
      * @param string $size
      * @return string|null
      */
-    public function getBackdrop($size = 'w780')
+    public function getBackdrop(string $size = 'w780')
     {
         if (isset($this->_data->backdrop_path))
         {
@@ -230,17 +233,4 @@ class Movie
         }
         return null;
     }
-
-    /**
-     * Get raw API response
-     * @return string
-     */
-    public function getRaw()
-    {
-        $raw = $this->_data;
-        unset($raw->_conf);
-        unset($raw->_genres);
-        return $raw;
-    }
-
 }
