@@ -1,8 +1,8 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace Vfac\Tmdb\Results;
 
-class SearchCollectionResult
+class Collection
 {
 
     private $id            = null;

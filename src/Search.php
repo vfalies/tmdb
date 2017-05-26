@@ -70,7 +70,7 @@ class Search
     {
         try
         {
-            return $this->searchItem('movie', $query, $options, __NAMESPACE__."\\".'SearchMovieResult');
+            return $this->searchItem('movie', $query, $options, __NAMESPACE__."\\results\\".'Movie');
         }
         catch (\Exception $ex)
         {
@@ -89,7 +89,7 @@ class Search
     {
         try
         {
-            return $this->searchItem('tv', $query, $options, __NAMESPACE__."\\".'SearchTVShowResult');
+            return $this->searchItem('tv', $query, $options, __NAMESPACE__."\\results\\".'TVShow');
         }
         catch (\Exception $ex)
         {
@@ -108,7 +108,7 @@ class Search
     {
         try
         {
-            return $this->searchItem('collection', $query, $options, __NAMESPACE__."\\".'SearchCollectionResult');
+            return $this->searchItem('collection', $query, $options, __NAMESPACE__."\\results\\".'Collection');
         }
         catch (\Exception $ex)
         {

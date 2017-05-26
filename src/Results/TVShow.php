@@ -1,8 +1,8 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace Vfac\Tmdb\Results;
 
-class SearchTVShowResult
+class TVShow
 {
 
     private $id             = null;
