@@ -2,7 +2,7 @@
 
 namespace Vfac\Tmdb\Results;
 
-class TVShow implements \Vfac\Tmdb\Interfaces\Results
+class TVShow implements \Vfac\Tmdb\Interfaces\ResultsInterface
 {
 
     private $id             = null;

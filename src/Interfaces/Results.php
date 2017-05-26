@@ -2,7 +2,7 @@
 
 namespace Vfac\Tmdb\Interfaces;
 
-interface Results
+interface ResultsInterface
 {
 
     /**

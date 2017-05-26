@@ -2,7 +2,7 @@
 
 namespace Vfac\Tmdb\Results;
 
-class Collection implements \Vfac\Tmdb\Interfaces\Results
+class Collection implements \Vfac\Tmdb\Interfaces\ResultsInterface
 {
 
     private $id            = null;
@@ -82,6 +82,6 @@ class Collection implements \Vfac\Tmdb\Interfaces\Results
 
     public function getReleaseDate(): string
     {
-        throw new Exception('Not applicable');
+        throw new \Exception('Not applicable');
     }
 }
