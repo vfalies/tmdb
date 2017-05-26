@@ -23,7 +23,7 @@ class Tmdb
      * @param string $api_key TMDB API Key
      */
 
-    public function __construct($api_key)
+    public function __construct(string $api_key)
     {
         if ( ! extension_loaded('curl'))
         {
@@ -35,11 +35,11 @@ class Tmdb
     /**
      * Send cUrl request to TMDB API
      * @param string $action API action to request
-     * @param string|null $query Query of the request (optional)
+     * @param string $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
      * @return json string
      */
-    public function sendRequest($action, $query = null, $options = array())
+    public function sendRequest(string $action, string $query = null, array $options = array()) : string
     {
         // Url construction
         $url = $this->base_api_url.$action;
@@ -109,7 +109,7 @@ class Tmdb
      * Get API Configuration
      * @return array
      */
-    public function getConfiguration()
+    public function getConfiguration() : array
     {
         try
         {
@@ -131,7 +131,7 @@ class Tmdb
      * @return array
      * @throws \Exception
      */
-    public function checkOptions(array $options)
+    public function checkOptions(array $options) : array
     {
         $params                  = [];
         // Set default options
@@ -168,7 +168,7 @@ class Tmdb
      * @return int year validated
      * @throws \Exception
      */
-    private function checkYear($year)
+    private function checkYear(int $year) : int
     {
         if ( ! is_numeric($year))
         {
@@ -184,7 +184,7 @@ class Tmdb
      * @return string Language string validated
      * @throws \Exception
      */
-    private function checkLanguage($language)
+    private function checkLanguage(string $language) : string
     {
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
         if ($check === 0 || $check === false)
@@ -200,7 +200,7 @@ class Tmdb
      * @return mixed
      * @throws \Exception
      */
-    public function __get($name)
+    public function __get(string $name)
     {
         switch ($name)
         {
