@@ -27,10 +27,10 @@ class Search
      * @param string $query Query string to search like a $item
      * @param array $options Array of options for the request
      * @param string $result_class class name of the wanted result
-     * @return Generator|$result_class
+     * @return \Generator|$result_class
      * @throws \Exception
      */
-    private function searchItem($item, $query, array $options, $result_class)
+    private function searchItem(string $item, string $query, array $options, $result_class) : \Generator
     {
         try
         {
@@ -66,7 +66,7 @@ class Search
      * @return Generator|SearchMovieResult
      * @throws \Exception
      */
-    public function searchMovie($query, array $options = array())
+    public function searchMovie(string $query, array $options = array()) : \Generator
     {
         try
         {
@@ -85,7 +85,7 @@ class Search
      * @return Generator|SearchTVShowResult
      * @throws \Exception
      */
-    public function searchTVShow($query, array $options = array())
+    public function searchTVShow(string $query, array $options = array()) : \Generator
     {
         try
         {
@@ -104,7 +104,7 @@ class Search
      * @return Generator|SearchCollectionResult
      * @throws \Exception
      */
-    public function searchCollection($query, array $options = array())
+    public function searchCollection(string $query, array $options = array()) : \Generator
     {
         try
         {
@@ -122,7 +122,7 @@ class Search
      * @param array $options
      * @return \Vfac\Tmdb\Movie
      */
-    public function getMovie($movie_id, array $options = array())
+    public function getMovie(int $movie_id, array $options = array()) : Movie
     {
         $movie = new Movie($this->_tmdb, $movie_id, $options);
 
@@ -135,7 +135,7 @@ class Search
      * @param array $options
      * @return \Vfac\Tmdb\Collection
      */
-    public function getCollection($collection_id, array $options = array())
+    public function getCollection(int $collection_id, array $options = array()) : Collection
     {
         $collection = new Collection($this->_tmdb, $collection_id, $options);
 
@@ -148,7 +148,7 @@ class Search
      * @param array $options
      * @return \Vfac\Tmdb\TVShow
      */
-    public function getTVShow($tv_id, array $options = array())
+    public function getTVShow(int $tv_id, array $options = array()) : TVShow
     {
         $tv = new TVShow($this->_tmdb, $tv_id, $options);
 
@@ -159,7 +159,7 @@ class Search
      * Get page from result search
      * @return int
      */
-    public function getPage()
+    public function getPage() : int
     {
         return $this->page;
     }
@@ -168,7 +168,7 @@ class Search
      * Get total page from result search
      * @return int
      */
-    public function getTotalPages()
+    public function getTotalPages() : int
     {
         return $this->total_pages;
     }
@@ -177,7 +177,7 @@ class Search
      * Get total results from search
      * @return int
      */
-    public function getTotalResults()
+    public function getTotalResults() : int
     {
         return $this->total_results;
     }
