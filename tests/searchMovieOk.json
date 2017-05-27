@@ -1,0 +1,407 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "poster_path": "/yVaQ34IvVDAZAWxScNdeIkaepDq.jpg",
+      "adult": false,
+      "overview": "Il y a bien longtemps, dans une galaxie très lointaine... La guerre civile fait rage entre l'Empire galactique et l'Alliance rebelle. Capturée par les troupes de choc de l'Empereur menées par le sombre et impitoyable Dark Vador, la princesse Leia Organa dissimule les plans de l’Étoile Noire, une station spatiale invulnérable, à son droïde R2-D2 avec pour mission de les remettre au Jedi Obi-Wan Kenobi. Accompagné de son fidèle compagnon, le droïde de protocole C-3PO, R2-D2 s'échoue sur la planète Tatooine et termine sa quête chez le jeune Luke Skywalker. Rêvant de devenir pilote mais confiné aux travaux de la ferme, ce dernier se lance à la recherche de ce mystérieux Obi-Wan Kenobi, devenu ermite au cœur des montagnes désertiques de Tatooine...",
+      "release_date": "1977-05-25",
+      "genre_ids": [
+        12,
+        28,
+        878
+      ],
+      "id": 11,
+      "original_title": "Star Wars",
+      "original_language": "en",
+      "title": "La Guerre des étoiles",
+      "backdrop_path": "/4iJfYYoQzZcONB9hNzg0J0wWyPH.jpg",
+      "popularity": 7.342141,
+      "vote_count": 5679,
+      "video": false,
+      "vote_average": 8
+    },
+    {
+      "poster_path": "/sHOYrricE1K0JriQ74FeN794UEl.jpg",
+      "adult": false,
+      "overview": "Il y a bien longtemps, dans une galaxie lointaine... Luke Skywalker est porté disparu. Le pilote Poe est en mission secrète sur une planète pour le retrouver. Au moment où la diabolique armée \"Premier Ordre\" apparaît en détruisant tout sur son passage, il arrive à cacher la position géographique de l'ancien maître Jedi dans son droïde BB-8. Capturé par les larbins du machiavélique Kylo Ren, Poe est libéré par le soldat ennemi Finn qui est en pleine crise existentielle. Pendant ce temps, BB-8 est recueillie par Rey, une pilleuse d'épaves qui sera bientôt plongée dans une quête qui la dépasse.",
+      "release_date": "2015-12-15",
+      "genre_ids": [
+        28,
+        12,
+        878,
+        14
+      ],
+      "id": 140607,
+      "original_title": "Star Wars: The Force Awakens",
+      "original_language": "en",
+      "title": "Star Wars, épisode VII - Le Réveil de la Force",
+      "backdrop_path": "/c2Ax8Rox5g6CneChwy1gmu4UbSb.jpg",
+      "popularity": 8.327433,
+      "vote_count": 6730,
+      "video": false,
+      "vote_average": 7.5
+    },
+    {
+      "poster_path": "/mcwCNjqKUkebvknFkpj0UPdpSj.jpg",
+      "adult": false,
+      "overview": "Situé entre les épisodes III et IV de la saga Star Wars, le film nous entraîne aux côtés d’individus ordinaires qui, pour rester fidèles à leurs valeurs, vont tenter l’impossible au péril de leur vie. Ils n’avaient pas prévu de devenir des héros, mais dans une époque de plus en plus sombre, ils vont devoir dérober les plans de l’Étoile de la Mort, l’arme de destruction ultime de l’Empire.",
+      "release_date": "2016-12-14",
+      "genre_ids": [
+        878
+      ],
+      "id": 330459,
+      "original_title": "Rogue One: A Star Wars Story",
+      "original_language": "en",
+      "title": "Rogue One - A Star Wars Story",
+      "backdrop_path": "/tZjVVIYXACV4IIIhXeIM59ytqwS.jpg",
+      "popularity": 11.171999,
+      "vote_count": 3780,
+      "video": false,
+      "vote_average": 7.3
+    },
+    {
+      "poster_path": "/l92mwSUHyInaGinQJ8eUGIFtltp.jpg",
+      "adult": false,
+      "overview": "Nouvel épisode de la saga.",
+      "release_date": "2017-12-13",
+      "genre_ids": [
+        28,
+        12,
+        14,
+        878
+      ],
+      "id": 181808,
+      "original_title": "Star Wars: The Last Jedi",
+      "original_language": "en",
+      "title": "Star Wars, épisode VIII : Les Derniers Jedi",
+      "backdrop_path": "/c4Dw37VZjBmObmJw9bmt8IDwMZH.jpg",
+      "popularity": 3.514674,
+      "vote_count": 0,
+      "video": false,
+      "vote_average": 0
+    },
+    {
+      "poster_path": "/xd6yhmtS6mEURZLwUDT5raEMbf.jpg",
+      "adult": false,
+      "overview": "La galaxie est en proie à la Guerre des Clones, un conflit à grande échelle qui oppose les maléfiques Séparatistes et leurs immenses armées d'androïdes à la République. Les Chevaliers Jedi, protecteurs de la République, luttent pour maintenir l'ordre et restaurer la paix tandis que de nouvelles planètes succombent chaque jour aux puissances du mal. Pour prendre l'avantage, le Chevalier Jedi Anakin Skywalker et sa jeune Padawan, Ahsoka Tano, sont chargés d'une mission capitale qui va les confronter au redoutable \"parrain\" de Tatooine, Jabba le Hutt. D'autres épreuves et de nouveaux dangers attendent nos héros sur Tatooine, car le Comte Dooku ne tarde pas à se lancer à leur poursuite avec ses sinistres agents - dont la cruelle Asajj Ventress, prête à tout pour faire échouer Anakin et Ahsoka. Pendant ce temps, sur le front, Obi-Wan Kenobi et Maître Yoda s'efforcent vaillamment de préparer l'armée des clones à résister aux forces des Ténèbres...",
+      "release_date": "2008-08-05",
+      "genre_ids": [
+        53,
+        16,
+        28,
+        878,
+        12,
+        14
+      ],
+      "id": 12180,
+      "original_title": "Star Wars: The Clone Wars",
+      "original_language": "en",
+      "title": "Star Wars : The Clone Wars",
+      "backdrop_path": "/gmLMaDXi4lFWG8WitaCYOJS5GtL.jpg",
+      "popularity": 2.188391,
+      "vote_count": 364,
+      "video": false,
+      "vote_average": 5.9
+    },
+    {
+      "poster_path": "/etnrgeks0Al3wSo44Ji6xgaLBAW.jpg",
+      "adult": false,
+      "overview": "Il y a bien longtemps, dans une galaxie très lointaine... La République connaît de nombreux tourments : la corruption fait vaciller ses bases, le Sénat s'embourbe dans des discussions politiques sans fin et de nombreux pouvoirs dissidents commencent à émerger, annonçant la chute d'un système autrefois paisible. Puissante et intouchable, la Fédération du Commerce impose par la force la taxation des routes commerciales. Refusant de céder, la pacifique planète Naboo, dirigée par la jeune Reine Amidala, subit un blocus militaire de la Fédération. Dépêchés par le Sénat pour régler cette affaire, les chevaliers Jedi Qui-Gon Jinn et Obi-Wan Kenobi découvrent qu'une véritable offensive de la Fédération est imminente. Libérant la Reine et ses proches, ils quittent la planète mais doivent se poser sur Tatooine pour réparer leur vaisseau...",
+      "release_date": "1999-05-19",
+      "genre_ids": [
+        12,
+        28,
+        878
+      ],
+      "id": 1893,
+      "original_title": "Star Wars: Episode I - The Phantom Menace",
+      "original_language": "en",
+      "title": "Star Wars, épisode I - La Menace fantôme",
+      "backdrop_path": "/wdp4unWJWY9hGKN1tM56HeSt6PZ.jpg",
+      "popularity": 3.126236,
+      "vote_count": 3719,
+      "video": false,
+      "vote_average": 6.3
+    },
+    {
+      "poster_path": "/rxNnK6AfnqxGRJ8ehCqLKcUCtAG.jpg",
+      "adult": false,
+      "overview": "La Guerre des Clones fait rage. Une franche hostilité oppose désormais le Chancelier Palpatine au Conseil Jedi. Anakin Skywalker, jeune Chevalier Jedi pris entre deux feux, hésite sur la conduite à tenir. Séduit par la promesse d'un pouvoir sans précédent, tenté par le côté obscur de la Force, il prête allégeance au maléfique Darth Sidious et devient Dark Vador. Les Seigneurs Sith s'unissent alors pour préparer leur revanche, qui commence par l'extermination des Jedi. Seuls rescapés du massacre, Yoda et Obi-Wan se lancent à la poursuite des Sith. La traque se conclut par un spectaculaire combat au sabre entre Anakin et Obi-Wan, qui décidera du sort de la galaxie...",
+      "release_date": "2005-05-17",
+      "genre_ids": [
+        878,
+        12,
+        28
+      ],
+      "id": 1895,
+      "original_title": "Star Wars: Episode III - Revenge of the Sith",
+      "original_language": "en",
+      "title": "Star Wars, épisode III - La Revanche des Sith",
+      "backdrop_path": "/wUYTfFbfPiZC6Lcyt1nonr69ZmK.jpg",
+      "popularity": 3.066081,
+      "vote_count": 3459,
+      "video": false,
+      "vote_average": 7
+    },
+    {
+      "poster_path": "/kWKspQ7YiQ82xXM1jVbIbqh5OyV.jpg",
+      "adult": false,
+      "overview": "La célèbre trilogie de George Lucas revisitée et parodiée à la manière de Robot Chicken de Seth Green !",
+      "release_date": "2007-07-17",
+      "genre_ids": [
+        16,
+        35,
+        878
+      ],
+      "id": 42979,
+      "original_title": "Robot Chicken: Star Wars",
+      "original_language": "en",
+      "title": "Robot Chicken: Star Wars",
+      "backdrop_path": "/gZxY7VDOI48gjhnDJK1E6n9uHWk.jpg",
+      "popularity": 1.469122,
+      "vote_count": 52,
+      "video": true,
+      "vote_average": 6.9
+    },
+    {
+      "poster_path": "/rVYDjCnsqr0DD3pqziqEczEXv4R.jpg",
+      "adult": false,
+      "overview": "Depuis le blocus de la planète Naboo par la Fédération du commerce, la République, gouvernée par le Chancelier Palpatine, connaît une véritable crise. Un groupe de dissidents, mené par le sombre Jedi comte Dooku, manifeste son mécontentement envers le fonctionnement du régime. Le Sénat et la population intergalactique se montrent pour leur part inquiets face à l'émergence d'une telle menace.Certains sénateurs demandent à ce que la République soit dotée d'une solide armée pour empêcher que la situation ne se détériore davantage. Parallèlement, Padmé Amidala, devenue sénatrice, est menacée par les séparatistes et échappe de justesse à un attentat. Le Padawan Anakin Skywalker est chargé de sa protection. Son maître, Obi-Wan Kenobi, part enquêter sur cette tentative de meurtre et découvre la constitution d'une mystérieuse armée de clones...",
+      "release_date": "2002-05-15",
+      "genre_ids": [
+        12,
+        28,
+        878
+      ],
+      "id": 1894,
+      "original_title": "Star Wars: Episode II - Attack of the Clones",
+      "original_language": "en",
+      "title": "Star Wars, épisode II - L'Attaque des clones",
+      "backdrop_path": "/560F7BPaxRy8BsOfVU6cW4ivM46.jpg",
+      "popularity": 2.916986,
+      "vote_count": 3357,
+      "video": false,
+      "vote_average": 6.4
+    },
+    {
+      "poster_path": "/yVYTFvIiKyr6vsrPw3o5C6t2eoL.jpg",
+      "adult": false,
+      "overview": "",
+      "release_date": "2019-05-22",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "id": 181812,
+      "original_title": "Star Wars: Episode IX",
+      "original_language": "en",
+      "title": "Star Wars, épisode IX",
+      "backdrop_path": "/i0NGCiMxL4NIVk2hhjtVgnNYZ3a.jpg",
+      "popularity": 1.354014,
+      "vote_count": 26,
+      "video": false,
+      "vote_average": 0
+    },
+    {
+      "poster_path": "/65jlytLScOl2pEzm1ky6aagVreR.jpg",
+      "adult": false,
+      "overview": "",
+      "release_date": "2015-12-26",
+      "genre_ids": [
+        99
+      ],
+      "id": 378386,
+      "original_title": "Star Wars: Greatest Moments",
+      "original_language": "en",
+      "title": "Star Wars: Greatest Moments",
+      "backdrop_path": null,
+      "popularity": 1.341867,
+      "vote_count": 7,
+      "video": false,
+      "vote_average": 5.6
+    },
+    {
+      "poster_path": "/4UrrUoVQ1Ft6g6uI4FQN6JrJwSQ.jpg",
+      "adult": false,
+      "overview": "",
+      "release_date": "2005-08-18",
+      "genre_ids": [
+        99
+      ],
+      "id": 435365,
+      "original_title": "The Story of Star Wars",
+      "original_language": "en",
+      "title": "The Story of Star Wars",
+      "backdrop_path": null,
+      "popularity": 1.227882,
+      "vote_count": 0,
+      "video": true,
+      "vote_average": 0
+    },
+    {
+      "poster_path": "/nvxKvVQortycuwmfMdUIfDtYdL1.jpg",
+      "adult": false,
+      "overview": "Cette série se situe entre l’Episode II et III, et reprend les personnages des deux films. Un ensemble d’aventures essentielles pour comprendre au mieux les enjeux de l’Episode III et les secrets de la saga de George Lucas.",
+      "release_date": "2005-11-30",
+      "genre_ids": [
+        14,
+        16,
+        28,
+        12,
+        878
+      ],
+      "id": 333365,
+      "original_title": "Star Wars: Clone Wars ( Volume 2)",
+      "original_language": "en",
+      "title": "Star Wars - Clone Wars vol.2",
+      "backdrop_path": "/wLu8dXrEmCb0g6Ks83sk7x9cao9.jpg",
+      "popularity": 1.375616,
+      "vote_count": 10,
+      "video": true,
+      "vote_average": 8.1
+    },
+    {
+      "poster_path": "/2Bc0Ust8YlcJy6tSwiXTLu66xRa.jpg",
+      "adult": false,
+      "overview": "Cette série se situe entre l’Episode II et III, et reprend les personnages des deux films. Un ensemble d’aventures essentielles pour comprendre au mieux les enjeux de l’Episode III et les secrets de la saga de George Lucas.",
+      "release_date": "2005-03-21",
+      "genre_ids": [
+        28,
+        12,
+        16,
+        14,
+        878
+      ],
+      "id": 333355,
+      "original_title": "Star Wars: Clone Wars (Volume 1)",
+      "original_language": "en",
+      "title": "Star Wars - Clone Wars vol.1",
+      "backdrop_path": "/jwAVVivirH1vCceiTakFdLqiL9o.jpg",
+      "popularity": 1.363445,
+      "vote_count": 12,
+      "video": true,
+      "vote_average": 8
+    },
+    {
+      "poster_path": "/7ocWi5hcPOzqyseLjOpeZR3TIfC.jpg",
+      "adult": false,
+      "overview": "Les Prophètes ont été les fondateurs de l'Ordre Jedi. Mais leurs visions perdant en fiabilité, les Jedi sont venus à se méfier de ceux qui ont se pouvoir. Les Prophètets tairrent alors leurs visions ou quittèrent l'Ordre à jamais. Aves la destruction du Temple, une lutte pour le pouvoir est née entre Dark Vador, le seigneur obscur des Sith, et Zhanna, la Main de l'Empereur. Tous deux cherchent à éliminer le dernier Jedi pour avoir les faveurs de l'Empereur. Face à eux une femme envahie par ses visions se lance à la poursuite d'un ancien secret Jedi...",
+      "release_date": "2005-04-16",
+      "genre_ids": [
+        878,
+        14
+      ],
+      "id": 80829,
+      "original_title": "Star Wars: Revelations",
+      "original_language": "en",
+      "title": "Star Wars: Revelations",
+      "backdrop_path": "/cmImr7dgEKq1li9ux9hfdaaif5J.jpg",
+      "popularity": 1.176337,
+      "vote_count": 15,
+      "video": false,
+      "vote_average": 4.6
+    },
+    {
+      "poster_path": "/sgZvwdGuqOfbJTfUNq5lh9B4HQy.jpg",
+      "adult": false,
+      "overview": "Il y a bien longtemps, dans une galaxie lointaine, très lointaine... Alors que la galaxie connaît une période sombre depuis que l'Empire Galactique a étendu son emprise, un groupe hétéroclite de rebelles aide les gens opprimés par les troupes impériales afin de rétablir la liberté. Cinq ans avant les évènements de Star Wars Episode IV : Un Nouvel Espoir, l'Empire continue de renforcer son pouvoir et d'intensifier la peur à travers la galaxie. Partez à la rencontre de l'équipage du Ghost, le vaisseau piloté par Hera : Ezra, un jeune voleur de Lothal, le Jedi fugitif Kanan, le vaillant Zed, l'experte en explosifs Sabine, et Chopper, le droïde grincheux. Ensemble, ils combattent les Stormtroopers et le mystérieux Inquisiteur, et commencent la Rébellion.",
+      "release_date": "2014-10-03",
+      "genre_ids": [
+        12,
+        16,
+        28
+      ],
+      "id": 287663,
+      "original_title": "Star Wars Rebels: Spark of Rebellion",
+      "original_language": "en",
+      "title": "Star Wars Rebels Premices d'une rebellion",
+      "backdrop_path": "/myt3uYcUL6DpQs20pObJrJbBWMu.jpg",
+      "popularity": 1.58008,
+      "vote_count": 15,
+      "video": false,
+      "vote_average": 7
+    },
+    {
+      "poster_path": "/jwUexLOEBMFMbBoKzK4AT7hQYDw.jpg",
+      "adult": false,
+      "overview": "TIE Fighter est un court-métrage animé de plus de sept minutes réalisé par Paul Johnson (plus connu le pseudonyme d’Otaking) qui se déroule dans l’univers de Star Wars.",
+      "release_date": "2015-03-24",
+      "genre_ids": [
+        878,
+        28,
+        16
+      ],
+      "id": 332479,
+      "original_title": "Star Wars: TIE Fighter",
+      "original_language": "en",
+      "title": "Star Wars: Tie Fighter",
+      "backdrop_path": "/eNSyTprwxXrXs5amshnz2R2GKod.jpg",
+      "popularity": 1.081101,
+      "vote_count": 34,
+      "video": false,
+      "vote_average": 7.8
+    },
+    {
+      "poster_path": "/5FqjtzTlEv6vqVlAMFeyEzZMRmo.jpg",
+      "adult": false,
+      "overview": "",
+      "release_date": "2005-05-03",
+      "genre_ids": [
+        99
+      ],
+      "id": 432134,
+      "original_title": "Star Wars: Heroes & Villains",
+      "original_language": "en",
+      "title": "Star Wars: Heroes & Villains",
+      "backdrop_path": null,
+      "popularity": 1.00029,
+      "vote_count": 2,
+      "video": false,
+      "vote_average": 10
+    },
+    {
+      "poster_path": "/gy04VLh5oMmpD1YwBgBqzFYbG0A.jpg",
+      "adult": false,
+      "overview": "",
+      "release_date": "2015-08-21",
+      "genre_ids": [
+        35
+      ],
+      "id": 405572,
+      "original_title": "Star Wars Directed by Ken Loach",
+      "original_language": "en",
+      "title": "Star Wars Directed by Ken Loach",
+      "backdrop_path": null,
+      "popularity": 1.011637,
+      "vote_count": 0,
+      "video": false,
+      "vote_average": 0
+    },
+    {
+      "poster_path": "/sNxgvnswaahOA3mdkjcuYYpLi7i.jpg",
+      "adult": false,
+      "overview": "Son histoire se situe, dans la chronologie de la série, entre les épisodes IV et V. On y retrouve Chewbacca, Han Solo et Luke Skywalker, joués par les acteurs des films. C'est également la première apparition de Boba Fett (du moins, avant que l'épisode IV ne le réintègre depuis sa réédition de 1997).",
+      "release_date": "1978-12-01",
+      "genre_ids": [
+        12,
+        35,
+        10751,
+        878,
+        10770
+      ],
+      "id": 74849,
+      "original_title": "The Star Wars Holiday Special",
+      "original_language": "en",
+      "title": "Au temps de la guerre des étoiles",
+      "backdrop_path": "/ie6u0zegHcVJEtHSpYn0KgEogrD.jpg",
+      "popularity": 1.316429,
+      "vote_count": 71,
+      "video": false,
+      "vote_average": 3.1
+    }
+  ],
+  "total_results": 106,
+  "total_pages": 6
+}

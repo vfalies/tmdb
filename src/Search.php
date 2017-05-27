@@ -9,7 +9,7 @@ class Search
     private $conf          = null;
     private $page          = 1; // Page number of the search result
     private $total_pages   = 1; // Total pages of the search result
-    private $total_results = 1; // Total results of the search result
+    private $total_results = 0; // Total results of the search result
 
     /**
      * Constructor
@@ -47,12 +47,7 @@ class Search
             $this->total_pages   = (int) $response->total_pages;
             $this->total_results = (int) $response->total_results;
 
-            foreach ($response->results as $result)
-            {
-                $element = new $result_class($result);
-
-                yield $element;
-            }
+            return $this->searchItemGenerator($response->results, $result_class);
         }
         catch (\Exception $ex)
         {
@@ -61,13 +56,28 @@ class Search
     }
 
     /**
+     * Search Item generator method
+     * @param array $results
+     * @param string $class
+     */
+    private function searchItemGenerator(array $results, string $class) : \Generator
+    {
+        foreach ($results as $result)
+        {
+            $element = new $class($result);
+
+            yield $element;
+        }
+    }
+
+    /**
      * Search a movie
      * @param string $query Query string to search like a movie
      * @param array $options Array of options for the search
-     * @return Generator|SearchMovieResult
+     * @return \Generator|Results\Movie
      * @throws \Exception
      */
-    public function searchMovie(string $query, array $options = array()): \Generator
+    public function searchMovie(string $query, array $options = array()) : \Generator
     {
         try
         {
@@ -83,7 +93,7 @@ class Search
      * Search a TV Show
      * @param string $query Query string to search like a TV Show
      * @param array $options Array of options for the request
-     * @return Generator|SearchTVShowResult
+     * @return \Generator|Results\TVShow
      * @throws \Exception
      */
     public function searchTVShow(string $query, array $options = array()): \Generator
@@ -102,7 +112,7 @@ class Search
      * Search a collection
      * @param string $query Query string to search like a collection
      * @param array $options Array of option for the request
-     * @return Generator|SearchCollectionResult
+     * @return \Generator|Results\Collection
      * @throws \Exception
      */
     public function searchCollection(string $query, array $options = array()): \Generator
