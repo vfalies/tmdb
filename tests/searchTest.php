@@ -34,7 +34,7 @@ class SearchTest extends TestCase
      */
     public function testSearchMovieValid()
     {
-        $json_object = json_decode(file_get_contents('tests/searchMovieOk.json'));
+        $json_object = json_decode(file_get_contents('tests/json/searchMovieOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
@@ -73,7 +73,7 @@ class SearchTest extends TestCase
      */
     public function testSearchTVShowValid()
     {
-        $json_object = json_decode(file_get_contents('tests/searchTVShowOk.json'));
+        $json_object = json_decode(file_get_contents('tests/json/searchTVShowOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
@@ -112,7 +112,7 @@ class SearchTest extends TestCase
      */
     public function testSearchCollectionValid()
     {
-        $json_object = json_decode(file_get_contents('tests/searchCollectionOk.json'));
+        $json_object = json_decode(file_get_contents('tests/json/searchCollectionOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
@@ -178,7 +178,7 @@ class SearchTest extends TestCase
      */
     public function testGetMovie()
     {
-        $json_object = json_decode(file_get_contents('tests/movieOk.json'));
+        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search = new Search($this->tmdb);
