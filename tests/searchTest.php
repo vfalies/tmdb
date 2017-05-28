@@ -86,6 +86,28 @@ class SearchTest extends TestCase
     }
 
     /**
+     * @expectedException \Exception
+     * @test
+     */
+    public function testSearchTVShowInvalidOption()
+    {
+        $search = new Search($this->tmdb);
+
+        $search->searchTVShow('star trek', array('fake_option' => 'test'));
+    }
+
+    /**
+     * @expectedException \Exception
+     * @test
+     */
+    public function testSearchTVShowEmptyQuery()
+    {
+        $search = new Search($this->tmdb);
+
+        $search->searchTVShow('');
+    }
+
+    /**
      * @test
      */
     public function testSearchCollectionValid()
@@ -100,6 +122,28 @@ class SearchTest extends TestCase
         $this->assertInstanceOf(Results\Collection::class, $responses->current());
 
         return $search;
+    }
+
+    /**
+     * @expectedException \Exception
+     * @test
+     */
+    public function testSearchCollectionInvalidOption()
+    {
+        $search = new Search($this->tmdb);
+
+        $search->searchCollection('star wars', array('fake_option' => 'test'));
+    }
+
+    /**
+     * @expectedException \Exception
+     * @test
+     */
+    public function testSearchCollectionEmptyQuery()
+    {
+        $search = new Search($this->tmdb);
+
+        $search->searchCollection('');
     }
 
     /**
