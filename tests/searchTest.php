@@ -173,4 +173,19 @@ class SearchTest extends TestCase
         $this->assertEquals(106, $search->getTotalResults());
     }
 
+    /**
+     * @test
+     */
+    public function testGetMovie()
+    {
+        $json_object = json_decode(file_get_contents('tests/movieOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search = new Search($this->tmdb);
+        $responses = $search->getMovie(11); // Id: 11 => Star Wars
+
+        $this->assertInstanceOf(Movie::class, $responses);
+        $this->assertEquals(11, $responses->getId());
+    }
+
 }
