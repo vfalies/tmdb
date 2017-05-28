@@ -1,0 +1,49 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "id": 425281,
+            "backdrop_path": "/obPvIvB3Y9diTb4BwIUvR86Q262.jpg",
+            "name": "Star Wars: Clone Wars Collection",
+            "poster_path": "/tylT76rQXmOub1UPAjNZ1mJswSe.jpg"
+        },
+        {
+            "id": 302331,
+            "backdrop_path": "/2fNfuntrA7I4SGNTaGF0deLMiwW.jpg",
+            "name": "Lego Star Wars Collection",
+            "poster_path": "/xRzsoQmCP0rUy4R8cF5QSgy4VDR.jpg"
+        },
+        {
+            "id": 10,
+            "backdrop_path": "/d8duYyyC9J5T825Hg7grmaabfxQ.jpg",
+            "name": "Star Wars - Saga",
+            "poster_path": "/ijAC17I7X4xCrKxtp1JUc2YBGuM.jpg"
+        },
+        {
+            "id": 423877,
+            "backdrop_path": null,
+            "name": "Turkish Star Wars",
+            "poster_path": null
+        },
+        {
+            "id": 141748,
+            "backdrop_path": null,
+            "name": "Robot Chicken: Star Wars Collection",
+            "poster_path": "/p3Zc72CqZJveY3psC7aCuaMUI9W.jpg"
+        },
+        {
+            "id": 133830,
+            "backdrop_path": "/9IwrTRYGaxrlbRjCs7UBRzU0skS.jpg",
+            "name": "Star Wars: Les Aventures des Ewoks",
+            "poster_path": "/ffioPHxukvEyRd9JM4wBPPNrR9f.jpg"
+        },
+        {
+            "id": 279244,
+            "backdrop_path": "/yBdZwUkjifWP8rY1AI9bvFZWpjs.jpg",
+            "name": "Family Guy Presents Collection",
+            "poster_path": "/pijDBPc3OiPwshTCt3UQFIVjpE4.jpg"
+        }
+    ],
+    "total_pages": 1,
+    "total_results": 7
+}

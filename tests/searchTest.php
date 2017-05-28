@@ -87,6 +87,23 @@ class SearchTest extends TestCase
 
     /**
      * @test
+     */
+    public function testSearchCollectionValid()
+    {
+        $json_object = json_decode(file_get_contents('tests/searchCollectionOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search    = new Search($this->tmdb);
+        $responses = $search->searchCollection('star wars', array('language' => 'fr-FR'));
+
+        $this->assertInstanceOf(\Generator::class, $responses);
+        $this->assertInstanceOf(Results\Collection::class, $responses->current());
+
+        return $search;
+    }
+
+    /**
+     * @test
      * @depends testSearchMovieValid
      */
     public function testGetPage($search)
