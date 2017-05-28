@@ -47,6 +47,21 @@ class SearchTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function testSearchMovieEmptyValid()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/searchMovieEmptyOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search    = new Search($this->tmdb);
+        $responses = $search->searchMovie('search_with_no_result', array('language' => 'fr-FR'));
+
+        $this->assertInstanceOf(\Generator::class, $responses);
+        $this->assertNull($responses->current());
+    }
+
+    /**
      * @expectedException \Exception
      * @test
      */
@@ -197,7 +212,7 @@ class SearchTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
-        $responses = $search->getTVShow(253); // Id: 11 => Star Wars
+        $responses = $search->getTVShow(253); // Id: 253 => Star Trek
 
         $this->assertInstanceOf(TVShow::class, $responses);
         $this->assertEquals(253, $responses->getId());
