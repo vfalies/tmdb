@@ -1,0 +1,100 @@
+{
+    "backdrop_path": "/lVNUYvjVRfbf0p7peJh5JhyBIir.jpg",
+    "created_by": [
+        {
+            "id": 1745,
+            "name": "Gene Roddenberry",
+            "profile_path": "/9WMyiCTdtBEdx1JUCavoFiDl7wd.jpg"
+        }
+    ],
+    "episode_run_time": [
+        50
+    ],
+    "first_air_date": "1966-09-08",
+    "genres": [
+        {
+            "id": 18,
+            "name": "Drame"
+        },
+        {
+            "id": 10765,
+            "name": "Science-Fiction & Fantastique"
+        }
+    ],
+    "homepage": "http://www.startrek.com/page/star-trek-the-original-series",
+    "id": 253,
+    "in_production": false,
+    "languages": [
+        "en"
+    ],
+    "last_air_date": "1969-06-03",
+    "name": "Star Trek",
+    "networks": [
+        {
+            "id": 6,
+            "name": "NBC"
+        },
+        {
+            "id": 397,
+            "name": "TV Land"
+        },
+        {
+            "id": 1900,
+            "name": "MeTV"
+        }
+    ],
+    "number_of_episodes": 79,
+    "number_of_seasons": 3,
+    "origin_country": [
+        "US"
+    ],
+    "original_language": "en",
+    "original_name": "Star Trek",
+    "overview": "Star Trek, ou Patrouille du cosmos au Québec et au Nouveau-Brunswick, est une série télévisée américaine de science-fiction en 79 épisodes de 50 minutes, créée par Gene Roddenberry et diffusée entre le 8 septembre 1966 et le 3 juin 1969 sur le réseau NBC. Depuis Star Trek: The Next Generation (Star Trek TNG, 1987-1994), elle a été rebaptisée Star Trek: The Original Series (Star Trek TOS, 1966-1969).",
+    "popularity": 5.703029,
+    "poster_path": "/3ATqzWYDbWOV2RBLWNwA43InT60.jpg",
+    "production_companies": [
+        {
+            "name": "Paramount Television",
+            "id": 9223
+        },
+        {
+            "name": "Desilu Productions",
+            "id": 39856
+        }
+    ],
+    "seasons": [
+        {
+            "air_date": "1988-10-15",
+            "episode_count": 5,
+            "id": 816,
+            "poster_path": "/eS1kBRFBh2D5SA88R8qQJeFngeT.jpg",
+            "season_number": 0
+        },
+        {
+            "air_date": "1966-09-08",
+            "episode_count": 29,
+            "id": 813,
+            "poster_path": "/4hDoHPLNgUYWmzy13sh1UwiCI1S.jpg",
+            "season_number": 1
+        },
+        {
+            "air_date": "1967-09-15",
+            "episode_count": 26,
+            "id": 814,
+            "poster_path": "/jmTGScS6eTZ8AgN5wRlzcfqPYas.jpg",
+            "season_number": 2
+        },
+        {
+            "air_date": "1968-09-20",
+            "episode_count": 24,
+            "id": 815,
+            "poster_path": "/JhodB9fvXunr0RvqmCwMZkxKBA.jpg",
+            "season_number": 3
+        }
+    ],
+    "status": "Ended",
+    "type": "Scripted",
+    "vote_average": 7.9,
+    "vote_count": 246
+}

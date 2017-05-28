@@ -188,4 +188,18 @@ class SearchTest extends TestCase
         $this->assertEquals(11, $responses->getId());
     }
 
+    /**
+     * @test
+     */
+    public function testGetTVShow()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/TVShowOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search = new Search($this->tmdb);
+        $responses = $search->getTVShow(253); // Id: 11 => Star Wars
+
+        $this->assertInstanceOf(TVShow::class, $responses);
+        $this->assertEquals(253, $responses->getId());
+    }
 }
