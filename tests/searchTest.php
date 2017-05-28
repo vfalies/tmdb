@@ -43,6 +43,8 @@ class SearchTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\Movie::class, $responses->current());
+
+        return $search;
     }
 
     /**
@@ -62,9 +64,35 @@ class SearchTest extends TestCase
      */
     public function testSearchMovieEmptyQuery()
     {
-            $search = new Search($this->tmdb);
+        $search = new Search($this->tmdb);
 
-            $search->searchMovie('');
+        $search->searchMovie('');
     }
 
+    /**
+     * @test
+     * @depends testSearchMovieValid
+     */
+    public function testGetPage($search)
+    {
+        $this->assertEquals(1, $search->getPage());
+    }
+
+    /**
+     * @test
+     * @depends testSearchMovieValid
+     */
+    public function testTotalPages($search)
+    {
+        $this->assertEquals(6, $search->getTotalPages());
+    }
+
+    /**
+     * @test
+     * @depends testSearchMovieValid
+     */
+    public function testTotalResults($search)
+    {
+        $this->assertEquals(106, $search->getTotalResults());
+    }
 }
