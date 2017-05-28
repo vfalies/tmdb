@@ -181,7 +181,7 @@ class SearchTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $search = new Search($this->tmdb);
+        $search    = new Search($this->tmdb);
         $responses = $search->getMovie(11); // Id: 11 => Star Wars
 
         $this->assertInstanceOf(Movie::class, $responses);
@@ -196,10 +196,26 @@ class SearchTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/TVShowOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $search = new Search($this->tmdb);
+        $search    = new Search($this->tmdb);
         $responses = $search->getTVShow(253); // Id: 11 => Star Wars
 
         $this->assertInstanceOf(TVShow::class, $responses);
         $this->assertEquals(253, $responses->getId());
     }
+
+    /**
+     * @test
+     */
+    public function testGetCollection()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/collectionOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search    = new Search($this->tmdb);
+        $responses = $search->getCollection(10); // Id: 10 => Star Wars saga
+
+        $this->assertInstanceOf(Collection::class, $responses);
+        $this->assertEquals(10, $responses->getId());
+    }
+
 }

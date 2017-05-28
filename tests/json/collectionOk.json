@@ -1,0 +1,191 @@
+{
+    "id": 10,
+    "name": "Star Wars - Saga",
+    "overview": "Luke Skywalker, la Princesse Leia, Dark Vador, C3PO, R2D2 et de nombreux autres personnages du film sont désormais des noms familiers de l'un des projets cinématographiques les plus réussis de tous les temps.",
+    "poster_path": "/ijAC17I7X4xCrKxtp1JUc2YBGuM.jpg",
+    "backdrop_path": "/d8duYyyC9J5T825Hg7grmaabfxQ.jpg",
+    "parts": [
+        {
+            "adult": false,
+            "backdrop_path": "/4iJfYYoQzZcONB9hNzg0J0wWyPH.jpg",
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "id": 11,
+            "original_language": "en",
+            "original_title": "Star Wars",
+            "overview": "Il y a bien longtemps, dans une galaxie très lointaine... La guerre civile fait rage entre l'Empire galactique et l'Alliance rebelle. Capturée par les troupes de choc de l'Empereur menées par le sombre et impitoyable Dark Vador, la princesse Leia Organa dissimule les plans de l’Étoile Noire, une station spatiale invulnérable, à son droïde R2-D2 avec pour mission de les remettre au Jedi Obi-Wan Kenobi. Accompagné de son fidèle compagnon, le droïde de protocole C-3PO, R2-D2 s'échoue sur la planète Tatooine et termine sa quête chez le jeune Luke Skywalker. Rêvant de devenir pilote mais confiné aux travaux de la ferme, ce dernier se lance à la recherche de ce mystérieux Obi-Wan Kenobi, devenu ermite au cœur des montagnes désertiques de Tatooine...",
+            "release_date": "1977-05-25",
+            "poster_path": "/yVaQ34IvVDAZAWxScNdeIkaepDq.jpg",
+            "popularity": 8.106470999999999,
+            "title": "La Guerre des étoiles",
+            "video": false,
+            "vote_average": 8,
+            "vote_count": 5679
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/amYkOxCwHiVTFKendcIW0rSrRlU.jpg",
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "id": 1891,
+            "original_language": "en",
+            "original_title": "The Empire Strikes Back",
+            "overview": "Malgré la destruction de l’Étoile Noire, l'Empire maintient son emprise sur la galaxie, et poursuit sans relâche sa lutte contre l'Alliance rebelle. Basés sur la planète glacée de Hoth, les rebelles essuient un assaut des troupes impériales. Parvenus à s'échapper, la princesse Leia, Han Solo, Chewbacca et C-3P0 se dirigent vers Bespin, la cité des nuages gouvernée par Lando Calrissian, ancien compagnon de Han. Suivant les instructions d'Obi-Wan Kenobi, Luke Skywalker se rend quant à lui vers le système de Dagobah, planète marécageuse où il doit recevoir l'enseignement du dernier maître Jedi, Yoda. Apprenant l'arrestation de ses compagnons par les stormtroopers de Dark Vador après la trahison de Lando, Luke décide d'interrompre son entraînement pour porter secours à ses amis et affronter le sombre seigneur Sith...",
+            "release_date": "1980-05-17",
+            "poster_path": "/nqY9dJeRaSEJlmljOpPA5Tc9moQ.jpg",
+            "popularity": 4.404329000000001,
+            "title": "L'empire contre-attaque",
+            "video": false,
+            "vote_average": 8.2,
+            "vote_count": 5078
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/koE7aMeR2ATivI18mCbscLsI0Nm.jpg",
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "id": 1892,
+            "original_language": "en",
+            "original_title": "Return of the Jedi",
+            "overview": "L'Empire galactique est plus puissant que jamais : la construction de la nouvelle arme, l’Étoile de la Mort, menace l'univers tout entier... Arrêté après la trahison de Lando Calrissian, Han Solo est remis à l'ignoble contrebandier Jabba Le Hutt par le chasseur de primes Boba Fett. Après l'échec d'une première tentative d'évasion menée par la princesse Leia, également arrêtée par Jabba, Luke Skywalker et Lando parviennent à libérer leurs amis. Han, Leia, Chewbacca, C-3PO et Luke, devenu un Jedi, s'envolent dès lors pour une mission d'extrême importance sur la lune forestière d'Endor, afin de détruire le générateur du bouclier de l’Étoile de la Mort et permettre une attaque des pilotes de l'Alliance rebelle. Conscient d'être un danger pour ses compagnons, Luke préfère se rendre aux mains de Dark Vador, son père et ancien Jedi passé du côté obscur de la Force.",
+            "release_date": "1983-05-23",
+            "poster_path": "/kBjuLfGqNRsby9TzWQaTlAUe3LB.jpg",
+            "popularity": 3.298328,
+            "title": "Le Retour du Jedi",
+            "video": false,
+            "vote_average": 7.8,
+            "vote_count": 3998
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/wdp4unWJWY9hGKN1tM56HeSt6PZ.jpg",
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "id": 1893,
+            "original_language": "en",
+            "original_title": "Star Wars: Episode I - The Phantom Menace",
+            "overview": "Il y a bien longtemps, dans une galaxie très lointaine... La République connaît de nombreux tourments : la corruption fait vaciller ses bases, le Sénat s'embourbe dans des discussions politiques sans fin et de nombreux pouvoirs dissidents commencent à émerger, annonçant la chute d'un système autrefois paisible. Puissante et intouchable, la Fédération du Commerce impose par la force la taxation des routes commerciales. Refusant de céder, la pacifique planète Naboo, dirigée par la jeune Reine Amidala, subit un blocus militaire de la Fédération. Dépêchés par le Sénat pour régler cette affaire, les chevaliers Jedi Qui-Gon Jinn et Obi-Wan Kenobi découvrent qu'une véritable offensive de la Fédération est imminente. Libérant la Reine et ses proches, ils quittent la planète mais doivent se poser sur Tatooine pour réparer leur vaisseau...",
+            "release_date": "1999-05-19",
+            "poster_path": "/etnrgeks0Al3wSo44Ji6xgaLBAW.jpg",
+            "popularity": 4.239007,
+            "title": "Star Wars, épisode I - La Menace fantôme",
+            "video": false,
+            "vote_average": 6.3,
+            "vote_count": 3719
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/560F7BPaxRy8BsOfVU6cW4ivM46.jpg",
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "id": 1894,
+            "original_language": "en",
+            "original_title": "Star Wars: Episode II - Attack of the Clones",
+            "overview": "Depuis le blocus de la planète Naboo par la Fédération du commerce, la République, gouvernée par le Chancelier Palpatine, connaît une véritable crise. Un groupe de dissidents, mené par le sombre Jedi comte Dooku, manifeste son mécontentement envers le fonctionnement du régime. Le Sénat et la population intergalactique se montrent pour leur part inquiets face à l'émergence d'une telle menace.Certains sénateurs demandent à ce que la République soit dotée d'une solide armée pour empêcher que la situation ne se détériore davantage. Parallèlement, Padmé Amidala, devenue sénatrice, est menacée par les séparatistes et échappe de justesse à un attentat. Le Padawan Anakin Skywalker est chargé de sa protection. Son maître, Obi-Wan Kenobi, part enquêter sur cette tentative de meurtre et découvre la constitution d'une mystérieuse armée de clones...",
+            "release_date": "2002-05-15",
+            "poster_path": "/rVYDjCnsqr0DD3pqziqEczEXv4R.jpg",
+            "popularity": 3.444953,
+            "title": "Star Wars, épisode II - L'Attaque des clones",
+            "video": false,
+            "vote_average": 6.4,
+            "vote_count": 3357
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/wUYTfFbfPiZC6Lcyt1nonr69ZmK.jpg",
+            "genre_ids": [
+                878,
+                12,
+                28
+            ],
+            "id": 1895,
+            "original_language": "en",
+            "original_title": "Star Wars: Episode III - Revenge of the Sith",
+            "overview": "La Guerre des Clones fait rage. Une franche hostilité oppose désormais le Chancelier Palpatine au Conseil Jedi. Anakin Skywalker, jeune Chevalier Jedi pris entre deux feux, hésite sur la conduite à tenir. Séduit par la promesse d'un pouvoir sans précédent, tenté par le côté obscur de la Force, il prête allégeance au maléfique Darth Sidious et devient Dark Vador. Les Seigneurs Sith s'unissent alors pour préparer leur revanche, qui commence par l'extermination des Jedi. Seuls rescapés du massacre, Yoda et Obi-Wan se lancent à la poursuite des Sith. La traque se conclut par un spectaculaire combat au sabre entre Anakin et Obi-Wan, qui décidera du sort de la galaxie...",
+            "release_date": "2005-05-17",
+            "poster_path": "/rxNnK6AfnqxGRJ8ehCqLKcUCtAG.jpg",
+            "popularity": 4.270681,
+            "title": "Star Wars, épisode III - La Revanche des Sith",
+            "video": false,
+            "vote_average": 7,
+            "vote_count": 3459
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/c2Ax8Rox5g6CneChwy1gmu4UbSb.jpg",
+            "genre_ids": [
+                28,
+                12,
+                878,
+                14
+            ],
+            "id": 140607,
+            "original_language": "en",
+            "original_title": "Star Wars: The Force Awakens",
+            "overview": "Il y a bien longtemps, dans une galaxie lointaine... Luke Skywalker est porté disparu. Le pilote Poe est en mission secrète sur une planète pour le retrouver. Au moment où la diabolique armée \"Premier Ordre\" apparaît en détruisant tout sur son passage, il arrive à cacher la position géographique de l'ancien maître Jedi dans son droïde BB-8. Capturé par les larbins du machiavélique Kylo Ren, Poe est libéré par le soldat ennemi Finn qui est en pleine crise existentielle. Pendant ce temps, BB-8 est recueillie par Rey, une pilleuse d'épaves qui sera bientôt plongée dans une quête qui la dépasse.",
+            "release_date": "2015-12-15",
+            "poster_path": "/sHOYrricE1K0JriQ74FeN794UEl.jpg",
+            "popularity": 11.164412,
+            "title": "Star Wars, épisode VII - Le Réveil de la Force",
+            "video": false,
+            "vote_average": 7.5,
+            "vote_count": 6730
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/c4Dw37VZjBmObmJw9bmt8IDwMZH.jpg",
+            "genre_ids": [
+                28,
+                12,
+                14,
+                878
+            ],
+            "id": 181808,
+            "original_language": "en",
+            "original_title": "Star Wars: The Last Jedi",
+            "overview": "Nouvel épisode de la saga.",
+            "release_date": "2017-12-13",
+            "poster_path": "/l92mwSUHyInaGinQJ8eUGIFtltp.jpg",
+            "popularity": 5.482817,
+            "title": "Star Wars, épisode VIII : Les Derniers Jedi",
+            "video": false,
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/i0NGCiMxL4NIVk2hhjtVgnNYZ3a.jpg",
+            "genre_ids": [
+                28,
+                12,
+                878
+            ],
+            "id": 181812,
+            "original_language": "en",
+            "original_title": "Star Wars: Episode IX",
+            "overview": null,
+            "release_date": "2019-05-22",
+            "poster_path": "/yVYTFvIiKyr6vsrPw3o5C6t2eoL.jpg",
+            "popularity": 1.487884,
+            "title": "Star Wars, épisode IX",
+            "video": false,
+            "vote_average": 0,
+            "vote_count": 26
+        }
+    ]
+}
