@@ -1,0 +1,328 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "poster_path": "/3ATqzWYDbWOV2RBLWNwA43InT60.jpg",
+            "popularity": 7.791924,
+            "id": 253,
+            "backdrop_path": "/lVNUYvjVRfbf0p7peJh5JhyBIir.jpg",
+            "vote_average": 7.92,
+            "overview": "Star Trek, ou Patrouille du cosmos au Québec et au Nouveau-Brunswick, est une série télévisée américaine de science-fiction en 79 épisodes de 50 minutes, créée par Gene Roddenberry et diffusée entre le 8 septembre 1966 et le 3 juin 1969 sur le réseau NBC. Depuis Star Trek: The Next Generation (Star Trek TNG, 1987-1994), elle a été rebaptisée Star Trek: The Original Series (Star Trek TOS, 1966-1969).",
+            "first_air_date": "1966-09-08",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                18,
+                10765
+            ],
+            "original_language": "en",
+            "vote_count": 246,
+            "name": "Star Trek",
+            "original_name": "Star Trek"
+        },
+        {
+            "poster_path": "/msYAJySH9GlwFva4rI32i600I2Y.jpg",
+            "popularity": 7.359567,
+            "id": 1855,
+            "backdrop_path": "/yRsjaKfBHXtxbAWRLH7P7cWh68.jpg",
+            "vote_average": 7.59,
+            "overview": "La série met en scène les aventures du vaisseau USS Voyager commandé par une femme, le capitaine Kathryn Janeway. Cette dernière a été, au cours d'une mission, précipitée par une entité nommée le Pourvoyeur dans le Quadrant Delta, à l'autre bout de la galaxie, à environ 75 000 années-lumière de la Terre. Le capitaine s'efforcera de trouver un moyen de ramener sur Terre son vaisseau mais le voyage de retour prend théoriquement 75 ans à vitesse maximale, elle trouvera donc des moyens de le raccourcir. L'épopée est très intéressante puisque l'équipage est confronté à toute sorte d'espèces hostiles ou non, la plupart post-distorsion.",
+            "first_air_date": "1995-01-16",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                10765,
+                18,
+                10759
+            ],
+            "original_language": "en",
+            "vote_count": 185,
+            "name": "Star Trek Voyager",
+            "original_name": "Star Trek: Voyager"
+        },
+        {
+            "poster_path": "/8ZfPKg1xTahEigpDA53bRmmLdvs.jpg",
+            "popularity": 10.270808,
+            "id": 655,
+            "backdrop_path": "/8do6gZErem4wfdPwALiT8agtJfb.jpg",
+            "vote_average": 8.12,
+            "overview": "Cette série raconte les aventures, au XXIVe siècle, du vaisseau USS Enterprise (NCC-1701-D), commandé par un capitaine d'origine française, Jean-Luc Picard, et de son équipage.",
+            "first_air_date": "1987-09-28",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                10759,
+                18,
+                9648,
+                10765
+            ],
+            "original_language": "en",
+            "vote_count": 294,
+            "name": "Star Trek : La Nouvelle Génération",
+            "original_name": "Star Trek: The Next Generation"
+        },
+        {
+            "poster_path": "/3msta8aYp2309onnFkVXeohbN4w.jpg",
+            "popularity": 6.344891,
+            "id": 314,
+            "backdrop_path": "/utuBKOQf7Ddj691dkRS09SAfOKj.jpg",
+            "vote_average": 7.32,
+            "overview": "L'Enterprise NX-01 est le premier vaisseau spatial d'origine terrienne dédié à l'exploration. En outre, il est le premier vaisseau construit par des humains à être équipé de moteur à distorsion pouvant atteindre distorsion 5.\n\nIl est lancé en 2151, un an avant la date prévue et contre l'avis des Vulcains qui surveillent de près les Humains et leurs progrès en matière spatiale. Il est commandé par le Capitaine Jonathan Archer, est secondé par le sub-commander Vulcain T'Pol, qui est également l'officier scientifique et qui est à bord à la demande du Haut Conseil Vulcain qui voit d'un très mauvais oeil la mission d'exploration du vaisseau.\n\nL'équipage se compose du Commander Charles \"Trip\" Tucker III qui est l'ingénieur en chef, du Lieutenant Malcolm Reed, chargé de la sécurité et de l'armement et de l'enseigne Hoshi Sato, interprète et chargée des communications. L'infirmerie est confié au Docteur Phlox, un dénobulien qui participe au programme d'échange médicale inter-espèces.",
+            "first_air_date": "2001-09-26",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                10759,
+                18,
+                10765
+            ],
+            "original_language": "en",
+            "vote_count": 165,
+            "name": " Star Trek : Enterprise",
+            "original_name": "Star Trek: Enterprise"
+        },
+        {
+            "poster_path": "/amrjHOaXxkeVgSrVS0CVmqb3xhR.jpg",
+            "popularity": 5.067967,
+            "id": 580,
+            "backdrop_path": "/mmFDpK8zvQhki1LoDtA5BpTGtOg.jpg",
+            "vote_average": 7.69,
+            "overview": "Star Trek Deep Space Nine décrit les événements survenus au xxive siècle autour de la station spatiale Deep Space Nine (anciennement Terok Nor), commandée par le capitaine Benjamin Sisko.\n\nInitialement en orbite autour de la planète Bajor, une planète récemment occupée par les Cardassiens, cette station est déplacée à proximité d'un vortex artificiel, occupé par des entités intemporelles, découvert par Sisko, et permettant de voyager entre le Quadrant Alpha et le Quadrant Gamma encore inexploré. DS9 a pour mission d'administrer ce secteur de la galaxie devenu un important centre économique et politique.",
+            "first_air_date": "1993-01-03",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                10759,
+                18,
+                10765
+            ],
+            "original_language": "en",
+            "vote_count": 141,
+            "name": "Star Trek Deep Space Nine",
+            "original_name": "Star Trek: Deep Space Nine"
+        },
+        {
+            "poster_path": "/ihvG9dCEnVU3gmMUftTkRICNdJf.jpg",
+            "popularity": 2.70502,
+            "id": 67198,
+            "backdrop_path": "/hxr6miOXq1TKMvTKfEZiEY9tBUi.jpg",
+            "vote_average": 0,
+            "overview": "Située une dizaine d'années avant les événements de la série originale, Star Trek Discovery dévoile une époque totalement inédite ayant façonné l'histoire de la Fédération. Le premier officier Michael Burnham (Sonequa Martin-Green) découvre de nouveaux vaisseaux, de nouveaux mondes et de nouveaux méchants tandis que la menace d'une guerre plane sur l'univers.",
+            "first_air_date": "2017-12-30",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                10765
+            ],
+            "original_language": "en",
+            "vote_count": 0,
+            "name": "Star Trek: Discovery",
+            "original_name": "Star Trek: Discovery"
+        },
+        {
+            "poster_path": "/grjSGhPZGbWEuIqIaF3xDve4fL4.jpg",
+            "popularity": 1.792735,
+            "id": 4653,
+            "backdrop_path": "/guoyKrmwS8LO7gNvKzEcNda0Kcs.jpg",
+            "vote_average": 8.5,
+            "overview": "",
+            "first_air_date": "2004-10-08",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                18,
+                10759
+            ],
+            "original_language": "en",
+            "vote_count": 2,
+            "name": "Star Trek: Phase II",
+            "original_name": "Star Trek: Phase II"
+        },
+        {
+            "poster_path": "/mXLGcKgLqNT6tAOIWZ9hFLED8ch.jpg",
+            "popularity": 1.542632,
+            "id": 62236,
+            "backdrop_path": "/AmoFp1sgPo6IjQYAfmQK9DxSc1U.jpg",
+            "vote_average": 7.31,
+            "overview": "",
+            "first_air_date": "2013-05-26",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                10765
+            ],
+            "original_language": "en",
+            "vote_count": 13,
+            "name": "Star Trek Continues",
+            "original_name": "Star Trek Continues"
+        },
+        {
+            "poster_path": "/vwmLNCFxUMPWJdB8vEb3ahF2Vwp.jpg",
+            "popularity": 1.538214,
+            "id": 4080,
+            "backdrop_path": "/rR33I8USSDriRuOU0qmInCNgPZ5.jpg",
+            "vote_average": 0,
+            "overview": "",
+            "first_air_date": "2007-09-01",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                10765
+            ],
+            "original_language": "en",
+            "vote_count": 0,
+            "name": "Star Trek: Odyssey",
+            "original_name": "Star Trek: Odyssey"
+        },
+        {
+            "poster_path": "/6FmRAQwImKK5CSVdrGS7k5xGuHo.jpg",
+            "popularity": 1.952808,
+            "id": 1992,
+            "backdrop_path": "/7kV0OtzBmlufJCFDfczFfnWt3So.jpg",
+            "vote_average": 5.82,
+            "overview": "Cette série tous publics met en scène la suite des aventures de l'équipage de la série Star Trek.",
+            "first_air_date": "1973-09-08",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [
+                16,
+                18,
+                10765
+            ],
+            "original_language": "en",
+            "vote_count": 14,
+            "name": "Star Trek, la série animée",
+            "original_name": "Star Trek: The Animated Series"
+        },
+        {
+            "poster_path": "/fI9hYbSMOxY2VK3GuynJRQbhvMl.jpg",
+            "popularity": 1.380724,
+            "id": 1081,
+            "backdrop_path": "/6FZSBZBMFegLrFmCLzFHFwqWcrM.jpg",
+            "vote_average": 5,
+            "overview": "",
+            "first_air_date": "",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [],
+            "original_language": "en",
+            "vote_count": 1,
+            "name": "Star Trek: Hidden Frontier",
+            "original_name": "Star Trek: Hidden Frontier"
+        },
+        {
+            "poster_path": "/kF9ZGu8oxFURsjbyGuNtQPI3fM.jpg",
+            "popularity": 1.26235,
+            "id": 65699,
+            "backdrop_path": null,
+            "vote_average": 4.86,
+            "overview": "",
+            "first_air_date": "2015-08-01",
+            "origin_country": [],
+            "genre_ids": [
+                10765,
+                10759
+            ],
+            "original_language": "en",
+            "vote_count": 14,
+            "name": "Star Trek: Renegades",
+            "original_name": "Star Trek: Renegades"
+        },
+        {
+            "poster_path": "/qzTDF03jQw5JRzfwYFSJHKflHBO.jpg",
+            "popularity": 1.243182,
+            "id": 1801,
+            "backdrop_path": null,
+            "vote_average": 10,
+            "overview": "",
+            "first_air_date": "",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [],
+            "original_language": "en",
+            "vote_count": 1,
+            "name": "Star Trek: Phase II",
+            "original_name": "Star Trek: Phase II"
+        },
+        {
+            "poster_path": "/yIqcRfzeDTnTgaA3oCL7sQ67dTU.jpg",
+            "popularity": 1.364912,
+            "id": 43119,
+            "backdrop_path": "/96xBvD3vL1OGHoPhHNmERCkZ4bw.jpg",
+            "vote_average": 5.33,
+            "overview": "",
+            "first_air_date": "",
+            "origin_country": [],
+            "genre_ids": [
+                18
+            ],
+            "original_language": "en",
+            "vote_count": 3,
+            "name": "Star Trek: Of Gods and Men",
+            "original_name": "Star Trek: Of Gods and Men"
+        },
+        {
+            "poster_path": "/rVhSgODhWKuL6tPUyK8rHazQCcJ.jpg",
+            "popularity": 1.194869,
+            "id": 7108,
+            "backdrop_path": null,
+            "vote_average": 0,
+            "overview": "",
+            "first_air_date": "",
+            "origin_country": [],
+            "genre_ids": [],
+            "original_language": "en",
+            "vote_count": 0,
+            "name": "Star Trek: The Continuing Mission",
+            "original_name": "Star Trek: The Continuing Mission"
+        },
+        {
+            "poster_path": "/hFgOD4ldhurMsCfdbehbk7IS6eV.jpg",
+            "popularity": 1.192821,
+            "id": 15950,
+            "backdrop_path": null,
+            "vote_average": 0,
+            "overview": "",
+            "first_air_date": "",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [],
+            "original_language": "en",
+            "vote_count": 0,
+            "name": "Star Trek: The Helena Chronicles",
+            "original_name": "Star Trek: The Helena Chronicles"
+        },
+        {
+            "poster_path": null,
+            "popularity": 1.258177,
+            "id": 34169,
+            "backdrop_path": null,
+            "vote_average": 0,
+            "overview": "Ce documentaire présenté par Léonard Nimoy retrace la création des cinq séries Star Trek...",
+            "first_air_date": "2007-02-19",
+            "origin_country": [
+                "US"
+            ],
+            "genre_ids": [],
+            "original_language": "en",
+            "vote_count": 0,
+            "name": "Star Trek: Beyond the Final Frontier",
+            "original_name": "Star Trek: Beyond the Final Frontier"
+        }
+    ],
+    "total_results": 17,
+    "total_pages": 1
+}

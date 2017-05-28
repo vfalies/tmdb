@@ -16,14 +16,10 @@ class SearchTest extends TestCase
     {
         parent::setUp();
 
-        $json = file_get_contents('tests/searchMovieOk.json');
-
-        $json_object = json_decode($json);
-        $this->tmdb  = $this->getMockBuilder(Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest'])
                 ->getMock();
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
     public function tearDown()
@@ -38,6 +34,9 @@ class SearchTest extends TestCase
      */
     public function testSearchMovieValid()
     {
+        $json_object = json_decode(file_get_contents('tests/searchMovieOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
         $search    = new Search($this->tmdb);
         $responses = $search->searchMovie('star wars', array('language' => 'fr-FR'));
 
@@ -71,6 +70,23 @@ class SearchTest extends TestCase
 
     /**
      * @test
+     */
+    public function testSearchTVShowValid()
+    {
+        $json_object = json_decode(file_get_contents('tests/searchTVShowOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search    = new Search($this->tmdb);
+        $responses = $search->searchTVShow('star trek', array('language' => 'fr-FR'));
+
+        $this->assertInstanceOf(\Generator::class, $responses);
+        $this->assertInstanceOf(Results\TVShow::class, $responses->current());
+
+        return $search;
+    }
+
+    /**
+     * @test
      * @depends testSearchMovieValid
      */
     public function testGetPage($search)
@@ -95,4 +111,5 @@ class SearchTest extends TestCase
     {
         $this->assertEquals(106, $search->getTotalResults());
     }
+
 }
