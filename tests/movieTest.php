@@ -22,9 +22,6 @@ class MovieTest extends TestCase
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
-
-        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
-        $this->tmdb->method('getConfiguration')->willReturn($json_object);
     }
 
     public function tearDown()
@@ -34,6 +31,33 @@ class MovieTest extends TestCase
         $this->tmdb = null;
     }
 
+    private function setRequestOk()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+    }
+
+    private function setRequestMovieEmpty()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_object = json_decode(file_get_contents('tests/json/movieEmptyOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+    }
+
+    private function setRequestConfigurationEmpty()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationEmptyOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+    }
+
     /**
      * @test
      */
@@ -41,6 +65,7 @@ class MovieTest extends TestCase
     {
         $json_object = json_decode(file_get_contents('tests/json/genresOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie  = new Movie($this->tmdb, $this->movie_id);
         $genres = $movie->getAllGenres();
@@ -56,8 +81,7 @@ class MovieTest extends TestCase
      */
     public function testGetTitle()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -67,10 +91,21 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetTitleFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getTitle());
+    }
+
+    /**
+     * @test
+     */
     public function testGetGenres()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -80,10 +115,21 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetGenresFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getGenres());
+    }
+
+    /**
+     * @test
+     */
     public function testGetOverview()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -94,10 +140,21 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetOverviewFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getOverview());
+    }
+
+    /**
+     * @test
+     */
     public function testGetReleaseDate()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -107,10 +164,21 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetReleaseDateFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getReleaseDate());
+    }
+
+    /**
+     * @test
+     */
     public function testOriginalTitle()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -120,10 +188,21 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testOriginalTitleFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getOriginalTitle());
+    }
+
+    /**
+     * @test
+     */
     public function testGetNote()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -134,10 +213,21 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetNoteFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getNote());
+    }
+
+    /**
+     * @test
+     */
     public function testGetIMDBId()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -148,10 +238,21 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetIMDBIdFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getIMDBId());
+    }
+
+    /**
+     * @test
+     */
     public function testGetTagline()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -162,10 +263,21 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetTaglineFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getTagLine());
+    }
+
+    /**
+     * @test
+     */
     public function testCollectionId()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -176,10 +288,21 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testCollectionIdFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getCollectionId());
+    }
+
+    /**
+     * @test
+     */
     public function testGetPoster()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
@@ -189,13 +312,86 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetPosterFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getPoster());
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetPosterFailureConf()
+    {
+        $this->setRequestConfigurationEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+        $res   = $movie->getPoster();
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetPosterFailureSize()
+    {
+        $this->setRequestOk();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $movie->getPoster('w184');
+    }
+
+    /**
+     * @test
+     */
     public function testGetBackdrop()
     {
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
         $this->assertNotFalse(filter_var($movie->getBackdrop(), FILTER_VALIDATE_URL));
+    }
+
+    /**
+     * @test
+     */
+    public function testGetBackdropFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertEmpty($movie->getBackdrop());
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetBackdropFailureConf()
+    {
+        $this->setRequestConfigurationEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+        $res   = $movie->getBackdrop();
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetBackdropFailureSize()
+    {
+        $this->setRequestOk();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $movie->getBackdrop('w184');
     }
 }

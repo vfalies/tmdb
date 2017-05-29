@@ -73,7 +73,7 @@ class Movie implements Interfaces\MovieInterface
         {
             return $this->data->genres;
         }
-        return null;
+        return [];
     }
 
     /**
@@ -86,7 +86,7 @@ class Movie implements Interfaces\MovieInterface
         {
             return $this->data->title;
         }
-        return null;
+        return '';
     }
 
     /**
@@ -99,7 +99,7 @@ class Movie implements Interfaces\MovieInterface
         {
             return $this->data->overview;
         }
-        return null;
+        return '';
     }
 
     /**
@@ -112,7 +112,7 @@ class Movie implements Interfaces\MovieInterface
         {
             return $this->data->release_date;
         }
-        return null;
+        return '';
     }
 
     /**
@@ -125,7 +125,7 @@ class Movie implements Interfaces\MovieInterface
         {
             return $this->data->original_title;
         }
-        return null;
+        return '';
     }
 
     /**
@@ -138,7 +138,7 @@ class Movie implements Interfaces\MovieInterface
         {
             return $this->data->vote_average;
         }
-        return null;
+        return 0;
     }
 
     /**
@@ -160,7 +160,7 @@ class Movie implements Interfaces\MovieInterface
         {
             return $this->data->imdb_id;
         }
-        return null;
+        return '';
     }
 
     /**
@@ -173,7 +173,7 @@ class Movie implements Interfaces\MovieInterface
         {
             return $this->data->tagline;
         }
-        return null;
+        return '';
     }
 
     /**
@@ -186,7 +186,7 @@ class Movie implements Interfaces\MovieInterface
         {
             return (int) $this->data->belongs_to_collection->id;
         }
-        return null;
+        return 0;
     }
 
     /**
@@ -208,7 +208,7 @@ class Movie implements Interfaces\MovieInterface
             }
             return $this->conf->images->base_url . $size . $this->data->poster_path;
         }
-        return null;
+        return '';
     }
 
     /**
@@ -230,7 +230,7 @@ class Movie implements Interfaces\MovieInterface
             }
             return $this->conf->images->base_url . $size . $this->data->backdrop_path;
         }
-        return null;
+        return '';
     }
 
 }
