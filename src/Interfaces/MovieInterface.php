@@ -56,7 +56,7 @@ interface MovieInterface
      * Get IMDB movie id
      * @return int
      */
-    public function getIMDBId() : int;
+    public function getIMDBId() : string;
 
     /**
      * Get movie tagline

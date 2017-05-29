@@ -152,9 +152,9 @@ class Movie implements Interfaces\MovieInterface
 
     /**
      * Get IMDB movie id
-     * @return int
+     * @return string
      */
-    public function getIMDBId(): int
+    public function getIMDBId(): string
     {
         if (isset($this->data->imdb_id))
         {
