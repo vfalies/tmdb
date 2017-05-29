@@ -78,6 +78,17 @@ class MovieTest extends TestCase
 
     /**
      * @test
+     * @expectedException \Exception
+     */
+    public function testContructFailure()
+    {
+        $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+
+        new Movie($this->tmdb, $this->movie_id);
+    }
+
+    /**
+     * @test
      */
     public function testGetTitle()
     {
@@ -330,7 +341,7 @@ class MovieTest extends TestCase
         $this->setRequestConfigurationEmpty();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
-        $res   = $movie->getPoster();
+        $movie->getPoster();
     }
 
     /**
@@ -379,7 +390,7 @@ class MovieTest extends TestCase
         $this->setRequestConfigurationEmpty();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
-        $res   = $movie->getBackdrop();
+        $movie->getBackdrop();
     }
 
     /**
