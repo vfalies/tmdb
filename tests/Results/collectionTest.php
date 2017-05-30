@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 class CollectionTest extends TestCase
 {
 
-    protected $tmdb    = null;
+    protected $tmdb   = null;
     protected $result = null;
 
     public function setUp()
@@ -21,15 +21,6 @@ class CollectionTest extends TestCase
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
-
-        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
-        $this->tmdb->method('getConfiguration')->willReturn($json_object);
-
-        $json_object = json_decode(file_get_contents('tests/json/searchCollectionOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
-
-        $search        = new \Vfac\Tmdb\Search($this->tmdb);
-        $this->result = $search->searchCollection('star wars', array('language' => 'fr-FR'))->current();
     }
 
     public function tearDown()
@@ -39,11 +30,37 @@ class CollectionTest extends TestCase
         $this->tmdb = null;
     }
 
+    private function sendRequestOk()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_object = json_decode(file_get_contents('tests/json/searchCollectionOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search       = new \Vfac\Tmdb\Search($this->tmdb);
+        $this->result = $search->searchCollection('star wars', array('language' => 'fr-FR'))->current();
+    }
+
+    private function sendRequestConfNok()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationEmptyOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_object = json_decode(file_get_contents('tests/json/searchCollectionOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search       = new \Vfac\Tmdb\Search($this->tmdb);
+        $this->result = $search->searchCollection('star wars', array('language' => 'fr-FR'))->current();
+    }
+
     /**
      * @test
      */
     public function testGetId()
     {
+        $this->sendRequestOk();
+
         $this->assertInternalType('int', $this->result->getId());
         $this->assertEquals(425281, $this->result->getId());
     }
@@ -54,6 +71,8 @@ class CollectionTest extends TestCase
      */
     public function testGetOverview()
     {
+        $this->sendRequestOk();
+
         $this->result->getOverview();
     }
 
@@ -63,6 +82,8 @@ class CollectionTest extends TestCase
      */
     public function testGetReleaseDate()
     {
+        $this->sendRequestOk();
+
         $this->result->getReleaseDate();
     }
 
@@ -72,6 +93,8 @@ class CollectionTest extends TestCase
      */
     public function testGetOriginalTitle()
     {
+        $this->sendRequestOk();
+
         $this->result->getOriginalTitle();
     }
 
@@ -80,6 +103,8 @@ class CollectionTest extends TestCase
      */
     public function testGetTitle()
     {
+        $this->sendRequestOk();
+
         $this->assertInternalType('string', $this->result->getTitle());
         $this->assertEquals('Star Wars: Clone Wars Collection', $this->result->getTitle());
     }
@@ -89,7 +114,31 @@ class CollectionTest extends TestCase
      */
     public function testGetPoster()
     {
+        $this->sendRequestOk();
+
         $this->assertNotFalse(filter_var($this->result->getPoster(), FILTER_VALIDATE_URL));
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetPosterConfNok()
+    {
+        $this->sendRequestConfNok();
+
+        $this->result->getPoster();
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetPosterSizeNok()
+    {
+        $this->sendRequestOk();
+
+        $this->result->getPoster('w184');
     }
 
     /**
@@ -97,6 +146,31 @@ class CollectionTest extends TestCase
      */
     public function testGetBackdrop()
     {
+        $this->sendRequestOk();
+
         $this->assertNotFalse(filter_var($this->result->getBackdrop(), FILTER_VALIDATE_URL));
     }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetBackdropConfNok()
+    {
+        $this->sendRequestConfNok();
+
+        $this->result->getBackdrop();
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetBackdropSizeNok()
+    {
+        $this->sendRequestOk();
+
+        $this->result->getBackdrop('w184');
+    }
+
 }

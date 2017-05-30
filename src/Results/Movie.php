@@ -97,19 +97,15 @@ class Movie implements \Vfac\Tmdb\Interfaces\ResultsInterface
      */
     public function getPoster(string $size = 'w185'): string
     {
-        if (isset($this->poster_path))
+        if ( ! isset($this->conf->images->base_url))
         {
-            if ( ! isset($this->conf->images->base_url))
-            {
-                throw new \Exception('base_url configuration not found');
-            }
-            if ( ! in_array($size, $this->conf->images->poster_sizes))
-            {
-                throw new \Exception('Incorrect poster size : '.$size);
-            }
-            return $this->conf->images->base_url.$size.$this->poster_path;
+            throw new \Exception('base_url configuration not found');
         }
-        return '';
+        if ( ! in_array($size, $this->conf->images->poster_sizes))
+        {
+            throw new \Exception('Incorrect poster size : '.$size);
+        }
+        return $this->conf->images->base_url.$size.$this->poster_path;
     }
 
     /**
@@ -119,19 +115,15 @@ class Movie implements \Vfac\Tmdb\Interfaces\ResultsInterface
      */
     public function getBackdrop(string $size = 'w780'): string
     {
-        if (isset($this->backdrop_path))
+        if ( ! isset($this->conf->images->base_url))
         {
-            if ( ! isset($this->conf->images->base_url))
-            {
-                throw new \Exception('base_url configuration not found');
-            }
-            if ( ! in_array($size, $this->conf->images->backdrop_sizes))
-            {
-                throw new \Exception('Incorrect backdrop size : '.$size);
-            }
-            return $this->conf->images->base_url.$size.$this->backdrop_path;
+            throw new \Exception('base_url configuration not found');
         }
-        return '';
+        if ( ! in_array($size, $this->conf->images->backdrop_sizes))
+        {
+            throw new \Exception('Incorrect backdrop size : '.$size);
+        }
+        return $this->conf->images->base_url.$size.$this->backdrop_path;
     }
 
 }
