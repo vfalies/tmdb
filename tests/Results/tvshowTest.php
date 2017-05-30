@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @cover Movie
  */
-class MovieTest extends TestCase
+class TVShowTest extends TestCase
 {
 
     protected $tmdb    = null;
@@ -25,11 +25,11 @@ class MovieTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
-        $json_object = json_decode(file_get_contents('tests/json/searchMovieOk.json'));
+        $json_object = json_decode(file_get_contents('tests/json/searchTVShowOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search        = new \Vfac\Tmdb\Search($this->tmdb);
-        $this->result = $search->searchMovie('star wars', array('language' => 'fr-FR'))->current();
+        $this->result = $search->searchTVShow('star trek', array('language' => 'fr-FR'))->current();
     }
 
     public function tearDown()
@@ -45,7 +45,7 @@ class MovieTest extends TestCase
     public function testGetId()
     {
         $this->assertInternalType('int', $this->result->getId());
-        $this->assertEquals(11, $this->result->getId());
+        $this->assertEquals(253, $this->result->getId());
     }
 
     /**
@@ -54,7 +54,7 @@ class MovieTest extends TestCase
     public function testGetOverview()
     {
         $this->assertInternalType('string', $this->result->getOverview());
-        $this->assertStringStartsWith('Il y a bien longtemps, dans une galaxie très lointaine...', $this->result->getOverview());
+        $this->assertStringStartsWith('Star Trek, ou Patrouille du cosmos au Québec et au Nouveau-Brunswick', $this->result->getOverview());
     }
 
     /**
@@ -63,7 +63,7 @@ class MovieTest extends TestCase
     public function testGetReleaseDate()
     {
         $this->assertInternalType('string', $this->result->getReleaseDate());
-        $this->assertEquals('1977-05-25', $this->result->getReleaseDate());
+        $this->assertEquals('1966-09-08', $this->result->getReleaseDate());
     }
 
     /**
@@ -72,7 +72,7 @@ class MovieTest extends TestCase
     public function testGetOriginalTitle()
     {
         $this->assertInternalType('string', $this->result->getOriginalTitle());
-        $this->assertEquals('Star Wars', $this->result->getOriginalTitle());
+        $this->assertEquals('Star Trek', $this->result->getOriginalTitle());
     }
 
     /**
@@ -81,7 +81,7 @@ class MovieTest extends TestCase
     public function testGetTitle()
     {
         $this->assertInternalType('string', $this->result->getTitle());
-        $this->assertEquals('La Guerre des étoiles', $this->result->getTitle());
+        $this->assertEquals('Star Trek', $this->result->getTitle());
     }
 
     /**

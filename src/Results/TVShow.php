@@ -53,7 +53,7 @@ class TVShow implements \Vfac\Tmdb\Interfaces\ResultsInterface
      * Get tvshow overview
      * @return string
      */
-    public function getOverview() : int
+    public function getOverview() : string
     {
         return $this->overview;
     }
