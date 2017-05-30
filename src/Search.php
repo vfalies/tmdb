@@ -41,7 +41,7 @@ class Search
                 throw new \Exception('query parameter can not be empty');
             }
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest('search/' . $item, $query, $params);
+            $response = $this->tmdb->sendRequest('search/'.$item, $query, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
@@ -60,11 +60,11 @@ class Search
      * @param array $results
      * @param string $class
      */
-    private function searchItemGenerator(array $results, string $class) : \Generator
+    private function searchItemGenerator(array $results, string $class): \Generator
     {
         foreach ($results as $result)
         {
-            $element = new $class($result);
+            $element = new $class($this->tmdb, $result);
 
             yield $element;
         }
@@ -77,11 +77,11 @@ class Search
      * @return \Generator|Results\Movie
      * @throws \Exception
      */
-    public function searchMovie(string $query, array $options = array()) : \Generator
+    public function searchMovie(string $query, array $options = array()): \Generator
     {
         try
         {
-            return $this->searchItem('movie', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Movie');
+            return $this->searchItem('movie', $query, $options, __NAMESPACE__."\\Results\\".'Movie');
         }
         catch (\Exception $ex)
         {
@@ -100,7 +100,7 @@ class Search
     {
         try
         {
-            return $this->searchItem('tv', $query, $options, __NAMESPACE__ . "\\Results\\" . 'TVShow');
+            return $this->searchItem('tv', $query, $options, __NAMESPACE__."\\Results\\".'TVShow');
         }
         catch (\Exception $ex)
         {
@@ -119,7 +119,7 @@ class Search
     {
         try
         {
-            return $this->searchItem('collection', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Collection');
+            return $this->searchItem('collection', $query, $options, __NAMESPACE__."\\Results\\".'Collection');
         }
         catch (\Exception $ex)
         {
