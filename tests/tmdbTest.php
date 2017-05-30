@@ -86,4 +86,14 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
         $this->tmdb->getConfiguration();
     }
 
+    /**
+     * @test
+     * @expectedException \Exception
+     * @expectedExceptionCode 1005
+     */
+    public function testSendRequestHttpError()
+    {
+        $this->tmdb->sendRequest('fake/');
+    }
+
 }

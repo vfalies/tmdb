@@ -99,7 +99,7 @@ class Tmdb implements Interfaces\TmdbInterface
         $response = json_decode($result);
         if (is_null($response) || $response === false)
         {
-            throw new \Exception('Movie search failed : '.var_export($result, true), 2001);
+            throw new \Exception('Search failed : '.var_export($result, true), 2001);
         }
         return $response;
     }
