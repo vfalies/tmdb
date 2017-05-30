@@ -72,12 +72,12 @@ class Collection implements \Vfac\Tmdb\Interfaces\ResultsInterface
 
     public function getOriginalTitle(): string
     {
-        return $this->name;
+        throw new \Exception('Not applicable');
     }
 
     public function getOverview(): string
     {
-        return $this->overview;
+        throw new \Exception('Not applicable');
     }
 
     public function getReleaseDate(): string

@@ -5,9 +5,9 @@ namespace Vfac\Tmdb\Results;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @cover TVShow
+ * @cover Collection
  */
-class TVShowTest extends TestCase
+class CollectionTest extends TestCase
 {
 
     protected $tmdb    = null;
@@ -25,11 +25,11 @@ class TVShowTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
-        $json_object = json_decode(file_get_contents('tests/json/searchTVShowOk.json'));
+        $json_object = json_decode(file_get_contents('tests/json/searchCollectionOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search        = new \Vfac\Tmdb\Search($this->tmdb);
-        $this->result = $search->searchTVShow('star trek', array('language' => 'fr-FR'))->current();
+        $this->result = $search->searchCollection('star wars', array('language' => 'fr-FR'))->current();
     }
 
     public function tearDown()
@@ -45,34 +45,34 @@ class TVShowTest extends TestCase
     public function testGetId()
     {
         $this->assertInternalType('int', $this->result->getId());
-        $this->assertEquals(253, $this->result->getId());
+        $this->assertEquals(425281, $this->result->getId());
     }
 
     /**
      * @test
+     * @expectedException \Exception
      */
     public function testGetOverview()
     {
-        $this->assertInternalType('string', $this->result->getOverview());
-        $this->assertStringStartsWith('Star Trek, ou Patrouille du cosmos au Québec et au Nouveau-Brunswick', $this->result->getOverview());
+        $this->result->getOverview();
     }
 
     /**
      * @test
+     * @expectedException \Exception
      */
     public function testGetReleaseDate()
     {
-        $this->assertInternalType('string', $this->result->getReleaseDate());
-        $this->assertEquals('1966-09-08', $this->result->getReleaseDate());
+        $this->result->getReleaseDate();
     }
 
     /**
      * @test
+     * @expectedException \Exception
      */
     public function testGetOriginalTitle()
     {
-        $this->assertInternalType('string', $this->result->getOriginalTitle());
-        $this->assertEquals('Star Trek', $this->result->getOriginalTitle());
+        $this->result->getOriginalTitle();
     }
 
     /**
@@ -81,7 +81,7 @@ class TVShowTest extends TestCase
     public function testGetTitle()
     {
         $this->assertInternalType('string', $this->result->getTitle());
-        $this->assertEquals('Star Trek', $this->result->getTitle());
+        $this->assertEquals('Star Wars: Clone Wars Collection', $this->result->getTitle());
     }
 
     /**
