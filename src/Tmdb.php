@@ -71,7 +71,7 @@ class Tmdb implements Interfaces\TmdbInterface
         curl_setopt($ch, CURLOPT_ENCODING, "");
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLINFO_HEADER_OUT, true); // To gets header in curl_getinfo()
-        
+
         // cUrl execution
         $result = curl_exec($ch);
         if ($result === false)
@@ -169,10 +169,6 @@ class Tmdb implements Interfaces\TmdbInterface
      */
     private function checkYear(int $year) : int
     {
-        if ( ! is_numeric($year))
-        {
-            throw new \Exception('year param must be an integer');
-        }
         $year = (int) $year;
         return $year;
     }
@@ -191,23 +187,6 @@ class Tmdb implements Interfaces\TmdbInterface
             throw new \Exception("Incorrect language code : $language", 1001);
         }
         return $language;
-    }
-
-    /**
-     * Magical getter
-     * @param string $name
-     * @return mixed
-     * @throws \Exception
-     */
-    public function __get(string $name)
-    {
-        switch ($name)
-        {
-            case 'data':
-                return $this->$name;
-            default:
-                throw new \Exception('Unknown property : '.$name);
-        }
     }
 
 }
