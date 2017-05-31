@@ -60,24 +60,6 @@ class MovieTest extends TestCase
 
     /**
      * @test
-     */
-    public function testGetAllGenres()
-    {
-        $json_object = json_decode(file_get_contents('tests/json/genresOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
-        $this->setRequestOk();
-
-        $movie  = new Movie($this->tmdb, $this->movie_id);
-        $genres = $movie->getAllGenres();
-
-        $this->assertArrayHasKey(12, $genres); // 12 : Aventure
-        $this->assertEquals('Aventure', $genres[12]);
-        $this->assertArrayHasKey(10770, $genres); // 10770 : Téléfilm
-        $this->assertEquals('Téléfilm', $genres[10770]);
-    }
-
-    /**
-     * @test
      * @expectedException \Exception
      */
     public function testContructFailure()

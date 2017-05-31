@@ -37,33 +37,6 @@ class Movie implements Interfaces\MovieInterface
     }
 
     /**
-     * Get all movie genres list
-     * @return array
-     */
-    public function getAllGenres(): array
-    {
-        try
-        {
-            if (is_null($this->genres))
-            {
-                $genres = $this->tmdb->sendRequest(new CurlRequest(), 'genre/movie/list');
-
-                $this->genres = [];
-                foreach ($genres->genres as $genre)
-                {
-                    $this->genres[$genre->id] = $genre->name;
-                }
-            }
-
-            return $this->genres;
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
-    }
-
-    /**
      * Get movie genres
      * @return array
      */

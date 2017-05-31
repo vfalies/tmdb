@@ -6,12 +6,6 @@ interface MovieInterface
 {
 
     /**
-     * Get all movie genres list
-     * @return array
-     */
-    public function getAllGenres() : array;
-
-    /**
      * Get movie genres
      * @return array
      */

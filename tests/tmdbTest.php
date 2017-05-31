@@ -112,7 +112,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     {
         $tmdb = new Tmdb('fake_api_key');
         $tmdb->base_api_url = 'invalid_url';
-        $res = $tmdb->sendRequest(new CurlRequest(), 'action');
+        $tmdb->sendRequest(new CurlRequest(), 'action');
     }
 
     /**
