@@ -6,7 +6,7 @@ interface HttpRequestInterface
 {
     public function setUrl(string $url) : void;
 
-    public function setOption(string $name, string $value) : void;
+    public function setOption(string $name, string $value) : HttpRequestInterface;
 
     public function execute();
 
