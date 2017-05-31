@@ -11,7 +11,7 @@ class Tmdb implements Interfaces\TmdbInterface
     // Private variables
     private $api_key         = null;                              // API Key
     private $language        = 'fr-FR';                           // Default language for API response
-    private $base_api_url    = 'https://api.themoviedb.org/3/';   // Base URL of the API
+    public $base_api_url    = 'https://api.themoviedb.org/3/';   // Base URL of the API
     private $include_adult   = false;                             // Include adult content in search result
     private $page            = 1;                                 // API Page result
     // Protected variables
@@ -25,21 +25,18 @@ class Tmdb implements Interfaces\TmdbInterface
 
     public function __construct(string $api_key)
     {
-        if ( ! extension_loaded('curl'))
-        {
-            throw new \Exception('cUrl extension is not loaded', 1003);
-        }
         $this->api_key = $api_key;
     }
 
     /**
      * Send cUrl request to TMDB API
+     * @param Interfaces\HttpRequestInterface $http_request
      * @param string $action API action to request
      * @param string $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function sendRequest(string $action, string $query = null, array $options = array()) : \stdClass
+    public function sendRequest(Interfaces\HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()) : \stdClass
     {
         // Url construction
         $url = $this->base_api_url.$action;
@@ -57,44 +54,34 @@ class Tmdb implements Interfaces\TmdbInterface
         // URL with paramters construction
         $url = $url.'?'.http_build_query($params);
 
-        // Initialisation
-        $ch = curl_init($url);
-        if ($ch === false)
-        {
-            throw new \Exception('cUrl initialisation failed', 1002);
-        }
+        $http_request->setUrl($url);
+        $http_request->setOption(CURLOPT_HEADER, 0);
+        $http_request->setOption(CURLOPT_RETURNTRANSFER, true);
+        $http_request->setOption(CURLOPT_MAXREDIRS, 10);
+        $http_request->setOption(CURLOPT_ENCODING, "");
+        $http_request->setOption(CURLOPT_TIMEOUT, 30);
+        $http_request->setOption(CURLINFO_HEADER_OUT, true); // To gets header in curl_getinfo()
 
-        // cUrl options
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
-        curl_setopt($ch, CURLOPT_ENCODING, "");
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-        curl_setopt($ch, CURLINFO_HEADER_OUT, true); // To gets header in curl_getinfo()
+        $result = $http_request->execute();
 
-        // cUrl execution
-        $result = curl_exec($ch);
-        if ($result === false)
-        {
-            throw new \Exception('cUrl failed : '.var_export(curl_getinfo($ch), true), 1004);
-        }
-        // cUrl HTTP Code response
-        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $http_code = $http_request->getInfo(CURLINFO_HTTP_CODE);
+
         if ($http_code !== 200)
         {
             if ($http_code == 429)
             {
                 $message = new \stdClass();
                 $message->message = 'Request rate limit exceeded';
-                $message->headers = var_export(curl_getinfo($ch, CURLINFO_HEADER_OUT), true);
+                $header_out = $http_request->getInfo(CURLINFO_HEADER_OUT);
+                $message->headers = var_export($header_out, true);
 
                 throw new \Exception(json_encode($message), 1006);
             }
-            throw new \Exception('Incorrect HTTP Code ('.$http_code.') response : '.var_export(curl_getinfo($ch), true), 1005);
+            throw new \Exception('Incorrect HTTP Code ('.$http_code.') response : '.var_export($http_request->getInfo(), true), 1005);
         }
 
         // cUrl closing
-        curl_close($ch);
+        $http_request->close();
 
         $response = json_decode($result);
         if (is_null($response) || $response === false)
@@ -114,7 +101,7 @@ class Tmdb implements Interfaces\TmdbInterface
         {
             if (is_null($this->configuration))
             {
-                $this->configuration = $this->sendRequest('configuration');
+                $this->configuration = $this->sendRequest(new CurlRequest(), 'configuration');
             }
             return $this->configuration;
         }

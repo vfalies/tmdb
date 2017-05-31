@@ -5,12 +5,12 @@ namespace Vfac\Tmdb;
 class TmdbTest extends \PHPUnit_Framework_TestCase
 {
 
-    protected $tmdb;
-
-    public function setUp()
+    protected function setUp()
     {
-        parent::setUp();
-        $this->tmdb = new Tmdb('fake_api_key');
+        if (!extension_loaded('curl'))
+        {
+            $this->markTestSkipped('cUrl extension is not loaded');
+        }
     }
 
     /**
@@ -18,7 +18,8 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckOptionsOk()
     {
-        $options = $this->tmdb->checkOptions(array('year'          => '2014',
+        $tmdb = new Tmdb('fake_api_key');
+        $options = $tmdb->checkOptions(array('year'          => '2014',
             'language'      => 'fr-FR',
             'include_adult' => false,
             'page'          => 2));
@@ -40,7 +41,8 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckOptionsYearNOK()
     {
-        $this->tmdb->checkOptions(array('year' => 'abcd'));
+        $tmdb = new Tmdb('fake_api_key');
+        $tmdb->checkOptions(array('year' => 'abcd'));
     }
 
     /**
@@ -49,7 +51,8 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckOptionsLanguageNOK()
     {
-        $this->tmdb->checkOptions(array('language' => 'fr'));
+        $tmdb = new Tmdb('fake_api_key');
+        $tmdb->checkOptions(array('language' => 'fr'));
     }
 
     /**
@@ -57,15 +60,16 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetConfigurationOK()
     {
-        $this->tmdb = $this->getMockBuilder(\Vfac\Tmdb\Tmdb::class)
+        $tmdb = new Tmdb('fake_api_key');
+        $tmdb = $this->getMockBuilder(\Vfac\Tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $tmdb->method('sendRequest')->willReturn($json_object);
 
-        $conf = $this->tmdb->getConfiguration();
+        $conf = $tmdb->getConfiguration();
 
         $this->assertInstanceOf(\stdClass::class, $conf);
     }
@@ -76,24 +80,92 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetConfigurationNOK()
     {
-        $this->tmdb = $this->getMockBuilder(\Vfac\Tmdb\Tmdb::class)
+        $tmdb = new Tmdb('fake_api_key');
+        $tmdb = $this->getMockBuilder(\Vfac\Tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
-        $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+        $tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
 
-        $this->tmdb->getConfiguration();
+        $tmdb->getConfiguration();
     }
 
     /**
      * @test
+     * @covers \Vfac\Tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      * @expectedExceptionCode 1005
      */
     public function testSendRequestHttpError()
     {
-        $this->tmdb->sendRequest('fake/');
+        $tmdb = new Tmdb('fake_api_key');
+        $tmdb->sendRequest(new CurlRequest(), 'fake/');
     }
 
+    /**
+     * @test
+     * @covers \Vfac\Tmdb\Tmdb::sendRequest
+     * @expectedException \Exception
+     */
+    public function testSendRequestExecError()
+    {
+        $tmdb = new Tmdb('fake_api_key');
+        $tmdb->base_api_url = 'invalid_url';
+        $res = $tmdb->sendRequest(new CurlRequest(), 'action');
+    }
+
+    /**
+     * @test
+     * @covers \Vfac\Tmdb\Tmdb::sendRequest
+     * @expectedException \Exception
+     * @expectedExceptionCode 1006
+     */
+    public function testSendRequestHttpError429()
+    {
+        $tmdb = new Tmdb('fake_api_key');
+        $http_request = $this->getMockBuilder(\Vfac\Tmdb\CurlRequest::class)
+        ->setMethods(['getInfo'])
+        ->getMock();
+        $http_request->method('getInfo')->willReturn(429);
+
+        $tmdb->sendRequest($http_request, 'action');
+    }
+
+    /**
+     * @test
+     * @covers \Vfac\Tmdb\Tmdb::sendRequest
+     * @expectedException \Exception
+     * @expectedExceptionCode 2001
+     */
+    public function testSendRequestHttpErrorNotJson()
+    {
+        $tmdb = new Tmdb('fake_api_key');
+        $http_request = $this->getMockBuilder(\Vfac\Tmdb\CurlRequest::class)
+        ->setMethods(['getInfo','execute'])
+        ->getMock();
+        $http_request->method('getInfo')->willReturn(200);
+        $http_request->method('execute')->willReturn('Not JSON');
+
+        $tmdb->sendRequest($http_request, 'action');
+
+    }
+
+    /**
+     * @test
+     * @covers \Vfac\Tmdb\Tmdb::sendRequest
+     */
+    public function testSendRequestOk()
+    {
+        $tmdb = new Tmdb('fake_api_key');
+        $http_request = $this->getMockBuilder(\Vfac\Tmdb\CurlRequest::class)
+        ->setMethods(['getInfo','execute'])
+        ->getMock();
+        $http_request->method('getInfo')->willReturn(200);
+        $http_request->method('execute')->willReturn(file_get_contents('tests/json/configurationOk.json'));
+
+        $result = $tmdb->sendRequest($http_request, '/test', 'param=1');
+
+        $this->assertInstanceOf(\stdClass::class, $result);
+    }
 }

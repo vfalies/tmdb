@@ -25,7 +25,7 @@ class Collection
             $this->conf = $this->tmdb->getConfiguration();
 
             $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest('collection/' . (int) $collection_id, null, $params);
+            $this->data = $this->tmdb->sendRequest(new CurlRequest(), 'collection/' . (int) $collection_id, null, $params);
         }
         catch (\Exception $ex)
         {

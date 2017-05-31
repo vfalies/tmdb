@@ -41,7 +41,7 @@ class Search
                 throw new \Exception('query parameter can not be empty');
             }
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest('search/'.$item, $query, $params);
+            $response = $this->tmdb->sendRequest(new CurlRequest(), 'search/'.$item, $query, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;

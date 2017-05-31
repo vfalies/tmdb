@@ -28,7 +28,7 @@ class Movie implements Interfaces\MovieInterface
 
             // Get movie details
             $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest('movie/' . $movie_id, null, $params);
+            $this->data = $this->tmdb->sendRequest(new CurlRequest(), 'movie/' . $movie_id, null, $params);
         }
         catch (\Exception $ex)
         {
@@ -46,7 +46,7 @@ class Movie implements Interfaces\MovieInterface
         {
             if (is_null($this->genres))
             {
-                $genres = $this->tmdb->sendRequest('genre/movie/list');
+                $genres = $this->tmdb->sendRequest(new CurlRequest(), 'genre/movie/list');
 
                 $this->genres = [];
                 foreach ($genres->genres as $genre)

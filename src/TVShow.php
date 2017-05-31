@@ -20,7 +20,7 @@ class TVShow
 
             // Get tvshow details
             $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest('tv/' . (int) $tv_id, null, $params);
+            $this->data = $this->tmdb->sendRequest(new CurlRequest(), 'tv/' . (int) $tv_id, null, $params);
         }
         catch (\Exception $ex)
         {
