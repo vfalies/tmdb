@@ -6,7 +6,6 @@ class Search
 {
 
     private $tmdb          = null;
-    private $conf          = null;
     private $page          = 1; // Page number of the search result
     private $total_pages   = 1; // Total pages of the search result
     private $total_results = 0; // Total results of the search result
@@ -19,7 +18,6 @@ class Search
     public function __construct(Tmdb $tmdb)
     {
         $this->tmdb = $tmdb;
-        $this->conf = $this->tmdb->getConfiguration();
     }
 
     /**

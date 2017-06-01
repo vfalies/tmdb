@@ -7,7 +7,6 @@ class Movie implements Interfaces\MovieInterface
 
     private $tmdb   = null;
     private $conf   = null;
-    private $genres = null;
     private $data   = null;
     private $id     = null;
 
