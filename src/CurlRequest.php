@@ -37,7 +37,7 @@ class CurlRequest implements Interfaces\HttpRequestInterface
         {
             throw new \Exception('cUrl failed : '.var_export($this->getInfo(), true), 1004);
         }
-        return $return;
+        return $result;
     }
 
     /**
