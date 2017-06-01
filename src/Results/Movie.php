@@ -24,7 +24,7 @@ class Movie implements \Vfac\Tmdb\Interfaces\ResultsInterface
     {
         // Valid input object
         $properties = get_object_vars($this);
-        foreach ($properties as $property => $value)
+        foreach (array_keys($properties) as $property)
         {
             if ($property != 'conf' && ! property_exists($result, $property))
             {
