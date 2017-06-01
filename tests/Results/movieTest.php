@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb\Results;
+namespace vfalies\tmdb\Results;
 
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +17,7 @@ class MovieTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\Vfac\Tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -38,7 +38,7 @@ class MovieTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/searchMovieOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $search       = new \Vfac\Tmdb\Search($this->tmdb);
+        $search       = new \vfalies\tmdb\Search($this->tmdb);
         $this->result = $search->searchMovie('star wars', array('language' => 'fr-FR'))->current();
     }
 
@@ -50,7 +50,7 @@ class MovieTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/searchMovieOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $search       = new \Vfac\Tmdb\Search($this->tmdb);
+        $search       = new \vfalies\tmdb\Search($this->tmdb);
         $this->result = $search->searchMovie('star wars', array('language' => 'fr-FR'))->current();
     }
 

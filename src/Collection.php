@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace vfalies\tmdb;
 
 class Collection implements Interfaces\CollectionInterface
 {
@@ -13,10 +13,10 @@ class Collection implements Interfaces\CollectionInterface
 
     /**
      * Constructor
-     * @param \Vfac\Tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Tmdb $tmdb
      * @throws \Exception
      */
-    public function __construct(\Vfac\Tmdb\Tmdb $tmdb, $collection_id, array $options = array())
+    public function __construct(\vfalies\tmdb\Tmdb $tmdb, $collection_id, array $options = array())
     {
         try
         {

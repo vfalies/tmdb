@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace vfalies\tmdb;
 
 class Movie implements Interfaces\MovieInterface
 {
@@ -12,7 +12,7 @@ class Movie implements Interfaces\MovieInterface
 
     /**
      * Constructor
-     * @param \Vfac\Tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Tmdb $tmdb
      * @param int $movie_id
      * @param array $options
      * @throws Exception

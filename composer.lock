@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "477f0841d8fd1fe5d5226252556bc876",
+    "content-hash": "b7020de46f45c16c2d02e9bce4d41e7e",
     "packages": [],
     "packages-dev": [
         {
@@ -64,7 +64,7 @@
                 "codeclimate",
                 "coverage"
             ],
-            "time": "2017-06-01T13:19:55+00:00"
+            "time": "2017-06-01 13:19:55"
         },
         {
             "name": "doctrine/instantiator",
@@ -214,7 +214,7 @@
                 "web service"
             ],
             "abandoned": "guzzlehttp/guzzle",
-            "time": "2016-10-26T18:22:07+00:00"
+            "time": "2016-10-26 18:22:07"
         },
         {
             "name": "myclabs/deep-copy",
@@ -365,7 +365,7 @@
                 "self-update",
                 "update"
             ],
-            "time": "2017-05-19T12:36:20+00:00"
+            "time": "2017-05-19 12:36:20"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -1011,7 +1011,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "satooshi/php-coveralls",
@@ -1069,7 +1069,7 @@
                 "github",
                 "test"
             ],
-            "time": "2017-02-25T12:10:28+00:00"
+            "time": "2017-02-25 12:10:28"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -1642,7 +1642,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-29T18:41:56+00:00"
+            "time": "2017-05-29 18:41:56"
         },
         {
             "name": "symfony/console",
@@ -1710,7 +1710,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-28T14:09:32+00:00"
+            "time": "2017-05-28 14:09:32"
         },
         {
             "name": "symfony/debug",
@@ -1766,7 +1766,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-28T11:01:50+00:00"
+            "time": "2017-05-28 11:01:50"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1826,7 +1826,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-26T16:56:54+00:00"
+            "time": "2017-04-26 16:56:54"
         },
         {
             "name": "symfony/filesystem",
@@ -1875,7 +1875,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-28T14:09:45+00:00"
+            "time": "2017-05-28 14:09:45"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1934,7 +1934,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-05-29T15:51:17+00:00"
+            "time": "2017-05-29 15:51:17"
         },
         {
             "name": "symfony/stopwatch",
@@ -1983,7 +1983,7 @@
             ],
             "description": "Symfony Stopwatch Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-17T16:21:40+00:00"
+            "time": "2017-05-17 16:21:40"
         },
         {
             "name": "symfony/yaml",

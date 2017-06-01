@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * This file is part of the Vfac TMDB package.
+ * This file is part of the TMDB package.
  *
  * (c) Vincent Faliès <vincent.falies@gmail.com>
  *

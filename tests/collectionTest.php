@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace vfalies\tmdb;
 
 use PHPUnit\Framework\TestCase;
 
@@ -212,7 +212,7 @@ class CollectionTest extends TestCase
         $parts = $collection->getParts();
 
         $this->assertInstanceOf(\Generator::class, $parts);
-        $this->assertInstanceOf(\Vfac\Tmdb\Results\Movie::class, $parts->current());
+        $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $parts->current());
     }
 
     /**
