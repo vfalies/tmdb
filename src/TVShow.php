@@ -2,7 +2,7 @@
 
 namespace Vfac\Tmdb;
 
-class TVShow
+class TVShow implements Interfaces\TVShowInterface
 {
 
     private $id   = null;
@@ -35,6 +35,61 @@ class TVShow
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getBackdrop(string $size = 'w780'): string
+    {
+
+    }
+
+    public function getGenres(): array
+    {
+        
+    }
+
+    public function getNote(): float
+    {
+
+    }
+
+    public function getNumberEpisodes(): int
+    {
+        
+    }
+
+    public function getNumberSeasons(): int
+    {
+
+    }
+
+    public function getOriginalTitle(): string
+    {
+        
+    }
+
+    public function getOverview(): string
+    {
+
+    }
+
+    public function getPoster(string $size = 'w185'): string
+    {
+        
+    }
+
+    public function getReleaseDate(): string
+    {
+
+    }
+
+    public function getStatus(): string
+    {
+        
+    }
+
+    public function getTitle(): string
+    {
+
     }
 
 }
