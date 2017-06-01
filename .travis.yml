@@ -1,0 +1,16 @@
+language: php
+php:
+  - '7.0'
+  - '7.1'
+
+env:
+  global:
+    - PHPUNIT_BIN='vendor/bin/phpunit'
+    - PHPUNIT_CONFIG='phpunit.xml'
+    - PHPUNIT_FLAGS='--stop-on-failure --verbose'
+
+before_script:
+  - composer config --global repo.packagist composer https://packagist.org
+  - composer install
+
+script : $PHPUNIT_BIN -c $PHPUNIT_CONFIG $PHPUNIT_FLAGS
