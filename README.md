@@ -1,4 +1,20 @@
-# VfacTmdb - PHP Wrapper for The Movie Database API V3
+# Tmdb - PHP Wrapper for The Movie Database API V3
+
+Tmdb is a PHP wrapper for [The Movie Database](https://www.themoviedb.org/) API [V3](https://developers.themoviedb.org).
+
+Features actualy supported :
+
+- Search
+  - Movie
+  - TV Show
+  - Collection
+- Getting informations
+  - Movie
+  - TV Show
+  - Collection
+  - Genres
+
+
 
 ## Installation
 
@@ -23,9 +39,15 @@ $search    = new Search($tmdb);
 $responses = $search->movie('star wars');
 
 // Get title of the first result in API response
-$movie        = $search->getMovie($responses->current()->id);
+echo $search->getMovie($responses->current()->id)->getTitle();
 
-echo $movie->getTitle();
+// Get all results
+foreach ($responses as $response)
+{
+    echo $search->getMovie($response->id)->getTitle();
+}
+
+
 ```
 
 ## Documentation
@@ -34,12 +56,13 @@ echo $movie->getTitle();
 
 ### Requirements
 
-- VfacTmdb works with PHP 5.6 (5.3 ?) and above
-- Curl extension is mandatory
+- Tmdb works with PHP 7.1 and higher
+- Curl extension
+- TheMovieDatabase API key
 
 ### Submitting bugs and feature requests
 
-Bugs and feature request are tracked on [GitHub](https://github.com/vfac/tmdb/issues)
+Bugs and feature request are tracked on [GitHub](https://github.com/vfalies/tmdb/issues)
 
 ### Author
 
