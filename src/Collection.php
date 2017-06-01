@@ -2,7 +2,7 @@
 
 namespace Vfac\Tmdb;
 
-class Collection
+class Collection implements Interfaces\CollectionInterface
 {
 
     // Private loaded data
