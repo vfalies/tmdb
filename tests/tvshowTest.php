@@ -5,13 +5,13 @@ namespace Vfac\Tmdb;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @cover Movie
+ * @cover TVShow
  */
 class TVShowTest extends TestCase
 {
 
     protected $tmdb  = null;
-    protected $tv_id = 1;
+    protected $tv_id = 253;
 
     public function setUp()
     {
@@ -30,6 +30,33 @@ class TVShowTest extends TestCase
         $this->tmdb = null;
     }
 
+    private function setRequestOk()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_object = json_decode(file_get_contents('tests/json/TVShowOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+    }
+
+    private function setRequestTVShowEmpty()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_object = json_decode(file_get_contents('tests/json/TVShowEmptyOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+    }
+
+    private function setRequestConfigurationEmpty()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationEmptyOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_object = json_decode(file_get_contents('tests/json/TVShowOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+    }
+
     /**
      * @test
      * @expectedException \Exception
@@ -46,7 +73,47 @@ class TVShowTest extends TestCase
      */
     public function testGetBackdrop()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertNotFalse(filter_var($TVShow->getBackdrop(), FILTER_VALIDATE_URL));
+    }
+
+    /**
+     * @test
+     */
+    public function testGetBackdropFailure()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+        $this->assertEmpty($TVShow->getBackdrop());
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetBackdropFailureConf()
+    {
+        $this->setRequestConfigurationEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+        $TVShow->getBackdrop();
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetBackdropFailureSize()
+    {
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $TVShow->getBackdrop('w184');
     }
 
     /**
@@ -54,7 +121,24 @@ class TVShowTest extends TestCase
      */
     public function testGetGenres()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $genres = $TVShow->getGenres();
+        $this->assertInternalType('array', $genres);
+    }
+
+    /**
+     * @test
+     */
+    public function testGetGenresEmpty()
+    {
+        $this->setRequestTVShowEmpty();
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $genres = $TVShow->getGenres();
+        $this->assertInternalType('array', $genres);
+        $this->assertEmpty($genres);
     }
 
     /**
@@ -62,7 +146,25 @@ class TVShowTest extends TestCase
      */
     public function testGetNote()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertInternalType('double', $TVShow->getNote());
+        $this->assertEquals('7.9', $TVShow->getNote());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetNoteEmpty()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertInternalType('double', $TVShow->getNote());
+        $this->assertEquals(0, $TVShow->getNote());
     }
 
     /**
@@ -70,7 +172,23 @@ class TVShowTest extends TestCase
      */
     public function testGetNumberEpisodes()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals(79, $TVShow->getNumberEpisodes());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetNumberEpisodesEmpty()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals(0, $TVShow->getNumberEpisodes());
     }
 
     /**
@@ -78,7 +196,23 @@ class TVShowTest extends TestCase
      */
     public function testGetNumberSeasons()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals(3, $TVShow->getNumberSeasons());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetNumberSeasonsEmpty()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals(0, $TVShow->getNumberSeasons());
     }
 
     /**
@@ -86,7 +220,23 @@ class TVShowTest extends TestCase
      */
     public function testGetOriginalTitle()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals('Star Trek', $TVShow->getOriginalTitle());
+    }
+
+    /**
+     * @test
+     */
+    public function testOriginalTitleFailure()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEmpty($TVShow->getOriginalTitle());
     }
 
     /**
@@ -94,7 +244,23 @@ class TVShowTest extends TestCase
      */
     public function testGetOverview()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertInternalType('string', $TVShow->getOverview());
+        $this->assertStringStartsWith('Star Trek, ou Patrouille du cosmos au Québec et au Nouveau-Brunswick', $TVShow->getOverview());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetOverviewFailure()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+        $this->assertEmpty($TVShow->getOverview());
     }
 
     /**
@@ -102,7 +268,47 @@ class TVShowTest extends TestCase
      */
     public function testGetPoster()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $tvshow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertNotFalse(filter_var($tvshow->getPoster(), FILTER_VALIDATE_URL));
+    }
+
+    /**
+     * @test
+     */
+    public function testGetPosterFailure()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+        $this->assertEmpty($TVShow->getPoster());
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetPosterFailureConf()
+    {
+        $this->setRequestConfigurationEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+        $TVShow->getPoster();
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
+    public function testGetPosterFailureSize()
+    {
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $TVShow->getPoster('w184');
     }
 
     /**
@@ -110,15 +316,48 @@ class TVShowTest extends TestCase
      */
     public function testGetReleaseDate()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $tvshow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals('1966-09-08', $tvshow->getReleaseDate());
     }
+
+    /**
+     * @test
+     */
+    public function testGetReleaseDateFailure()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $tvshow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEmpty($tvshow->getReleaseDate());
+    }
+
 
     /**
      * @test
      */
     public function testGetStatus()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals('Ended', $TVShow->getStatus());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetStatusEmpty()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals('', $TVShow->getStatus());
     }
 
     /**
@@ -126,7 +365,30 @@ class TVShowTest extends TestCase
      */
     public function testGetTitle()
     {
-        $this->markTestIncomplete('Not yet implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals('Star Trek', $TVShow->getTitle());
     }
 
+    /**
+     * @test
+     */
+    public function testGetTitleEmpty()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertEquals('', $TVShow->getTitle());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetSeasons()
+    {
+        $this->markTestIncomplete('Not Yet Implemented');
+    }
 }

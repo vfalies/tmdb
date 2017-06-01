@@ -79,5 +79,11 @@ interface TVShowInterface
      */
     public function getStatus() : string;
 
+    /**
+     * Get TVShow seasons
+     * @return \Generator
+     * @throws \Exception
+     */
+    public function getSeasons() : \Generator;
 
 }
