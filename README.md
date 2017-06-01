@@ -2,6 +2,8 @@
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/6bf2cf4c-4b74-4a06-a5ca-afcc259df86e/big.png)](https://insight.sensiolabs.com/projects/6bf2cf4c-4b74-4a06-a5ca-afcc259df86e)
 
+[![Build Status](https://travis-ci.org/vfalies/tmdb.svg?branch=master)](https://travis-ci.org/vfalies/tmdb)
+
 Tmdb is a PHP wrapper for [The Movie Database](https://www.themoviedb.org/) API [V3](https://developers.themoviedb.org).
 
 Features actualy supported :
