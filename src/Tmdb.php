@@ -11,7 +11,7 @@ class Tmdb implements Interfaces\TmdbInterface
     // Private variables
     private $api_key         = null;                              // API Key
     private $language        = 'fr-FR';                           // Default language for API response
-    public $base_api_url    = 'https://api.themoviedb.org/3/';   // Base URL of the API
+    public $base_api_url     = 'https://api.themoviedb.org/3/';   // Base URL of the API
     private $include_adult   = false;                             // Include adult content in search result
     private $page            = 1;                                 // API Page result
     // Protected variables
@@ -36,15 +36,15 @@ class Tmdb implements Interfaces\TmdbInterface
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function sendRequest(Interfaces\HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()) : \stdClass
+    public function sendRequest(Interfaces\HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()): \stdClass
     {
         // Url construction
-        $url = $this->base_api_url.$action;
+        $url = $this->base_api_url . $action;
 
         // Parameters
         $params            = [];
         $params['api_key'] = $this->api_key;
-        if ( ! is_null($query))
+        if (!is_null($query))
         {
             $params['query'] = $query;
         }
@@ -52,7 +52,7 @@ class Tmdb implements Interfaces\TmdbInterface
         $params = array_merge($params, $options);
 
         // URL with paramters construction
-        $url = $url.'?'.http_build_query($params);
+        $url = $url . '?' . http_build_query($params);
 
         $http_request->setUrl($url);
         $http_request->setOption(CURLOPT_HEADER, 0);
@@ -70,14 +70,14 @@ class Tmdb implements Interfaces\TmdbInterface
         {
             if ($http_code == 429)
             {
-                $message = new \stdClass();
+                $message          = new \stdClass();
                 $message->message = 'Request rate limit exceeded';
-                $header_out = $http_request->getInfo(CURLINFO_HEADER_OUT);
+                $header_out       = $http_request->getInfo(CURLINFO_HEADER_OUT);
                 $message->headers = var_export($header_out, true);
 
                 throw new \Exception(json_encode($message), 1006);
             }
-            throw new \Exception('Incorrect HTTP Code ('.$http_code.') response : '.var_export($http_request->getInfo(), true), 1005);
+            throw new \Exception('Incorrect HTTP Code (' . $http_code . ') response : ' . var_export($http_request->getInfo(), true), 1005);
         }
 
         // cUrl closing
@@ -86,7 +86,7 @@ class Tmdb implements Interfaces\TmdbInterface
         $response = json_decode($result);
         if (is_null($response) || $response === false)
         {
-            throw new \Exception('Search failed : '.var_export($result, true), 2001);
+            throw new \Exception('Search failed : ' . var_export($result, true), 2001);
         }
         return $response;
     }
@@ -95,7 +95,7 @@ class Tmdb implements Interfaces\TmdbInterface
      * Get API Configuration
      * @return \stdClass
      */
-    public function getConfiguration() : \stdClass
+    public function getConfiguration(): \stdClass
     {
         try
         {
@@ -117,7 +117,7 @@ class Tmdb implements Interfaces\TmdbInterface
      * @return array
      * @throws \Exception
      */
-    public function checkOptions(array $options) : array
+    public function checkOptions(array $options): array
     {
         $params                  = [];
         // Set default options
@@ -154,7 +154,7 @@ class Tmdb implements Interfaces\TmdbInterface
      * @return int year validated
      * @throws \Exception
      */
-    private function checkYear(int $year) : int
+    private function checkYear(int $year): int
     {
         $year = (int) $year;
         return $year;
@@ -166,7 +166,7 @@ class Tmdb implements Interfaces\TmdbInterface
      * @return string Language string validated
      * @throws \Exception
      */
-    private function checkLanguage(string $language) : string
+    private function checkLanguage(string $language): string
     {
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
         if ($check === 0 || $check === false)
