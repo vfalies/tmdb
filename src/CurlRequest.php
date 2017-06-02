@@ -62,10 +62,10 @@ class CurlRequest implements Interfaces\HttpRequestInterface
     /**
      * Set cUrl option
      * @param string $name
-     * @param string $value
+     * @param mixed $value
      * @throws \Exception
      */
-    public function setOption(string $name, string $value): Interfaces\HttpRequestInterface
+    public function setOption(string $name, $value): Interfaces\HttpRequestInterface
     {
         curl_setopt($this->handle, $name, $value);
         return $this;
@@ -78,6 +78,7 @@ class CurlRequest implements Interfaces\HttpRequestInterface
      */
     public function __get(string $name)
     {
+        $response = '';
         switch ($name)
         {
             case 'handle':
