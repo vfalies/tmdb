@@ -100,7 +100,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestHttpError()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $tmdb->sendRequest(new CurlRequest(), 'fake/');
+        $tmdb->sendRequest(new lib\CurlRequest(), 'fake/');
     }
 
     /**
@@ -112,7 +112,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     {
         $tmdb = new Tmdb('fake_api_key');
         $tmdb->base_api_url = 'invalid_url';
-        $tmdb->sendRequest(new CurlRequest(), 'action');
+        $tmdb->sendRequest(new lib\CurlRequest(), 'action');
     }
 
     /**
@@ -124,7 +124,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestHttpError429()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\CurlRequest::class)
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\lib\CurlRequest::class)
         ->setMethods(['getInfo'])
         ->getMock();
         $http_request->method('getInfo')->willReturn(429);
@@ -141,7 +141,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestHttpErrorNotJson()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\CurlRequest::class)
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\lib\CurlRequest::class)
         ->setMethods(['getInfo','execute'])
         ->getMock();
         $http_request->method('getInfo')->willReturn(200);
@@ -158,7 +158,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testSendRequestOk()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\CurlRequest::class)
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\lib\CurlRequest::class)
         ->setMethods(['getInfo','execute'])
         ->getMock();
         $http_request->method('getInfo')->willReturn(200);

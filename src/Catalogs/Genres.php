@@ -1,8 +1,12 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Catalogs;
 
-class Genres implements Interfaces\GenresInterface
+use vfalies\tmdb\Interfaces\GenresInterface;
+use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\lib\CurlRequest;
+
+class Genres implements GenresInterface
 {
 
     protected $tmdb = null;

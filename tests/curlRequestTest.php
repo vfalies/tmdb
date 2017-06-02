@@ -13,7 +13,7 @@ class curlRequestTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('cUrl extension is not loaded');
         }
 
-        $this->curl = new CurlRequest();
+        $this->curl = new lib\CurlRequest();
     }
 
     /**

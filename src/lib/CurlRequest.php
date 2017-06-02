@@ -1,8 +1,10 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\lib;
 
-class CurlRequest implements Interfaces\HttpRequestInterface
+use vfalies\tmdb\Interfaces\HttpRequestInterface;
+
+class CurlRequest implements HttpRequestInterface
 {
 
     private $handle = null;
@@ -64,7 +66,7 @@ class CurlRequest implements Interfaces\HttpRequestInterface
      * @param mixed $value
      * @throws \Exception
      */
-    public function setOption(string $name, $value): Interfaces\HttpRequestInterface
+    public function setOption(string $name, $value): HttpRequestInterface
     {
         curl_setopt($this->handle, $name, $value);
         return $this;

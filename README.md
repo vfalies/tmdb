@@ -42,16 +42,17 @@ $tmdb = new Tmdb('your_api_key');
 $search    = new Search($tmdb);
 $responses = $search->movie('star wars');
 
-// Get title of the first result in API response
-echo $search->getMovie($responses->current()->id)->getTitle();
-
 // Get all results
 foreach ($responses as $response)
 {
     echo $search->getMovie($response->id)->getTitle();
 }
 
+// Get movie information
+$item  = new Item($tmdb);
+$infos = $item->getMovie(11, array('language' => 'fr-FR');
 
+echo $infos->getTitle();
 ```
 
 ## Documentation

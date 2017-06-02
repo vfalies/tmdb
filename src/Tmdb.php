@@ -2,10 +2,13 @@
 
 namespace vfalies\tmdb;
 
+use vfalies\tmdb\Interfaces\TmdbInterface;
+use vfalies\tmdb\Interfaces\HttpRequestInterface;
+
 /**
  * Tmdb wrapper core class
  */
-class Tmdb implements Interfaces\TmdbInterface
+class Tmdb implements TmdbInterface
 {
 
     // Private variables
@@ -36,7 +39,7 @@ class Tmdb implements Interfaces\TmdbInterface
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function sendRequest(Interfaces\HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()): \stdClass
+    public function sendRequest(HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()): \stdClass
     {
         // Url construction
         $url = $this->base_api_url . $action;
@@ -101,7 +104,7 @@ class Tmdb implements Interfaces\TmdbInterface
         {
             if (is_null($this->configuration))
             {
-                $this->configuration = $this->sendRequest(new CurlRequest(), 'configuration');
+                $this->configuration = $this->sendRequest(new lib\CurlRequest(), 'configuration');
             }
             return $this->configuration;
         } catch (\Exception $ex)

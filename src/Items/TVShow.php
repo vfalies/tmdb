@@ -2,10 +2,13 @@
 
 namespace vfalies\tmdb\Items;
 
-class TVShow extends Item implements \vfalies\tmdb\Interfaces\TVShowInterface
+use vfalies\tmdb\Interfaces\TVShowInterface;
+use vfalies\tmdb\Tmdb;
+
+class TVShow extends Item implements TVShowInterface
 {
 
-    public function __construct(\vfalies\tmdb\Tmdb $tmdb, int $tv_id, array $options = array())
+    public function __construct(Tmdb $tmdb, int $tv_id, array $options = array())
     {
         parent::__construct($tmdb, $tv_id, $options, 'tv');
     }

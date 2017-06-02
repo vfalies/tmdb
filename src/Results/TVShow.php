@@ -2,6 +2,8 @@
 
 namespace vfalies\tmdb\Results;
 
+use vfalies\tmdb\Tmdb;
+
 class TVShow extends Results
 {
 
@@ -16,7 +18,7 @@ class TVShow extends Results
      * @param \stdClass $result
      * @throws \Exception
      */
-    public function __construct(\vfalies\tmdb\Tmdb $tmdb, \stdClass $result)
+    public function __construct(Tmdb $tmdb, \stdClass $result)
     {
         parent::__construct($tmdb, $result);
 
