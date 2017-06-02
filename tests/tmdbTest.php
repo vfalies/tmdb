@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace vfalies\tmdb;
 
 class TmdbTest extends \PHPUnit_Framework_TestCase
 {
@@ -61,7 +61,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testGetConfigurationOK()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $tmdb = $this->getMockBuilder(\Vfac\Tmdb\Tmdb::class)
+        $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest'])
                 ->getMock();
@@ -81,7 +81,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testGetConfigurationNOK()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $tmdb = $this->getMockBuilder(\Vfac\Tmdb\Tmdb::class)
+        $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest'])
                 ->getMock();
@@ -93,7 +93,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \Vfac\Tmdb\Tmdb::sendRequest
+     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      * @expectedExceptionCode 1005
      */
@@ -105,7 +105,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \Vfac\Tmdb\Tmdb::sendRequest
+     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      */
     public function testSendRequestExecError()
@@ -117,14 +117,14 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \Vfac\Tmdb\Tmdb::sendRequest
+     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      * @expectedExceptionCode 1006
      */
     public function testSendRequestHttpError429()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\Vfac\Tmdb\CurlRequest::class)
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\CurlRequest::class)
         ->setMethods(['getInfo'])
         ->getMock();
         $http_request->method('getInfo')->willReturn(429);
@@ -134,14 +134,14 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \Vfac\Tmdb\Tmdb::sendRequest
+     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      * @expectedExceptionCode 2001
      */
     public function testSendRequestHttpErrorNotJson()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\Vfac\Tmdb\CurlRequest::class)
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\CurlRequest::class)
         ->setMethods(['getInfo','execute'])
         ->getMock();
         $http_request->method('getInfo')->willReturn(200);
@@ -153,12 +153,12 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \Vfac\Tmdb\Tmdb::sendRequest
+     * @covers \vfalies\tmdb\Tmdb::sendRequest
      */
     public function testSendRequestOk()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\Vfac\Tmdb\CurlRequest::class)
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\CurlRequest::class)
         ->setMethods(['getInfo','execute'])
         ->getMock();
         $http_request->method('getInfo')->willReturn(200);

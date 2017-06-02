@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb\Results;
+namespace vfalies\tmdb\Results;
 
 class Movie extends Results
 {
@@ -11,11 +11,11 @@ class Movie extends Results
 
     /**
      * Constructor
-     * @param \Vfac\Tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Tmdb $tmdb
      * @param \stdClass $result
      * @throws \Exception
      */
-    public function __construct(\Vfac\Tmdb\Tmdb $tmdb, \stdClass $result)
+    public function __construct(\vfalies\tmdb\Tmdb $tmdb, \stdClass $result)
     {
         parent::__construct($tmdb, $result);
 

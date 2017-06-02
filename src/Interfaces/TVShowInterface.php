@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb\Interfaces;
+namespace vfalies\tmdb\Interfaces;
 
 interface TVShowInterface
 {

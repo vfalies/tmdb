@@ -1,8 +1,8 @@
 <?php
 
-namespace Vfac\Tmdb\Results;
+namespace vfalies\tmdb\Results;
 
-abstract class Results implements \Vfac\Tmdb\Interfaces\ResultsInterface
+abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
 {
 
     protected $id            = null;
@@ -12,11 +12,11 @@ abstract class Results implements \Vfac\Tmdb\Interfaces\ResultsInterface
 
     /**
      * Constructor
-     * @param \Vfac\Tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Tmdb $tmdb
      * @param \stdClass $result
      * @throws \Exception
      */
-    public function __construct(\Vfac\Tmdb\Tmdb $tmdb, \stdClass $result)
+    public function __construct(\vfalies\tmdb\Tmdb $tmdb, \stdClass $result)
     {
         // Valid input object
         $properties = get_object_vars($this);

@@ -33,7 +33,7 @@ $ composer require vfac/tmdb
 ```php
 <?php
 
-use Vfac\Tmdb;
+use vfalies\tmdb;
 
 // Initialize Wrapper
 $tmdb = new Tmdb('your_api_key');

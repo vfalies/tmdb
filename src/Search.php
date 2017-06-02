@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace vfalies\tmdb;
 
 class Search
 {
@@ -12,7 +12,7 @@ class Search
 
     /**
      * Constructor
-     * @param \Vfac\Tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Tmdb $tmdb
      */
 
     public function __construct(Tmdb $tmdb)
@@ -129,7 +129,7 @@ class Search
      * Get movie details
      * @param int $movie_id
      * @param array $options
-     * @return \Vfac\Tmdb\Movie
+     * @return \vfalies\tmdb\Movie
      */
     public function getMovie(int $movie_id, array $options = array()): Movie
     {
@@ -142,7 +142,7 @@ class Search
      * Get collection details
      * @param int $collection_id
      * @param array $options
-     * @return \Vfac\Tmdb\Collection
+     * @return \vfalies\tmdb\Collection
      */
     public function getCollection(int $collection_id, array $options = array()): Collection
     {
@@ -155,7 +155,7 @@ class Search
      * Get TV Show details
      * @param int $tv_id
      * @param array $options
-     * @return \Vfac\Tmdb\TVShow
+     * @return \vfalies\tmdb\TVShow
      */
     public function getTVShow(int $tv_id, array $options = array()): TVShow
     {

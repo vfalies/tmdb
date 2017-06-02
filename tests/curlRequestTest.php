@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace vfalies\tmdb;
 
 class curlRequestTest extends \PHPUnit_Framework_TestCase
 {

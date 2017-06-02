@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace vfalies\tmdb;
 
 class Genres implements Interfaces\GenresInterface
 {
@@ -9,7 +9,7 @@ class Genres implements Interfaces\GenresInterface
 
     /**
      * Constructor
-     * @param \Vfac\Tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Tmdb $tmdb
      * @throws Exception
      */
     public function __construct(Tmdb $tmdb)

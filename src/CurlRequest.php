@@ -1,6 +1,6 @@
 <?php
 
-namespace Vfac\Tmdb;
+namespace vfalies\tmdb;
 
 class CurlRequest implements Interfaces\HttpRequestInterface
 {
