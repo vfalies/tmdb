@@ -6,7 +6,7 @@ env:
   global:
     - PHPUNIT_BIN='vendor/bin/phpunit'
     - PHPUNIT_CONFIG='phpunit.xml'
-    - PHPUNIT_FLAGS='--stop-on-failure --verbose'
+    - PHPUNIT_FLAGS='--stop-on-failure --verbose --coverage-text --coverage-clover=coverage.xml'
 
 before_script:
   - composer config --global repo.packagist composer https://packagist.org
