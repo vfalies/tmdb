@@ -128,11 +128,11 @@ class Search
      * Get movie details
      * @param int $movie_id
      * @param array $options
-     * @return \vfalies\tmdb\Movie
+     * @return \vfalies\tmdb\Items\Movie
      */
-    public function getMovie(int $movie_id, array $options = array()): Movie
+    public function getMovie(int $movie_id, array $options = array()): Items\Movie
     {
-        $movie = new Movie($this->tmdb, $movie_id, $options);
+        $movie = new Items\Movie($this->tmdb, $movie_id, $options);
 
         return $movie;
     }
@@ -141,11 +141,11 @@ class Search
      * Get collection details
      * @param int $collection_id
      * @param array $options
-     * @return \vfalies\tmdb\Collection
+     * @return \vfalies\tmdb\Items\Collection
      */
-    public function getCollection(int $collection_id, array $options = array()): Collection
+    public function getCollection(int $collection_id, array $options = array()): Items\Collection
     {
-        $collection = new Collection($this->tmdb, $collection_id, $options);
+        $collection = new Items\Collection($this->tmdb, $collection_id, $options);
 
         return $collection;
     }
@@ -154,11 +154,11 @@ class Search
      * Get TV Show details
      * @param int $tv_id
      * @param array $options
-     * @return \vfalies\tmdb\TVShow
+     * @return \vfalies\tmdb\Items\TVShow
      */
-    public function getTVShow(int $tv_id, array $options = array()): TVShow
+    public function getTVShow(int $tv_id, array $options = array()): Items\TVShow
     {
-        $tv = new TVShow($this->tmdb, $tv_id, $options);
+        $tv = new Items\TVShow($this->tmdb, $tv_id, $options);
 
         return $tv;
     }

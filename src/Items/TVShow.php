@@ -1,30 +1,13 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Items;
 
-class TVShow implements Interfaces\TVShowInterface
+class TVShow extends Item implements \vfalies\tmdb\Interfaces\TVShowInterface
 {
 
-    private $id   = null;
-    private $tmdb = null;
-    private $conf = null;
-    private $data = null;
-
-    public function __construct(Tmdb $tmdb, int $tv_id, array $options = array())
+    public function __construct(\vfalies\tmdb\Tmdb $tmdb, int $tv_id, array $options = array())
     {
-        try
-        {
-            $this->id   = $tv_id;
-            $this->tmdb = $tmdb;
-            $this->conf = $this->tmdb->getConfiguration();
-
-            // Get tvshow details
-            $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new CurlRequest(), 'tv/' . (int) $tv_id, null, $params);
-        } catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
+        parent::__construct($tmdb, $tv_id, $options, 'tv');
     }
 
     /**
@@ -34,29 +17,6 @@ class TVShow implements Interfaces\TVShowInterface
     public function getId(): int
     {
         return $this->id;
-    }
-
-    /**
-     * Get TVShow backdrop
-     * @param string $size
-     * @return string
-     * @throws \Exception
-     */
-    public function getBackdrop(string $size = 'w780'): string
-    {
-        if (isset($this->data->backdrop_path))
-        {
-            if (!isset($this->conf->images->base_url))
-            {
-                throw new \Exception('base_url configuration not found');
-            }
-            if (!in_array($size, $this->conf->images->backdrop_sizes))
-            {
-                throw new \Exception('Incorrect backdrop size : ' . $size);
-            }
-            return $this->conf->images->base_url . $size . $this->data->backdrop_path;
-        }
-        return '';
     }
 
     /**
@@ -133,29 +93,6 @@ class TVShow implements Interfaces\TVShowInterface
         if (isset($this->data->overview))
         {
             return $this->data->overview;
-        }
-        return '';
-    }
-
-    /**
-     * Get TVShow poster
-     * @param string $size
-     * @return string
-     * @throws \Exception
-     */
-    public function getPoster(string $size = 'w185'): string
-    {
-        if (isset($this->data->poster_path))
-        {
-            if (!isset($this->conf->images->base_url))
-            {
-                throw new \Exception('base_url configuration not found');
-            }
-            if (!in_array($size, $this->conf->images->poster_sizes))
-            {
-                throw new \Exception('Incorrect poster size : ' . $size);
-            }
-            return $this->conf->images->base_url . $size . $this->data->poster_path;
         }
         return '';
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Items;
 
 use PHPUnit\Framework\TestCase;
 
@@ -18,7 +18,7 @@ class CollectionTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -120,14 +120,13 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testGetPosterFailure()
     {
         $this->setRequestCollectionEmpty();
 
         $collection = new Collection($this->tmdb, $this->collection_id);
-        $collection->getPoster();
+        $this->assertEmpty($collection->getPoster());
     }
 
     /**
@@ -167,13 +166,12 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testGetBackdropFailure()
     {
         $this->setRequestCollectionEmpty();
         $collection = new Collection($this->tmdb, $this->collection_id);
-        $collection->getBackdrop();
+        $this->assertEmpty($collection->getBackdrop());
     }
 
     /**

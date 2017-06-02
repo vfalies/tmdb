@@ -25,7 +25,7 @@ interface CollectionInterface
      * @return string
      * @throws \Exception
      */
-    public function getPoster($size = 'w185'): string;
+    public function getPoster(string $size = 'w185'): string;
 
     /**
      * Get collection backdrop
@@ -33,7 +33,7 @@ interface CollectionInterface
      * @return string
      * @throws \Exception
      */
-    public function getBackdrop($size = 'w780'): string;
+    public function getBackdrop(string $size = 'w780'): string;
 
     /**
      * Get collection parts

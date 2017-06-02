@@ -1,15 +1,9 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Items;
 
-class Movie implements Interfaces\MovieInterface
+class Movie extends Item implements \vfalies\tmdb\Interfaces\MovieInterface
 {
-
-    private $tmdb   = null;
-    private $conf   = null;
-    private $data   = null;
-    private $id     = null;
-
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
@@ -17,21 +11,9 @@ class Movie implements Interfaces\MovieInterface
      * @param array $options
      * @throws Exception
      */
-    public function __construct(Tmdb $tmdb, int $movie_id, array $options = array())
+    public function __construct(\vfalies\tmdb\Tmdb $tmdb, int $movie_id, array $options = array())
     {
-        try
-        {
-            $this->id   = (int) $movie_id;
-            $this->tmdb = $tmdb;
-            $this->conf = $this->tmdb->getConfiguration();
-
-            // Get movie details
-            $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new CurlRequest(), 'movie/' . $movie_id, null, $params);
-        } catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
+        parent::__construct($tmdb, $movie_id, $options, 'movie');
     }
 
     /**
@@ -158,50 +140,6 @@ class Movie implements Interfaces\MovieInterface
             return (int) $this->data->belongs_to_collection->id;
         }
         return 0;
-    }
-
-    /**
-     * Get movie poster
-     * @param string $size
-     * @return string
-     */
-    public function getPoster(string $size = 'w185'): string
-    {
-        if (isset($this->data->poster_path))
-        {
-            if (!isset($this->conf->images->base_url))
-            {
-                throw new \Exception('base_url configuration not found');
-            }
-            if (!in_array($size, $this->conf->images->poster_sizes))
-            {
-                throw new \Exception('Incorrect poster size : ' . $size);
-            }
-            return $this->conf->images->base_url . $size . $this->data->poster_path;
-        }
-        return '';
-    }
-
-    /**
-     * Get movie backdrop
-     * @param string $size
-     * @return string|null
-     */
-    public function getBackdrop(string $size = 'w780'): string
-    {
-        if (isset($this->data->backdrop_path))
-        {
-            if (!isset($this->conf->images->base_url))
-            {
-                throw new \Exception('base_url configuration not found');
-            }
-            if (!in_array($size, $this->conf->images->backdrop_sizes))
-            {
-                throw new \Exception('Incorrect backdrop size : ' . $size);
-            }
-            return $this->conf->images->base_url . $size . $this->data->backdrop_path;
-        }
-        return '';
     }
 
 }
