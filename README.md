@@ -2,7 +2,13 @@
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/6bf2cf4c-4b74-4a06-a5ca-afcc259df86e/big.png)](https://insight.sensiolabs.com/projects/6bf2cf4c-4b74-4a06-a5ca-afcc259df86e)
 
-[![Build Status](https://travis-ci.org/vfalies/tmdb.svg?branch=master)](https://travis-ci.org/vfalies/tmdb)
+[![Build Status](https://scrutinizer-ci.com/g/vfalies/tmdb/badges/build.png?b=master)](https://scrutinizer-ci.com/g/vfalies/tmdb/build-status/master)
+
+[![Code Coverage](https://scrutinizer-ci.com/g/vfalies/tmdb/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/vfalies/tmdb/?branch=master)
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vfalies/tmdb/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vfalies/tmdb/?branch=master)
+
+[![Dependency Status](https://www.versioneye.com/user/projects/59315b3680def100433e5fc4/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/59315b3680def100433e5fc4)
 
 Tmdb is a PHP wrapper for [The Movie Database](https://www.themoviedb.org/) API [V3](https://developers.themoviedb.org).
 
@@ -25,7 +31,7 @@ Features actualy supported :
 Install the lastest version with
 
 ```bash
-$ composer require vfac/tmdb
+$ composer require vfalies/tmdb
 ```
 
 ## Basic Usage
