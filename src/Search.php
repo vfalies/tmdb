@@ -26,7 +26,7 @@ class Search
      * @param string $query Query string to search like a $item
      * @param array $options Array of options for the request
      * @param string $result_class class name of the wanted result
-     * @return \Generator|$result_class
+     * @return \Generator
      * @throws \Exception
      */
     private function searchItem(string $item, string $query, array $options, $result_class): \Generator
