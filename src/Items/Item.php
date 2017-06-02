@@ -25,7 +25,7 @@ abstract class Item
             $this->tmdb = $tmdb;
             $this->conf = $this->tmdb->getConfiguration();
             $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new \vfalies\tmdb\CurlRequest(), $item_name . '/'.(int) $item_id, null, $params);
+            $this->data = $this->tmdb->sendRequest(new \vfalies\tmdb\lib\CurlRequest(), $item_name . '/'.(int) $item_id, null, $params);
         }
         catch (\Exception $ex)
         {

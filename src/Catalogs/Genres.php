@@ -63,7 +63,7 @@ class Genres implements \vfalies\tmdb\Interfaces\GenresInterface
         try
         {
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new \vfalies\tmdb\CurlRequest(), $type, null, $params);
+            $response = $this->tmdb->sendRequest(new \vfalies\tmdb\lib\CurlRequest(), $type, null, $params);
 
             $genres = [];
             if (isset($response->genres))

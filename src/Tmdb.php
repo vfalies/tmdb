@@ -101,7 +101,7 @@ class Tmdb implements Interfaces\TmdbInterface
         {
             if (is_null($this->configuration))
             {
-                $this->configuration = $this->sendRequest(new CurlRequest(), 'configuration');
+                $this->configuration = $this->sendRequest(new lib\CurlRequest(), 'configuration');
             }
             return $this->configuration;
         } catch (\Exception $ex)
