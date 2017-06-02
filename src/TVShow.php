@@ -21,8 +21,7 @@ class TVShow implements Interfaces\TVShowInterface
             // Get tvshow details
             $params     = $this->tmdb->checkOptions($options);
             $this->data = $this->tmdb->sendRequest(new CurlRequest(), 'tv/' . (int) $tv_id, null, $params);
-        }
-        catch (\Exception $ex)
+        } catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
