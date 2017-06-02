@@ -1,8 +1,8 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Catalogs;
 
-class Genres implements Interfaces\GenresInterface
+class Genres implements \vfalies\tmdb\Interfaces\GenresInterface
 {
 
     protected $tmdb = null;
@@ -12,7 +12,7 @@ class Genres implements Interfaces\GenresInterface
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @throws Exception
      */
-    public function __construct(Tmdb $tmdb)
+    public function __construct(\vfalies\tmdb\Tmdb $tmdb)
     {
         $this->tmdb = $tmdb;
     }
@@ -63,7 +63,7 @@ class Genres implements Interfaces\GenresInterface
         try
         {
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new CurlRequest(), $type, null, $params);
+            $response = $this->tmdb->sendRequest(new \vfalies\tmdb\CurlRequest(), $type, null, $params);
 
             $genres = [];
             if (isset($response->genres))

@@ -5,9 +5,9 @@ namespace vfalies\tmdb;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @cover Genres
+ * @cover Catalog
  */
-class GenresTest extends TestCase
+class CatalogTest extends TestCase
 {
 
     protected $tmdb = null;
@@ -37,8 +37,8 @@ class GenresTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/genresOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $genres = new Genres($this->tmdb);
-        $list = $genres->getMovieList(array('language' => 'fr-FR'));
+        $genres = new Catalog($this->tmdb);
+        $list = $genres->getMovieGenres(array('language' => 'fr-FR'));
 
         $genre = $list->current();
 
@@ -54,8 +54,8 @@ class GenresTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/genresEmptyOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $genres = new Genres($this->tmdb);
-        $list = $genres->getMovieList(array('language' => 'fr-FR'));
+        $genres = new Catalog($this->tmdb);
+        $list = $genres->getMovieGenres(array('language' => 'fr-FR'));
 
         $genre = $list->current();
 
@@ -70,8 +70,8 @@ class GenresTest extends TestCase
     {        
         $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
 
-        $genres = new Genres($this->tmdb);
-        $genres->getMovieList(array('language' => 'fr-FR'));
+        $genres = new Catalog($this->tmdb);
+        $genres->getMovieGenres(array('language' => 'fr-FR'));
     }
 
     /**
@@ -82,8 +82,8 @@ class GenresTest extends TestCase
     {
         $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
 
-        $genres = new Genres($this->tmdb);
-        $genres->getTVList(array('language' => 'fr-FR'));
+        $genres = new Catalog($this->tmdb);
+        $genres->getTVShowGenres(array('language' => 'fr-FR'));
     }
 
     /**
@@ -94,8 +94,8 @@ class GenresTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/genresTVOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $genres = new Genres($this->tmdb);
-        $list = $genres->getTVList(array('language' => 'fr-FR'));
+        $genres = new Catalog($this->tmdb);
+        $list = $genres->getTVShowGenres(array('language' => 'fr-FR'));
 
         $genre = $list->current();
 
