@@ -16,10 +16,11 @@ class Collection extends Item implements CollectionInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
-     * @throws \Exception
+     * @param Tmdb $tmdb
+     * @param int $collection_id
+     * @param array $options
      */
-    public function __construct(Tmdb $tmdb, $collection_id, array $options = array())
+    public function __construct(Tmdb $tmdb, int $collection_id, array $options = array())
     {
         parent::__construct($tmdb, $collection_id, $options, 'collection');
     }
@@ -50,7 +51,7 @@ class Collection extends Item implements CollectionInterface
 
     /**
      * Get collection parts
-     * @return Generator|SearchMovieResult
+     * @return Generator
      */
     public function getParts(): \Generator
     {
