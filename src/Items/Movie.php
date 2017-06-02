@@ -2,13 +2,13 @@
 
 namespace vfalies\tmdb\Items;
 
-class Movie implements \vfalies\tmdb\Interfaces\MovieInterface
+class Movie extends Item implements \vfalies\tmdb\Interfaces\MovieInterface
 {
 
-    private $tmdb   = null;
-    private $conf   = null;
-    private $data   = null;
-    private $id     = null;
+    protected $tmdb   = null;
+    protected $conf   = null;
+    protected $data   = null;
+    protected $id     = null;
 
     /**
      * Constructor
@@ -19,20 +19,7 @@ class Movie implements \vfalies\tmdb\Interfaces\MovieInterface
      */
     public function __construct(\vfalies\tmdb\Tmdb $tmdb, int $movie_id, array $options = array())
     {
-        try
-        {
-            $this->id   = (int) $movie_id;
-            $this->tmdb = $tmdb;
-            $this->conf = $this->tmdb->getConfiguration();
-
-            // Get movie details
-            $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new \vfalies\tmdb\CurlRequest(), 'movie/' . $movie_id, null, $params);
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
+        parent::__construct($tmdb, $movie_id, $options, 'movie');
     }
 
     /**

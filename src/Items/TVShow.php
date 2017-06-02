@@ -2,30 +2,17 @@
 
 namespace vfalies\tmdb\Items;
 
-class TVShow implements \vfalies\tmdb\Interfaces\TVShowInterface
+class TVShow extends Item implements \vfalies\tmdb\Interfaces\TVShowInterface
 {
 
-    private $id   = null;
-    private $tmdb = null;
-    private $conf = null;
-    private $data = null;
+    protected $id   = null;
+    protected $tmdb = null;
+    protected $conf = null;
+    protected $data = null;
 
     public function __construct(\vfalies\tmdb\Tmdb $tmdb, int $tv_id, array $options = array())
     {
-        try
-        {
-            $this->id   = $tv_id;
-            $this->tmdb = $tmdb;
-            $this->conf = $this->tmdb->getConfiguration();
-
-            // Get tvshow details
-            $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new \vfalies\tmdb\CurlRequest(), 'tv/' . (int) $tv_id, null, $params);
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
+        parent::__construct($tmdb, $tv_id, $options, 'tv');
     }
 
     /**

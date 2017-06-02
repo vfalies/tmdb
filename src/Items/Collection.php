@@ -2,14 +2,14 @@
 
 namespace vfalies\tmdb\Items;
 
-class Collection implements \vfalies\tmdb\Interfaces\CollectionInterface
+class Collection extends Item implements \vfalies\tmdb\Interfaces\CollectionInterface
 {
 
     // Private loaded data
-    private $data = null;
-    private $conf = null;
-    private $id   = null;
-    private $tmdb = null;
+    protected $data = null;
+    protected $conf = null;
+    protected $id   = null;
+    protected $tmdb = null;
 
     /**
      * Constructor
@@ -18,19 +18,7 @@ class Collection implements \vfalies\tmdb\Interfaces\CollectionInterface
      */
     public function __construct(\vfalies\tmdb\Tmdb $tmdb, $collection_id, array $options = array())
     {
-        try
-        {
-            $this->id   = (int) $collection_id;
-            $this->tmdb = $tmdb;
-            $this->conf = $this->tmdb->getConfiguration();
-
-            $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new \vfalies\tmdb\CurlRequest(), 'collection/' . (int) $collection_id, null, $params);
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
-        }
+        parent::__construct($tmdb, $collection_id, $options, 'collection');
     }
 
     /**
