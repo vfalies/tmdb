@@ -59,7 +59,7 @@ class Collection extends Item implements CollectionInterface
         {
             foreach ($this->data->parts as $part)
             {
-                $movie = new vfalies\tmdb\Results\Movie($this->tmdb, $part);
+                $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
                 yield $movie;
             }
         }
