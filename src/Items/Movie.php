@@ -1,8 +1,8 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Items;
 
-class Movie implements Interfaces\MovieInterface
+class Movie implements \vfalies\tmdb\Interfaces\MovieInterface
 {
 
     private $tmdb   = null;
@@ -17,7 +17,7 @@ class Movie implements Interfaces\MovieInterface
      * @param array $options
      * @throws Exception
      */
-    public function __construct(Tmdb $tmdb, int $movie_id, array $options = array())
+    public function __construct(\vfalies\tmdb\Tmdb $tmdb, int $movie_id, array $options = array())
     {
         try
         {
@@ -27,7 +27,7 @@ class Movie implements Interfaces\MovieInterface
 
             // Get movie details
             $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new CurlRequest(), 'movie/' . $movie_id, null, $params);
+            $this->data = $this->tmdb->sendRequest(new \vfalies\tmdb\CurlRequest(), 'movie/' . $movie_id, null, $params);
         }
         catch (\Exception $ex)
         {

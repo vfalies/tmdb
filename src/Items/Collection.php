@@ -1,8 +1,8 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Items;
 
-class Collection implements Interfaces\CollectionInterface
+class Collection implements \vfalies\tmdb\Interfaces\CollectionInterface
 {
 
     // Private loaded data
@@ -25,7 +25,7 @@ class Collection implements Interfaces\CollectionInterface
             $this->conf = $this->tmdb->getConfiguration();
 
             $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new CurlRequest(), 'collection/' . (int) $collection_id, null, $params);
+            $this->data = $this->tmdb->sendRequest(new \vfalies\tmdb\CurlRequest(), 'collection/' . (int) $collection_id, null, $params);
         }
         catch (\Exception $ex)
         {
@@ -113,7 +113,7 @@ class Collection implements Interfaces\CollectionInterface
         {
             foreach ($this->data->parts as $part)
             {
-                $movie = new Results\Movie($this->tmdb, $part);
+                $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
                 yield $movie;
             }
         }

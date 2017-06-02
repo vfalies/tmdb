@@ -199,7 +199,7 @@ class SearchTest extends TestCase
         $search    = new Search($this->tmdb);
         $responses = $search->getMovie(11); // Id: 11 => Star Wars
 
-        $this->assertInstanceOf(Movie::class, $responses);
+        $this->assertInstanceOf(Items\Movie::class, $responses);
         $this->assertEquals(11, $responses->getId());
     }
 
@@ -214,7 +214,7 @@ class SearchTest extends TestCase
         $search    = new Search($this->tmdb);
         $responses = $search->getTVShow(253); // Id: 253 => Star Trek
 
-        $this->assertInstanceOf(TVShow::class, $responses);
+        $this->assertInstanceOf(Items\TVShow::class, $responses);
         $this->assertEquals(253, $responses->getId());
     }
 
@@ -229,7 +229,7 @@ class SearchTest extends TestCase
         $search    = new Search($this->tmdb);
         $responses = $search->getCollection(10); // Id: 10 => Star Wars saga
 
-        $this->assertInstanceOf(Collection::class, $responses);
+        $this->assertInstanceOf(Items\Collection::class, $responses);
         $this->assertEquals(10, $responses->getId());
     }
 

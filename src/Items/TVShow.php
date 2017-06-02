@@ -1,8 +1,8 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Items;
 
-class TVShow implements Interfaces\TVShowInterface
+class TVShow implements \vfalies\tmdb\Interfaces\TVShowInterface
 {
 
     private $id   = null;
@@ -10,7 +10,7 @@ class TVShow implements Interfaces\TVShowInterface
     private $conf = null;
     private $data = null;
 
-    public function __construct(Tmdb $tmdb, int $tv_id, array $options = array())
+    public function __construct(\vfalies\tmdb\Tmdb $tmdb, int $tv_id, array $options = array())
     {
         try
         {
@@ -20,7 +20,7 @@ class TVShow implements Interfaces\TVShowInterface
 
             // Get tvshow details
             $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new CurlRequest(), 'tv/' . (int) $tv_id, null, $params);
+            $this->data = $this->tmdb->sendRequest(new \vfalies\tmdb\CurlRequest(), 'tv/' . (int) $tv_id, null, $params);
         }
         catch (\Exception $ex)
         {

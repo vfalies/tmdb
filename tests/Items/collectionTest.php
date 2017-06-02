@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Items;
 
 use PHPUnit\Framework\TestCase;
 
@@ -18,7 +18,7 @@ class CollectionTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key'))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
