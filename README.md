@@ -68,7 +68,7 @@ foreach ($responses as $response)
 
 Bugs and feature request are tracked on [GitHub](https://github.com/vfalies/tmdb/issues)
 
-### Author
+### Author
 
 Vincent Faliès - <vincent.falies@gmail.com>
 
