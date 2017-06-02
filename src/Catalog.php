@@ -2,6 +2,8 @@
 
 namespace vfalies\tmdb;
 
+use vfalies\tmdb\Catalogs\Genres;
+
 class Catalog
 {
 
@@ -23,7 +25,7 @@ class Catalog
      */
     public function getMovieGenres(array $options = array()): \Generator
     {
-        $catalog = new Catalogs\Genres($this->tmdb);
+        $catalog = new Genres($this->tmdb);
         return $catalog->getMovieList($options);
     }
 
@@ -34,7 +36,7 @@ class Catalog
      */
     public function getTVShowGenres(array $options = array()): \Generator
     {
-        $catalog = new Catalogs\Genres($this->tmdb);
+        $catalog = new Genres($this->tmdb);
         return $catalog->getTVList($options);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace vfalies\tmdb\Results;
+use vfalies\tmdb\Tmdb;
 
 abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
 {
@@ -16,7 +17,7 @@ abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
      * @param \stdClass $result
      * @throws \Exception
      */
-    public function __construct(\vfalies\tmdb\Tmdb $tmdb, \stdClass $result)
+    public function __construct(Tmdb $tmdb, \stdClass $result)
     {
         // Valid input object
         $properties = get_object_vars($this);

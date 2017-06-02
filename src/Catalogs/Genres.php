@@ -2,7 +2,11 @@
 
 namespace vfalies\tmdb\Catalogs;
 
-class Genres implements \vfalies\tmdb\Interfaces\GenresInterface
+use vfalies\tmdb\Interfaces\GenresInterface;
+use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\lib\CurlRequest;
+
+class Genres implements GenresInterface
 {
 
     protected $tmdb = null;
@@ -12,7 +16,7 @@ class Genres implements \vfalies\tmdb\Interfaces\GenresInterface
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @throws Exception
      */
-    public function __construct(\vfalies\tmdb\Tmdb $tmdb)
+    public function __construct(Tmdb $tmdb)
     {
         $this->tmdb = $tmdb;
     }
@@ -63,7 +67,7 @@ class Genres implements \vfalies\tmdb\Interfaces\GenresInterface
         try
         {
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new \vfalies\tmdb\lib\CurlRequest(), $type, null, $params);
+            $response = $this->tmdb->sendRequest(new CurlRequest(), $type, null, $params);
 
             $genres = [];
             if (isset($response->genres))

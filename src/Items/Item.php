@@ -2,6 +2,9 @@
 
 namespace vfalies\tmdb\Items;
 
+use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\lib\CurlRequest;
+
 abstract class Item
 {
     protected $data = null;
@@ -17,7 +20,7 @@ abstract class Item
      * @param string $item_name
      * @throws \Exception
      */
-    public function __construct(\vfalies\tmdb\Tmdb $tmdb, int $item_id, array $options, string $item_name)
+    public function __construct(Tmdb $tmdb, int $item_id, array $options, string $item_name)
     {
         try
         {
@@ -25,7 +28,7 @@ abstract class Item
             $this->tmdb = $tmdb;
             $this->conf = $this->tmdb->getConfiguration();
             $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new \vfalies\tmdb\lib\CurlRequest(), $item_name . '/'.(int) $item_id, null, $params);
+            $this->data = $this->tmdb->sendRequest(new CurlRequest(), $item_name . '/'.(int) $item_id, null, $params);
         }
         catch (\Exception $ex)
         {

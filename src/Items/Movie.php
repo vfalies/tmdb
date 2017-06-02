@@ -2,7 +2,10 @@
 
 namespace vfalies\tmdb\Items;
 
-class Movie extends Item implements \vfalies\tmdb\Interfaces\MovieInterface
+use vfalies\tmdb\Interfaces\MovieInterface;
+use vfalies\tmdb\Tmdb;
+
+class Movie extends Item implements MovieInterface
 {
     /**
      * Constructor
@@ -11,7 +14,7 @@ class Movie extends Item implements \vfalies\tmdb\Interfaces\MovieInterface
      * @param array $options
      * @throws Exception
      */
-    public function __construct(\vfalies\tmdb\Tmdb $tmdb, int $movie_id, array $options = array())
+    public function __construct(Tmdb $tmdb, int $movie_id, array $options = array())
     {
         parent::__construct($tmdb, $movie_id, $options, 'movie');
     }

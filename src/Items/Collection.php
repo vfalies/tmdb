@@ -2,7 +2,11 @@
 
 namespace vfalies\tmdb\Items;
 
-class Collection extends Item implements \vfalies\tmdb\Interfaces\CollectionInterface
+use vfalies\tmdb\Interfaces\CollectionInterface;
+use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Results\Movie;
+
+class Collection extends Item implements CollectionInterface
 {
 
     // Private loaded data
@@ -16,7 +20,7 @@ class Collection extends Item implements \vfalies\tmdb\Interfaces\CollectionInte
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @throws \Exception
      */
-    public function __construct(\vfalies\tmdb\Tmdb $tmdb, $collection_id, array $options = array())
+    public function __construct(Tmdb $tmdb, $collection_id, array $options = array())
     {
         parent::__construct($tmdb, $collection_id, $options, 'collection');
     }
@@ -55,7 +59,7 @@ class Collection extends Item implements \vfalies\tmdb\Interfaces\CollectionInte
         {
             foreach ($this->data->parts as $part)
             {
-                $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
+                $movie = new Movie($this->tmdb, $part);
                 yield $movie;
             }
         }

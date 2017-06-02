@@ -2,6 +2,10 @@
 
 namespace vfalies\tmdb;
 
+use vfalies\tmdb\Items\Movie;
+use vfalies\tmdb\Items\Collection;
+use vfalies\tmdb\Items\TVShow;
+
 class Item
 {
     private $tmdb          = null;
@@ -22,9 +26,9 @@ class Item
      * @param array $options
      * @return \vfalies\tmdb\Items\Movie
      */
-    public function getMovie(int $movie_id, array $options = array()): Items\Movie
+    public function getMovie(int $movie_id, array $options = array()): Movie
     {
-        $movie = new Items\Movie($this->tmdb, $movie_id, $options);
+        $movie = new Movie($this->tmdb, $movie_id, $options);
 
         return $movie;
     }
@@ -35,9 +39,9 @@ class Item
      * @param array $options
      * @return \vfalies\tmdb\Items\Collection
      */
-    public function getCollection(int $collection_id, array $options = array()): Items\Collection
+    public function getCollection(int $collection_id, array $options = array()): Collection
     {
-        $collection = new Items\Collection($this->tmdb, $collection_id, $options);
+        $collection = new Collection($this->tmdb, $collection_id, $options);
 
         return $collection;
     }
@@ -48,9 +52,9 @@ class Item
      * @param array $options
      * @return \vfalies\tmdb\Items\TVShow
      */
-    public function getTVShow(int $tv_id, array $options = array()): Items\TVShow
+    public function getTVShow(int $tv_id, array $options = array()): TVShow
     {
-        $tv = new Items\TVShow($this->tmdb, $tv_id, $options);
+        $tv = new TVShow($this->tmdb, $tv_id, $options);
 
         return $tv;
     }
