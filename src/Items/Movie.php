@@ -4,12 +4,6 @@ namespace vfalies\tmdb\Items;
 
 class Movie extends Item implements \vfalies\tmdb\Interfaces\MovieInterface
 {
-
-    protected $tmdb   = null;
-    protected $conf   = null;
-    protected $data   = null;
-    protected $id     = null;
-
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb

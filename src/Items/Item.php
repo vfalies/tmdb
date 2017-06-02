@@ -4,6 +4,11 @@ namespace vfalies\tmdb\Items;
 
 abstract class Item
 {
+    protected $data = null;
+    protected $conf = null;
+    protected $id   = null;
+    protected $tmdb = null;
+
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
