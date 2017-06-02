@@ -25,29 +25,6 @@ class TVShow extends Item implements \vfalies\tmdb\Interfaces\TVShowInterface
     }
 
     /**
-     * Get TVShow backdrop
-     * @param string $size
-     * @return string
-     * @throws \Exception
-     */
-    public function getBackdrop(string $size = 'w780'): string
-    {
-        if (isset($this->data->backdrop_path))
-        {
-            if (!isset($this->conf->images->base_url))
-            {
-                throw new \Exception('base_url configuration not found');
-            }
-            if (!in_array($size, $this->conf->images->backdrop_sizes))
-            {
-                throw new \Exception('Incorrect backdrop size : ' . $size);
-            }
-            return $this->conf->images->base_url . $size . $this->data->backdrop_path;
-        }
-        return '';
-    }
-
-    /**
      * Get TVSHow genres
      * @return array
      */
@@ -121,29 +98,6 @@ class TVShow extends Item implements \vfalies\tmdb\Interfaces\TVShowInterface
         if (isset($this->data->overview))
         {
             return $this->data->overview;
-        }
-        return '';
-    }
-
-    /**
-     * Get TVShow poster
-     * @param string $size
-     * @return string
-     * @throws \Exception
-     */
-    public function getPoster(string $size = 'w185'): string
-    {
-        if (isset($this->data->poster_path))
-        {
-            if (!isset($this->conf->images->base_url))
-            {
-                throw new \Exception('base_url configuration not found');
-            }
-            if (!in_array($size, $this->conf->images->poster_sizes))
-            {
-                throw new \Exception('Incorrect poster size : ' . $size);
-            }
-            return $this->conf->images->base_url . $size . $this->data->poster_path;
         }
         return '';
     }

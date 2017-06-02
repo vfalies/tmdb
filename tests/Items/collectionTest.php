@@ -120,14 +120,13 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testGetPosterFailure()
     {
         $this->setRequestCollectionEmpty();
 
         $collection = new Collection($this->tmdb, $this->collection_id);
-        $collection->getPoster();
+        $this->assertEmpty($collection->getPoster());
     }
 
     /**
@@ -167,13 +166,12 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testGetBackdropFailure()
     {
         $this->setRequestCollectionEmpty();
         $collection = new Collection($this->tmdb, $this->collection_id);
-        $collection->getBackdrop();
+        $this->assertEmpty($collection->getBackdrop());
     }
 
     /**
