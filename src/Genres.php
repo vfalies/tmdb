@@ -28,8 +28,7 @@ class Genres implements Interfaces\GenresInterface
         try
         {            
             return $this->getList('genre/movie/list', $options);
-        }
-        catch (\Exception $ex)
+        } catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
@@ -46,8 +45,7 @@ class Genres implements Interfaces\GenresInterface
         try
         {
             return $this->getList('genre/tv/list', $options);
-        }
-        catch (\Exception $ex)
+        } catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
@@ -74,8 +72,7 @@ class Genres implements Interfaces\GenresInterface
             }
 
             return $this->genreItemGenerator($genres);
-        }
-        catch (\Exception $ex)
+        } catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }

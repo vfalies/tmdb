@@ -39,15 +39,14 @@ class Search
                 throw new \Exception('query parameter can not be empty');
             }
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new CurlRequest(), 'search/'.$item, $query, $params);
+            $response = $this->tmdb->sendRequest(new CurlRequest(), 'search/' . $item, $query, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
             $this->total_results = (int) $response->total_results;
 
             return $this->searchItemGenerator($response->results, $result_class);
-        }
-        catch (\Exception $ex)
+        } catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
@@ -79,7 +78,7 @@ class Search
     {
         try
         {
-            return $this->searchItem('movie', $query, $options, __NAMESPACE__."\\Results\\".'Movie');
+            return $this->searchItem('movie', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Movie');
         }
         catch (\Exception $ex)
         {
@@ -98,7 +97,7 @@ class Search
     {
         try
         {
-            return $this->searchItem('tv', $query, $options, __NAMESPACE__."\\Results\\".'TVShow');
+            return $this->searchItem('tv', $query, $options, __NAMESPACE__ . "\\Results\\" . 'TVShow');
         }
         catch (\Exception $ex)
         {
@@ -117,7 +116,7 @@ class Search
     {
         try
         {
-            return $this->searchItem('collection', $query, $options, __NAMESPACE__."\\Results\\".'Collection');
+            return $this->searchItem('collection', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Collection');
         }
         catch (\Exception $ex)
         {
