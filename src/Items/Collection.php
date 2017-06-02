@@ -4,7 +4,6 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Interfaces\CollectionInterface;
 use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\Results\Movie;
 
 class Collection extends Item implements CollectionInterface
 {
@@ -59,7 +58,7 @@ class Collection extends Item implements CollectionInterface
         {
             foreach ($this->data->parts as $part)
             {
-                $movie = new Movie($this->tmdb, $part);
+                $movie = new vfalies\tmdb\Results\Movie($this->tmdb, $part);
                 yield $movie;
             }
         }
