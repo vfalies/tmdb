@@ -5,7 +5,7 @@ namespace Vfac\Tmdb\Results;
 class Collection extends Results
 {
 
-    protected $name          = null;
+    protected $name = null;
 
     /**
      * Constructor

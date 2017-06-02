@@ -35,7 +35,7 @@ class CurlRequest implements Interfaces\HttpRequestInterface
         $result = curl_exec($this->handle);
         if ($result === false)
         {
-            throw new \Exception('cUrl failed : '.var_export($this->getInfo(), true), 1004);
+            throw new \Exception('cUrl failed : ' . var_export($this->getInfo(), true), 1004);
         }
         return $result;
     }
@@ -51,8 +51,7 @@ class CurlRequest implements Interfaces\HttpRequestInterface
         if (empty($name))
         {
             $info = curl_getinfo($this->handle);
-        }
-        else
+        } else
         {
             $info = curl_getinfo($this->handle, $name);
         }

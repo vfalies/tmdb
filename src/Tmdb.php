@@ -9,11 +9,11 @@ class Tmdb implements Interfaces\TmdbInterface
 {
 
     // Private variables
-    private $api_key         = null;                              // API Key
-    private $language        = 'fr-FR';                           // Default language for API response
-    public $base_api_url     = 'https://api.themoviedb.org/3/';   // Base URL of the API
-    private $include_adult   = false;                             // Include adult content in search result
-    private $page            = 1;                                 // API Page result
+    private $api_key         = null; // API Key
+    private $language        = 'fr-FR'; // Default language for API response
+    public $base_api_url     = 'https://api.themoviedb.org/3/'; // Base URL of the API
+    private $include_adult   = false; // Include adult content in search result
+    private $page            = 1; // API Page result
     // Protected variables
     protected $configuration = null; // API Configuration
     protected $genres        = null; // API Genres
@@ -104,8 +104,7 @@ class Tmdb implements Interfaces\TmdbInterface
                 $this->configuration = $this->sendRequest(new CurlRequest(), 'configuration');
             }
             return $this->configuration;
-        }
-        catch (\Exception $ex)
+        } catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
@@ -150,7 +149,7 @@ class Tmdb implements Interfaces\TmdbInterface
 
     /**
      * Check year format
-     * @param mixed $year year to validate
+     * @param integer $year year to validate
      * @return int year validated
      * @throws \Exception
      */
