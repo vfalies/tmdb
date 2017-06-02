@@ -6,13 +6,22 @@ env:
   global:
     - PHPUNIT_BIN='vendor/bin/phpunit'
     - PHPUNIT_CONFIG='phpunit.xml'
-    - PHPUNIT_FLAGS='--stop-on-failure --verbose'
+    - PHPUNIT_FLAGS='--stop-on-failure --verbose --coverage-text --coverage-clover=coverage.xml'
 
 before_script:
   - composer config --global repo.packagist composer https://packagist.org
   - composer install
 
 script : $PHPUNIT_BIN -c $PHPUNIT_CONFIG $PHPUNIT_FLAGS
+
+after_script:
+  - |
+    if [ -f "coverage.xml" ]; then
+      echo 'sending clover to Scrutinizer'
+      wget https://scrutinizer-ci.com/ocular.phar
+      php ocular.phar code-coverage:upload --format=php-clover coverage.xml
+      echo 'done'
+    fi
 
 addons:
   code_climate:
