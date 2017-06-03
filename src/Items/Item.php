@@ -57,6 +57,22 @@ abstract class Item
     }
 
     /**
+     * Get poster path
+     */
+    public function getPosterPath(): string
+    {
+        return $this->data->poster_path;
+    }
+
+    /**
+     * Get backdrop
+     */
+    public function getBackdropPath(): string
+    {
+        return $this->data->backdrop_path;
+    }
+
+    /**
      * Get image url from type and size
      * @param string $type
      * @param string $size
