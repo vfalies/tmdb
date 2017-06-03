@@ -39,15 +39,7 @@ abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
      */
     public function getPoster(string $size = 'w185'): string
     {
-        if (!isset($this->conf->images->base_url))
-        {
-            throw new \Exception('base_url configuration not found');
-        }
-        if (!in_array($size, $this->conf->images->poster_sizes))
-        {
-            throw new \Exception('Incorrect poster size : ' . $size);
-        }
-        return $this->conf->images->base_url . $size . $this->poster_path;
+        return $this->getImage('poster', $size);
     }
 
     /**
@@ -56,15 +48,32 @@ abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
      */
     public function getBackdrop(string $size = 'w780'): string
     {
-        if (!isset($this->conf->images->base_url))
-        {
-            throw new \Exception('base_url configuration not found');
-        }
-        if (!in_array($size, $this->conf->images->backdrop_sizes))
-        {
-            throw new \Exception('Incorrect backdrop size : ' . $size);
-        }
-        return $this->conf->images->base_url . $size . $this->backdrop_path;
+        return $this->getImage('backdrop', $size);
     }
 
+    /**
+     * Get image url from type and size
+     * @param string $type
+     * @param string $size
+     * @return string
+     * @throws \Exception
+     */
+    private function getImage(string $type, string $size) : string
+    {
+        $path = $type . '_path';
+        if (isset($this->$path))
+        {
+            if (!isset($this->conf->images->base_url))
+            {
+                throw new \Exception('base_url configuration not found');
+            }
+            $sizes = $type . '_sizes';
+            if (!in_array($size, $this->conf->images->$sizes))
+            {
+                throw new \Exception('Incorrect '.$type.' size : ' . $size);
+            }
+            return $this->conf->images->base_url . $size . $this->data->$path;
+        }
+        return '';
+    }
 }
