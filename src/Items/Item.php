@@ -7,6 +7,7 @@ use vfalies\tmdb\lib\CurlRequest;
 
 abstract class Item
 {
+
     protected $data = null;
     protected $conf = null;
     protected $id   = null;
@@ -28,7 +29,7 @@ abstract class Item
             $this->tmdb = $tmdb;
             $this->conf = $this->tmdb->getConfiguration();
             $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new CurlRequest(), $item_name . '/'.(int) $item_id, null, $params);
+            $this->data = $this->tmdb->sendRequest(new CurlRequest(), $item_name . '/' . (int) $item_id, null, $params);
         }
         catch (\Exception $ex)
         {
@@ -61,7 +62,11 @@ abstract class Item
      */
     public function getPosterPath(): string
     {
-        return $this->data->poster_path;
+        if (isset($this->data->poster_path))
+        {
+            return $this->data->poster_path;
+        }
+        return '';
     }
 
     /**
@@ -69,7 +74,11 @@ abstract class Item
      */
     public function getBackdropPath(): string
     {
-        return $this->data->backdrop_path;
+        if (isset($this->data->backdrop_path))
+        {
+            return $this->data->backdrop_path;
+        }
+        return '';
     }
 
     /**
@@ -79,7 +88,7 @@ abstract class Item
      * @return string
      * @throws \Exception
      */
-    private function getImage(string $type, string $size) : string
+    private function getImage(string $type, string $size): string
     {
         $path = $type . '_path';
         if (isset($this->data->$path))
@@ -91,10 +100,11 @@ abstract class Item
             $sizes = $type . '_sizes';
             if (!in_array($size, $this->conf->images->$sizes))
             {
-                throw new \Exception('Incorrect '.$type.' size : ' . $size);
+                throw new \Exception('Incorrect ' . $type . ' size : ' . $size);
             }
             return $this->conf->images->base_url . $size . $this->data->$path;
         }
         return '';
     }
+
 }

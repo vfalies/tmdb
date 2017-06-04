@@ -1,6 +1,7 @@
 <?php
 
 namespace vfalies\tmdb\Results;
+
 use vfalies\tmdb\Tmdb;
 
 abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
@@ -56,7 +57,11 @@ abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
      */
     public function getPosterPath(): string
     {
-        return $this->data->poster_path;
+        if (isset($this->data->poster_path))
+        {
+            return $this->data->poster_path;
+        }
+        return '';
     }
 
     /**
@@ -64,7 +69,11 @@ abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
      */
     public function getBackdropPath(): string
     {
-        return $this->data->backdrop_path;
+        if (isset($this->data->backdrop_path))
+        {
+            return $this->data->backdrop_path;
+        }
+        return '';
     }
 
     /**
@@ -74,7 +83,7 @@ abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
      * @return string
      * @throws \Exception
      */
-    private function getImage(string $type, string $size) : string
+    private function getImage(string $type, string $size): string
     {
         $path = $type . '_path';
         if (isset($this->$path))
@@ -86,10 +95,11 @@ abstract class Results implements \vfalies\tmdb\Interfaces\ResultsInterface
             $sizes = $type . '_sizes';
             if (!in_array($size, $this->conf->images->$sizes))
             {
-                throw new \Exception('Incorrect '.$type.' size : ' . $size);
+                throw new \Exception('Incorrect ' . $type . ' size : ' . $size);
             }
             return $this->conf->images->base_url . $size . $this->data->$path;
         }
         return '';
     }
+
 }
