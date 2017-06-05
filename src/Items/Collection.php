@@ -2,6 +2,7 @@
 
 namespace vfalies\tmdb\Items;
 
+use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\CollectionInterface;
 use vfalies\tmdb\Tmdb;
 

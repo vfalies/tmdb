@@ -2,6 +2,7 @@
 
 namespace vfalies\tmdb\Results;
 
+use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
 
 class TVShow extends Results
