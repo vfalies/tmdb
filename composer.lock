@@ -567,12 +567,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "e200b91fd5f124bcbbbcf83e0be43d0fa28603c2"
+                "reference": "3395d759df4603b2a93e05f201c09eeb3f899eb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e200b91fd5f124bcbbbcf83e0be43d0fa28603c2",
-                "reference": "e200b91fd5f124bcbbbcf83e0be43d0fa28603c2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3395d759df4603b2a93e05f201c09eeb3f899eb9",
+                "reference": "3395d759df4603b2a93e05f201c09eeb3f899eb9",
                 "shasum": ""
             },
             "require": {
@@ -641,7 +641,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-06-01 13:18:00"
+            "time": "2017-06-04T05:23:38+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1221,12 +1221,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "7684b371ee511a0920b2bced437e2a0b81cb1b79"
+                "reference": "5f6b55e907b65fdb1cefe25b82604049f1d40e81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/7684b371ee511a0920b2bced437e2a0b81cb1b79",
-                "reference": "7684b371ee511a0920b2bced437e2a0b81cb1b79",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/5f6b55e907b65fdb1cefe25b82604049f1d40e81",
+                "reference": "5f6b55e907b65fdb1cefe25b82604049f1d40e81",
                 "shasum": ""
             },
             "require": {
@@ -1268,7 +1268,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-02 09:54:06"
+            "time": "2017-06-02T22:30:16+00:00"
         },
         {
             "name": "webmozart/assert",
