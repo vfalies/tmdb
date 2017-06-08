@@ -71,6 +71,55 @@ class TVShowTest extends TestCase
     /**
      * @test
      */
+    public function testGetPosterPath()
+    {
+        $this->setRequestOk();
+
+        $tvshow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertInternalType('string', $tvshow->getPosterPath());
+        $this->assertNotEmpty($tvshow->getPosterPath());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetPosterPathFailure()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $tvshow = new TVShow($this->tmdb, $this->tv_id);
+
+        $this->assertInternalType('string', $tvshow->getPosterPath());
+        $this->assertEmpty($tvshow->getPosterPath());
+    }
+
+   /**
+     * @test
+     */
+    public function testGetBackdropPath()
+    {
+        $this->setRequestOk();
+
+        $tvshow = new TVShow($this->tmdb, $this->tv_id);
+        $this->assertInternalType('string', $tvshow->getBackdropPath());
+        $this->assertNotEmpty($tvshow->getBackdropPath());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetBackdropPathFailure()
+    {
+        $this->setRequestTVShowEmpty();
+        $tvshow = new TVShow($this->tmdb, $this->tv_id);
+        $this->assertInternalType('string', $tvshow->getBackdropPath());
+        $this->assertEmpty($tvshow->getBackdropPath());
+    }
+
+    /**
+     * @test
+     */
     public function testGetBackdrop()
     {
         $this->setRequestOk();
