@@ -12,6 +12,8 @@ abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Resul
     protected $backdrop_path = null;
     protected $conf          = null;
 
+    protected $data = null;
+
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
@@ -24,7 +26,7 @@ abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Resul
         $properties = get_object_vars($this);
         foreach (array_keys($properties) as $property)
         {
-            if ($property != 'conf' && !property_exists($result, $property))
+            if ($property != 'conf' && $property != 'data' && !property_exists($result, $property))
             {
                 throw new \Exception('Incorrect input for ' . __CLASS__ . ' object. Property "' . $property . '" not found');
             }
@@ -32,6 +34,7 @@ abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Resul
 
         // Configuration
         $this->conf = $tmdb->getConfiguration();
+        $this->data = $result;
     }
 
 }

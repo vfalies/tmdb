@@ -21,10 +21,10 @@ class Collection extends Results
         parent::__construct($tmdb, $result);
 
         // Populate data
-        $this->id            = $result->id;
-        $this->name          = $result->name;
-        $this->poster_path   = $result->poster_path;
-        $this->backdrop_path = $result->backdrop_path;
+        $this->id            = $this->data->id;
+        $this->name          = $this->data->name;
+        $this->poster_path   = $this->data->poster_path;
+        $this->backdrop_path = $this->data->backdrop_path;
     }
 
     /**

@@ -24,13 +24,13 @@ class TVShow extends Results
         parent::__construct($tmdb, $result);
 
         // Populate data
-        $this->id             = $result->id;
-        $this->overview       = $result->overview;
-        $this->first_air_date = $result->first_air_date;
-        $this->original_name  = $result->original_name;
-        $this->name           = $result->name;
-        $this->poster_path    = $result->poster_path;
-        $this->backdrop_path  = $result->backdrop_path;
+        $this->id             = $this->data->id;
+        $this->overview       = $this->data->overview;
+        $this->first_air_date = $this->data->first_air_date;
+        $this->original_name  = $this->data->original_name;
+        $this->name           = $this->data->name;
+        $this->poster_path    = $this->data->poster_path;
+        $this->backdrop_path  = $this->data->backdrop_path;
     }
 
     /**
