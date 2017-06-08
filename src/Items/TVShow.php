@@ -145,8 +145,16 @@ class TVShow extends Item implements TVShowInterface
      * @return \Generator
      * @throws \Exception
      */
-    public function getSeasons() : \Generator
+    public function getSeasons(): \Generator
     {
-        throw new \Exception('Not yet implemented');
+        if (!empty($this->data->seasons))
+        {
+            foreach ($this->data->seasons as $season)
+            {
+                $season = new \vfalies\tmdb\Results\Season($this->tmdb, $season);
+                yield $season;
+            }
+        }
     }
+
 }

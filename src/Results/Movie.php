@@ -4,8 +4,9 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Interfaces\MovieResultsInterface;
 
-class Movie extends Results
+class Movie extends Results implements MovieResultsInterface
 {
     protected $overview       = null;
     protected $release_date   = null;

@@ -4,8 +4,9 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Interfaces\CollectionResultsInterface;
 
-class Collection extends Results
+class Collection extends Results implements CollectionResultsInterface
 {
 
     protected $name = null;

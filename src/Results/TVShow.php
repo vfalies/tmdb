@@ -4,8 +4,9 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Interfaces\TVShowResultsInterface;
 
-class TVShow extends Results
+class TVShow extends Results implements TVShowResultsInterface
 {
 
     protected $overview       = null;
