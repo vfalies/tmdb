@@ -293,6 +293,55 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetPosterPath()
+    {
+        $this->setRequestOk();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertInternalType('string', $movie->getPosterPath());
+        $this->assertNotEmpty($movie->getPosterPath());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetPosterPathFailure()
+    {
+        $this->setRequestMovieEmpty();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $this->assertInternalType('string', $movie->getPosterPath());
+        $this->assertEmpty($movie->getPosterPath());
+    }
+
+   /**
+     * @test
+     */
+    public function testGetBackdropPath()
+    {
+        $this->setRequestOk();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+        $this->assertInternalType('string', $movie->getBackdropPath());
+        $this->assertNotEmpty($movie->getBackdropPath());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetBackdropPathFailure()
+    {
+        $this->setRequestMovieEmpty();
+        $movie = new Movie($this->tmdb, $this->movie_id);
+        $this->assertInternalType('string', $movie->getBackdropPath());
+        $this->assertEmpty($movie->getBackdropPath());
+    }
+
+    /**
+     * @test
+     */
     public function testGetPoster()
     {
         $this->setRequestOk();

@@ -2,6 +2,7 @@
 
 namespace vfalies\tmdb\Results;
 
+use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
 
 class Movie extends Results
@@ -22,13 +23,13 @@ class Movie extends Results
         parent::__construct($tmdb, $result);
 
         // Populate data
-        $this->id             = $result->id;
-        $this->overview       = $result->overview;
-        $this->release_date   = $result->release_date;
-        $this->original_title = $result->original_title;
-        $this->title          = $result->title;
-        $this->poster_path    = $result->poster_path;
-        $this->backdrop_path  = $result->backdrop_path;
+        $this->id             = $this->data->id;
+        $this->overview       = $this->data->overview;
+        $this->release_date   = $this->data->release_date;
+        $this->original_title = $this->data->original_title;
+        $this->title          = $this->data->title;
+        $this->poster_path    = $this->data->poster_path;
+        $this->backdrop_path  = $this->data->backdrop_path;
     }
 
     /**

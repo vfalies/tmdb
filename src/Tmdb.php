@@ -41,21 +41,7 @@ class Tmdb implements TmdbInterface
      */
     public function sendRequest(HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()): \stdClass
     {
-        // Url construction
-        $url = $this->base_api_url . $action;
-
-        // Parameters
-        $params            = [];
-        $params['api_key'] = $this->api_key;
-        if (!is_null($query))
-        {
-            $params['query'] = $query;
-        }
-
-        $params = array_merge($params, $options);
-
-        // URL with paramters construction
-        $url = $url . '?' . http_build_query($params);
+        $url = $this->buildHTTPUrl($action, $query, $options);
 
         $http_request->setUrl($url);
         $http_request->setOption(CURLOPT_HEADER, 0);
@@ -87,11 +73,39 @@ class Tmdb implements TmdbInterface
         $http_request->close();
 
         $response = json_decode($result);
-        if (is_null($response) || $response === false)
+        if (empty($response))
         {
             throw new \Exception('Search failed : ' . var_export($result, true), 2001);
         }
         return $response;
+    }
+
+    /**
+     * Build URL for HTTP Call
+     * @param string $action API action to request
+     * @param string $query Query of the request (optional)
+     * @param array $options Array of options of the request (optional)
+     * @return string
+     */
+    private function buildHTTPUrl($action, $query, $options)
+    {
+        // Url construction
+        $url = $this->base_api_url . $action;
+
+        // Parameters
+        $params            = [];
+        $params['api_key'] = $this->api_key;
+        if (!is_null($query))
+        {
+            $params['query'] = $query;
+        }
+
+        $params = array_merge($params, $options);
+
+        // URL with paramters construction
+        $url = $url . '?' . http_build_query($params);
+
+        return $url;
     }
 
     /**

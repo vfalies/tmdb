@@ -109,6 +109,32 @@ class CollectionTest extends TestCase
     /**
      * @test
      */
+    public function testGetPosterPath()
+    {
+        $this->setRequestOk();
+
+        $collection = new Collection($this->tmdb, $this->collection_id);
+
+        $this->assertInternalType('string', $collection->getPosterPath());
+        $this->assertNotEmpty($collection->getPosterPath());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetPosterPathFailure()
+    {
+        $this->setRequestCollectionEmpty();
+
+        $collection = new Collection($this->tmdb, $this->collection_id);
+
+        $this->assertInternalType('string', $collection->getPosterPath());
+        $this->assertEmpty($collection->getPosterPath());
+    }
+
+    /**
+     * @test
+     */
     public function testGetPoster()
     {
         $this->setRequestOk();
@@ -151,6 +177,29 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
         $collection->getPoster('w184');
+    }
+
+    /**
+     * @test
+     */
+    public function testGetBackdropPath()
+    {
+        $this->setRequestOk();
+
+        $collection = new Collection($this->tmdb, $this->collection_id);
+        $this->assertInternalType('string', $collection->getBackdropPath());
+        $this->assertNotEmpty($collection->getBackdropPath());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetBackdropPathFailure()
+    {
+        $this->setRequestCollectionEmpty();
+        $collection = new Collection($this->tmdb, $this->collection_id);
+        $this->assertInternalType('string', $collection->getBackdropPath());
+        $this->assertEmpty($collection->getBackdropPath());
     }
 
     /**

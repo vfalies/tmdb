@@ -46,7 +46,7 @@ class Search
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
             $this->total_results = (int) $response->total_results;
-
+            
             return $this->searchItemGenerator($response->results, $result_class);
         } catch (\Exception $ex)
         {
