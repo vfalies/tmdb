@@ -4,6 +4,9 @@ namespace vfalies\tmdb\Abstracts;
 
 abstract class Element
 {
+    protected $data = null;
+    protected $conf = null;
+
     /**
      * Get item poster
      * @param string $size

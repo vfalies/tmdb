@@ -10,9 +10,6 @@ abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Resul
     protected $id            = null;
     protected $poster_path   = null;
     protected $backdrop_path = null;
-    protected $conf          = null;
-
-    protected $data = null;
 
     /**
      * Constructor

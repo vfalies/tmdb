@@ -8,8 +8,6 @@ use vfalies\tmdb\lib\CurlRequest;
 abstract class Item extends Element
 {
 
-    protected $data = null;
-    protected $conf = null;
     protected $id   = null;
     protected $tmdb = null;
 
