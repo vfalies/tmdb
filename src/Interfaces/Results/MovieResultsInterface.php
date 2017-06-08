@@ -1,8 +1,8 @@
 <?php
 
-namespace vfalies\tmdb\Interfaces;
+namespace vfalies\tmdb\Interfaces\Results;
 
-interface TVShowResultsInterface extends ResultsInterface
+interface MovieResultsInterface extends ResultsInterface
 {
 
     /**

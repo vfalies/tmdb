@@ -4,7 +4,7 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\Interfaces\TVShowResultsInterface;
+use vfalies\tmdb\Interfaces\Results\TVShowResultsInterface;
 
 class TVShow extends Results implements TVShowResultsInterface
 {

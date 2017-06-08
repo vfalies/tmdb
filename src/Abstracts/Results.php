@@ -4,7 +4,7 @@ namespace vfalies\tmdb\Abstracts;
 
 use vfalies\tmdb\Tmdb;
 
-abstract class Results extends Element implements \vfalies\tmdb\Interfaces\ResultsInterface
+abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Results\ResultsInterface
 {
 
     protected $id                 = null;

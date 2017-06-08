@@ -4,7 +4,7 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\Interfaces\MovieResultsInterface;
+use vfalies\tmdb\Interfaces\Results\MovieResultsInterface;
 
 class Movie extends Results implements MovieResultsInterface
 {

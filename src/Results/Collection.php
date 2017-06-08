@@ -4,7 +4,7 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\Interfaces\CollectionResultsInterface;
+use vfalies\tmdb\Interfaces\Results\CollectionResultsInterface;
 
 class Collection extends Results implements CollectionResultsInterface
 {
