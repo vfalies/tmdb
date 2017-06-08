@@ -7,9 +7,10 @@ use vfalies\tmdb\Tmdb;
 abstract class Results extends Element implements \vfalies\tmdb\Interfaces\ResultsInterface
 {
 
-    protected $id            = null;
-    protected $poster_path   = null;
-    protected $backdrop_path = null;
+    protected $id                 = null;
+    protected $poster_path        = null;
+    protected $backdrop_path      = null;
+    protected $property_blacklist = ['property_blacklist', 'conf', 'data'];
 
     /**
      * Constructor
@@ -23,7 +24,7 @@ abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Resul
         $properties = get_object_vars($this);
         foreach (array_keys($properties) as $property)
         {
-            if ($property != 'conf' && $property != 'data' && !property_exists($result, $property))
+            if ( ! in_array($property, $this->property_blacklist) && !property_exists($result, $property))
             {
                 throw new \Exception('Incorrect input for ' . __CLASS__ . ' object. Property "' . $property . '" not found');
             }
