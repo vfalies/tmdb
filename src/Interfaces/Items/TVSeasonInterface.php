@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb\Interfaces;
+namespace vfalies\tmdb\Interfaces\Items;
 
 interface TVSeasonInterface
 {

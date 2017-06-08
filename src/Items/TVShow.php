@@ -3,7 +3,7 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\TVShowInterface;
+use vfalies\tmdb\Interfaces\Items\TVShowInterface;
 use vfalies\tmdb\Tmdb;
 
 class TVShow extends Item implements TVShowInterface

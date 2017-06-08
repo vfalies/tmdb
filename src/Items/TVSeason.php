@@ -3,7 +3,7 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\TVSeasonInterface;
+use vfalies\tmdb\Interfaces\Items\TVSeasonInterface;
 use vfalies\tmdb\Tmdb;
 
 class TVSeason extends Item implements TVSeasonInterface
