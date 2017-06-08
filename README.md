@@ -57,6 +57,14 @@ echo $infos->getTitle();
 
 ## Documentation
 
+## Unit Testing
+
+You can run the unit test suites using the following command in the library's source directory:
+
+```
+make test
+```
+
 ## About
 
 ### Requirements
