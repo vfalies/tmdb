@@ -86,4 +86,14 @@ interface TVShowInterface
      */
     public function getSeasons() : \Generator;
 
+    /**
+     * Get poster path
+     */
+    public function getPosterPath(): string;
+
+    /**
+     * Get backdrop path
+     */
+    public function getBackdropPath(): string;
+
 }

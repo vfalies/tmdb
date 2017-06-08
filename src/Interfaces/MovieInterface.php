@@ -77,4 +77,15 @@ interface MovieInterface
      * @return string
      */
     public function getBackdrop(string $size = 'w780') : string;
+
+    /**
+     * Get poster path
+     */
+    public function getPosterPath(): string;
+
+    /**
+     * Get backdrop path
+     */
+    public function getBackdropPath(): string;
+
 }
