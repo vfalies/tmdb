@@ -41,7 +41,7 @@ class TVSeasonTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
-    private function setRequestMovieEmpty()
+    private function setRequestTVSeasonEmpty()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
@@ -69,6 +69,138 @@ class TVSeasonTest extends TestCase
         $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
 
         $this->assertEquals('Season 1', $TVSeason->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetNameEmpty()
+    {
+        $this->setRequestTVSeasonEmpty();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEmpty($TVSeason->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetOverview()
+    {
+        $this->setRequestOk();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertStringStartsWith('Trouble is brewing in the Seven Kingdoms of Westeros', $TVSeason->getOverview());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetOverviewEmpty()
+    {
+        $this->setRequestTVSeasonEmpty();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEmpty($TVSeason->getOverview());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetId()
+    {
+        $this->setRequestOk();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEquals(3624, $TVSeason->getId());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetIdEmpty()
+    {
+        $this->setRequestTVSeasonEmpty();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEquals(0, $TVSeason->getId());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetAirDate()
+    {
+        $this->setRequestOk();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEquals("2011-04-17", $TVSeason->getAirDate());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetAirDateEmpty()
+    {
+        $this->setRequestTVSeasonEmpty();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEquals('', $TVSeason->getAirDate());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetSeasonNumber()
+    {
+        $this->setRequestOk();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEquals(1, $TVSeason->getSeasonNumber());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetSeasonNumberEmpty()
+    {
+        $this->setRequestTVSeasonEmpty();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEquals(0, $TVSeason->getSeasonNumber());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetEpisodesCount()
+    {
+        $this->setRequestOk();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEquals(10, $TVSeason->getEpisodeCount());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetEpisodesCountEmpty()
+    {
+        $this->setRequestTVSeasonEmpty();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $this->assertEquals(0, $TVSeason->getEpisodeCount());
     }
 
 }

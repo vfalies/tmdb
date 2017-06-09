@@ -24,21 +24,29 @@ class TVSeason extends Item implements TVSeasonInterface
 
     public function getId(): int
     {
-        return $this->id;
+        if (!empty($this->data->id))
+        {
+            return (int) $this->data->id;
+        }
+        return 0;
     }
 
     public function getAirDate(): string
     {
         if (!empty($this->data->air_date))
         {
-            return (int) $this->data->air_date;
+            return $this->data->air_date;
         }
         return '';
     }
 
     public function getEpisodeCount(): int
     {
-
+        if (!empty($this->data->episodes))
+        {
+            return count($this->data->episodes);
+        }
+        return 0;
     }
 
     public function getSeasonNumber(): int
@@ -52,14 +60,14 @@ class TVSeason extends Item implements TVSeasonInterface
 
     public function getEpisodes(): \Generator
     {
-
+        throw new Exception('Not yet implemented');
     }
 
     public function getName(): string
     {
         if (!empty($this->data->name))
         {
-            return (int) $this->data->name;
+            return $this->data->name;
         }
         return '';
     }
@@ -68,7 +76,7 @@ class TVSeason extends Item implements TVSeasonInterface
     {
         if (!empty($this->data->overview))
         {
-            return (int) $this->data->overview;
+            return $this->data->overview;
         }
         return '';
     }
