@@ -2,12 +2,9 @@
 
 namespace vfalies\tmdb\Interfaces\Results;
 
-interface TVSeasonResultsInterface extends ResultsInterface
+use vfalies\tmdb\Interfaces\Items\TVEpisodeInterface;
+
+interface TVEpisodeResultsInterface extends TVEpisodeInterface
 {
 
-    public function getEpisodeCount(): int;
-
-    public function getPosterPath(): string;
-
-    public function getSeasonNumber(): int;
 }
