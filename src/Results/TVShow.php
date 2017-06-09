@@ -13,6 +13,7 @@ class TVShow extends Results implements TVShowResultsInterface
     protected $first_air_date = null;
     protected $original_name  = null;
     protected $name           = null;
+    protected $backdrop_path  = null;
 
     /**
      * Constructor

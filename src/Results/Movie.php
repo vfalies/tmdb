@@ -8,10 +8,12 @@ use vfalies\tmdb\Interfaces\Results\MovieResultsInterface;
 
 class Movie extends Results implements MovieResultsInterface
 {
+
     protected $overview       = null;
     protected $release_date   = null;
     protected $original_title = null;
     protected $title          = null;
+    protected $backdrop_path  = null;
 
     /**
      * Constructor

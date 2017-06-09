@@ -9,7 +9,8 @@ use vfalies\tmdb\Interfaces\Results\CollectionResultsInterface;
 class Collection extends Results implements CollectionResultsInterface
 {
 
-    protected $name = null;
+    protected $name          = null;
+    protected $backdrop_path = null;
 
     /**
      * Constructor

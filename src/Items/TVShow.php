@@ -151,7 +151,7 @@ class TVShow extends Item implements TVShowInterface
         {
             foreach ($this->data->seasons as $season)
             {
-                $season = new \vfalies\tmdb\Results\Season($this->tmdb, $season);
+                $season = new \vfalies\tmdb\Results\TVSeason($this->tmdb, $season);
                 yield $season;
             }
         }
