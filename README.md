@@ -57,12 +57,20 @@ echo $infos->getTitle();
 
 ## Documentation
 
+The generated documentation can be creeted with the follwing command :
+
+```
+$ make docs
+```
+
+The destination of the generation is `docs/` repository.
+
 ## Unit Testing
 
 You can run the unit test suites using the following command in the library's source directory:
 
 ```
-make test
+$ make test
 ```
 
 ## About
