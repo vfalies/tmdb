@@ -449,7 +449,7 @@ class TVShowTest extends TestCase
     /**
      * test
      */
-    public function testGetSeasonssEmpty()
+    public function testGetSeasonsEmpty()
     {
         $this->setRequestTVShowEmpty();
 

@@ -7,8 +7,7 @@ use vfalies\tmdb\Tmdb;
 abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Results\ResultsInterface
 {
 
-    protected $id                 = null;
-    protected $poster_path        = null;
+    protected $id                 = null;    
     protected $property_blacklist = ['property_blacklist', 'conf', 'data'];
 
     /**

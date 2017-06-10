@@ -10,6 +10,7 @@ class Collection extends Results implements CollectionResultsInterface
 {
 
     protected $name          = null;
+    protected $poster_path   = null;
     protected $backdrop_path = null;
 
     /**

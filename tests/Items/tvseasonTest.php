@@ -203,4 +203,32 @@ class TVSeasonTest extends TestCase
         $this->assertEquals(0, $TVSeason->getEpisodeCount());
     }
 
+    /**
+     * @test
+     */
+    public function testGetEpisodes()
+    {
+        $this->setRequestOk();
+
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $seasons = $TVSeason->getEpisodes();
+        $this->assertInstanceOf(\Generator::class, $seasons);
+        $this->assertInstanceOf(\vfalies\tmdb\Results\TVEpisode::class, $seasons->current());
+    }
+
+    /**
+     * test
+     */
+    public function testGetEpisodesEmpty()
+    {
+        $this->setRequestTVSeasonEmpty();
+
+        $TVSeason  = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+        $seasons = $TVSeason->getEpisodes();
+
+        $this->assertInstanceOf(\Generator::class, $seasons);
+        $this->assertNull($seasons->current());
+    }
+
 }

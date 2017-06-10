@@ -13,6 +13,7 @@ class Movie extends Results implements MovieResultsInterface
     protected $release_date   = null;
     protected $original_title = null;
     protected $title          = null;
+    protected $poster_path    = null;
     protected $backdrop_path  = null;
 
     /**
