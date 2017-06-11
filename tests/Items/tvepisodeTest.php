@@ -180,4 +180,125 @@ class TVEpisodeTest extends TestCase
         $this->assertEquals(0, $TVEpisode->getSeasonNumber());
     }
 
+    /**
+     * @test
+     */
+    public function testGetEpisodeNumber()
+    {
+        $this->setRequestOk();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertEquals(1, $TVEpisode->getEpisodeNumber());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetEpisodeNumberEmpty()
+    {
+        $this->setRequestTVEpisodeEmpty();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertEquals(0, $TVEpisode->getEpisodeNumber());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetNote()
+    {
+        $this->setRequestOk();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertInternalType('double', $TVEpisode->getNote());
+        $this->assertEquals('7.11904761904762', $TVEpisode->getNote());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetNoteEmpty()
+    {
+        $this->setRequestTVEpisodeEmpty();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertEquals(0, $TVEpisode->getNote());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetNoteCount()
+    {
+        $this->setRequestOk();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertEquals(21, $TVEpisode->getNoteCount());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetNoteCountEmpty()
+    {
+        $this->setRequestTVEpisodeEmpty();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertEquals(0, $TVEpisode->getNoteCount());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetProductionCode()
+    {
+        $this->setRequestOk();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertEquals('101', $TVEpisode->getProductionCode());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetProductionCodeEmpty()
+    {
+        $this->setRequestTVEpisodeEmpty();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertEmpty($TVEpisode->getProductionCode());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetStillPath()
+    {
+        $this->setRequestOk();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertEquals('/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg', $TVEpisode->getStillPath());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetStillPathEmpty()
+    {
+        $this->setRequestTVEpisodeEmpty();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $this->assertEmpty($TVEpisode->getStillPath());
+    }
+
 }

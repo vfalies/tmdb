@@ -23,11 +23,16 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
         parent::__construct($tmdb, $result);
 
         // Populate data
-        $this->id             = $this->data->id;
-        $this->release_date   = $this->data->air_date;
-        $this->season_number  = $this->data->season_number;
-        $this->episode_number = $this->data->episode_number;
-        $this->name           = $this->name;
+        $this->id              = $this->data->id;
+        $this->release_date    = $this->data->air_date;
+        $this->season_number   = $this->data->season_number;
+        $this->episode_number  = $this->data->episode_number;
+        $this->name            = $this->data->name;
+        $this->vote_average    = $this->data->vote_average;
+        $this->vote_count      = $this->data->vote_count;
+        $this->overview        = $this->data->overview;
+        $this->production_code = $this->data->production_code;
+        $this->still_path      = $this->data->still_path;
     }
 
     public function getAirDate(): string
@@ -65,9 +70,9 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
         return $this->vote_average;
     }
 
-    public function getNoteCount(): float
+    public function getNoteCount(): int
     {
-        return $this->vote_count;
+        return (int) $this->vote_count;
     }
 
     public function getOverview(): string

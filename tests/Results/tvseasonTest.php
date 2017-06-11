@@ -5,7 +5,7 @@ namespace vfalies\tmdb\Results;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @cover TVShow
+ * @cover TVSeason
  */
 class TVSeasonTest extends TestCase
 {

@@ -26,5 +26,5 @@ interface TVEpisodeInterface
 
     public function getNote(): float;
 
-    public function getNoteCount(): float;
+    public function getNoteCount(): int;
 }
