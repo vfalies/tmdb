@@ -4,6 +4,7 @@ namespace vfalies\tmdb;
 
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Interfaces\HttpRequestInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Tmdb wrapper core class
@@ -20,15 +21,16 @@ class Tmdb implements TmdbInterface
     // Protected variables
     protected $configuration = null; // API Configuration
     protected $genres        = null; // API Genres
+    protected $logger       = null;
 
     /**
      * Constructor
      * @param string $api_key TMDB API Key
      */
-
-    public function __construct(string $api_key)
+    public function __construct(string $api_key, LoggerInterface $logger = null)
     {
         $this->api_key = $api_key;
+        $this->logger = null;
     }
 
     /**
@@ -51,6 +53,7 @@ class Tmdb implements TmdbInterface
         $http_request->setOption(CURLOPT_TIMEOUT, 30);
         $http_request->setOption(CURLINFO_HEADER_OUT, true); // To gets header in curl_getinfo()
 
+        $this->logger->info('Call : '.$url);
         $result = $http_request->execute();
 
         $http_code = $http_request->getInfo(CURLINFO_HTTP_CODE);
@@ -121,7 +124,8 @@ class Tmdb implements TmdbInterface
                 $this->configuration = $this->sendRequest(new lib\CurlRequest(), 'configuration');
             }
             return $this->configuration;
-        } catch (\Exception $ex)
+        }
+        catch (\Exception $ex)
         {
             throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
         }
