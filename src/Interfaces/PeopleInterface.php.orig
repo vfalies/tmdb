@@ -1,0 +1,37 @@
+<?php
+
+namespace vfalies\tmdb\Interfaces;
+
+interface PeopleInterface
+{
+
+    public function getAdult(): bool;
+
+    public function getAlsoKnownAs(): array;
+
+    public function getBiography() : string;
+
+    public function getBirthday() : string;
+
+    public function getDeathday() : string;
+
+    public function getGender() : int;
+
+    public function getHomepage() : string;
+
+    public function getId() : int;
+
+    public function getImdbId() : int;
+
+<<<<<<< HEAD
+    public function getName() : string;
+=======
+    public function getName() : int;
+>>>>>>> b855a0ecbc42ed5872028a5a40c1ac5d6640e8b6
+
+    public function getPlaceOfBirth() : string;
+
+    public function getPopularity() : float;
+
+    public function getProfilePath() : string;
+}
