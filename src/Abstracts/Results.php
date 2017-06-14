@@ -3,6 +3,7 @@
 namespace vfalies\tmdb\Abstracts;
 
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Exceptions\NotFoundException;
 
 abstract class Results extends Element implements \vfalies\tmdb\Interfaces\ResultsInterface
 {
@@ -16,7 +17,7 @@ abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Resul
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @param \stdClass $result
-     * @throws \Exception
+     * @throws NotFoundException
      */
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {
@@ -26,7 +27,7 @@ abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Resul
         {
             if ( ! in_array($property, $this->property_blacklist) && !property_exists($result, $property))
             {
-                throw new \Exception('Incorrect input for ' . __CLASS__ . ' object. Property "' . $property . '" not found');
+                throw new NotFoundException;
             }
         }
 

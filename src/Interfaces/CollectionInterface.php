@@ -8,14 +8,12 @@ interface CollectionInterface
     /**
      * Get collection ID
      * @return int
-     * @throws \Exception
      */
     public function getId(): int;
 
     /**
      * Get collection name
      * @return string
-     * @throws \Exception
      */
     public function getName(): string;
 
@@ -23,7 +21,6 @@ interface CollectionInterface
      * Get collection poster
      * @param string $size
      * @return string
-     * @throws \Exception
      */
     public function getPoster(string $size = 'w185'): string;
 
@@ -31,7 +28,6 @@ interface CollectionInterface
      * Get collection backdrop
      * @param string $size
      * @return string
-     * @throws \Exception
      */
     public function getBackdrop(string $size = 'w780'): string;
 

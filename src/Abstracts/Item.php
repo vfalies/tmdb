@@ -4,6 +4,7 @@ namespace vfalies\tmdb\Abstracts;
 
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\CurlRequest;
+use vfalies\tmdb\TmdbException;
 
 abstract class Item extends Element
 {
@@ -29,9 +30,9 @@ abstract class Item extends Element
             $params     = $this->tmdb->checkOptions($options);
             $this->data = $this->tmdb->sendRequest(new CurlRequest(), $item_name . '/' . (int) $item_id, null, $params);
         }
-        catch (\Exception $ex)
+        catch (TmdbException $ex)
         {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+            throw $ex;
         }
     }
 
