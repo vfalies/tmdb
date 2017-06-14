@@ -11,3 +11,6 @@ view-coverage:
 
 clean:
 	rm -rf logs/build/*
+
+docs:
+	vendor/bin/sami.php update docs.php

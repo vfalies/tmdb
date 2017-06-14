@@ -2,7 +2,7 @@
 
 namespace vfalies\tmdb;
 
-use vfalies\tmdb\lib\CurlRequest;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 
 class Search
@@ -42,12 +42,12 @@ class Search
                 throw new IncorrectParamException;
             }
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new CurlRequest(), 'search/' . $item, $query, $params);
+            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'search/' . $item, $query, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
             $this->total_results = (int) $response->total_results;
-
+            
             return $this->searchItemGenerator($response->results, $result_class);
         } catch (TmdbException $ex)
         {

@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb\Interfaces;
+namespace vfalies\tmdb\Interfaces\Items;
 
 interface TVShowInterface
 {
@@ -84,5 +84,15 @@ interface TVShowInterface
      * @return \Generator
      */
     public function getSeasons() : \Generator;
+
+    /**
+     * Get poster path
+     */
+    public function getPosterPath(): string;
+
+    /**
+     * Get backdrop path
+     */
+    public function getBackdropPath(): string;
 
 }

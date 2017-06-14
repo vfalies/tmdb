@@ -4,8 +4,9 @@ namespace vfalies\tmdb\Abstracts;
 
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
+use vfalies\tmdb\Interfaces\Results\ResultsInterface;
 
-abstract class Results extends Element implements \vfalies\tmdb\Interfaces\ResultsInterface
+abstract class Results extends Element implements ResultsInterface
 {
 
     protected $id                 = null;
