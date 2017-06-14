@@ -4,7 +4,7 @@ namespace vfalies\tmdb\Catalogs;
 
 use vfalies\tmdb\Interfaces\GenresInterface;
 use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\lib\CurlRequest;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 class Genres implements GenresInterface
 {
@@ -30,7 +30,7 @@ class Genres implements GenresInterface
     public function getMovieList(array $options = array()): \Generator
     {
         try
-        {            
+        {
             return $this->getList('genre/movie/list', $options);
         } catch (\Exception $ex)
         {
@@ -67,7 +67,7 @@ class Genres implements GenresInterface
         try
         {
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new CurlRequest(), $type, null, $params);
+            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $type, null, $params);
 
             $genres = [];
             if (isset($response->genres))
