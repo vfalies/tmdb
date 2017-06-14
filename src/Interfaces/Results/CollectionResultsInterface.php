@@ -1,27 +1,15 @@
 <?php
 
-namespace vfalies\tmdb\Interfaces;
+namespace vfalies\tmdb\Interfaces\Results;
 
-interface ResultsInterface
+interface CollectionResultsInterface extends ResultsInterface
 {
-
-    /**
-     * Get  ID
-     * @return int
-     */
-    public function getId();
 
     /**
      * Get movie overview
      * @return string
      */
     public function getOverview();
-
-    /**
-     * Get movie release date
-     * @return string
-     */
-    public function getReleaseDate();
 
     /**
      * Get movie original title
@@ -34,12 +22,6 @@ interface ResultsInterface
      * @return string
      */
     public function getTitle();
-
-    /**
-     * Get movie poster
-     * @return string
-     */
-    public function getPoster();
 
     /**
      * Get movie backdrop

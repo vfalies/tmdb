@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb\Interfaces;
+namespace vfalies\tmdb\Interfaces\Items;
 
 interface CollectionInterface
 {
@@ -40,4 +40,15 @@ interface CollectionInterface
      * @return Generator|SearchMovieResult
      */
     public function getParts(): \Generator;
+
+    /**
+     * Get poster path
+     */
+    public function getPosterPath(): string;
+
+    /**
+     * Get backdrop path
+     */
+    public function getBackdropPath(): string;
+
 }

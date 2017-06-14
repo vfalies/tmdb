@@ -93,7 +93,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      */
     public function testSendRequestHttpError()
@@ -114,7 +113,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      */
     public function testSendRequestExecError()
@@ -136,7 +134,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      * @expectedExceptionCode 2001
      */
@@ -161,7 +158,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      */
     public function testSendRequestOk()
     {
