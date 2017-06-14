@@ -2,6 +2,9 @@
 
 namespace vfalies\tmdb\Abstracts;
 
+use vfalies\tmdb\Exceptions\NotFoundException;
+use vfalies\tmdb\Exceptions\IncorrectParamException;
+
 abstract class Element
 {
     protected $data = null;
@@ -56,7 +59,8 @@ abstract class Element
      * @param string $type
      * @param string $size
      * @return string
-     * @throws \Exception
+     * @throws IncorrectParamException
+     * @throws NotFoundException
      */
     private function getImage(string $type, string $size): string
     {
@@ -65,12 +69,12 @@ abstract class Element
         {
             if (!isset($this->conf->images->base_url))
             {
-                throw new \Exception('base_url configuration not found');
+                throw new NotFoundException;
             }
             $sizes = $type . '_sizes';
             if (!in_array($size, $this->conf->images->$sizes))
             {
-                throw new \Exception('Incorrect ' . $type . ' size : ' . $size);
+                throw new IncorrectParamException;
             }
             return $this->conf->images->base_url . $size . $this->data->$path;
         }

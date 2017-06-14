@@ -13,7 +13,6 @@ class Movie extends Item implements MovieInterface
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @param int $movie_id
      * @param array $options
-     * @throws Exception
      */
     public function __construct(Tmdb $tmdb, int $movie_id, array $options = array())
     {

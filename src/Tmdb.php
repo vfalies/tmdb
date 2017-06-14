@@ -5,6 +5,7 @@ namespace vfalies\tmdb;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Interfaces\HttpRequestInterface;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Exceptions\IncorrectParamException;
 
 /**
  * Tmdb wrapper core class
@@ -63,12 +64,12 @@ class Tmdb implements TmdbInterface
     private function buildHTTPUrl($action, $query, $options)
     {
         // Url construction
-        $url = $this->base_api_url.$action;
+        $url = $this->base_api_url . $action;
 
         // Parameters
         $params            = [];
         $params['api_key'] = $this->api_key;
-        if ( ! is_null($query))
+        if (!is_null($query))
         {
             $params['query'] = $query;
         }
@@ -76,7 +77,7 @@ class Tmdb implements TmdbInterface
         $params = array_merge($params, $options);
 
         // URL with paramters construction
-        $url = $url.'?'.http_build_query($params);
+        $url = $url . '?' . http_build_query($params);
 
         return $url;
     }
@@ -84,6 +85,7 @@ class Tmdb implements TmdbInterface
     /**
      * Get API Configuration
      * @return \stdClass
+     * @throws TmdbException
      */
     public function getConfiguration(): \stdClass
     {
@@ -94,10 +96,9 @@ class Tmdb implements TmdbInterface
                 $this->configuration = $this->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'configuration');
             }
             return $this->configuration;
-        }
-        catch (\Exception $ex)
+        } catch (TmdbException $ex)
         {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+            throw $ex;
         }
     }
 
@@ -105,7 +106,7 @@ class Tmdb implements TmdbInterface
      * Check options rules before send request
      * @param array $options Array of options to validate
      * @return array
-     * @throws \Exception
+     * @throws IncorrectParamException
      */
     public function checkOptions(array $options): array
     {
@@ -132,7 +133,7 @@ class Tmdb implements TmdbInterface
                     $params[$key] = (int) $value;
                     break;
                 default:
-                    throw new \Exception('Unknown options');
+                    throw new IncorrectParamException;
             }
         }
         return $params;
@@ -142,7 +143,6 @@ class Tmdb implements TmdbInterface
      * Check year format
      * @param mixed $year year to validate
      * @return int year validated
-     * @throws \Exception
      */
     private function checkYear(int $year): int
     {
@@ -154,14 +154,14 @@ class Tmdb implements TmdbInterface
      * Check language
      * @param string $language Language string with format ISO 639-1
      * @return string Language string validated
-     * @throws \Exception
+     * @throws IncorrectParamException
      */
     private function checkLanguage(string $language): string
     {
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
         if ($check === 0 || $check === false)
         {
-            throw new \Exception("Incorrect language code : $language", 1001);
+            throw new IncorrectParamException;
         }
         return $language;
     }

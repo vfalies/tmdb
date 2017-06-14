@@ -20,7 +20,6 @@ class TVShow extends Results implements TVShowResultsInterface
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @param \stdClass $result
-     * @throws \Exception
      */
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {
