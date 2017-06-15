@@ -47,20 +47,6 @@ interface TVShowInterface
      */
     public function getNote(): float;
 
-//    /**
-//     * Get TVShow poster
-//     * @param string $size
-//     * @return string
-//     */
-//    public function getPoster(string $size = 'w185'): string;
-//
-//    /**
-//     * Get TVShow backdrop
-//     * @param string $size
-//     * @return string
-//     */
-//    public function getBackdrop(string $size = 'w780'): string;
-
     /**
      * Get TVShow number of episodes
      * @return int
