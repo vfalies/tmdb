@@ -4,6 +4,8 @@ namespace vfalies\tmdb\lib\Guzzle;
 
 use vfalies\tmdb\Interfaces\HttpRequestInterface;
 use GuzzleHttp\Exception\BadResponseException;
+use vfalies\tmdb\Exceptions\NotFoundException;
+use vfalies\tmdb\Exceptions\ServerErrorException;
 
 class Client implements HttpRequestInterface
 {
@@ -38,11 +40,9 @@ class Client implements HttpRequestInterface
             switch ((int) $e->getResponse()->getStatusCode())
             {
                 case 404:
-                    //throw new NotFoundException($e->getMessage());
-                    throw new \Exception('not found');
+                    throw new NotFoundException($e->getMessage());
                 default:
-                    //throw new ServerErrorException($e->getMessage());
-                    throw new \Exception('server error');
+                    throw new ServerErrorException($e->getMessage());                    
             }
         }
     }

@@ -7,6 +7,7 @@ use vfalies\tmdb\Interfaces\HttpRequestInterface;
 use Psr\Log\LoggerInterface;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
+use vfalies\tmdb\Exceptions\ServerErrorException;
 
 /**
  * Tmdb wrapper core class
@@ -51,7 +52,7 @@ class Tmdb implements TmdbInterface
         $response = json_decode($res->getBody());
         if (empty($response))
         {
-            throw new \Exception('Search failed : '.var_export($result, true), 2001);
+            throw new ServerErrorException();
         }
         return $response;
     }
