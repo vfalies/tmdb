@@ -93,76 +93,86 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
-     * @expectedExceptionCode 1005
      */
     public function testSendRequestHttpError()
     {
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
+
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['getResponse'])
+        ->getMock();
+
+        $http_request->method('getResponse')->willReturn($guzzleclient);
+
         $tmdb = new Tmdb('fake_api_key');
-        $tmdb->sendRequest(new lib\CurlRequest(), 'fake/');
+        $tmdb->sendRequest($http_request, 'fake/');
     }
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      */
     public function testSendRequestExecError()
     {
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
+
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['getResponse'])
+        ->getMock();
+
+        $http_request->method('getResponse')->willReturn($guzzleclient);
+
         $tmdb = new Tmdb('fake_api_key');
         $tmdb->base_api_url = 'invalid_url';
-        $tmdb->sendRequest(new lib\CurlRequest(), 'action');
-    }
-
-    /**
-     * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
-     * @expectedException \Exception
-     * @expectedExceptionCode 1006
-     */
-    public function testSendRequestHttpError429()
-    {
-        $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\lib\CurlRequest::class)
-        ->setMethods(['getInfo'])
-        ->getMock();
-        $http_request->method('getInfo')->willReturn(429);
-
         $tmdb->sendRequest($http_request, 'action');
     }
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      * @expectedExceptionCode 2001
      */
     public function testSendRequestHttpErrorNotJson()
     {
-        $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\lib\CurlRequest::class)
-        ->setMethods(['getInfo','execute'])
-        ->getMock();
-        $http_request->method('getInfo')->willReturn(200);
-        $http_request->method('execute')->willReturn('Not JSON');
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
 
+        $guzzleclient->method('getBody')->willReturn('Not JSON');
+
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['getResponse'])
+        ->getMock();
+
+        $http_request->method('getResponse')->willReturn($guzzleclient);
+
+        $tmdb = new Tmdb('fake_api_key');
         $tmdb->sendRequest($http_request, 'action');
 
     }
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      */
     public function testSendRequestOk()
     {
         $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\lib\CurlRequest::class)
-        ->setMethods(['getInfo','execute'])
+
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
+
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['getResponse'])
         ->getMock();
-        $http_request->method('getInfo')->willReturn(200);
-        $http_request->method('execute')->willReturn(file_get_contents('tests/json/configurationOk.json'));
+
+        $guzzleclient->method('getBody')->willReturn(file_get_contents('tests/json/configurationOk.json'));
+        $http_request->method('getResponse')->willReturn($guzzleclient);
 
         $result = $tmdb->sendRequest($http_request, '/test', 'param=1');
 

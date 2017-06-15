@@ -4,7 +4,8 @@ namespace vfalies\tmdb\Catalogs;
 
 use vfalies\tmdb\Interfaces\GenresInterface;
 use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\lib\CurlRequest;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\TmdbException;
 
 class Genres implements GenresInterface
 {
@@ -14,7 +15,6 @@ class Genres implements GenresInterface
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
-     * @throws Exception
      */
     public function __construct(Tmdb $tmdb)
     {
@@ -32,9 +32,9 @@ class Genres implements GenresInterface
         try
         {            
             return $this->getList('genre/movie/list', $options);
-        } catch (\Exception $ex)
+        } catch (TmdbException $ex)
         {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+            throw $ex;
         }
     }
 
@@ -42,16 +42,16 @@ class Genres implements GenresInterface
      * Get TV genres list
      * @param array $options
      * @return \Generator
-     * @throws \Exception
+     * @throws TmdbException
      */
     public function getTVList(array $options = array()): \Generator
     {
         try
         {
             return $this->getList('genre/tv/list', $options);
-        } catch (\Exception $ex)
+        } catch (TmdbException $ex)
         {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+            throw $ex;
         }
     }
 
@@ -60,14 +60,14 @@ class Genres implements GenresInterface
      * @param string $type
      * @param array $options
      * @return \Generator
-     * @throws \Exception
+     * @throws TmdbException
      */
     private function getList(string $type, array $options): \Generator
     {
         try
         {
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new CurlRequest(), $type, null, $params);
+            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $type, null, $params);
 
             $genres = [];
             if (isset($response->genres))
@@ -76,9 +76,9 @@ class Genres implements GenresInterface
             }
 
             return $this->genreItemGenerator($genres);
-        } catch (\Exception $ex)
+        } catch (TmdbException $ex)
         {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+            throw $ex;
         }
     }
 

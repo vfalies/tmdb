@@ -5,6 +5,8 @@ namespace vfalies\tmdb;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Interfaces\HttpRequestInterface;
 use Psr\Log\LoggerInterface;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Exceptions\IncorrectParamException;
 
 /**
  * Tmdb wrapper core class
@@ -35,7 +37,7 @@ class Tmdb implements TmdbInterface
 
     /**
      * Send cUrl request to TMDB API
-     * @param Interfaces\HttpRequestInterface $http_request
+     * @param HttpRequestInterface $http_request
      * @param string $action API action to request
      * @param string $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
@@ -44,41 +46,12 @@ class Tmdb implements TmdbInterface
     public function sendRequest(HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()): \stdClass
     {
         $url = $this->buildHTTPUrl($action, $query, $options);
+        $res = $http_request->getResponse($url);
 
-        $http_request->setUrl($url);
-        $http_request->setOption(CURLOPT_HEADER, 0);
-        $http_request->setOption(CURLOPT_RETURNTRANSFER, true);
-        $http_request->setOption(CURLOPT_MAXREDIRS, 10);
-        $http_request->setOption(CURLOPT_ENCODING, "");
-        $http_request->setOption(CURLOPT_TIMEOUT, 30);
-        $http_request->setOption(CURLINFO_HEADER_OUT, true); // To gets header in curl_getinfo()
-
-        $this->logger->info('Call : '.$url);
-        $result = $http_request->execute();
-
-        $http_code = $http_request->getInfo(CURLINFO_HTTP_CODE);
-
-        if ($http_code !== 200)
-        {
-            if ($http_code == 429)
-            {
-                $message          = new \stdClass();
-                $message->message = 'Request rate limit exceeded';
-                $header_out       = $http_request->getInfo(CURLINFO_HEADER_OUT);
-                $message->headers = var_export($header_out, true);
-
-                throw new \Exception(json_encode($message), 1006);
-            }
-            throw new \Exception('Incorrect HTTP Code (' . $http_code . ') response : ' . var_export($http_request->getInfo(), true), 1005);
-        }
-
-        // cUrl closing
-        $http_request->close();
-
-        $response = json_decode($result);
+        $response = json_decode($res->getBody());
         if (empty($response))
         {
-            throw new \Exception('Search failed : ' . var_export($result, true), 2001);
+            throw new \Exception('Search failed : '.var_export($result, true), 2001);
         }
         return $response;
     }
@@ -114,6 +87,7 @@ class Tmdb implements TmdbInterface
     /**
      * Get API Configuration
      * @return \stdClass
+     * @throws TmdbException
      */
     public function getConfiguration(): \stdClass
     {
@@ -121,13 +95,12 @@ class Tmdb implements TmdbInterface
         {
             if (is_null($this->configuration))
             {
-                $this->configuration = $this->sendRequest(new lib\CurlRequest(), 'configuration');
+                $this->configuration = $this->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'configuration');
             }
             return $this->configuration;
-        }
-        catch (\Exception $ex)
+        } catch (TmdbException $ex)
         {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+            throw $ex;
         }
     }
 
@@ -135,7 +108,7 @@ class Tmdb implements TmdbInterface
      * Check options rules before send request
      * @param array $options Array of options to validate
      * @return array
-     * @throws \Exception
+     * @throws IncorrectParamException
      */
     public function checkOptions(array $options): array
     {
@@ -162,7 +135,7 @@ class Tmdb implements TmdbInterface
                     $params[$key] = (int) $value;
                     break;
                 default:
-                    throw new \Exception('Unknown options');
+                    throw new IncorrectParamException;
             }
         }
         return $params;
@@ -184,14 +157,14 @@ class Tmdb implements TmdbInterface
      * Check language
      * @param string $language Language string with format ISO 639-1
      * @return string Language string validated
-     * @throws \Exception
+     * @throws IncorrectParamException
      */
     private function checkLanguage(string $language): string
     {
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
         if ($check === 0 || $check === false)
         {
-            throw new \Exception("Incorrect language code : $language", 1001);
+            throw new IncorrectParamException;
         }
         return $language;
     }

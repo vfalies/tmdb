@@ -94,7 +94,7 @@ class TVShowTest extends TestCase
         $this->assertEmpty($tvshow->getPosterPath());
     }
 
-   /**
+    /**
      * @test
      */
     public function testGetBackdropPath()
@@ -384,7 +384,6 @@ class TVShowTest extends TestCase
         $this->assertEmpty($tvshow->getReleaseDate());
     }
 
-
     /**
      * @test
      */
@@ -438,6 +437,27 @@ class TVShowTest extends TestCase
      */
     public function testGetSeasons()
     {
-        $this->markTestIncomplete('Not Yet Implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $seasons = $TVShow->getSeasons();
+        $this->assertInstanceOf(\Generator::class, $seasons);
+        $this->assertInstanceOf(\vfalies\tmdb\Results\TVSeason::class, $seasons->current());
     }
+
+    /**
+     * test
+     */
+    public function testGetSeasonsEmpty()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow  = new TVShow($this->tmdb, $this->tv_id);
+        $seasons = $TVShow->getSeasons();
+
+        $this->assertInstanceOf(\Generator::class, $seasons);
+        $this->assertNull($seasons->current());
+    }
+
 }

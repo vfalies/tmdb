@@ -3,7 +3,7 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\MovieInterface;
+use vfalies\tmdb\Interfaces\Items\MovieInterface;
 use vfalies\tmdb\Tmdb;
 
 class Movie extends Item implements MovieInterface
@@ -13,7 +13,6 @@ class Movie extends Item implements MovieInterface
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @param int $movie_id
      * @param array $options
-     * @throws Exception
      */
     public function __construct(Tmdb $tmdb, int $movie_id, array $options = array())
     {

@@ -3,7 +3,7 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\TVShowInterface;
+use vfalies\tmdb\Interfaces\Items\TVShowInterface;
 use vfalies\tmdb\Tmdb;
 
 class TVShow extends Item implements TVShowInterface
@@ -145,8 +145,16 @@ class TVShow extends Item implements TVShowInterface
      * @return \Generator
      * @throws \Exception
      */
-    public function getSeasons() : \Generator
+    public function getSeasons(): \Generator
     {
-        throw new \Exception('Not yet implemented');
+        if (!empty($this->data->seasons))
+        {
+            foreach ($this->data->seasons as $season)
+            {
+                $season = new \vfalies\tmdb\Results\TVSeason($this->tmdb, $season);
+                yield $season;
+            }
+        }
     }
+
 }

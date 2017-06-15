@@ -3,20 +3,20 @@
 namespace vfalies\tmdb\Abstracts;
 
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Exceptions\NotFoundException;
+use vfalies\tmdb\Interfaces\Results\ResultsInterface;
 
-abstract class Results extends Element implements \vfalies\tmdb\Interfaces\ResultsInterface
+abstract class Results extends Element implements ResultsInterface
 {
 
     protected $id                 = null;
-    protected $poster_path        = null;
-    protected $backdrop_path      = null;
     protected $property_blacklist = ['property_blacklist', 'conf', 'data'];
 
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @param \stdClass $result
-     * @throws \Exception
+     * @throws NotFoundException
      */
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {
@@ -26,7 +26,7 @@ abstract class Results extends Element implements \vfalies\tmdb\Interfaces\Resul
         {
             if ( ! in_array($property, $this->property_blacklist) && !property_exists($result, $property))
             {
-                throw new \Exception('Incorrect input for ' . __CLASS__ . ' object. Property "' . $property . '" not found');
+                throw new NotFoundException($property);
             }
         }
 
