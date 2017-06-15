@@ -10,8 +10,6 @@ abstract class Results extends Element implements ResultsInterface
 {
 
     protected $id                 = null;
-    protected $poster_path        = null;
-    protected $backdrop_path      = null;
     protected $property_blacklist = ['property_blacklist', 'conf', 'data'];
 
     /**
