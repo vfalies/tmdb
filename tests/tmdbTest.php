@@ -1,6 +1,7 @@
 <?php
 
 namespace vfalies\tmdb;
+use vfalies\tmdb\TmdbException;
 
 class TmdbTest extends \PHPUnit_Framework_TestCase
 {
@@ -76,7 +77,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Exception
+     * @expectedException vfalies\tmdb\TmdbException
      */
     public function testGetConfigurationNOK()
     {
@@ -86,7 +87,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
-        $tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+        $tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
         $tmdb->getConfiguration();
     }
@@ -135,7 +136,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @expectedException \Exception
-     * @expectedExceptionCode 2001
      */
     public function testSendRequestHttpErrorNotJson()
     {

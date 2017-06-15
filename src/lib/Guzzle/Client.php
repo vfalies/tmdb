@@ -3,9 +3,10 @@
 namespace vfalies\tmdb\lib\Guzzle;
 
 use vfalies\tmdb\Interfaces\HttpRequestInterface;
-use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\RequestException;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Exceptions\ServerErrorException;
+use vfalies\tmdb\Exceptions\HttpErrorException;
 
 class Client implements HttpRequestInterface
 {
@@ -25,24 +26,25 @@ class Client implements HttpRequestInterface
 
     /**
      * @param  string                               $url
-     * @throws \FeedIo\Adapter\NotFoundException
-     * @throws \FeedIo\Adapter\ServerErrorException
-     * @return \FeedIo\Adapter\ResponseInterface
      */
     public function getResponse($url)
     {
         try
         {
-            return new Response($this->guzzleClient->request('get', $url));
+            return $this->guzzleClient->request('GET', $url);
         }
-        catch (BadResponseException $e)
+        catch (RequestException $e)
         {
+            if (is_null($e->getResponse()))
+            {
+                throw new HttpErrorException;
+            }
             switch ((int) $e->getResponse()->getStatusCode())
             {
                 case 404:
                     throw new NotFoundException($e->getMessage());
                 default:
-                    throw new ServerErrorException($e->getMessage());                    
+                    throw new ServerErrorException($e->getMessage());
             }
         }
     }
