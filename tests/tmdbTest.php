@@ -6,14 +6,6 @@ use vfalies\tmdb\TmdbException;
 class TmdbTest extends \PHPUnit_Framework_TestCase
 {
 
-    protected function setUp()
-    {
-        if (!extension_loaded('curl'))
-        {
-            $this->markTestSkipped('cUrl extension is not loaded');
-        }
-    }
-
     /**
      * @test
      */
