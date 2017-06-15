@@ -1,17 +1,10 @@
 <?php
 
 namespace vfalies\tmdb;
+use vfalies\tmdb\TmdbException;
 
 class TmdbTest extends \PHPUnit_Framework_TestCase
 {
-
-    protected function setUp()
-    {
-        if (!extension_loaded('curl'))
-        {
-            $this->markTestSkipped('cUrl extension is not loaded');
-        }
-    }
 
     /**
      * @test
@@ -76,7 +69,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Exception
+     * @expectedException vfalies\tmdb\TmdbException
      */
     public function testGetConfigurationNOK()
     {
@@ -86,7 +79,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
-        $tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+        $tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
         $tmdb->getConfiguration();
     }
@@ -135,7 +128,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @expectedException \Exception
-     * @expectedExceptionCode 2001
      */
     public function testSendRequestHttpErrorNotJson()
     {

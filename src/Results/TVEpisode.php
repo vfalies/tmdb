@@ -42,7 +42,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
 
     public function getCrew(): \Generator
     {
-        throw new Exception('Not yep implemented');
+        throw new \Exception('Not yep implemented');
     }
 
     public function getEpisodeNumber(): int
@@ -52,7 +52,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
 
     public function getGuestStars(): \Generator
     {
-        throw new Exception('Not yep implemented');
+        throw new \Exception('Not yep implemented');
     }
 
     public function getId(): int

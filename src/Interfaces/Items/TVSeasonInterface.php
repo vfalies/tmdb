@@ -6,13 +6,6 @@ interface TVSeasonInterface
 {
     public function getId(): int;
 
-    /**
-     * Get movie poster
-     * @param string $size
-     * @return string
-     */
-    public function getPoster(string $size = 'w185') : string;
-
     public function getPosterPath() : string;
 
     public function getEpisodeCount() : int;

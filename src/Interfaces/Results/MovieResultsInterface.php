@@ -23,9 +23,4 @@ interface MovieResultsInterface extends ResultsInterface
      */
     public function getTitle();
 
-    /**
-     * Get movie backdrop
-     * @return string
-     */
-    public function getBackdrop();
 }

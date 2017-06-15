@@ -22,10 +22,5 @@ interface CollectionResultsInterface extends ResultsInterface
      * @return string
      */
     public function getTitle();
-
-    /**
-     * Get movie backdrop
-     * @return string
-     */
-    public function getBackdrop();
 }
+

@@ -17,10 +17,5 @@ interface ResultsInterface
      */
     public function getReleaseDate();
 
-    /**
-     * Get movie poster
-     * @return string
-     */
-    public function getPoster();
 
 }

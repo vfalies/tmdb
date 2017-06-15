@@ -38,7 +38,7 @@ class CatalogTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $genres = new Catalog($this->tmdb);
-        $list = $genres->getMovieGenres(array('language' => 'fr-FR'));
+        $list   = $genres->getMovieGenres(array('language' => 'fr-FR'));
 
         $genre = $list->current();
 
@@ -55,7 +55,7 @@ class CatalogTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $genres = new Catalog($this->tmdb);
-        $list = $genres->getMovieGenres(array('language' => 'fr-FR'));
+        $list   = $genres->getMovieGenres(array('language' => 'fr-FR'));
 
         $genre = $list->current();
 
@@ -66,9 +66,9 @@ class CatalogTest extends TestCase
      * @test
      * @expectedException \Exception
      */
-    public function testGetMovieListNok()
-    {        
-        $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+    public function testGetMovieGenresNok()
+    {
+        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
         $genres = new Catalog($this->tmdb);
         $genres->getMovieGenres(array('language' => 'fr-FR'));
@@ -78,9 +78,21 @@ class CatalogTest extends TestCase
      * @test
      * @expectedException \Exception
      */
+    public function testGetMovieListNok()
+    {
+        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
+
+        $genres = new Catalogs\Genres($this->tmdb);
+        $genres->getMovieList(array('language' => 'fr-FR'));
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     */
     public function testGetTVListNok()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
         $genres = new Catalog($this->tmdb);
         $genres->getTVShowGenres(array('language' => 'fr-FR'));
@@ -95,11 +107,12 @@ class CatalogTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $genres = new Catalog($this->tmdb);
-        $list = $genres->getTVShowGenres(array('language' => 'fr-FR'));
+        $list   = $genres->getTVShowGenres(array('language' => 'fr-FR'));
 
         $genre = $list->current();
 
         $this->assertEquals(10759, $genre->id);
         $this->assertEquals('Action & Adventure', $genre->name);
     }
+
 }

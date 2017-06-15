@@ -120,54 +120,6 @@ class TVShowTest extends TestCase
     /**
      * @test
      */
-    public function testGetBackdrop()
-    {
-        $this->setRequestOk();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-
-        $this->assertNotFalse(filter_var($TVShow->getBackdrop(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdropFailure()
-    {
-        $this->setRequestTVShowEmpty();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-        $this->assertEmpty($TVShow->getBackdrop());
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropFailureConf()
-    {
-        $this->setRequestConfigurationEmpty();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-        $TVShow->getBackdrop();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropFailureSize()
-    {
-        $this->setRequestOk();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-
-        $TVShow->getBackdrop('w184');
-    }
-
-    /**
-     * @test
-     */
     public function testGetGenres()
     {
         $this->setRequestOk();
@@ -310,54 +262,6 @@ class TVShowTest extends TestCase
 
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
         $this->assertEmpty($TVShow->getOverview());
-    }
-
-    /**
-     * @test
-     */
-    public function testGetPoster()
-    {
-        $this->setRequestOk();
-
-        $tvshow = new TVShow($this->tmdb, $this->tv_id);
-
-        $this->assertNotFalse(filter_var($tvshow->getPoster(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     */
-    public function testGetPosterFailure()
-    {
-        $this->setRequestTVShowEmpty();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-        $this->assertEmpty($TVShow->getPoster());
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterFailureConf()
-    {
-        $this->setRequestConfigurationEmpty();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-        $TVShow->getPoster();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterFailureSize()
-    {
-        $this->setRequestOk();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-
-        $TVShow->getPoster('w184');
     }
 
     /**
