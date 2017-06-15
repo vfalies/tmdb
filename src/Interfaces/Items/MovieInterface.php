@@ -64,19 +64,19 @@ interface MovieInterface
      */
     public function getCollectionId() : int;
 
-    /**
-     * Get movie poster
-     * @param string $size
-     * @return string
-     */
-    public function getPoster(string $size = 'w185') : string;
-
-    /**
-     * Get movie backdrop
-     * @param string $size
-     * @return string
-     */
-    public function getBackdrop(string $size = 'w780') : string;
+//    /**
+//     * Get movie poster
+//     * @param string $size
+//     * @return string
+//     */
+//    public function getPoster(string $size = 'w185') : string;
+//
+//    /**
+//     * Get movie backdrop
+//     * @param string $size
+//     * @return string
+//     */
+//    public function getBackdrop(string $size = 'w780') : string;
 
     /**
      * Get poster path

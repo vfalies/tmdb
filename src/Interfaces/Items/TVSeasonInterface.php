@@ -6,12 +6,12 @@ interface TVSeasonInterface
 {
     public function getId(): int;
 
-    /**
-     * Get movie poster
-     * @param string $size
-     * @return string
-     */
-    public function getPoster(string $size = 'w185') : string;
+//    /**
+//     * Get movie poster
+//     * @param string $size
+//     * @return string
+//     */
+//    public function getPoster(string $size = 'w185') : string;
 
     public function getPosterPath() : string;
 
