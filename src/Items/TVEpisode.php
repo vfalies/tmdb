@@ -38,7 +38,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getCrew(): \Generator
     {
-        throw new Exception('Not yet implemented');
+        throw new \Exception('Not yet implemented');
     }
 
     public function getEpisodeNumber(): int
@@ -52,7 +52,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getGuestStars(): \Generator
     {
-        throw new Exception('Not yet implemented');
+        throw new \Exception('Not yet implemented');
     }
 
     public function getName(): string
