@@ -28,7 +28,7 @@ abstract class Results extends Element implements ResultsInterface
         {
             if ( ! in_array($property, $this->property_blacklist) && !property_exists($result, $property))
             {
-                throw new NotFoundException;
+                throw new NotFoundException($property);
             }
         }
 
