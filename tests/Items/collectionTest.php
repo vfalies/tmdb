@@ -19,7 +19,7 @@ class CollectionTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('test')))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('vfalies\Tmdb')))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }

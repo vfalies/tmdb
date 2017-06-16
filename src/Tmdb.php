@@ -38,7 +38,7 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Send cUrl request to TMDB API
+     * Send request to TMDB API
      * @param HttpRequestInterface $http_request
      * @param string $action API action to request
      * @param string $query Query of the request (optional)
@@ -48,6 +48,9 @@ class Tmdb implements TmdbInterface
     public function sendRequest(HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()): \stdClass
     {
         $url = $this->buildHTTPUrl($action, $query, $options);
+
+        $this->logger->info("Send request $url");
+
         $res = $http_request->getResponse($url);
 
         $response = json_decode($res->getBody());

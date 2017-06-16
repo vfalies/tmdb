@@ -19,7 +19,7 @@ class ClientTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('test')))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('vfalies\Tmdb')))
                 ->setMethods(['sendRequest'])
                 ->getMock();
     }
