@@ -24,16 +24,17 @@ class Tmdb implements TmdbInterface
     // Protected variables
     protected $configuration = null; // API Configuration
     protected $genres        = null; // API Genres
-    protected $logger       = null;
+    protected $logger        = null;
 
     /**
      * Constructor
      * @param string $api_key TMDB API Key
+     * @param LoggerInterface $logger Logger used in the class
      */
-    public function __construct(string $api_key, LoggerInterface $logger = null)
+    public function __construct(string $api_key, LoggerInterface $logger)
     {
         $this->api_key = $api_key;
-        $this->logger = null;
+        $this->logger  = $logger;
     }
 
     /**
@@ -67,12 +68,12 @@ class Tmdb implements TmdbInterface
     private function buildHTTPUrl($action, $query, $options)
     {
         // Url construction
-        $url = $this->base_api_url . $action;
+        $url = $this->base_api_url.$action;
 
         // Parameters
         $params            = [];
         $params['api_key'] = $this->api_key;
-        if (!is_null($query))
+        if ( ! is_null($query))
         {
             $params['query'] = $query;
         }
@@ -80,7 +81,7 @@ class Tmdb implements TmdbInterface
         $params = array_merge($params, $options);
 
         // URL with paramters construction
-        $url = $url . '?' . http_build_query($params);
+        $url = $url.'?'.http_build_query($params);
 
         return $url;
     }
@@ -99,7 +100,8 @@ class Tmdb implements TmdbInterface
                 $this->configuration = $this->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'configuration');
             }
             return $this->configuration;
-        } catch (TmdbException $ex)
+        }
+        catch (TmdbException $ex)
         {
             throw $ex;
         }
