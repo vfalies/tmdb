@@ -11,7 +11,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckOptionsOk()
     {
-        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('vfalies\Tmdb'));
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
         $options = $tmdb->checkOptions(array('year'          => '2014',
             'language'      => 'fr-FR',
             'include_adult' => false,
@@ -34,7 +34,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckOptionsYearNOK()
     {
-        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('vfalies\Tmdb'));
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
         $tmdb->checkOptions(array('year' => 'abcd'));
     }
 
@@ -44,7 +44,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckOptionsLanguageNOK()
     {
-        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('vfalies\Tmdb'));
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
         $tmdb->checkOptions(array('language' => 'fr'));
     }
 
@@ -54,7 +54,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testGetConfigurationOK()
     {
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('vfalies\Tmdb')))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
@@ -73,7 +73,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testGetConfigurationNOK()
     {
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('vfalies\Tmdb')))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
@@ -98,7 +98,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
-        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('vfalies\Tmdb'));
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
         $tmdb->sendRequest($http_request, 'fake/');
     }
 
@@ -118,7 +118,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
-        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('vfalies\Tmdb'));
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
         $tmdb->base_api_url = 'invalid_url';
         $tmdb->sendRequest($http_request, 'action');
     }
@@ -141,7 +141,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
-        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('vfalies\Tmdb'));
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
         $tmdb->sendRequest($http_request, 'action');
 
     }
@@ -151,7 +151,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testSendRequestOk()
     {
-        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('vfalies\Tmdb'));
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
 
         $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
                 ->setMethods(['getBody'])
