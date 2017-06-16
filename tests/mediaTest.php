@@ -17,7 +17,7 @@ class MediaTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key'))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('test')))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
