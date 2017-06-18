@@ -5,6 +5,7 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVEpisodeInterface;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Exceptions\NotYetImplementedException;
 
 class TVEpisode extends Item implements TVEpisodeInterface
 {
@@ -36,9 +37,13 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @throws NotYetImplementedException
+     */
     public function getCrew(): \Generator
     {
-        throw new \Exception('Not yet implemented');
+        throw new NotYetImplementedException;
     }
 
     public function getEpisodeNumber(): int
@@ -50,9 +55,13 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return 0;
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @throws NotYetImplementedException
+     */
     public function getGuestStars(): \Generator
     {
-        throw new \Exception('Not yet implemented');
+        throw new NotYetImplementedException;
     }
 
     public function getName(): string

@@ -5,6 +5,7 @@ namespace vfalies\tmdb\Results;
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\TVEpisodeResultsInterface;
+use vfalies\tmdb\Exceptions\NotYetImplementedException;
 
 class TVEpisode extends Results implements TVEpisodeResultsInterface
 {
@@ -40,9 +41,13 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
         return $this->release_date;
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @throws NotYetImplementedException
+     */
     public function getCrew(): \Generator
     {
-        throw new \Exception('Not yep implemented');
+        throw new NotYetImplementedException;
     }
 
     public function getEpisodeNumber(): int
@@ -50,9 +55,13 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
         return (int) $this->episode_number;
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @throws NotYetImplementedException
+     */
     public function getGuestStars(): \Generator
     {
-        throw new \Exception('Not yep implemented');
+        throw new NotYetImplementedException;
     }
 
     public function getId(): int
