@@ -17,7 +17,7 @@ class CatalogTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key'))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest'])
                 ->getMock();
     }

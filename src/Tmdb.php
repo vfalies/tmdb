@@ -17,7 +17,7 @@ class Tmdb implements TmdbInterface
 
     // Private variables
     private $api_key         = null; // API Key
-    private $language        = 'fr-FR'; // Default language for API response
+    private $language        = 'fr-FR'; // Default language for API response'; // Base URL of the API
     private $include_adult   = false; // Include adult content in search result
     private $page            = 1; // API Page result
     // Protected variables
@@ -35,7 +35,7 @@ class Tmdb implements TmdbInterface
     /**
      * Constructor
      * @param string $api_key TMDB API Key
-     * @param LoggerInterface $logger
+     * @param LoggerInterface $logger Logger used in the class
      */
     public function __construct(string $api_key, LoggerInterface $logger)
     {
@@ -44,7 +44,7 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Send cUrl request to TMDB API
+     * Send request to TMDB API
      * @param HttpRequestInterface $http_request
      * @param string $action API action to request
      * @param string $query Query of the request (optional)
