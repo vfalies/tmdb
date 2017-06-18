@@ -5,6 +5,7 @@ namespace vfalies\tmdb\Results;
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\CollectionResultsInterface;
+use vfalies\tmdb\Exceptions\NotApplicableException;
 
 class Collection extends Results implements CollectionResultsInterface
 {
@@ -49,17 +50,17 @@ class Collection extends Results implements CollectionResultsInterface
 
     public function getOriginalTitle(): string
     {
-        throw new \Exception('Not applicable');
+        throw new NotApplicableException;
     }
 
     public function getOverview(): string
     {
-        throw new \Exception('Not applicable');
+        throw new NotApplicableException;
     }
 
     public function getReleaseDate(): string
     {
-        throw new \Exception('Not applicable');
+        throw new NotApplicableException;
     }
 
 }
