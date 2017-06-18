@@ -53,7 +53,7 @@ class FactoryTest extends TestCase
 
     protected function getBuilder($className, $package)
     {
-        $builder = $this->getMockForAbstractClass('\vfalies\tmdb\Factory\BuilderInterface');
+        $builder = $this->getMockForAbstractClass('\vfalies\tmdb\Interfaces\Factory\BuilderInterface');
         $builder->expects($this->any())->method('getMainClassName')->will($this->returnValue($className));
 
         $builder->expects($this->any())->method('getPackageName')->will($this->returnValue($package));

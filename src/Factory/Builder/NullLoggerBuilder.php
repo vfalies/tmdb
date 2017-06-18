@@ -2,8 +2,7 @@
 
 namespace vfalies\tmdb\Factory\Builder;
 
-use vfalies\tmdb\Factory\LoggerBuilderInterface;
-use Psr\Log\NullLogger;
+use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
 
 class NullLoggerBuilder implements LoggerBuilderInterface
 {

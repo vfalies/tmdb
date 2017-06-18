@@ -2,8 +2,8 @@
 
 namespace vfalies\tmdb;
 
-use vfalies\tmdb\Factory\LoggerBuilderInterface;
-use vfalies\tmdb\Factory\BuilderInterface;
+use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
+use vfalies\tmdb\Interfaces\Factory\BuilderInterface;
 use vfalies\tmdb\Exceptions\MissingDependencyException;
 
 class Factory

@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb\Factory;
+namespace vfalies\tmdb\Interfaces\Factory;
 
 interface BuilderInterface
 {

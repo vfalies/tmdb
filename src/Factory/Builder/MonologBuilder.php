@@ -3,7 +3,7 @@
 namespace vfalies\tmdb\Factory\Builder;
 
 use Monolog\Logger;
-use vfalies\tmdb\Factory\LoggerBuilderInterface;
+use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
 
 /**
  * @package FeedIo
