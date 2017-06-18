@@ -10,7 +10,7 @@ abstract class Results extends Element implements ResultsInterface
 {
 
     protected $id                 = null;
-    protected $property_blacklist = ['property_blacklist', 'conf', 'data'];
+    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger'];
     protected $logger             = null;
 
     /**
