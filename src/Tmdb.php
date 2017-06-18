@@ -18,22 +18,29 @@ class Tmdb implements TmdbInterface
     // Private variables
     private $api_key         = null; // API Key
     private $language        = 'fr-FR'; // Default language for API response
-    public $base_api_url     = 'https://api.themoviedb.org/3/'; // Base URL of the API
     private $include_adult   = false; // Include adult content in search result
     private $page            = 1; // API Page result
     // Protected variables
     protected $configuration = null; // API Configuration
     protected $genres        = null; // API Genres
-    protected $logger       = null;
+    // Public variables
+    public $base_api_url     = 'https://api.themoviedb.org/3/'; // Base URL of the API
+
+    /**
+     *
+     * @var LoggerInterface
+     */
+    public $logger           = null;
 
     /**
      * Constructor
      * @param string $api_key TMDB API Key
+     * @param LoggerInterface $logger
      */
-    public function __construct(string $api_key, LoggerInterface $logger = null)
+    public function __construct(string $api_key, LoggerInterface $logger)
     {
         $this->api_key = $api_key;
-        $this->logger = null;
+        $this->logger  = $logger;
     }
 
     /**
@@ -46,12 +53,14 @@ class Tmdb implements TmdbInterface
      */
     public function sendRequest(HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()): \stdClass
     {
+        $this->logger->debug('Start sending HTTP request');
         $url = $this->buildHTTPUrl($action, $query, $options);
         $res = $http_request->getResponse($url);
 
         $response = json_decode($res->getBody());
         if (empty($response))
         {
+            $this->logger->error('Request Body can not be decode', array('action' => $action, 'query' => $query, 'options' => $options));
             throw new ServerErrorException();
         }
         return $response;
@@ -94,12 +103,15 @@ class Tmdb implements TmdbInterface
     {
         try
         {
+            $this->logger->debug('Start getting configuration');
             if (is_null($this->configuration))
             {
+                $this->logger->debug('No configuration found, sending HTTP request to get it');
                 $this->configuration = $this->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'configuration');
             }
             return $this->configuration;
-        } catch (TmdbException $ex)
+        }
+        catch (TmdbException $ex)
         {
             throw $ex;
         }
@@ -136,6 +148,7 @@ class Tmdb implements TmdbInterface
                     $params[$key] = (int) $value;
                     break;
                 default:
+                    $this->logger->error('Unknown param options', array('options', $options));
                     throw new IncorrectParamException;
             }
         }
@@ -165,6 +178,7 @@ class Tmdb implements TmdbInterface
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
         if ($check === 0 || $check === false)
         {
+            $this->logger->error('Incorrect language param option', array('language' => $language));
             throw new IncorrectParamException;
         }
         return $language;

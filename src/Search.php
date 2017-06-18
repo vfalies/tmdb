@@ -9,6 +9,7 @@ class Search
 {
 
     private $tmdb          = null;
+    private $logger        = null;
     private $page          = 1; // Page number of the search result
     private $total_pages   = 1; // Total pages of the search result
     private $total_results = 0; // Total results of the search result
@@ -20,7 +21,8 @@ class Search
 
     public function __construct(Tmdb $tmdb)
     {
-        $this->tmdb = $tmdb;
+        $this->tmdb   = $tmdb;
+        $this->logger = $tmdb->logger;
     }
 
     /**
@@ -36,9 +38,11 @@ class Search
     {
         try
         {
+            $this->logger->debug('Starting search item');
             $query = trim($query);
             if (empty($query))
             {
+                $this->logger->error('Query param cannot be empty', array('item' => $item, 'query' => $query, 'options' => $options, 'result_class' => $result_class));
                 throw new IncorrectParamException;
             }
             $params   = $this->tmdb->checkOptions($options);
@@ -47,9 +51,10 @@ class Search
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
             $this->total_results = (int) $response->total_results;
-            
+
             return $this->searchItemGenerator($response->results, $result_class);
-        } catch (TmdbException $ex)
+        }
+        catch (TmdbException $ex)
         {
             throw $ex;
         }
@@ -62,6 +67,7 @@ class Search
      */
     private function searchItemGenerator(array $results, string $class): \Generator
     {
+        $this->logger->debug('Starting search item generator');
         foreach ($results as $result)
         {
             $element = new $class($this->tmdb, $result);
@@ -81,6 +87,7 @@ class Search
     {
         try
         {
+            $this->logger->debug('Starting search movie');
             return $this->searchItem('movie', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Movie');
         }
         catch (TmdbException $ex)
@@ -100,6 +107,7 @@ class Search
     {
         try
         {
+            $this->logger->debug('Starting search tv show');
             return $this->searchItem('tv', $query, $options, __NAMESPACE__ . "\\Results\\" . 'TVShow');
         }
         catch (TmdbException $ex)
@@ -119,6 +127,7 @@ class Search
     {
         try
         {
+            $this->logger->debug('Starting search collection');
             return $this->searchItem('collection', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Collection');
         }
         catch (TmdbException $ex)

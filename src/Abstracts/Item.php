@@ -9,8 +9,9 @@ use vfalies\tmdb\TmdbException;
 abstract class Item extends Element
 {
 
-    protected $id   = null;
-    protected $tmdb = null;
+    protected $id     = null;
+    protected $tmdb   = null;
+    protected $logger = null;
 
     /**
      * Constructor
@@ -24,17 +25,17 @@ abstract class Item extends Element
     {
         try
         {
-            $this->id   = (int) $item_id;
-            $this->tmdb = $tmdb;
-            $this->conf = $this->tmdb->getConfiguration();
-            $params     = $this->tmdb->checkOptions($options);
-            $this->data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $item_name . '/' . (int) $item_id, null, $params);
+            $this->id     = (int) $item_id;
+            $this->tmdb   = $tmdb;
+            $this->logger = $tmdb->logger;
+            $this->conf   = $this->tmdb->getConfiguration();
+            $params       = $this->tmdb->checkOptions($options);
+            $this->data   = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $item_name . '/' . (int) $item_id, null, $params);
         }
         catch (TmdbException $ex)
         {
             throw $ex;
         }
     }
-
 
 }

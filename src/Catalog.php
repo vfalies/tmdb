@@ -7,7 +7,8 @@ use vfalies\tmdb\Catalogs\Genres;
 class Catalog
 {
 
-    private $tmdb = null;
+    private $tmdb   = null;
+    private $logger = null;
 
     /**
      * Constructor
@@ -15,7 +16,8 @@ class Catalog
      */
     public function __construct(Tmdb $tmdb)
     {
-        $this->tmdb = $tmdb;
+        $this->tmdb   = $tmdb;
+        $this->logger = $tmdb->logger;
     }
 
     /**
@@ -25,6 +27,7 @@ class Catalog
      */
     public function getMovieGenres(array $options = array()): \Generator
     {
+        $this->logger->debug('Starting getting movie genres');
         $catalog = new Genres($this->tmdb);
         return $catalog->getMovieList($options);
     }
@@ -36,7 +39,9 @@ class Catalog
      */
     public function getTVShowGenres(array $options = array()): \Generator
     {
+        $this->logger->debug('Starting getting tv show genres');
         $catalog = new Genres($this->tmdb);
         return $catalog->getTVList($options);
     }
+
 }

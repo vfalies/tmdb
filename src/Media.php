@@ -9,8 +9,9 @@ use vfalies\tmdb\Exceptions\IncorrectParamException;
 class Media
 {
 
-    protected $tmdb = null;
-    protected $conf = null;
+    protected $tmdb   = null;
+    protected $conf   = null;
+    protected $logger = null;
 
     /**
      * Constructor
@@ -18,8 +19,9 @@ class Media
      */
     public function __construct(Tmdb $tmdb)
     {
-        $this->tmdb = $tmdb;
-        $this->conf = $this->tmdb->getConfiguration();
+        $this->tmdb   = $tmdb;
+        $this->logger = $tmdb->logger;
+        $this->conf   = $this->tmdb->getConfiguration();
     }
 
     /**
@@ -90,11 +92,13 @@ class Media
     {
         if (!isset($this->conf->images->base_url))
         {
+            $this->logger->error('No image base url found from configuration');
             throw new NotFoundException;
         }
         $sizes = $type . '_sizes';
         if (!in_array($size, $this->conf->images->$sizes))
         {
+            $this->logger->error('Incorrect param image size', array('type' => $type, 'size' => $size, 'filepath' => $filepath));
             throw new IncorrectParamException;
         }
         return $this->conf->images->base_url . $size . $filepath;
