@@ -47,6 +47,7 @@ class Collection extends Item implements CollectionInterface
         {
             return $this->data->name;
         }
+        $this->logger->error('Collection name not found', array('collection_id' => $this->id));
         throw new NotFoundException;
     }
 

@@ -10,7 +10,8 @@ abstract class Results extends Element implements ResultsInterface
 {
 
     protected $id                 = null;
-    protected $property_blacklist = ['property_blacklist', 'conf', 'data'];
+    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger'];
+    protected $logger             = null;
 
     /**
      * Constructor
@@ -20,12 +21,15 @@ abstract class Results extends Element implements ResultsInterface
      */
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {
+        $this->logger = $tmdb->logger;
+        
         // Valid input object
-        $properties = get_object_vars($this);
+        $properties   = get_object_vars($this);
         foreach (array_keys($properties) as $property)
         {
-            if ( ! in_array($property, $this->property_blacklist) && !property_exists($result, $property))
+            if (!in_array($property, $this->property_blacklist) && !property_exists($result, $property))
             {
+                $this->logger->error('Mandatory property not found for object construction', array('property' => $property));
                 throw new NotFoundException($property);
             }
         }
