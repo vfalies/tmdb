@@ -29,7 +29,6 @@ abstract class Results extends Element implements ResultsInterface
         {
             if (!in_array($property, $this->property_blacklist) && !property_exists($result, $property))
             {
-                $this->logger->error('Mandatory property not found for object construction', array('property' => $property));
                 throw new NotFoundException($property);
             }
         }
