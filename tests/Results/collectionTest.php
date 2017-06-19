@@ -67,39 +67,6 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
-     */
-    public function testGetOverview()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getOverview();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetReleaseDate()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getReleaseDate();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetOriginalTitle()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getOriginalTitle();
-    }
-
-    /**
-     * @test
      */
     public function testGetTitle()
     {

@@ -10,12 +10,4 @@ interface ResultsInterface
      * @return int
      */
     public function getId();
-
-    /**
-     * Get movie release date
-     * @return string
-     */
-    public function getReleaseDate();
-
-
 }

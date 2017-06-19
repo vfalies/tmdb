@@ -23,4 +23,9 @@ interface MovieResultsInterface extends ResultsInterface
      */
     public function getTitle();
 
+    /**
+     * Get movie release date
+     * @return string
+     */
+    public function getReleaseDate();
 }
