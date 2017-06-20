@@ -36,7 +36,7 @@ $ composer require vfalies/tmdb
 use vfalies\tmdb;
 
 // Initialize Wrapper
-$tmdb = new Tmdb('your_api_key');
+$tmdb = Factory::create()->getTmdb('your_api_key');
 
 // Search a movie
 $search    = new Search($tmdb);
