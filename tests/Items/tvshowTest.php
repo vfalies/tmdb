@@ -164,7 +164,6 @@ class TVShowTest extends TestCase
 
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
 
-        $this->assertInternalType('double', $TVShow->getNote());
         $this->assertEquals(0, $TVShow->getNote());
     }
 

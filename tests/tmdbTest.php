@@ -30,16 +30,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \TypeError
-     */
-    public function testCheckOptionsYearNOK()
-    {
-        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
-        $tmdb->checkOptions(array('year' => 'abcd'));
-    }
-
-    /**
-     * @test
      * @expectedException \Exception
      */
     public function testCheckOptionsLanguageNOK()
