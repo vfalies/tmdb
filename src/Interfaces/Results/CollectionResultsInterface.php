@@ -10,4 +10,3 @@ interface CollectionResultsInterface extends ResultsInterface
      */
     public function getTitle();
 }
-

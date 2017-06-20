@@ -50,5 +50,4 @@ class TVSeason extends Results implements TVSeasonResultsInterface
     {
         return (int) $this->season_number;
     }
-
 }

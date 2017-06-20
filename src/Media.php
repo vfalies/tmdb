@@ -90,18 +90,15 @@ class Media
      */
     private function getImage(string $type, string $size, string $filepath): string
     {
-        if (!isset($this->conf->images->base_url))
-        {
+        if (!isset($this->conf->images->base_url)) {
             $this->logger->error('No image base url found from configuration');
             throw new NotFoundException;
         }
         $sizes = $type . '_sizes';
-        if (!in_array($size, $this->conf->images->$sizes))
-        {
+        if (!in_array($size, $this->conf->images->$sizes)) {
             $this->logger->error('Incorrect param image size', array('type' => $type, 'size' => $size, 'filepath' => $filepath));
             throw new IncorrectParamException;
         }
         return $this->conf->images->base_url . $size . $filepath;
     }
-
 }

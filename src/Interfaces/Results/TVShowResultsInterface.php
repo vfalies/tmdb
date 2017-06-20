@@ -29,5 +29,4 @@ interface TVShowResultsInterface extends ResultsInterface
      * @return string
      */
     public function getReleaseDate();
-    
 }

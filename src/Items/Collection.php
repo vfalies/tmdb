@@ -43,8 +43,7 @@ class Collection extends Item implements CollectionInterface
      */
     public function getName(): string
     {
-        if (isset($this->data->name))
-        {
+        if (isset($this->data->name)) {
             return $this->data->name;
         }
         $this->logger->error('Collection name not found', array('collection_id' => $this->id));
@@ -57,14 +56,11 @@ class Collection extends Item implements CollectionInterface
      */
     public function getParts(): \Generator
     {
-        if (!empty($this->data->parts))
-        {
-            foreach ($this->data->parts as $part)
-            {
+        if (!empty($this->data->parts)) {
+            foreach ($this->data->parts as $part) {
                 $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
                 yield $movie;
             }
         }
     }
-
 }

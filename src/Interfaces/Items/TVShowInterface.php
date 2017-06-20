@@ -80,5 +80,4 @@ interface TVShowInterface
      * Get backdrop path
      */
     public function getBackdropPath(): string;
-
 }

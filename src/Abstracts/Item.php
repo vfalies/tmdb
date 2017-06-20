@@ -23,19 +23,15 @@ abstract class Item extends Element
      */
     public function __construct(Tmdb $tmdb, int $item_id, array $options, string $item_name)
     {
-        try
-        {
+        try {
             $this->id     = (int) $item_id;
             $this->tmdb   = $tmdb;
             $this->logger = $tmdb->logger;
             $this->conf   = $this->tmdb->getConfiguration();
             $params       = $this->tmdb->checkOptions($options);
             $this->data   = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $item_name . '/' . (int) $item_id, null, $params);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
-
 }

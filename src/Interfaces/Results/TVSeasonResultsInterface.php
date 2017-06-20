@@ -16,5 +16,4 @@ interface TVSeasonResultsInterface extends ResultsInterface
      * @return string
      */
     public function getReleaseDate();
-    
 }

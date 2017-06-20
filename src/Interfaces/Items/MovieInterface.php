@@ -73,5 +73,4 @@ interface MovieInterface
      * Get backdrop path
      */
     public function getBackdropPath(): string;
-
 }

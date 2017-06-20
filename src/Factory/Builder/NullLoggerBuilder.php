@@ -33,5 +33,4 @@ class NullLoggerBuilder implements LoggerBuilderInterface
     {
         return 'psr/log';
     }
-
 }

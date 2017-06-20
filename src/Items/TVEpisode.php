@@ -21,8 +21,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      */
     public function getId(): int
     {
-        if (isset($this->data->id))
-        {
+        if (isset($this->data->id)) {
             return (int) $this->data->id;
         }
         return 0;
@@ -30,8 +29,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getAirDate(): string
     {
-        if (isset($this->data->air_date))
-        {
+        if (isset($this->data->air_date)) {
             return $this->data->air_date;
         }
         return '';
@@ -48,8 +46,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getEpisodeNumber(): int
     {
-        if (isset($this->data->episode_number))
-        {
+        if (isset($this->data->episode_number)) {
             return $this->data->episode_number;
         }
         return 0;
@@ -65,9 +62,8 @@ class TVEpisode extends Item implements TVEpisodeInterface
     }
 
     public function getName(): string
-    {        
-        if (isset($this->data->name))
-        {
+    {
+        if (isset($this->data->name)) {
             return $this->data->name;
         }
         return '';
@@ -75,8 +71,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getNote(): float
     {
-        if (isset($this->data->vote_average))
-        {
+        if (isset($this->data->vote_average)) {
             return $this->data->vote_average;
         }
         return 0;
@@ -84,8 +79,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getNoteCount(): int
     {
-        if (isset($this->data->vote_count))
-        {
+        if (isset($this->data->vote_count)) {
             return (int) $this->data->vote_count;
         }
         return 0;
@@ -93,8 +87,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getOverview(): string
     {
-        if (isset($this->data->overview))
-        {
+        if (isset($this->data->overview)) {
             return $this->data->overview;
         }
         return '';
@@ -102,8 +95,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getProductionCode(): string
     {
-        if (isset($this->data->production_code))
-        {
+        if (isset($this->data->production_code)) {
             return $this->data->production_code;
         }
         return '';
@@ -111,8 +103,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getSeasonNumber(): int
     {
-        if (isset($this->data->season_number))
-        {
+        if (isset($this->data->season_number)) {
             return (int) $this->data->season_number;
         }
         return 0;
@@ -120,11 +111,9 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     public function getStillPath(): string
     {
-        if (isset($this->data->still_path))
-        {
+        if (isset($this->data->still_path)) {
             return $this->data->still_path;
         }
         return '';
     }
-
 }

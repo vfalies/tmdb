@@ -79,5 +79,4 @@ class Movie extends Results implements MovieResultsInterface
     {
         return $this->title;
     }
-
 }

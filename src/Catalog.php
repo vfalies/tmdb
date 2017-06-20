@@ -43,5 +43,4 @@ class Catalog
         $catalog = new Genres($this->tmdb);
         return $catalog->getTVList($options);
     }
-
 }

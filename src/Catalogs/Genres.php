@@ -29,11 +29,9 @@ class Genres implements GenresInterface
      */
     public function getMovieList(array $options = array()): \Generator
     {
-        try
-        {            
+        try {
             return $this->getList('genre/movie/list', $options);
-        } catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -46,11 +44,9 @@ class Genres implements GenresInterface
      */
     public function getTVList(array $options = array()): \Generator
     {
-        try
-        {
+        try {
             return $this->getList('genre/tv/list', $options);
-        } catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -64,20 +60,17 @@ class Genres implements GenresInterface
      */
     private function getList(string $type, array $options): \Generator
     {
-        try
-        {
+        try {
             $params   = $this->tmdb->checkOptions($options);
             $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $type, null, $params);
 
             $genres = [];
-            if (isset($response->genres))
-            {
+            if (isset($response->genres)) {
                 $genres = $response->genres;
             }
 
             return $this->genreItemGenerator($genres);
-        } catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -88,10 +81,8 @@ class Genres implements GenresInterface
      */
     private function genreItemGenerator(array $results): \Generator
     {
-        foreach ($results as $result)
-        {
+        foreach ($results as $result) {
             yield $result;
         }
     }
-
 }

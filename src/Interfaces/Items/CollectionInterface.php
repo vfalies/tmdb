@@ -32,5 +32,4 @@ interface CollectionInterface
      * Get backdrop path
      */
     public function getBackdropPath(): string;
-
 }

@@ -108,5 +108,4 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
     {
         return $this->still_path;
     }
-
 }

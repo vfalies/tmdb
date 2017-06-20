@@ -79,5 +79,4 @@ class TVShow extends Results implements TVShowResultsInterface
     {
         return $this->name;
     }
-
 }
