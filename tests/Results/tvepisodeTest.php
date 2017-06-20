@@ -59,17 +59,6 @@ class TVEpisodeTest extends TestCase
     /**
      * @test
      */
-    public function testGetReleaseDate()
-    {
-        $this->sendRequestOk();
-
-        $this->assertInternalType('string', $this->episode->getReleaseDate());
-        $this->assertEquals('2011-04-17', $this->episode->getReleaseDate());
-    }
-
-    /**
-     * @test
-     */
     public function testGetSeasonNumber()
     {
         $this->sendRequestOk();

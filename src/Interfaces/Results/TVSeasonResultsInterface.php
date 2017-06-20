@@ -15,5 +15,5 @@ interface TVSeasonResultsInterface extends ResultsInterface
      * Get movie release date
      * @return string
      */
-    public function getReleaseDate();
+    public function getAirDate();
 }

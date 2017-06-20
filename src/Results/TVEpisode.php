@@ -12,7 +12,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
 
     protected $episode_number  = 0;
     protected $name            = '';
-    protected $release_date    = null;
+    protected $air_date        = null;
     protected $season_number   = 0;
     protected $vote_average    = 0;
     protected $vote_count      = 0;
@@ -32,7 +32,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
 
         // Populate data
         $this->id              = $this->data->id;
-        $this->release_date    = $this->data->air_date;
+        $this->air_date        = $this->data->air_date;
         $this->season_number   = $this->data->season_number;
         $this->episode_number  = $this->data->episode_number;
         $this->name            = $this->data->name;
@@ -45,7 +45,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
 
     public function getAirDate(): string
     {
-        return $this->release_date;
+        return $this->air_date;
     }
 
     /**
@@ -99,11 +99,6 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
     public function getProductionCode(): string
     {
         return $this->production_code;
-    }
-
-    public function getReleaseDate(): string
-    {
-        return $this->release_date;
     }
 
     public function getSeasonNumber(): int

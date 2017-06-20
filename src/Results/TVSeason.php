@@ -12,7 +12,7 @@ class TVSeason extends Results implements TVSeasonResultsInterface
     protected $episode_count = 0;
     protected $season_number = 0;
     protected $poster_path   = null;
-    protected $release_date  = null;
+    protected $air_date  = null;
 
     /**
      * Constructor
@@ -26,7 +26,7 @@ class TVSeason extends Results implements TVSeasonResultsInterface
 
         // Populate data
         $this->id            = $this->data->id;
-        $this->release_date  = $this->data->air_date;
+        $this->air_date  = $this->data->air_date;
         $this->episode_count = $this->data->episode_count;
         $this->poster_path   = $this->data->poster_path;
         $this->season_number = $this->data->season_number;
@@ -37,9 +37,9 @@ class TVSeason extends Results implements TVSeasonResultsInterface
         return $this->id;
     }
 
-    public function getReleaseDate(): string
+    public function getAirDate(): string
     {
-        return $this->release_date;
+        return $this->air_date;
     }
 
     public function getEpisodeCount(): int
