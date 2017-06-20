@@ -23,7 +23,7 @@ class Factory
      * @param string $api_key
      * @return \vfalies\tmdb\Tmdb
      */
-    public function getTmdb(string $api_key)
+    public function getTmdb($api_key)
     {
         return new Tmdb($api_key, $this->loggerBuilder->getLogger());
     }

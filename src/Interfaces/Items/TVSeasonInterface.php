@@ -4,19 +4,19 @@ namespace vfalies\tmdb\Interfaces\Items;
 
 interface TVSeasonInterface
 {
-    public function getId(): int;
+    public function getId();
 
-    public function getPosterPath() : string;
+    public function getPosterPath();
 
-    public function getEpisodeCount() : int;
+    public function getEpisodeCount();
 
-    public function getEpisodes() : \Generator;
+    public function getEpisodes();
 
-    public function getAirDate() : string;
+    public function getAirDate();
 
-    public function getSeasonNumber() : int;
+    public function getSeasonNumber();
 
-    public function getName() : string;
+    public function getName();
 
-    public function getOverview() : string;
+    public function getOverview();
 }

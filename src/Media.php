@@ -30,7 +30,7 @@ class Media
      * @param string $size
      * @return string|null
      */
-    public function getBackdropUrl(string $path, string $size = 'w780'): string
+    public function getBackdropUrl($path, $size = 'w780')
     {
         return $this->getImage('backdrop', $size, $path);
     }
@@ -41,7 +41,7 @@ class Media
      * @param string $size
      * @return string
      */
-    public function getPosterUrl(string $path, string $size = 'w185'): string
+    public function getPosterUrl($path, $size = 'w185')
     {
         return $this->getImage('poster', $size, $path);
     }
@@ -52,7 +52,7 @@ class Media
      * @param string $size
      * @return string
      */
-    public function getlogoUrl(string $path, string $size = 'w92'): string
+    public function getlogoUrl($path, $size = 'w92')
     {
         return $this->getImage('logo', $size, $path);
     }
@@ -63,7 +63,7 @@ class Media
      * @param string $size
      * @return string
      */
-    public function getProfileUrl(string $path, string $size = 'w185'): string
+    public function getProfileUrl($path, $size = 'w185')
     {
         return $this->getImage('profile', $size, $path);
     }
@@ -74,7 +74,7 @@ class Media
      * @param string $size
      * @return string
      */
-    public function getStillUrl(string $path, string $size = 'w185'): string
+    public function getStillUrl($path, $size = 'w185')
     {
         return $this->getImage('still', $size, $path);
     }
@@ -88,7 +88,7 @@ class Media
      * @throws NotFoundException
      * @throws IncorrectParamException
      */
-    private function getImage(string $type, string $size, string $filepath): string
+    private function getImage($type, $size, $filepath)
     {
         if (!isset($this->conf->images->base_url)) {
             $this->logger->error('No image base url found from configuration');

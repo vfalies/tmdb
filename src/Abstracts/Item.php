@@ -21,7 +21,7 @@ abstract class Item extends Element
      * @param string $item_name
      * @throws \Exception
      */
-    public function __construct(Tmdb $tmdb, int $item_id, array $options, string $item_name)
+    public function __construct(Tmdb $tmdb, $item_id, array $options, $item_name)
     {
         try {
             $this->id     = (int) $item_id;

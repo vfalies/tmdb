@@ -22,7 +22,7 @@ class Collection extends Item implements CollectionInterface
      * @param int $collection_id
      * @param array $options
      */
-    public function __construct(Tmdb $tmdb, int $collection_id, array $options = array())
+    public function __construct(Tmdb $tmdb, $collection_id, array $options = array())
     {
         parent::__construct($tmdb, $collection_id, $options, 'collection');
     }
@@ -31,7 +31,7 @@ class Collection extends Item implements CollectionInterface
      * Get collection ID
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -41,7 +41,7 @@ class Collection extends Item implements CollectionInterface
      * @return string
      * @throws NotFoundException
      */
-    public function getName(): string
+    public function getName()
     {
         if (isset($this->data->name)) {
             return $this->data->name;
@@ -54,7 +54,7 @@ class Collection extends Item implements CollectionInterface
      * Get collection parts
      * @return Generator
      */
-    public function getParts(): \Generator
+    public function getParts()
     {
         if (!empty($this->data->parts)) {
             foreach ($this->data->parts as $part) {

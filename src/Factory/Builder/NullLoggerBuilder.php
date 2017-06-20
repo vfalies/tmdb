@@ -11,7 +11,7 @@ class NullLoggerBuilder implements LoggerBuilderInterface
      * This method MUST return a valid PSR3 logger
      * @return \Psr\Log\NullLogger
      */
-    public function getLogger(): \Psr\Log\LoggerInterface
+    public function getLogger()
     {
         return new \Psr\Log\NullLogger;
     }
@@ -20,7 +20,7 @@ class NullLoggerBuilder implements LoggerBuilderInterface
      * This method MUST return the name of the main class
      * @return string
      */
-    public function getMainCLassName(): string
+    public function getMainCLassName()
     {
         return '\Psr\Log\NullLogger';
     }
@@ -29,7 +29,7 @@ class NullLoggerBuilder implements LoggerBuilderInterface
      * This method MUST return the name of the package name
      * @return string
      */
-    public function getPackageName(): string
+    public function getPackageName()
     {
         return 'psr/log';
     }

@@ -25,7 +25,7 @@ class Catalog
      * @param array $options
      * @return \Generator
      */
-    public function getMovieGenres(array $options = array()): \Generator
+    public function getMovieGenres(array $options = array())
     {
         $this->logger->debug('Starting getting movie genres');
         $catalog = new Genres($this->tmdb);
@@ -37,7 +37,7 @@ class Catalog
      * @param array $options
      * @return \Generator
      */
-    public function getTVShowGenres(array $options = array()): \Generator
+    public function getTVShowGenres(array $options = array())
     {
         $this->logger->debug('Starting getting tv show genres');
         $catalog = new Genres($this->tmdb);

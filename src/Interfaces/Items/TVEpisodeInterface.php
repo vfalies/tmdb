@@ -4,27 +4,27 @@ namespace vfalies\tmdb\Interfaces\Items;
 
 interface TVEpisodeInterface
 {
-    public function getId(): int;
+    public function getId();
 
-    public function getAirDate() : string;
+    public function getAirDate();
 
-    public function getSeasonNumber() : int;
+    public function getSeasonNumber();
 
-    public function getName() : string;
+    public function getName();
 
-    public function getOverview() : string;
+    public function getOverview();
 
-    public function getCrew() : \Generator;
+    public function getCrew();
 
-    public function getEpisodeNumber() : int;
+    public function getEpisodeNumber();
 
-    public function getGuestStars() : \Generator;
+    public function getGuestStars();
 
-    public function getProductionCode() : string;
+    public function getProductionCode();
 
-    public function getStillPath(): string;
+    public function getStillPath();
 
-    public function getNote(): float;
+    public function getNote();
 
-    public function getNoteCount(): int;
+    public function getNoteCount();
 }

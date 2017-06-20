@@ -37,7 +37,7 @@ class Tmdb implements TmdbInterface
      * @param string $api_key TMDB API Key
      * @param LoggerInterface $logger Logger used in the class
      */
-    public function __construct(string $api_key, LoggerInterface $logger)
+    public function __construct($api_key, LoggerInterface $logger)
     {
         $this->api_key = $api_key;
         $this->logger  = $logger;
@@ -51,7 +51,7 @@ class Tmdb implements TmdbInterface
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function sendRequest(HttpRequestInterface $http_request, string $action, string $query = null, array $options = array()): \stdClass
+    public function sendRequest(HttpRequestInterface $http_request, $action, $query = null, array $options = array())
     {
         $this->logger->debug('Start sending HTTP request');
         $url = $this->buildHTTPUrl($action, $query, $options);
@@ -97,7 +97,7 @@ class Tmdb implements TmdbInterface
      * @return \stdClass
      * @throws TmdbException
      */
-    public function getConfiguration(): \stdClass
+    public function getConfiguration()
     {
         try {
             $this->logger->debug('Start getting configuration');
@@ -117,7 +117,7 @@ class Tmdb implements TmdbInterface
      * @return array
      * @throws IncorrectParamException
      */
-    public function checkOptions(array $options): array
+    public function checkOptions(array $options)
     {
         $params                  = [];
         // Set default options
@@ -153,7 +153,7 @@ class Tmdb implements TmdbInterface
      * @return int year validated
      * @throws \Exception
      */
-    private function checkYear(int $year): int
+    private function checkYear($year)
     {
         $year = (int) $year;
         return $year;
@@ -165,7 +165,7 @@ class Tmdb implements TmdbInterface
      * @return string Language string validated
      * @throws IncorrectParamException
      */
-    private function checkLanguage(string $language): string
+    private function checkLanguage($language)
     {
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
         if ($check === 0 || $check === false) {
