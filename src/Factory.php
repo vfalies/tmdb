@@ -13,7 +13,7 @@ class Factory
     public static function create($loggerConf = ['builder' => 'NullLogger', 'config' => []])
     {
         $factory = new static();
-        $factory->setLoggerBuilder($factory->getBuilder($loggerConf['builder']), $factory->extractConfig($loggerConf));
+        $factory->setLoggerBuilder($factory->getBuilder($loggerConf['builder']));
 
         return $factory;
     }

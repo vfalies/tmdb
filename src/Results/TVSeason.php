@@ -12,6 +12,7 @@ class TVSeason extends Results implements TVSeasonResultsInterface
     protected $episode_count = 0;
     protected $season_number = 0;
     protected $poster_path   = null;
+    protected $release_date  = null;
 
     /**
      * Constructor

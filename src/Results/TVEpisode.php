@@ -10,8 +10,15 @@ use vfalies\tmdb\Exceptions\NotYetImplementedException;
 class TVEpisode extends Results implements TVEpisodeResultsInterface
 {
 
-    protected $episode_number = 0;
-    protected $name           = '';
+    protected $episode_number  = 0;
+    protected $name            = '';
+    protected $release_date    = null;
+    protected $season_number   = 0;
+    protected $vote_average    = 0;
+    protected $vote_count      = 0;
+    protected $overview        = '';
+    protected $production_code = '';
+    protected $still_path      = '';
 
     /**
      * Constructor
@@ -108,4 +115,5 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
     {
         return $this->still_path;
     }
+
 }
