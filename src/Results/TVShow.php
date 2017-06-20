@@ -4,20 +4,22 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Interfaces\Results\TVShowResultsInterface;
 
-class TVShow extends Results
+class TVShow extends Results implements TVShowResultsInterface
 {
 
     protected $overview       = null;
     protected $first_air_date = null;
     protected $original_name  = null;
     protected $name           = null;
+    protected $backdrop_path  = null;
+    protected $poster_path    = null;
 
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @param \stdClass $result
-     * @throws \Exception
      */
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {
@@ -77,5 +79,4 @@ class TVShow extends Results
     {
         return $this->name;
     }
-
 }

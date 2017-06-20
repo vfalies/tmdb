@@ -18,7 +18,7 @@ class CollectionTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key'))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -67,39 +67,6 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
-     */
-    public function testGetOverview()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getOverview();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetReleaseDate()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getReleaseDate();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetOriginalTitle()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getOriginalTitle();
-    }
-
-    /**
-     * @test
      */
     public function testGetTitle()
     {
@@ -107,70 +74,6 @@ class CollectionTest extends TestCase
 
         $this->assertInternalType('string', $this->result->getTitle());
         $this->assertEquals('Star Wars: Clone Wars Collection', $this->result->getTitle());
-    }
-
-    /**
-     * @test
-     */
-    public function testGetPoster()
-    {
-        $this->sendRequestOk();
-
-        $this->assertNotFalse(filter_var($this->result->getPoster(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterConfNok()
-    {
-        $this->sendRequestConfNok();
-
-        $this->result->getPoster();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterSizeNok()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getPoster('w184');
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdrop()
-    {
-        $this->sendRequestOk();
-
-        $this->assertNotFalse(filter_var($this->result->getBackdrop(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropConfNok()
-    {
-        $this->sendRequestConfNok();
-
-        $this->result->getBackdrop();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropSizeNok()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getBackdrop('w184');
     }
 
 }

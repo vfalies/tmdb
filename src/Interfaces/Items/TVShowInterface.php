@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb\Interfaces;
+namespace vfalies\tmdb\Interfaces\Items;
 
 interface TVShowInterface
 {
@@ -48,20 +48,6 @@ interface TVShowInterface
     public function getNote(): float;
 
     /**
-     * Get TVShow poster
-     * @param string $size
-     * @return string
-     */
-    public function getPoster(string $size = 'w185'): string;
-
-    /**
-     * Get TVShow backdrop
-     * @param string $size
-     * @return string
-     */
-    public function getBackdrop(string $size = 'w780'): string;
-
-    /**
      * Get TVShow number of episodes
      * @return int
      */
@@ -82,8 +68,16 @@ interface TVShowInterface
     /**
      * Get TVShow seasons
      * @return \Generator
-     * @throws \Exception
      */
     public function getSeasons() : \Generator;
 
+    /**
+     * Get poster path
+     */
+    public function getPosterPath(): string;
+
+    /**
+     * Get backdrop path
+     */
+    public function getBackdropPath(): string;
 }

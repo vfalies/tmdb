@@ -3,8 +3,9 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\CollectionInterface;
+use vfalies\tmdb\Interfaces\Items\CollectionInterface;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Exceptions\NotFoundException;
 
 class Collection extends Item implements CollectionInterface
 {
@@ -29,7 +30,6 @@ class Collection extends Item implements CollectionInterface
     /**
      * Get collection ID
      * @return int
-     * @throws \Exception
      */
     public function getId(): int
     {
@@ -39,15 +39,15 @@ class Collection extends Item implements CollectionInterface
     /**
      * Get collection name
      * @return string
-     * @throws \Exception
+     * @throws NotFoundException
      */
     public function getName(): string
     {
-        if (isset($this->data->name))
-        {
+        if (isset($this->data->name)) {
             return $this->data->name;
         }
-        throw new \Exception('Collection name can not be found');
+        $this->logger->error('Collection name not found', array('collection_id' => $this->id));
+        throw new NotFoundException;
     }
 
     /**
@@ -56,14 +56,11 @@ class Collection extends Item implements CollectionInterface
      */
     public function getParts(): \Generator
     {
-        if (!empty($this->data->parts))
-        {
-            foreach ($this->data->parts as $part)
-            {
+        if (!empty($this->data->parts)) {
+            foreach ($this->data->parts as $part) {
                 $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
                 yield $movie;
             }
         }
     }
-
 }

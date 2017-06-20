@@ -19,7 +19,7 @@ class CollectionTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key'))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -60,11 +60,11 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
+     * @expectedException \vfalies\tmdb\TmdbException
      */
     public function testContructFailure()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+        $this->tmdb->method('sendRequest')->will($this->throwException(new \vfalies\tmdb\TmdbException()));
 
         new Collection($this->tmdb, $this->collection_id);
     }
@@ -130,122 +130,6 @@ class CollectionTest extends TestCase
 
         $this->assertInternalType('string', $collection->getPosterPath());
         $this->assertEmpty($collection->getPosterPath());
-    }
-
-    /**
-     * @test
-     */
-    public function testGetPoster()
-    {
-        $this->setRequestOk();
-
-        $collection = new Collection($this->tmdb, $this->collection_id);
-
-        $this->assertNotFalse(filter_var($collection->getPoster(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     */
-    public function testGetPosterFailure()
-    {
-        $this->setRequestCollectionEmpty();
-
-        $collection = new Collection($this->tmdb, $this->collection_id);
-        $this->assertEmpty($collection->getPoster());
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterFailureConf()
-    {
-        $this->setRequestConfigurationEmpty();
-
-        $collection = new Collection($this->tmdb, $this->collection_id);
-        $collection->getPoster();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterFailureSize()
-    {
-        $this->setRequestOk();
-
-        $collection = new Collection($this->tmdb, $this->collection_id);
-        $collection->getPoster('w184');
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdropPath()
-    {
-        $this->setRequestOk();
-
-        $collection = new Collection($this->tmdb, $this->collection_id);
-        $this->assertInternalType('string', $collection->getBackdropPath());
-        $this->assertNotEmpty($collection->getBackdropPath());
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdropPathFailure()
-    {
-        $this->setRequestCollectionEmpty();
-        $collection = new Collection($this->tmdb, $this->collection_id);
-        $this->assertInternalType('string', $collection->getBackdropPath());
-        $this->assertEmpty($collection->getBackdropPath());
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdrop()
-    {
-        $this->setRequestOk();
-
-        $collection = new Collection($this->tmdb, $this->collection_id);
-        $this->assertNotFalse(filter_var($collection->getBackdrop(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdropFailure()
-    {
-        $this->setRequestCollectionEmpty();
-        $collection = new Collection($this->tmdb, $this->collection_id);
-        $this->assertEmpty($collection->getBackdrop());
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropFailureConf()
-    {
-        $this->setRequestConfigurationEmpty();
-
-        $collection = new Collection($this->tmdb, $this->collection_id);
-        $collection->getBackdrop();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropFailureSize()
-    {
-        $this->setRequestOk();
-
-        $collection = new Collection($this->tmdb, $this->collection_id);
-
-        $collection->getBackdrop('w184');
     }
 
     /**

@@ -18,7 +18,7 @@ class TVShowTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key'))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -94,7 +94,7 @@ class TVShowTest extends TestCase
         $this->assertEmpty($tvshow->getPosterPath());
     }
 
-   /**
+    /**
      * @test
      */
     public function testGetBackdropPath()
@@ -115,54 +115,6 @@ class TVShowTest extends TestCase
         $tvshow = new TVShow($this->tmdb, $this->tv_id);
         $this->assertInternalType('string', $tvshow->getBackdropPath());
         $this->assertEmpty($tvshow->getBackdropPath());
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdrop()
-    {
-        $this->setRequestOk();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-
-        $this->assertNotFalse(filter_var($TVShow->getBackdrop(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdropFailure()
-    {
-        $this->setRequestTVShowEmpty();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-        $this->assertEmpty($TVShow->getBackdrop());
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropFailureConf()
-    {
-        $this->setRequestConfigurationEmpty();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-        $TVShow->getBackdrop();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropFailureSize()
-    {
-        $this->setRequestOk();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-
-        $TVShow->getBackdrop('w184');
     }
 
     /**
@@ -315,54 +267,6 @@ class TVShowTest extends TestCase
     /**
      * @test
      */
-    public function testGetPoster()
-    {
-        $this->setRequestOk();
-
-        $tvshow = new TVShow($this->tmdb, $this->tv_id);
-
-        $this->assertNotFalse(filter_var($tvshow->getPoster(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     */
-    public function testGetPosterFailure()
-    {
-        $this->setRequestTVShowEmpty();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-        $this->assertEmpty($TVShow->getPoster());
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterFailureConf()
-    {
-        $this->setRequestConfigurationEmpty();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-        $TVShow->getPoster();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterFailureSize()
-    {
-        $this->setRequestOk();
-
-        $TVShow = new TVShow($this->tmdb, $this->tv_id);
-
-        $TVShow->getPoster('w184');
-    }
-
-    /**
-     * @test
-     */
     public function testGetReleaseDate()
     {
         $this->setRequestOk();
@@ -383,7 +287,6 @@ class TVShowTest extends TestCase
 
         $this->assertEmpty($tvshow->getReleaseDate());
     }
-
 
     /**
      * @test
@@ -438,6 +341,27 @@ class TVShowTest extends TestCase
      */
     public function testGetSeasons()
     {
-        $this->markTestIncomplete('Not Yet Implemented');
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $seasons = $TVShow->getSeasons();
+        $this->assertInstanceOf(\Generator::class, $seasons);
+        $this->assertInstanceOf(\vfalies\tmdb\Results\TVSeason::class, $seasons->current());
     }
+
+    /**
+     * test
+     */
+    public function testGetSeasonsEmpty()
+    {
+        $this->setRequestTVShowEmpty();
+
+        $TVShow  = new TVShow($this->tmdb, $this->tv_id);
+        $seasons = $TVShow->getSeasons();
+
+        $this->assertInstanceOf(\Generator::class, $seasons);
+        $this->assertNull($seasons->current());
+    }
+
 }

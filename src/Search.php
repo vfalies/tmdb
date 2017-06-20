@@ -2,12 +2,14 @@
 
 namespace vfalies\tmdb;
 
-use vfalies\tmdb\lib\CurlRequest;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Exceptions\IncorrectParamException;
 
 class Search
 {
 
     private $tmdb          = null;
+    private $logger        = null;
     private $page          = 1; // Page number of the search result
     private $total_pages   = 1; // Total pages of the search result
     private $total_results = 0; // Total results of the search result
@@ -19,7 +21,8 @@ class Search
 
     public function __construct(Tmdb $tmdb)
     {
-        $this->tmdb = $tmdb;
+        $this->tmdb   = $tmdb;
+        $this->logger = $tmdb->logger;
     }
 
     /**
@@ -29,28 +32,27 @@ class Search
      * @param array $options Array of options for the request
      * @param string $result_class class name of the wanted result
      * @return \Generator
-     * @throws \Exception
+     * @throws IncorrectParamException
      */
     private function searchItem(string $item, string $query, array $options, $result_class): \Generator
     {
-        try
-        {
+        try {
+            $this->logger->debug('Starting search item');
             $query = trim($query);
-            if (empty($query))
-            {
-                throw new \Exception('query parameter can not be empty');
+            if (empty($query)) {
+                $this->logger->error('Query param cannot be empty', array('item' => $item, 'query' => $query, 'options' => $options, 'result_class' => $result_class));
+                throw new IncorrectParamException;
             }
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new CurlRequest(), 'search/' . $item, $query, $params);
+            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'search/' . $item, $query, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
             $this->total_results = (int) $response->total_results;
-            
+
             return $this->searchItemGenerator($response->results, $result_class);
-        } catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        } catch (TmdbException $ex) {
+            throw $ex;
         }
     }
 
@@ -61,8 +63,8 @@ class Search
      */
     private function searchItemGenerator(array $results, string $class): \Generator
     {
-        foreach ($results as $result)
-        {
+        $this->logger->debug('Starting search item generator');
+        foreach ($results as $result) {
             $element = new $class($this->tmdb, $result);
 
             yield $element;
@@ -74,17 +76,15 @@ class Search
      * @param string $query Query string to search like a movie
      * @param array $options Array of options for the search
      * @return \Generator|Results\Movie
-     * @throws \Exception
+     * @throws TmdbException
      */
     public function searchMovie(string $query, array $options = array()): \Generator
     {
-        try
-        {
+        try {
+            $this->logger->debug('Starting search movie');
             return $this->searchItem('movie', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Movie');
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        } catch (TmdbException $ex) {
+            throw $ex;
         }
     }
 
@@ -93,17 +93,15 @@ class Search
      * @param string $query Query string to search like a TV Show
      * @param array $options Array of options for the request
      * @return \Generator|Results\TVShow
-     * @throws \Exception
+     * @throws TmdbException
      */
     public function searchTVShow(string $query, array $options = array()): \Generator
     {
-        try
-        {
+        try {
+            $this->logger->debug('Starting search tv show');
             return $this->searchItem('tv', $query, $options, __NAMESPACE__ . "\\Results\\" . 'TVShow');
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        } catch (TmdbException $ex) {
+            throw $ex;
         }
     }
 
@@ -112,17 +110,15 @@ class Search
      * @param string $query Query string to search like a collection
      * @param array $options Array of option for the request
      * @return \Generator|Results\Collection
-     * @throws \Exception
+     * @throws TmdbException
      */
     public function searchCollection(string $query, array $options = array()): \Generator
     {
-        try
-        {
+        try {
+            $this->logger->debug('Starting search collection');
             return $this->searchItem('collection', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Collection');
-        }
-        catch (\Exception $ex)
-        {
-            throw new \Exception($ex->getMessage(), $ex->getCode(), $ex);
+        } catch (TmdbException $ex) {
+            throw $ex;
         }
     }
 
@@ -152,5 +148,4 @@ class Search
     {
         return $this->total_results;
     }
-
 }

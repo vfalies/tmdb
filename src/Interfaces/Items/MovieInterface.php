@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb\Interfaces;
+namespace vfalies\tmdb\Interfaces\Items;
 
 interface MovieInterface
 {
@@ -65,16 +65,12 @@ interface MovieInterface
     public function getCollectionId() : int;
 
     /**
-     * Get movie poster
-     * @param string $size
-     * @return string
+     * Get poster path
      */
-    public function getPoster(string $size = 'w185') : string;
+    public function getPosterPath(): string;
 
     /**
-     * Get movie backdrop
-     * @param string $size
-     * @return string
+     * Get backdrop path
      */
-    public function getBackdrop(string $size = 'w780') : string;
+    public function getBackdropPath(): string;
 }

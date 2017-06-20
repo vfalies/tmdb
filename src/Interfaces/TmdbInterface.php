@@ -25,7 +25,6 @@ interface TmdbInterface
      * Check options rules before send request
      * @param array $options Array of options to validate
      * @return array
-     * @throws \Exception
      */
     public function checkOptions(array $options): array;
 }

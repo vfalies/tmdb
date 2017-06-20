@@ -8,16 +8,18 @@ use vfalies\tmdb\Items\TVShow;
 
 class Item
 {
-    private $tmdb          = null;
+
+    private $tmdb   = null;
+    private $logger = null;
 
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
      */
-
     public function __construct(Tmdb $tmdb)
     {
-        $this->tmdb = $tmdb;
+        $this->tmdb   = $tmdb;
+        $this->logger = $tmdb->logger;
     }
 
     /**
@@ -28,6 +30,7 @@ class Item
      */
     public function getMovie(int $movie_id, array $options = array()): Movie
     {
+        $this->logger->debug('Starting getting movie');
         $movie = new Movie($this->tmdb, $movie_id, $options);
 
         return $movie;
@@ -41,6 +44,7 @@ class Item
      */
     public function getCollection(int $collection_id, array $options = array()): Collection
     {
+        $this->logger->debug('Starting getting collection');
         $collection = new Collection($this->tmdb, $collection_id, $options);
 
         return $collection;
@@ -54,10 +58,9 @@ class Item
      */
     public function getTVShow(int $tv_id, array $options = array()): TVShow
     {
+        $this->logger->debug('Starting getting tvshow');
         $tv = new TVShow($this->tmdb, $tv_id, $options);
 
         return $tv;
     }
-
-
 }
