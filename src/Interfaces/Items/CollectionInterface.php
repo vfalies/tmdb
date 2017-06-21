@@ -9,27 +9,27 @@ interface CollectionInterface
      * Get collection ID
      * @return int
      */
-    public function getId(): int;
+    public function getId();
 
     /**
      * Get collection name
      * @return string
      */
-    public function getName(): string;
+    public function getName();
 
     /**
      * Get collection parts
      * @return Generator|SearchMovieResult
      */
-    public function getParts(): \Generator;
+    public function getParts();
 
     /**
      * Get poster path
      */
-    public function getPosterPath(): string;
+    public function getPosterPath();
 
     /**
      * Get backdrop path
      */
-    public function getBackdropPath(): string;
+    public function getBackdropPath();
 }

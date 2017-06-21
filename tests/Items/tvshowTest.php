@@ -164,7 +164,6 @@ class TVShowTest extends TestCase
 
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
 
-        $this->assertInternalType('double', $TVShow->getNote());
         $this->assertEquals(0, $TVShow->getNote());
     }
 
@@ -347,7 +346,10 @@ class TVShowTest extends TestCase
 
         $seasons = $TVShow->getSeasons();
         $this->assertInstanceOf(\Generator::class, $seasons);
-        $this->assertInstanceOf(\vfalies\tmdb\Results\TVSeason::class, $seasons->current());
+        foreach ($seasons as $season)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\TVSeason::class, $season);
+        }
     }
 
     /**

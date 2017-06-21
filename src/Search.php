@@ -4,6 +4,7 @@ namespace vfalies\tmdb;
 
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 class Search
 {
@@ -32,9 +33,9 @@ class Search
      * @param array $options Array of options for the request
      * @param string $result_class class name of the wanted result
      * @return \Generator
-     * @throws IncorrectParamException
+     * @throws TmdbException
      */
-    private function searchItem(string $item, string $query, array $options, $result_class): \Generator
+    private function searchItem($item, $query, array $options, $result_class)
     {
         try {
             $this->logger->debug('Starting search item');
@@ -61,7 +62,7 @@ class Search
      * @param array $results
      * @param string $class
      */
-    private function searchItemGenerator(array $results, string $class): \Generator
+    private function searchItemGenerator(array $results, $class)
     {
         $this->logger->debug('Starting search item generator');
         foreach ($results as $result) {
@@ -78,7 +79,7 @@ class Search
      * @return \Generator|Results\Movie
      * @throws TmdbException
      */
-    public function searchMovie(string $query, array $options = array()): \Generator
+    public function searchMovie($query, array $options = array())
     {
         try {
             $this->logger->debug('Starting search movie');
@@ -95,7 +96,7 @@ class Search
      * @return \Generator|Results\TVShow
      * @throws TmdbException
      */
-    public function searchTVShow(string $query, array $options = array()): \Generator
+    public function searchTVShow($query, array $options = array())
     {
         try {
             $this->logger->debug('Starting search tv show');
@@ -112,7 +113,7 @@ class Search
      * @return \Generator|Results\Collection
      * @throws TmdbException
      */
-    public function searchCollection(string $query, array $options = array()): \Generator
+    public function searchCollection($query, array $options = array())
     {
         try {
             $this->logger->debug('Starting search collection');
@@ -126,7 +127,7 @@ class Search
      * Get page from result search
      * @return int
      */
-    public function getPage(): int
+    public function getPage()
     {
         return $this->page;
     }
@@ -135,7 +136,7 @@ class Search
      * Get total page from result search
      * @return int
      */
-    public function getTotalPages(): int
+    public function getTotalPages()
     {
         return $this->total_pages;
     }
@@ -144,7 +145,7 @@ class Search
      * Get total results from search
      * @return int
      */
-    public function getTotalResults(): int
+    public function getTotalResults()
     {
         return $this->total_results;
     }

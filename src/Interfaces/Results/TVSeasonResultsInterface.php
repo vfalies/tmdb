@@ -5,11 +5,11 @@ namespace vfalies\tmdb\Interfaces\Results;
 interface TVSeasonResultsInterface extends ResultsInterface
 {
 
-    public function getEpisodeCount(): int;
+    public function getEpisodeCount();
 
-    public function getPosterPath(): string;
+    public function getPosterPath();
 
-    public function getSeasonNumber(): int;
+    public function getSeasonNumber();
 
     /**
      * Get movie release date

@@ -28,7 +28,7 @@ class Item
      * @param array $options
      * @return \vfalies\tmdb\Items\Movie
      */
-    public function getMovie(int $movie_id, array $options = array()): Movie
+    public function getMovie($movie_id, array $options = array())
     {
         $this->logger->debug('Starting getting movie');
         $movie = new Movie($this->tmdb, $movie_id, $options);
@@ -42,7 +42,7 @@ class Item
      * @param array $options
      * @return \vfalies\tmdb\Items\Collection
      */
-    public function getCollection(int $collection_id, array $options = array()): Collection
+    public function getCollection($collection_id, array $options = array())
     {
         $this->logger->debug('Starting getting collection');
         $collection = new Collection($this->tmdb, $collection_id, $options);
@@ -56,7 +56,7 @@ class Item
      * @param array $options
      * @return \vfalies\tmdb\Items\TVShow
      */
-    public function getTVShow(int $tv_id, array $options = array()): TVShow
+    public function getTVShow($tv_id, array $options = array())
     {
         $this->logger->debug('Starting getting tvshow');
         $tv = new TVShow($this->tmdb, $tv_id, $options);

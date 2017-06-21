@@ -39,7 +39,7 @@ class TVShow extends Results implements TVShowResultsInterface
      * Get tvshow ID
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return (int) $this->id;
     }
@@ -48,7 +48,7 @@ class TVShow extends Results implements TVShowResultsInterface
      * Get tvshow overview
      * @return string
      */
-    public function getOverview(): string
+    public function getOverview()
     {
         return $this->overview;
     }
@@ -57,7 +57,7 @@ class TVShow extends Results implements TVShowResultsInterface
      * Get tvshow first air date
      * @return string
      */
-    public function getReleaseDate(): string
+    public function getReleaseDate()
     {
         return $this->first_air_date;
     }
@@ -66,7 +66,7 @@ class TVShow extends Results implements TVShowResultsInterface
      * Get tvshow original name
      * @return string
      */
-    public function getOriginalTitle(): string
+    public function getOriginalTitle()
     {
         return $this->original_name;
     }
@@ -75,7 +75,7 @@ class TVShow extends Results implements TVShowResultsInterface
      * Get tvshow name
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->name;
     }

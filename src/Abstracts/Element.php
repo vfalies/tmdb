@@ -10,7 +10,7 @@ abstract class Element
     /**
      * Get poster path
      */
-    public function getPosterPath(): string
+    public function getPosterPath()
     {
         if (isset($this->data->poster_path)) {
             return $this->data->poster_path;
@@ -21,7 +21,7 @@ abstract class Element
     /**
      * Get backdrop
      */
-    public function getBackdropPath(): string
+    public function getBackdropPath()
     {
         if (isset($this->data->backdrop_path)) {
             return $this->data->backdrop_path;

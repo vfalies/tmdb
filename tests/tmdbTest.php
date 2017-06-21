@@ -1,7 +1,7 @@
 <?php
 
 namespace vfalies\tmdb;
-use vfalies\tmdb\TmdbException;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 class TmdbTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,16 +26,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('fr-FR', $options['language']);
         $this->assertEquals(false, $options['include_adult']);
         $this->assertEquals('2', $options['page']);
-    }
-
-    /**
-     * @test
-     * @expectedException \TypeError
-     */
-    public function testCheckOptionsYearNOK()
-    {
-        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
-        $tmdb->checkOptions(array('year' => 'abcd'));
     }
 
     /**
@@ -68,7 +58,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\TmdbException
+     * @expectedException vfalies\tmdb\Exceptions\TmdbException
      */
     public function testGetConfigurationNOK()
     {

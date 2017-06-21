@@ -43,7 +43,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
         $this->still_path      = $this->data->still_path;
     }
 
-    public function getAirDate(): string
+    public function getAirDate()
     {
         return $this->air_date;
     }
@@ -52,12 +52,12 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * @codeCoverageIgnore
      * @throws NotYetImplementedException
      */
-    public function getCrew(): \Generator
+    public function getCrew()
     {
         throw new NotYetImplementedException;
     }
 
-    public function getEpisodeNumber(): int
+    public function getEpisodeNumber()
     {
         return (int) $this->episode_number;
     }
@@ -66,47 +66,47 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * @codeCoverageIgnore
      * @throws NotYetImplementedException
      */
-    public function getGuestStars(): \Generator
+    public function getGuestStars()
     {
         throw new NotYetImplementedException;
     }
 
-    public function getId(): int
+    public function getId()
     {
         return (int) $this->id;
     }
 
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
 
-    public function getNote(): float
+    public function getNote()
     {
         return $this->vote_average;
     }
 
-    public function getNoteCount(): int
+    public function getNoteCount()
     {
         return (int) $this->vote_count;
     }
 
-    public function getOverview(): string
+    public function getOverview()
     {
         return $this->overview;
     }
 
-    public function getProductionCode(): string
+    public function getProductionCode()
     {
         return $this->production_code;
     }
 
-    public function getSeasonNumber(): int
+    public function getSeasonNumber()
     {
         return (int) $this->season_number;
     }
 
-    public function getStillPath(): string
+    public function getStillPath()
     {
         return $this->still_path;
     }

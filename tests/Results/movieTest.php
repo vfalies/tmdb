@@ -67,6 +67,18 @@ class MovieTest extends TestCase
 
     /**
      * @test
+     * @expectedException \vfalies\tmdb\Exceptions\NotFoundException
+     */
+    public function testContructFailed()
+    {
+        $result = new \stdClass();
+        $result->not_property = 'test';
+
+        new \vfalies\tmdb\Results\Movie($this->tmdb, $result);
+    }
+
+    /**
+     * @test
      */
     public function testGetOverview()
     {

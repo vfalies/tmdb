@@ -199,7 +199,6 @@ class MovieTest extends TestCase
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
-        $this->assertInternalType('double', $movie->getNote());
         $this->assertEquals('8', $movie->getNote());
     }
 

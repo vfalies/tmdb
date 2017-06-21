@@ -17,12 +17,12 @@ class TVSeason extends Item implements TVSeasonInterface
      * @param array $options
      * @throws Exception
      */
-    public function __construct(Tmdb $tmdb, int $tv_id, int $season_number, array $options = array())
+    public function __construct(Tmdb $tmdb, $tv_id, $season_number, array $options = array())
     {
         parent::__construct($tmdb, $season_number, $options, 'tv/'.$tv_id);
     }
 
-    public function getId(): int
+    public function getId()
     {
         if (! empty($this->data->id)) {
             return (int) $this->data->id;
@@ -30,7 +30,7 @@ class TVSeason extends Item implements TVSeasonInterface
         return 0;
     }
 
-    public function getAirDate(): string
+    public function getAirDate()
     {
         if (! empty($this->data->air_date)) {
             return $this->data->air_date;
@@ -38,7 +38,7 @@ class TVSeason extends Item implements TVSeasonInterface
         return '';
     }
 
-    public function getEpisodeCount(): int
+    public function getEpisodeCount()
     {
         if (! empty($this->data->episodes)) {
             return count($this->data->episodes);
@@ -46,7 +46,7 @@ class TVSeason extends Item implements TVSeasonInterface
         return 0;
     }
 
-    public function getSeasonNumber(): int
+    public function getSeasonNumber()
     {
         if (! empty($this->data->season_number)) {
             return (int) $this->data->season_number;
@@ -54,7 +54,7 @@ class TVSeason extends Item implements TVSeasonInterface
         return 0;
     }
 
-    public function getEpisodes(): \Generator
+    public function getEpisodes()
     {
         if (! empty($this->data->episodes)) {
             foreach ($this->data->episodes as $episode) {
@@ -64,7 +64,7 @@ class TVSeason extends Item implements TVSeasonInterface
         }
     }
 
-    public function getName(): string
+    public function getName()
     {
         if (! empty($this->data->name)) {
             return $this->data->name;
@@ -72,7 +72,7 @@ class TVSeason extends Item implements TVSeasonInterface
         return '';
     }
 
-    public function getOverview(): string
+    public function getOverview()
     {
         if (! empty($this->data->overview)) {
             return $this->data->overview;

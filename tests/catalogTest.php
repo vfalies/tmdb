@@ -3,6 +3,7 @@
 namespace vfalies\tmdb;
 
 use PHPUnit\Framework\TestCase;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 /**
  * @cover Catalog

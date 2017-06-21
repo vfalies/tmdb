@@ -10,7 +10,7 @@ use vfalies\tmdb\Exceptions\NotYetImplementedException;
 class TVEpisode extends Item implements TVEpisodeInterface
 {
 
-    public function __construct(Tmdb $tmdb, int $tv_id, int $season_number, int $episode_number, array $options = array())
+    public function __construct(Tmdb $tmdb, $tv_id, $season_number, $episode_number, array $options = array())
     {
         parent::__construct($tmdb, $episode_number, $options, 'tv/' . $tv_id . '/' . $season_number);
     }
@@ -19,7 +19,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Get TV show id
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         if (isset($this->data->id)) {
             return (int) $this->data->id;
@@ -27,7 +27,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return 0;
     }
 
-    public function getAirDate(): string
+    public function getAirDate()
     {
         if (isset($this->data->air_date)) {
             return $this->data->air_date;
@@ -39,12 +39,12 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * @codeCoverageIgnore
      * @throws NotYetImplementedException
      */
-    public function getCrew(): \Generator
+    public function getCrew()
     {
         throw new NotYetImplementedException;
     }
 
-    public function getEpisodeNumber(): int
+    public function getEpisodeNumber()
     {
         if (isset($this->data->episode_number)) {
             return $this->data->episode_number;
@@ -56,12 +56,12 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * @codeCoverageIgnore
      * @throws NotYetImplementedException
      */
-    public function getGuestStars(): \Generator
+    public function getGuestStars()
     {
         throw new NotYetImplementedException;
     }
 
-    public function getName(): string
+    public function getName()
     {
         if (isset($this->data->name)) {
             return $this->data->name;
@@ -69,7 +69,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
-    public function getNote(): float
+    public function getNote()
     {
         if (isset($this->data->vote_average)) {
             return $this->data->vote_average;
@@ -77,7 +77,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return 0;
     }
 
-    public function getNoteCount(): int
+    public function getNoteCount()
     {
         if (isset($this->data->vote_count)) {
             return (int) $this->data->vote_count;
@@ -85,7 +85,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return 0;
     }
 
-    public function getOverview(): string
+    public function getOverview()
     {
         if (isset($this->data->overview)) {
             return $this->data->overview;
@@ -93,7 +93,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
-    public function getProductionCode(): string
+    public function getProductionCode()
     {
         if (isset($this->data->production_code)) {
             return $this->data->production_code;
@@ -101,7 +101,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
-    public function getSeasonNumber(): int
+    public function getSeasonNumber()
     {
         if (isset($this->data->season_number)) {
             return (int) $this->data->season_number;
@@ -109,7 +109,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return 0;
     }
 
-    public function getStillPath(): string
+    public function getStillPath()
     {
         if (isset($this->data->still_path)) {
             return $this->data->still_path;

@@ -14,7 +14,7 @@ class Movie extends Item implements MovieInterface
      * @param int $movie_id
      * @param array $options
      */
-    public function __construct(Tmdb $tmdb, int $movie_id, array $options = array())
+    public function __construct(Tmdb $tmdb, $movie_id, array $options = array())
     {
         parent::__construct($tmdb, $movie_id, $options, 'movie');
     }
@@ -23,7 +23,7 @@ class Movie extends Item implements MovieInterface
      * Get movie genres
      * @return array
      */
-    public function getGenres(): array
+    public function getGenres()
     {
         if (isset($this->data->genres)) {
             return $this->data->genres;
@@ -35,7 +35,7 @@ class Movie extends Item implements MovieInterface
      * Get movie title
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         if (isset($this->data->title)) {
             return $this->data->title;
@@ -47,7 +47,7 @@ class Movie extends Item implements MovieInterface
      * Get movie overview
      * @return string
      */
-    public function getOverview(): string
+    public function getOverview()
     {
         if (isset($this->data->overview)) {
             return $this->data->overview;
@@ -59,7 +59,7 @@ class Movie extends Item implements MovieInterface
      * Get movie release date
      * @return string
      */
-    public function getReleaseDate(): string
+    public function getReleaseDate()
     {
         if (isset($this->data->release_date)) {
             return $this->data->release_date;
@@ -71,7 +71,7 @@ class Movie extends Item implements MovieInterface
      * Get movie original title
      * @return string
      */
-    public function getOriginalTitle(): string
+    public function getOriginalTitle()
     {
         if (isset($this->data->original_title)) {
             return $this->data->original_title;
@@ -83,7 +83,7 @@ class Movie extends Item implements MovieInterface
      * Get movie note
      * @return float
      */
-    public function getNote(): float
+    public function getNote()
     {
         if (isset($this->data->vote_average)) {
             return $this->data->vote_average;
@@ -95,7 +95,7 @@ class Movie extends Item implements MovieInterface
      * Get movie id
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -104,7 +104,7 @@ class Movie extends Item implements MovieInterface
      * Get IMDB movie id
      * @return string
      */
-    public function getIMDBId(): string
+    public function getIMDBId()
     {
         if (isset($this->data->imdb_id)) {
             return $this->data->imdb_id;
@@ -116,7 +116,7 @@ class Movie extends Item implements MovieInterface
      * Get movie tagline
      * @return string
      */
-    public function getTagLine(): string
+    public function getTagLine()
     {
         if (isset($this->data->tagline)) {
             return $this->data->tagline;
@@ -128,7 +128,7 @@ class Movie extends Item implements MovieInterface
      * Get collection id
      * @return int
      */
-    public function getCollectionId(): int
+    public function getCollectionId()
     {
         if (!empty($this->data->belongs_to_collection)) {
             return (int) $this->data->belongs_to_collection->id;

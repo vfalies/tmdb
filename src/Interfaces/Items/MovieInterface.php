@@ -9,68 +9,68 @@ interface MovieInterface
      * Get movie genres
      * @return array
      */
-    public function getGenres() : array;
+    public function getGenres();
     /**
      * Get movie title
      * @return string
      */
-    public function getTitle() : string;
+    public function getTitle();
 
     /**
      * Get movie overview
      * @return string
      */
-    public function getOverview() : string;
+    public function getOverview();
 
     /**
      * Get movie release date
      * @return string
      */
-    public function getReleaseDate() : string;
+    public function getReleaseDate();
 
     /**
      * Get movie original title
      * @return string
      */
-    public function getOriginalTitle() : string;
+    public function getOriginalTitle();
 
     /**
      * Get movie note
      * @return float
      */
-    public function getNote() : float;
+    public function getNote();
 
     /**
      * Get movie id
      * @return int
      */
-    public function getId() : int;
+    public function getId();
 
     /**
      * Get IMDB movie id
      * @return int
      */
-    public function getIMDBId() : string;
+    public function getIMDBId();
 
     /**
      * Get movie tagline
      * @return string
      */
-    public function getTagLine() : string;
+    public function getTagLine();
 
     /**
      * Get collection id
      * @return int
      */
-    public function getCollectionId() : int;
+    public function getCollectionId();
 
     /**
      * Get poster path
      */
-    public function getPosterPath(): string;
+    public function getPosterPath();
 
     /**
      * Get backdrop path
      */
-    public function getBackdropPath(): string;
+    public function getBackdropPath();
 }

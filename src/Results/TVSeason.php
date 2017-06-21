@@ -32,22 +32,22 @@ class TVSeason extends Results implements TVSeasonResultsInterface
         $this->season_number = $this->data->season_number;
     }
 
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getAirDate(): string
+    public function getAirDate()
     {
         return $this->air_date;
     }
 
-    public function getEpisodeCount(): int
+    public function getEpisodeCount()
     {
         return (int) $this->episode_count;
     }
 
-    public function getSeasonNumber(): int
+    public function getSeasonNumber()
     {
         return (int) $this->season_number;
     }

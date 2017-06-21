@@ -2,7 +2,7 @@
 
 namespace vfalies\tmdb\Exceptions;
 
-use vfalies\tmdb\TmdbException;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 class MissingDependencyException extends TmdbException
 {

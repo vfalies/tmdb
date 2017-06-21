@@ -1,8 +1,8 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace vfalies\tmdb\Exceptions;
 
 class TmdbException extends \RuntimeException
 {
-    
+
 }

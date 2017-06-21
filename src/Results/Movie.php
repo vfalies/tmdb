@@ -39,7 +39,7 @@ class Movie extends Results implements MovieResultsInterface
      * Get movie ID
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return (int) $this->id;
     }
@@ -48,7 +48,7 @@ class Movie extends Results implements MovieResultsInterface
      * Get movie overview
      * @return string
      */
-    public function getOverview(): string
+    public function getOverview()
     {
         return $this->overview;
     }
@@ -57,7 +57,7 @@ class Movie extends Results implements MovieResultsInterface
      * Get movie release date
      * @return string
      */
-    public function getReleaseDate(): string
+    public function getReleaseDate()
     {
         return $this->release_date;
     }
@@ -66,7 +66,7 @@ class Movie extends Results implements MovieResultsInterface
      * Get movie original title
      * @return string
      */
-    public function getOriginalTitle(): string
+    public function getOriginalTitle()
     {
         return $this->original_title;
     }
@@ -75,7 +75,7 @@ class Movie extends Results implements MovieResultsInterface
      * Get movie title
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
