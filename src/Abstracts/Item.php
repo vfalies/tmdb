@@ -5,9 +5,11 @@ namespace vfalies\tmdb\Abstracts;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\TmdbException;
+use vfalies\tmdb\Traits\ElementTrait;
 
-abstract class Item extends Element
+abstract class Item
 {
+    use ElementTrait;
 
     protected $id     = null;
     protected $tmdb   = null;

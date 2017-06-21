@@ -6,7 +6,7 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Interfaces\Results\ResultsInterface;
 
-abstract class Results extends Element implements ResultsInterface
+abstract class Results implements ResultsInterface
 {
 
     protected $id                 = null;
@@ -22,7 +22,7 @@ abstract class Results extends Element implements ResultsInterface
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {
         $this->logger = $tmdb->logger;
-        
+
         // Valid input object
         $properties   = get_object_vars($this);
         foreach (array_keys($properties) as $property) {

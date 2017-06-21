@@ -5,9 +5,11 @@ namespace vfalies\tmdb\Results;
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\TVSeasonResultsInterface;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class TVSeason extends Results implements TVSeasonResultsInterface
 {
+    use ElementTrait;
 
     protected $episode_count = 0;
     protected $season_number = 0;

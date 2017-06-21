@@ -5,9 +5,11 @@ namespace vfalies\tmdb\Results;
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\CollectionResultsInterface;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class Collection extends Results implements CollectionResultsInterface
 {
+    use ElementTrait;
 
     protected $name          = null;
     protected $poster_path   = null;
