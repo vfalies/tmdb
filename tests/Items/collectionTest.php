@@ -143,7 +143,12 @@ class CollectionTest extends TestCase
         $parts = $collection->getParts();
 
         $this->assertInstanceOf(\Generator::class, $parts);
-        $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $parts->current());
+        //$this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $parts->current());
+
+        foreach ($parts as $part)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $part);
+        }
     }
 
     /**

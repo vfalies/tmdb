@@ -346,7 +346,10 @@ class TVShowTest extends TestCase
 
         $seasons = $TVShow->getSeasons();
         $this->assertInstanceOf(\Generator::class, $seasons);
-        $this->assertInstanceOf(\vfalies\tmdb\Results\TVSeason::class, $seasons->current());
+        foreach ($seasons as $season)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\TVSeason::class, $season);
+        }
     }
 
     /**
