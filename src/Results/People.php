@@ -4,8 +4,9 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Interfaces\Results\PeopleResultsInterface;
 
-class People extends Results
+class People extends Results implements PeopleResultsInterface
 {
 
     /**
@@ -20,6 +21,31 @@ class People extends Results
     }
 
     public function getId()
+    {
+
+    }
+
+    public function getAdult()
+    {
+
+    }
+
+    public function getKnownFor()
+    {
+
+    }
+
+    public function getName()
+    {
+
+    }
+
+    public function getPopularity()
+    {
+
+    }
+
+    public function getProfilePath()
     {
 
     }
