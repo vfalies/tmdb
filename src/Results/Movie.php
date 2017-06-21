@@ -4,19 +4,22 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Interfaces\Results\MovieResultsInterface;
 
-class Movie extends Results
+class Movie extends Results implements MovieResultsInterface
 {
+
     protected $overview       = null;
     protected $release_date   = null;
     protected $original_title = null;
     protected $title          = null;
+    protected $poster_path    = null;
+    protected $backdrop_path  = null;
 
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @param \stdClass $result
-     * @throws \Exception
      */
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {
@@ -36,7 +39,7 @@ class Movie extends Results
      * Get movie ID
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return (int) $this->id;
     }
@@ -45,7 +48,7 @@ class Movie extends Results
      * Get movie overview
      * @return string
      */
-    public function getOverview(): string
+    public function getOverview()
     {
         return $this->overview;
     }
@@ -54,7 +57,7 @@ class Movie extends Results
      * Get movie release date
      * @return string
      */
-    public function getReleaseDate(): string
+    public function getReleaseDate()
     {
         return $this->release_date;
     }
@@ -63,7 +66,7 @@ class Movie extends Results
      * Get movie original title
      * @return string
      */
-    public function getOriginalTitle(): string
+    public function getOriginalTitle()
     {
         return $this->original_title;
     }
@@ -72,9 +75,8 @@ class Movie extends Results
      * Get movie title
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
-
 }

@@ -18,7 +18,7 @@ class MovieTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key'))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -67,6 +67,18 @@ class MovieTest extends TestCase
 
     /**
      * @test
+     * @expectedException \vfalies\tmdb\Exceptions\NotFoundException
+     */
+    public function testContructFailed()
+    {
+        $result = new \stdClass();
+        $result->not_property = 'test';
+
+        new \vfalies\tmdb\Results\Movie($this->tmdb, $result);
+    }
+
+    /**
+     * @test
      */
     public function testGetOverview()
     {
@@ -108,69 +120,4 @@ class MovieTest extends TestCase
         $this->assertInternalType('string', $this->result->getTitle());
         $this->assertEquals('La Guerre des étoiles', $this->result->getTitle());
     }
-
-    /**
-     * @test
-     */
-    public function testGetPoster()
-    {
-        $this->sendRequestOk();
-
-        $this->assertNotFalse(filter_var($this->result->getPoster(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterConfNok()
-    {
-        $this->sendRequestConfNok();
-
-        $this->result->getPoster();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterSizeNok()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getPoster('w184');
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdrop()
-    {
-        $this->sendRequestOk();
-
-        $this->assertNotFalse(filter_var($this->result->getBackdrop(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropConfNok()
-    {
-        $this->sendRequestConfNok();
-
-        $this->result->getBackdrop();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropSizeNok()
-    {
-        $this->sendRequestOk();
-
-        $this->result->getBackdrop('w184');
-    }
-
 }

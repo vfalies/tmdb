@@ -3,7 +3,7 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\MovieInterface;
+use vfalies\tmdb\Interfaces\Items\MovieInterface;
 use vfalies\tmdb\Tmdb;
 
 class Movie extends Item implements MovieInterface
@@ -13,9 +13,8 @@ class Movie extends Item implements MovieInterface
      * @param \vfalies\tmdb\Tmdb $tmdb
      * @param int $movie_id
      * @param array $options
-     * @throws Exception
      */
-    public function __construct(Tmdb $tmdb, int $movie_id, array $options = array())
+    public function __construct(Tmdb $tmdb, $movie_id, array $options = array())
     {
         parent::__construct($tmdb, $movie_id, $options, 'movie');
     }
@@ -24,10 +23,9 @@ class Movie extends Item implements MovieInterface
      * Get movie genres
      * @return array
      */
-    public function getGenres(): array
+    public function getGenres()
     {
-        if (isset($this->data->genres))
-        {
+        if (isset($this->data->genres)) {
             return $this->data->genres;
         }
         return [];
@@ -37,10 +35,9 @@ class Movie extends Item implements MovieInterface
      * Get movie title
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
-        if (isset($this->data->title))
-        {
+        if (isset($this->data->title)) {
             return $this->data->title;
         }
         return '';
@@ -50,10 +47,9 @@ class Movie extends Item implements MovieInterface
      * Get movie overview
      * @return string
      */
-    public function getOverview(): string
+    public function getOverview()
     {
-        if (isset($this->data->overview))
-        {
+        if (isset($this->data->overview)) {
             return $this->data->overview;
         }
         return '';
@@ -63,10 +59,9 @@ class Movie extends Item implements MovieInterface
      * Get movie release date
      * @return string
      */
-    public function getReleaseDate(): string
+    public function getReleaseDate()
     {
-        if (isset($this->data->release_date))
-        {
+        if (isset($this->data->release_date)) {
             return $this->data->release_date;
         }
         return '';
@@ -76,10 +71,9 @@ class Movie extends Item implements MovieInterface
      * Get movie original title
      * @return string
      */
-    public function getOriginalTitle(): string
+    public function getOriginalTitle()
     {
-        if (isset($this->data->original_title))
-        {
+        if (isset($this->data->original_title)) {
             return $this->data->original_title;
         }
         return '';
@@ -89,10 +83,9 @@ class Movie extends Item implements MovieInterface
      * Get movie note
      * @return float
      */
-    public function getNote(): float
+    public function getNote()
     {
-        if (isset($this->data->vote_average))
-        {
+        if (isset($this->data->vote_average)) {
             return $this->data->vote_average;
         }
         return 0;
@@ -102,7 +95,7 @@ class Movie extends Item implements MovieInterface
      * Get movie id
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -111,10 +104,9 @@ class Movie extends Item implements MovieInterface
      * Get IMDB movie id
      * @return string
      */
-    public function getIMDBId(): string
+    public function getIMDBId()
     {
-        if (isset($this->data->imdb_id))
-        {
+        if (isset($this->data->imdb_id)) {
             return $this->data->imdb_id;
         }
         return '';
@@ -124,10 +116,9 @@ class Movie extends Item implements MovieInterface
      * Get movie tagline
      * @return string
      */
-    public function getTagLine(): string
+    public function getTagLine()
     {
-        if (isset($this->data->tagline))
-        {
+        if (isset($this->data->tagline)) {
             return $this->data->tagline;
         }
         return '';
@@ -137,13 +128,11 @@ class Movie extends Item implements MovieInterface
      * Get collection id
      * @return int
      */
-    public function getCollectionId(): int
+    public function getCollectionId()
     {
-        if (!empty($this->data->belongs_to_collection))
-        {
+        if (!empty($this->data->belongs_to_collection)) {
             return (int) $this->data->belongs_to_collection->id;
         }
         return 0;
     }
-
 }

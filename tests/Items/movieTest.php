@@ -19,7 +19,7 @@ class MovieTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key'))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -199,7 +199,6 @@ class MovieTest extends TestCase
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
-        $this->assertInternalType('double', $movie->getNote());
         $this->assertEquals('8', $movie->getNote());
     }
 
@@ -339,101 +338,4 @@ class MovieTest extends TestCase
         $this->assertEmpty($movie->getBackdropPath());
     }
 
-    /**
-     * @test
-     */
-    public function testGetPoster()
-    {
-        $this->setRequestOk();
-
-        $movie = new Movie($this->tmdb, $this->movie_id);
-
-        $this->assertNotFalse(filter_var($movie->getPoster(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     */
-    public function testGetPosterFailure()
-    {
-        $this->setRequestMovieEmpty();
-
-        $movie = new Movie($this->tmdb, $this->movie_id);
-
-        $this->assertEmpty($movie->getPoster());
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterFailureConf()
-    {
-        $this->setRequestConfigurationEmpty();
-
-        $movie = new Movie($this->tmdb, $this->movie_id);
-        $movie->getPoster();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetPosterFailureSize()
-    {
-        $this->setRequestOk();
-
-        $movie = new Movie($this->tmdb, $this->movie_id);
-
-        $movie->getPoster('w184');
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdrop()
-    {
-        $this->setRequestOk();
-
-        $movie = new Movie($this->tmdb, $this->movie_id);
-
-        $this->assertNotFalse(filter_var($movie->getBackdrop(), FILTER_VALIDATE_URL));
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBackdropFailure()
-    {
-        $this->setRequestMovieEmpty();
-
-        $movie = new Movie($this->tmdb, $this->movie_id);
-
-        $this->assertEmpty($movie->getBackdrop());
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropFailureConf()
-    {
-        $this->setRequestConfigurationEmpty();
-
-        $movie = new Movie($this->tmdb, $this->movie_id);
-        $movie->getBackdrop();
-    }
-
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function testGetBackdropFailureSize()
-    {
-        $this->setRequestOk();
-
-        $movie = new Movie($this->tmdb, $this->movie_id);
-
-        $movie->getBackdrop('w184');
-    }
 }

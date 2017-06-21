@@ -3,8 +3,9 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\CollectionInterface;
+use vfalies\tmdb\Interfaces\Items\CollectionInterface;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Exceptions\NotFoundException;
 
 class Collection extends Item implements CollectionInterface
 {
@@ -21,7 +22,7 @@ class Collection extends Item implements CollectionInterface
      * @param int $collection_id
      * @param array $options
      */
-    public function __construct(Tmdb $tmdb, int $collection_id, array $options = array())
+    public function __construct(Tmdb $tmdb, $collection_id, array $options = array())
     {
         parent::__construct($tmdb, $collection_id, $options, 'collection');
     }
@@ -29,9 +30,8 @@ class Collection extends Item implements CollectionInterface
     /**
      * Get collection ID
      * @return int
-     * @throws \Exception
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -39,31 +39,28 @@ class Collection extends Item implements CollectionInterface
     /**
      * Get collection name
      * @return string
-     * @throws \Exception
+     * @throws NotFoundException
      */
-    public function getName(): string
+    public function getName()
     {
-        if (isset($this->data->name))
-        {
+        if (isset($this->data->name)) {
             return $this->data->name;
         }
-        throw new \Exception('Collection name can not be found');
+        $this->logger->error('Collection name not found', array('collection_id' => $this->id));
+        throw new NotFoundException;
     }
 
     /**
      * Get collection parts
      * @return Generator
      */
-    public function getParts(): \Generator
+    public function getParts()
     {
-        if (!empty($this->data->parts))
-        {
-            foreach ($this->data->parts as $part)
-            {
+        if (!empty($this->data->parts)) {
+            foreach ($this->data->parts as $part) {
                 $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
                 yield $movie;
             }
         }
     }
-
 }

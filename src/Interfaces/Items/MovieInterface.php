@@ -1,0 +1,76 @@
+<?php
+
+namespace vfalies\tmdb\Interfaces\Items;
+
+interface MovieInterface
+{
+
+    /**
+     * Get movie genres
+     * @return array
+     */
+    public function getGenres();
+    /**
+     * Get movie title
+     * @return string
+     */
+    public function getTitle();
+
+    /**
+     * Get movie overview
+     * @return string
+     */
+    public function getOverview();
+
+    /**
+     * Get movie release date
+     * @return string
+     */
+    public function getReleaseDate();
+
+    /**
+     * Get movie original title
+     * @return string
+     */
+    public function getOriginalTitle();
+
+    /**
+     * Get movie note
+     * @return float
+     */
+    public function getNote();
+
+    /**
+     * Get movie id
+     * @return int
+     */
+    public function getId();
+
+    /**
+     * Get IMDB movie id
+     * @return int
+     */
+    public function getIMDBId();
+
+    /**
+     * Get movie tagline
+     * @return string
+     */
+    public function getTagLine();
+
+    /**
+     * Get collection id
+     * @return int
+     */
+    public function getCollectionId();
+
+    /**
+     * Get poster path
+     */
+    public function getPosterPath();
+
+    /**
+     * Get backdrop path
+     */
+    public function getBackdropPath();
+}

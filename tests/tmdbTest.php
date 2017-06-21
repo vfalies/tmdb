@@ -1,24 +1,17 @@
 <?php
 
 namespace vfalies\tmdb;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 class TmdbTest extends \PHPUnit_Framework_TestCase
 {
-
-    protected function setUp()
-    {
-        if (!extension_loaded('curl'))
-        {
-            $this->markTestSkipped('cUrl extension is not loaded');
-        }
-    }
 
     /**
      * @test
      */
     public function testCheckOptionsOk()
     {
-        $tmdb = new Tmdb('fake_api_key');
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
         $options = $tmdb->checkOptions(array('year'          => '2014',
             'language'      => 'fr-FR',
             'include_adult' => false,
@@ -37,21 +30,11 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \TypeError
-     */
-    public function testCheckOptionsYearNOK()
-    {
-        $tmdb = new Tmdb('fake_api_key');
-        $tmdb->checkOptions(array('year' => 'abcd'));
-    }
-
-    /**
-     * @test
      * @expectedException \Exception
      */
     public function testCheckOptionsLanguageNOK()
     {
-        $tmdb = new Tmdb('fake_api_key');
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
         $tmdb->checkOptions(array('language' => 'fr'));
     }
 
@@ -60,9 +43,8 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetConfigurationOK()
     {
-        $tmdb = new Tmdb('fake_api_key');
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key'))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
@@ -76,93 +58,101 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Exception
+     * @expectedException vfalies\tmdb\Exceptions\TmdbException
      */
     public function testGetConfigurationNOK()
     {
-        $tmdb = new Tmdb('fake_api_key');
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key'))
+                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
-        $tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+        $tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
         $tmdb->getConfiguration();
     }
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
-     * @expectedExceptionCode 1005
      */
     public function testSendRequestHttpError()
     {
-        $tmdb = new Tmdb('fake_api_key');
-        $tmdb->sendRequest(new lib\CurlRequest(), 'fake/');
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
+
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['getResponse'])
+        ->getMock();
+
+        $http_request->method('getResponse')->willReturn($guzzleclient);
+
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
+        $tmdb->sendRequest($http_request, 'fake/');
     }
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
      */
     public function testSendRequestExecError()
     {
-        $tmdb = new Tmdb('fake_api_key');
-        $tmdb->base_api_url = 'invalid_url';
-        $tmdb->sendRequest(new lib\CurlRequest(), 'action');
-    }
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
 
-    /**
-     * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
-     * @expectedException \Exception
-     * @expectedExceptionCode 1006
-     */
-    public function testSendRequestHttpError429()
-    {
-        $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\lib\CurlRequest::class)
-        ->setMethods(['getInfo'])
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['getResponse'])
         ->getMock();
-        $http_request->method('getInfo')->willReturn(429);
 
+        $http_request->method('getResponse')->willReturn($guzzleclient);
+
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
+        $tmdb->base_api_url = 'invalid_url';
         $tmdb->sendRequest($http_request, 'action');
     }
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      * @expectedException \Exception
-     * @expectedExceptionCode 2001
      */
     public function testSendRequestHttpErrorNotJson()
     {
-        $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\lib\CurlRequest::class)
-        ->setMethods(['getInfo','execute'])
-        ->getMock();
-        $http_request->method('getInfo')->willReturn(200);
-        $http_request->method('execute')->willReturn('Not JSON');
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
 
+        $guzzleclient->method('getBody')->willReturn('Not JSON');
+
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['getResponse'])
+        ->getMock();
+
+        $http_request->method('getResponse')->willReturn($guzzleclient);
+
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
         $tmdb->sendRequest($http_request, 'action');
 
     }
 
     /**
      * @test
-     * @covers \vfalies\tmdb\Tmdb::sendRequest
      */
     public function testSendRequestOk()
     {
-        $tmdb = new Tmdb('fake_api_key');
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\lib\CurlRequest::class)
-        ->setMethods(['getInfo','execute'])
+        $tmdb = new Tmdb('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
+
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
+
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['getResponse'])
         ->getMock();
-        $http_request->method('getInfo')->willReturn(200);
-        $http_request->method('execute')->willReturn(file_get_contents('tests/json/configurationOk.json'));
+
+        $guzzleclient->method('getBody')->willReturn(file_get_contents('tests/json/configurationOk.json'));
+        $http_request->method('getResponse')->willReturn($guzzleclient);
 
         $result = $tmdb->sendRequest($http_request, '/test', 'param=1');
 
