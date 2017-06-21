@@ -19,29 +19,9 @@ class People extends Results
         parent::__construct($tmdb, $result);
     }
 
-    public function getId(): int
+    public function getId()
     {
-        return (int) $this->data->id;
-    }
 
-    public function getOriginalTitle(): string
-    {
-        throw new \Exception('Not applicable');
-    }
-
-    public function getOverview(): string
-    {
-        throw new \Exception('Not applicable');
-    }
-
-    public function getReleaseDate(): string
-    {
-        throw new \Exception('Not applicable');
-    }
-
-    public function getTitle(): string
-    {
-        throw new \Exception('Not applicable');
     }
 
 }

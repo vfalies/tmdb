@@ -4,6 +4,7 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\PeopleInterface;
+use vfalies\tmdb\Tmdb;
 
 class People extends Item implements PeopleInterface
 {
@@ -15,12 +16,12 @@ class People extends Item implements PeopleInterface
      * @param array $options
      * @throws Exception
      */
-    public function __construct(Tmdb $tmdb, int $people_id, array $options = array())
+    public function __construct(Tmdb $tmdb, $people_id, array $options = array())
     {
         parent::__construct($tmdb, $people_id, $options, 'people');
     }
 
-    public function getAdult(): bool
+    public function getAdult()
     {
         if (isset($this->data->adult))
         {
@@ -29,7 +30,7 @@ class People extends Item implements PeopleInterface
         return false;
     }
 
-    public function getAlsoKnownAs(): array
+    public function getAlsoKnownAs()
     {
         if (isset($this->data->also_known_as))
         {
@@ -38,7 +39,7 @@ class People extends Item implements PeopleInterface
         return [];
     }
 
-    public function getBiography(): string
+    public function getBiography()
     {
         if (isset($this->data->biography))
         {
@@ -47,7 +48,7 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
-    public function getBirthday(): string
+    public function getBirthday()
     {
         if (isset($this->data->birthday))
         {
@@ -56,7 +57,7 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
-    public function getDeathday(): string
+    public function getDeathday()
     {
         if (isset($this->data->deathday))
         {
@@ -65,7 +66,7 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
-    public function getGender(): int
+    public function getGender()
     {
         if (isset($this->data->gender))
         {
@@ -74,7 +75,7 @@ class People extends Item implements PeopleInterface
         return 0;
     }
 
-    public function getHomepage(): string
+    public function getHomepage()
     {
         if (isset($this->data->homepage))
         {
@@ -83,7 +84,7 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
-    public function getId(): int
+    public function getId()
     {
         if (isset($this->data->id))
         {
@@ -92,16 +93,16 @@ class People extends Item implements PeopleInterface
         return 0;
     }
 
-    public function getImdbId(): int
+    public function getImdbId()
     {
         if (isset($this->data->imdb_id))
         {
             return $this->data->imdb_id;
         }
-        return 0;
+        return '';
     }
 
-    public function getName(): string
+    public function getName()
     {
         if (isset($this->data->name))
         {
@@ -110,7 +111,7 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
-    public function getPlaceOfBirth(): string
+    public function getPlaceOfBirth()
     {
         if (isset($this->data->place_of_birth))
         {
@@ -119,7 +120,7 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
-    public function getPopularity(): float
+    public function getPopularity()
     {
         if (isset($this->data->popularity))
         {
@@ -128,7 +129,7 @@ class People extends Item implements PeopleInterface
         return 0;
     }
 
-    public function getProfilePath(): string
+    public function getProfilePath()
     {
         if (isset($this->data->profile_path))
         {

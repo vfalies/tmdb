@@ -70,10 +70,14 @@ class Item
      * Get People details
      * @param int $people_id
      * @param array $options
-     * @return People
+     * @return \vfalies\tmdb\Items\People
      */
-    public function getPeople(int $people_id, array $options = array()) : People
+    public function getPeople($people_id, array $options = array())
     {
+        $this->logger->debug('Starting getting people');
         $people = new People($this->tmdb, $people_id, $options);
+
+        return $people;
+    }
 
 }

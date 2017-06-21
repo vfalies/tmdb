@@ -5,29 +5,29 @@ namespace vfalies\tmdb\Interfaces;
 interface PeopleInterface
 {
 
-    public function getAdult(): bool;
+    public function getAdult();
 
-    public function getAlsoKnownAs(): array;
+    public function getAlsoKnownAs();
 
-    public function getBiography() : string;
+    public function getBiography();
 
-    public function getBirthday() : string;
+    public function getBirthday();
 
-    public function getDeathday() : string;
+    public function getDeathday();
 
-    public function getGender() : int;
+    public function getGender();
 
-    public function getHomepage() : string;
+    public function getHomepage();
 
-    public function getId() : int;
+    public function getId();
 
-    public function getImdbId() : int;
+    public function getImdbId();
 
-    public function getName() : string;
+    public function getName();
 
-    public function getPlaceOfBirth() : string;
+    public function getPlaceOfBirth();
 
-    public function getPopularity() : float;
+    public function getPopularity();
 
-    public function getProfilePath() : string;
+    public function getProfilePath();
 }
