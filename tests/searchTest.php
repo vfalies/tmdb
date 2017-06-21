@@ -62,8 +62,8 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
      * @test
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
      */
     public function testSearchMovieInvalidOption()
     {
@@ -73,8 +73,8 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
      * @test
+     * @expectedException vfalies\tmdb\Exceptions\IncorrectParamException
      */
     public function testSearchMovieEmptyQuery()
     {
@@ -101,7 +101,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
      * @test
      */
     public function testSearchTVShowInvalidOption()
@@ -112,7 +112,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
      * @test
      */
     public function testSearchTVShowEmptyQuery()
@@ -140,7 +140,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
      * @test
      */
     public function testSearchCollectionInvalidOption()
@@ -151,7 +151,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
      * @test
      */
     public function testSearchCollectionEmptyQuery()

@@ -60,11 +60,11 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \vfalies\tmdb\TmdbException
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
      */
     public function testContructFailure()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new \vfalies\tmdb\TmdbException()));
+        $this->tmdb->method('sendRequest')->will($this->throwException(new \vfalies\tmdb\Exceptions\TmdbException()));
 
         new Collection($this->tmdb, $this->collection_id);
     }

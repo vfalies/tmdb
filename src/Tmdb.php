@@ -6,6 +6,7 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Interfaces\HttpRequestInterface;
 use Psr\Log\LoggerInterface;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\Exceptions\ServerErrorException;
 

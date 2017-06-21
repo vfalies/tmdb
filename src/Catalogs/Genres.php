@@ -5,7 +5,7 @@ namespace vfalies\tmdb\Catalogs;
 use vfalies\tmdb\Interfaces\GenresInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
-use vfalies\tmdb\TmdbException;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 class Genres implements GenresInterface
 {

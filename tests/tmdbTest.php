@@ -1,7 +1,7 @@
 <?php
 
 namespace vfalies\tmdb;
-use vfalies\tmdb\TmdbException;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 class TmdbTest extends \PHPUnit_Framework_TestCase
 {
@@ -58,7 +58,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\TmdbException
+     * @expectedException vfalies\tmdb\Exceptions\TmdbException
      */
     public function testGetConfigurationNOK()
     {

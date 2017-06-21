@@ -4,6 +4,7 @@ namespace vfalies\tmdb;
 
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 class Search
 {
@@ -32,7 +33,7 @@ class Search
      * @param array $options Array of options for the request
      * @param string $result_class class name of the wanted result
      * @return \Generator
-     * @throws IncorrectParamException
+     * @throws TmdbException
      */
     private function searchItem($item, $query, array $options, $result_class)
     {

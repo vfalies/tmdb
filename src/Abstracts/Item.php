@@ -4,7 +4,7 @@ namespace vfalies\tmdb\Abstracts;
 
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
-use vfalies\tmdb\TmdbException;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 abstract class Item extends Element
 {
