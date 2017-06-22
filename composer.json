@@ -18,7 +18,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.8 < 6.0",
-	"sami/sami": "~3.3.0",
         "monolog/monolog": "~1.22.1"
     },
     "suggest": {
