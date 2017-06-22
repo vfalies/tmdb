@@ -1,9 +1,10 @@
 <?php
 
-namespace vfalies\tmdb\Abstracts;
+namespace vfalies\tmdb\Traits;
 
-abstract class Element
+trait ElementTrait
 {
+
     protected $data = null;
     protected $conf = null;
 
@@ -12,7 +13,8 @@ abstract class Element
      */
     public function getPosterPath()
     {
-        if (isset($this->data->poster_path)) {
+        if (isset($this->data->poster_path))
+        {
             return $this->data->poster_path;
         }
         return '';
@@ -23,9 +25,11 @@ abstract class Element
      */
     public function getBackdropPath()
     {
-        if (isset($this->data->backdrop_path)) {
+        if (isset($this->data->backdrop_path))
+        {
             return $this->data->backdrop_path;
         }
         return '';
     }
+
 }

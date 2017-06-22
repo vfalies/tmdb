@@ -6,9 +6,11 @@ use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\TVEpisodeResultsInterface;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class TVEpisode extends Results implements TVEpisodeResultsInterface
 {
+    use ElementTrait;
 
     protected $episode_number  = 0;
     protected $name            = '';

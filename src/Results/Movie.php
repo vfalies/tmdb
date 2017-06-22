@@ -5,9 +5,11 @@ namespace vfalies\tmdb\Results;
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\MovieResultsInterface;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class Movie extends Results implements MovieResultsInterface
 {
+    use ElementTrait;
 
     protected $overview       = null;
     protected $release_date   = null;

@@ -5,9 +5,11 @@ namespace vfalies\tmdb\Results;
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\TVShowResultsInterface;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class TVShow extends Results implements TVShowResultsInterface
 {
+    use ElementTrait;
 
     protected $overview       = null;
     protected $first_air_date = null;

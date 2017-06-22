@@ -5,6 +5,7 @@ namespace vfalies\tmdb;
 use vfalies\tmdb\Items\Movie;
 use vfalies\tmdb\Items\Collection;
 use vfalies\tmdb\Items\TVShow;
+use vfalies\tmdb\Items\People;
 
 class Item
 {
@@ -16,6 +17,7 @@ class Item
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
      */
+
     public function __construct(Tmdb $tmdb)
     {
         $this->tmdb   = $tmdb;
@@ -63,4 +65,19 @@ class Item
 
         return $tv;
     }
+
+    /**
+     * Get People details
+     * @param int $people_id
+     * @param array $options
+     * @return \vfalies\tmdb\Items\People
+     */
+    public function getPeople($people_id, array $options = array())
+    {
+        $this->logger->debug('Starting getting people');
+        $people = new People($this->tmdb, $people_id, $options);
+
+        return $people;
+    }
+
 }
