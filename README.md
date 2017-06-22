@@ -69,8 +69,7 @@ $ make test
 
 ### Requirements
 
-- Tmdb works with PHP 7.1 and higher
-- Curl extension
+- Tmdb works with PHP 5.6 and higher
 - TheMovieDatabase API key
 
 ### Submitting bugs and feature requests
