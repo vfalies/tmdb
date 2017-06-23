@@ -188,4 +188,57 @@ class SearchTest extends TestCase
         $this->assertEquals(106, $search->getTotalResults());
     }
 
+    /**
+     * @test
+     */
+    public function testSearchPeopleValid()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/searchPeopleOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search    = new Search($this->tmdb);
+        $responses = $search->searchPeople('Bradley Cooper', array('language' => 'fr-FR'));
+
+        $this->assertInstanceOf(\Generator::class, $responses);
+        $this->assertInstanceOf(Results\People::class, $responses->current());
+
+        return $search;
+    }
+
+    /**
+     * @test
+     */
+    public function testSearchPeopleEmptyValid()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/searchPeopleEmptyOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search    = new Search($this->tmdb);
+        $responses = $search->searchPeople('search_with_no_result', array('language' => 'fr-FR'));
+
+        $this->assertInstanceOf(\Generator::class, $responses);
+        $this->assertNull($responses->current());
+    }
+
+    /**
+     * @test
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     */
+    public function testSearchPeopleInvalidOption()
+    {
+        $search = new Search($this->tmdb);
+
+        $search->searchPeople('Bradley Cooper', array('fake_option' => 'test'));
+    }
+
+    /**
+     * @test
+     * @expectedException vfalies\tmdb\Exceptions\IncorrectParamException
+     */
+    public function testSearchPeopleEmptyQuery()
+    {
+        $search = new Search($this->tmdb);
+
+        $search->searchPeople('');
+    }
 }
