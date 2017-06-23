@@ -55,14 +55,6 @@ $infos = $item->getMovie(11, array('language' => 'fr-FR');
 echo $infos->getTitle();
 ```
 
-## Documentation
-
-The generated documentation can be creeted with the follwing command :
-
-```
-$ make docs
-```
-
 The destination of the generation is `docs/` repository.
 
 ## Unit Testing
@@ -77,8 +69,7 @@ $ make test
 
 ### Requirements
 
-- Tmdb works with PHP 7.1 and higher
-- Curl extension
+- Tmdb works with PHP 5.6 and higher
 - TheMovieDatabase API key
 
 ### Submitting bugs and feature requests
