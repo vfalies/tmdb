@@ -124,6 +124,23 @@ class Search
     }
 
     /**
+     * Search a people
+     * @param string $query Query string to search like a people
+     * @param array $options Array of option for the request
+     * @return \Generator|Results\People
+     * @throws TmdbException
+     */
+    public function searchPeople($query, array $options = array())
+    {
+        try {
+            $this->logger->debug('Starting search people');
+            return $this->searchItem('people', $query, $options, __NAMESPACE__ . "\\Results\\" . 'People');
+        } catch (TmdbException $ex) {
+            throw $ex;
+        }
+    }
+
+    /**
      * Get page from result search
      * @return int
      */
