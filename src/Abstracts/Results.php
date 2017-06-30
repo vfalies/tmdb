@@ -12,6 +12,8 @@ abstract class Results implements ResultsInterface
     protected $id                 = null;
     protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger'];
     protected $logger             = null;
+    protected $conf               = null;
+    protected $data               = null;
 
     /**
      * Constructor
@@ -24,9 +26,11 @@ abstract class Results implements ResultsInterface
         $this->logger = $tmdb->logger;
 
         // Valid input object
-        $properties   = get_object_vars($this);
-        foreach (array_keys($properties) as $property) {
-            if (!in_array($property, $this->property_blacklist) && !property_exists($result, $property)) {
+        $properties = get_object_vars($this);
+        foreach (array_keys($properties) as $property)
+        {
+            if ( ! in_array($property, $this->property_blacklist) && ! property_exists($result, $property))
+            {
                 throw new NotFoundException($property);
             }
         }
@@ -35,4 +39,5 @@ abstract class Results implements ResultsInterface
         $this->conf = $tmdb->getConfiguration();
         $this->data = $result;
     }
+
 }
