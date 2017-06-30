@@ -84,7 +84,7 @@ class Search
      * @return \Generator|Results\Movie
      * @throws TmdbException
      */
-    public function searchMovie($query, array $options = array())
+    public function movie($query, array $options = array())
     {
         try
         {
@@ -102,7 +102,7 @@ class Search
      * @return \Generator|Results\TVShow
      * @throws TmdbException
      */
-    public function searchTVShow($query, array $options = array())
+    public function tvshow($query, array $options = array())
     {
         try
         {
@@ -120,7 +120,7 @@ class Search
      * @return \Generator|Results\Collection
      * @throws TmdbException
      */
-    public function searchCollection($query, array $options = array())
+    public function collection($query, array $options = array())
     {
         try
         {
@@ -138,7 +138,7 @@ class Search
      * @return \Generator|Results\People
      * @throws TmdbException
      */
-    public function searchPeople($query, array $options = array())
+    public function people($query, array $options = array())
     {
         try
         {
@@ -158,7 +158,7 @@ class Search
      * @return \Generator|Results\Company
      * @throws TmdbException
      */
-    public function searchCompany($query, array $options = array())
+    public function company($query, array $options = array())
     {
         try
         {

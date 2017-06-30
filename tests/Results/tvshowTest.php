@@ -39,7 +39,7 @@ class TVShowTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search       = new \vfalies\tmdb\Search($this->tmdb);
-        $this->result = $search->searchTVShow('star trek', array('language' => 'fr-FR'))->current();
+        $this->result = $search->tvshow('star trek', array('language' => 'fr-FR'))->current();
     }
 
     private function sendRequestConfNok()
@@ -51,7 +51,7 @@ class TVShowTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search       = new \vfalies\tmdb\Search($this->tmdb);
-        $this->result = $search->searchTVShow('star trek', array('language' => 'fr-FR'))->current();
+        $this->result = $search->tvshow('star trek', array('language' => 'fr-FR'))->current();
     }
 
     /**

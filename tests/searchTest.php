@@ -38,7 +38,7 @@ class SearchTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
-        $responses = $search->searchMovie('star wars', array('language' => 'fr-FR'));
+        $responses = $search->movie('star wars', array('language' => 'fr-FR'));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\Movie::class, $responses->current());
@@ -55,7 +55,7 @@ class SearchTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
-        $responses = $search->searchMovie('search_with_no_result', array('language' => 'fr-FR'));
+        $responses = $search->movie('search_with_no_result', array('language' => 'fr-FR'));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertNull($responses->current());
@@ -69,7 +69,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchMovie('star wars', array('fake_option' => 'test'));
+        $search->movie('star wars', array('fake_option' => 'test'));
     }
 
     /**
@@ -80,7 +80,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchMovie('');
+        $search->movie('');
     }
 
     /**
@@ -92,7 +92,7 @@ class SearchTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
-        $responses = $search->searchTVShow('star trek', array('language' => 'fr-FR'));
+        $responses = $search->tvshow('star trek', array('language' => 'fr-FR'));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\TVShow::class, $responses->current());
@@ -108,7 +108,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchTVShow('star trek', array('fake_option' => 'test'));
+        $search->tvshow('star trek', array('fake_option' => 'test'));
     }
 
     /**
@@ -119,7 +119,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchTVShow('');
+        $search->tvshow('');
     }
 
     /**
@@ -131,7 +131,7 @@ class SearchTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
-        $responses = $search->searchCollection('star wars', array('language' => 'fr-FR'));
+        $responses = $search->collection('star wars', array('language' => 'fr-FR'));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\Collection::class, $responses->current());
@@ -147,7 +147,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchCollection('star wars', array('fake_option' => 'test'));
+        $search->collection('star wars', array('fake_option' => 'test'));
     }
 
     /**
@@ -158,7 +158,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchCollection('');
+        $search->collection('');
     }
 
     /**
@@ -197,7 +197,7 @@ class SearchTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
-        $responses = $search->searchPeople('Bradley Cooper', array('language' => 'fr-FR'));
+        $responses = $search->people('Bradley Cooper', array('language' => 'fr-FR'));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\People::class, $responses->current());
@@ -214,7 +214,7 @@ class SearchTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
-        $responses = $search->searchPeople('search_with_no_result', array('language' => 'fr-FR'));
+        $responses = $search->people('search_with_no_result', array('language' => 'fr-FR'));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertNull($responses->current());
@@ -228,7 +228,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchPeople('Bradley Cooper', array('fake_option' => 'test'));
+        $search->people('Bradley Cooper', array('fake_option' => 'test'));
     }
 
     /**
@@ -239,7 +239,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchPeople('');
+        $search->people('');
     }
     /**
      * @test
@@ -250,7 +250,7 @@ class SearchTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
-        $responses = $search->searchCompany('lucasfilm', array('language' => 'fr-FR'));
+        $responses = $search->company('lucasfilm', array('language' => 'fr-FR'));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\Company::class, $responses->current());
@@ -267,7 +267,7 @@ class SearchTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
-        $responses = $search->searchCompany('search_with_no_result', array('language' => 'fr-FR'));
+        $responses = $search->company('search_with_no_result', array('language' => 'fr-FR'));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertNull($responses->current());
@@ -281,7 +281,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchCompany('lucasfilm', array('fake_option' => 'test'));
+        $search->company('lucasfilm', array('fake_option' => 'test'));
     }
 
     /**
@@ -292,7 +292,7 @@ class SearchTest extends TestCase
     {
         $search = new Search($this->tmdb);
 
-        $search->searchCompany('');
+        $search->company('');
     }
 
 }
