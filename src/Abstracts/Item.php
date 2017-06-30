@@ -9,11 +9,14 @@ use vfalies\tmdb\Traits\ElementTrait;
 
 abstract class Item
 {
+
     use ElementTrait;
 
     protected $id     = null;
     protected $tmdb   = null;
     protected $logger = null;
+    protected $conf   = null;
+    protected $data   = null;
 
     /**
      * Constructor
@@ -25,15 +28,19 @@ abstract class Item
      */
     public function __construct(Tmdb $tmdb, $item_id, array $options, $item_name)
     {
-        try {
+        try
+        {
             $this->id     = (int) $item_id;
             $this->tmdb   = $tmdb;
             $this->logger = $tmdb->logger;
             $this->conf   = $this->tmdb->getConfiguration();
             $params       = $this->tmdb->checkOptions($options);
-            $this->data   = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $item_name . '/' . (int) $item_id, null, $params);
-        } catch (TmdbException $ex) {
+            $this->data   = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $item_name.'/'.(int) $item_id, null, $params);
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
+
 }

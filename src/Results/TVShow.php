@@ -11,15 +11,15 @@ use vfalies\tmdb\Traits\Results\ShowTrait;
 class TVShow extends Results implements TVShowResultsInterface
 {
 
-    use ElementTrait;
-    use ShowTrait;
-
     protected $overview       = null;
     protected $release_date   = null;
     protected $original_title = null;
     protected $title          = null;
     protected $backdrop_path  = null;
     protected $poster_path    = null;
+
+    use ElementTrait;
+    use ShowTrait;
 
     /**
      * Constructor
@@ -31,7 +31,7 @@ class TVShow extends Results implements TVShowResultsInterface
         array_push($this->property_blacklist, 'release_date'); // For renaming first_air_date to release_date
         array_push($this->property_blacklist, 'original_title'); // For renaming original_name to original_title
         array_push($this->property_blacklist, 'title'); // For renaming name to title
-        
+
         parent::__construct($tmdb, $result);
 
         // Populate data
