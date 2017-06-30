@@ -13,7 +13,6 @@ abstract class Results implements ResultsInterface
     protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger'];
     protected $logger             = null;
     protected $conf               = null;
-    protected $data               = null;
 
     /**
      * Constructor
