@@ -89,10 +89,8 @@ class Search
         try
         {
             $this->logger->debug('Starting search movie');
-            return $this->searchItem('movie', $query, $options, __NAMESPACE__."\\Results\\".'Movie');
-        }
-        catch (TmdbException $ex)
-        {
+            return $this->searchItem('movie', $query, $options, Results\Movie::class);
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -109,10 +107,8 @@ class Search
         try
         {
             $this->logger->debug('Starting search tv show');
-            return $this->searchItem('tv', $query, $options, __NAMESPACE__."\\Results\\".'TVShow');
-        }
-        catch (TmdbException $ex)
-        {
+            return $this->searchItem('tv', $query, $options, Results\TVShow::class);
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -129,10 +125,8 @@ class Search
         try
         {
             $this->logger->debug('Starting search collection');
-            return $this->searchItem('collection', $query, $options, __NAMESPACE__."\\Results\\".'Collection');
-        }
-        catch (TmdbException $ex)
-        {
+            return $this->searchItem('collection', $query, $options, Results\Collection::class);
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -149,7 +143,7 @@ class Search
         try
         {
             $this->logger->debug('Starting search people');
-            return $this->searchItem('people', $query, $options, __NAMESPACE__."\\Results\\".'People');
+            return $this->searchItem('people', $query, $options, Results\People::class);           
         }
         catch (TmdbException $ex)
         {
@@ -169,7 +163,7 @@ class Search
         try
         {
             $this->logger->debug('Starting search company');
-            return $this->searchItem('company', $query, $options, __NAMESPACE__."\\Results\\".'Company');
+            return $this->searchItem('people', $query, $options, Results\Company::class);
         }
         catch (TmdbException $ex)
         {
