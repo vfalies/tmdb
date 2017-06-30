@@ -37,22 +37,26 @@ class Search
      */
     private function searchItem($item, $query, array $options, $result_class)
     {
-        try {
+        try
+        {
             $this->logger->debug('Starting search item');
             $query = trim($query);
-            if (empty($query)) {
+            if (empty($query))
+            {
                 $this->logger->error('Query param cannot be empty', array('item' => $item, 'query' => $query, 'options' => $options, 'result_class' => $result_class));
                 throw new IncorrectParamException;
             }
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'search/' . $item, $query, $params);
+            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'search/'.$item, $query, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
             $this->total_results = (int) $response->total_results;
 
             return $this->searchItemGenerator($response->results, $result_class);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -65,7 +69,8 @@ class Search
     private function searchItemGenerator(array $results, $class)
     {
         $this->logger->debug('Starting search item generator');
-        foreach ($results as $result) {
+        foreach ($results as $result)
+        {
             $element = new $class($this->tmdb, $result);
 
             yield $element;
@@ -81,10 +86,13 @@ class Search
      */
     public function searchMovie($query, array $options = array())
     {
-        try {
+        try
+        {
             $this->logger->debug('Starting search movie');
-            return $this->searchItem('movie', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Movie');
-        } catch (TmdbException $ex) {
+            return $this->searchItem('movie', $query, $options, __NAMESPACE__."\\Results\\".'Movie');
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -98,10 +106,13 @@ class Search
      */
     public function searchTVShow($query, array $options = array())
     {
-        try {
+        try
+        {
             $this->logger->debug('Starting search tv show');
-            return $this->searchItem('tv', $query, $options, __NAMESPACE__ . "\\Results\\" . 'TVShow');
-        } catch (TmdbException $ex) {
+            return $this->searchItem('tv', $query, $options, __NAMESPACE__."\\Results\\".'TVShow');
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -115,10 +126,13 @@ class Search
      */
     public function searchCollection($query, array $options = array())
     {
-        try {
+        try
+        {
             $this->logger->debug('Starting search collection');
-            return $this->searchItem('collection', $query, $options, __NAMESPACE__ . "\\Results\\" . 'Collection');
-        } catch (TmdbException $ex) {
+            return $this->searchItem('collection', $query, $options, __NAMESPACE__."\\Results\\".'Collection');
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -132,10 +146,33 @@ class Search
      */
     public function searchPeople($query, array $options = array())
     {
-        try {
+        try
+        {
             $this->logger->debug('Starting search people');
-            return $this->searchItem('people', $query, $options, __NAMESPACE__ . "\\Results\\" . 'People');
-        } catch (TmdbException $ex) {
+            return $this->searchItem('people', $query, $options, __NAMESPACE__."\\Results\\".'People');
+        }
+        catch (TmdbException $ex)
+        {
+            throw $ex;
+        }
+    }
+
+    /**
+     * Search a company
+     * @param string $query Query string to search like a company
+     * @param array $options Array of option for the request
+     * @return \Generator|Results\Company
+     * @throws TmdbException
+     */
+    public function searchCompany($query, array $options = array())
+    {
+        try
+        {
+            $this->logger->debug('Starting search company');
+            return $this->searchItem('company', $query, $options, __NAMESPACE__."\\Results\\".'Company');
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -166,4 +203,5 @@ class Search
     {
         return $this->total_results;
     }
+
 }

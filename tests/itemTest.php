@@ -89,4 +89,19 @@ class ItemTest extends TestCase
         $this->assertEquals(287, $responses->getId());
     }
 
+    /**
+     * @test
+     */
+    public function testGetCompany()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/companyOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $get       = new Item($this->tmdb);
+        $responses = $get->getCompany(1);
+
+        $this->assertInstanceOf(Items\Company::class, $responses);
+        $this->assertEquals(1, $responses->getId());
+    }
+
 }
