@@ -4,6 +4,11 @@ namespace vfalies\tmdb\Traits\Results;
 
 trait ShowTrait
 {
+    protected $id;
+    protected $overview;
+    protected $release_date;
+    protected $original_title;
+    protected $title;
 
      /**
      * Get show ID
