@@ -10,10 +10,6 @@ use vfalies\tmdb\Traits\Results\ShowTrait;
 
 class Movie extends Results implements MovieResultsInterface
 {
-    protected $overview       = null;
-    protected $release_date   = null;
-    protected $original_title = null;
-    protected $title          = null;
     protected $poster_path    = null;
     protected $backdrop_path  = null;
 
