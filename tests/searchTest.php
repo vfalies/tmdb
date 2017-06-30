@@ -241,4 +241,58 @@ class SearchTest extends TestCase
 
         $search->searchPeople('');
     }
+    /**
+     * @test
+     */
+    public function testSearchCompanyValid()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/searchCompanyOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search    = new Search($this->tmdb);
+        $responses = $search->searchCompany('lucasfilm', array('language' => 'fr-FR'));
+
+        $this->assertInstanceOf(\Generator::class, $responses);
+        $this->assertInstanceOf(Results\Company::class, $responses->current());
+
+        return $search;
+    }
+
+    /**
+     * @test
+     */
+    public function testSearchCompanyEmptyValid()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/searchCompanyEmptyOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $search    = new Search($this->tmdb);
+        $responses = $search->searchCompany('search_with_no_result', array('language' => 'fr-FR'));
+
+        $this->assertInstanceOf(\Generator::class, $responses);
+        $this->assertNull($responses->current());
+    }
+
+    /**
+     * @test
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     */
+    public function testSearchCompanyInvalidOption()
+    {
+        $search = new Search($this->tmdb);
+
+        $search->searchCompany('lucasfilm', array('fake_option' => 'test'));
+    }
+
+    /**
+     * @test
+     * @expectedException vfalies\tmdb\Exceptions\IncorrectParamException
+     */
+    public function testSearchCompanyEmptyQuery()
+    {
+        $search = new Search($this->tmdb);
+
+        $search->searchCompany('');
+    }
+
 }

@@ -6,6 +6,7 @@ use vfalies\tmdb\Items\Movie;
 use vfalies\tmdb\Items\Collection;
 use vfalies\tmdb\Items\TVShow;
 use vfalies\tmdb\Items\People;
+use vfalies\tmdb\Items\Company;
 
 class Item
 {
@@ -80,4 +81,17 @@ class Item
         return $people;
     }
 
+    /**
+     * Get Company details
+     * @param int $company_id
+     * @param array $options
+     * @return \vfalies\tmdb\Items\Company
+     */
+    public function getCompany($company_id, array $options = array())
+    {
+        $this->logger->debug('Starting getting company');
+        $company = new Company($this->tmdb, $company_id, $options);
+
+        return $company;
+    }
 }

@@ -1,0 +1,27 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "id": 1,
+      "logo_path": "/8rUnVMVZjlmQsJ45UGotD0Uznxj.png",
+      "name": "Lucasfilm"
+    },
+    {
+      "id": 535,
+      "logo_path": null,
+      "name": "Lucasfilm Ltd."
+    },
+    {
+      "id": 71126,
+      "logo_path": null,
+      "name": "Lucasfilm Kids"
+    },
+    {
+      "id": 7778,
+      "logo_path": null,
+      "name": "Lucasfilms"
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 4
+}
