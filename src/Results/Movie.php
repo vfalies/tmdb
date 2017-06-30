@@ -35,48 +35,4 @@ class Movie extends Results implements MovieResultsInterface
         $this->backdrop_path  = $this->data->backdrop_path;
     }
 
-//    /**
-//     * Get movie ID
-//     * @return int
-//     */
-//    public function getId()
-//    {
-//        return (int) $this->id;
-//    }
-//
-//    /**
-//     * Get movie overview
-//     * @return string
-//     */
-//    public function getOverview()
-//    {
-//        return $this->overview;
-//    }
-//
-//    /**
-//     * Get movie release date
-//     * @return string
-//     */
-//    public function getReleaseDate()
-//    {
-//        return $this->release_date;
-//    }
-//
-//    /**
-//     * Get movie original title
-//     * @return string
-//     */
-//    public function getOriginalTitle()
-//    {
-//        return $this->original_title;
-//    }
-//
-//    /**
-//     * Get movie title
-//     * @return string
-//     */
-//    public function getTitle()
-//    {
-//        return $this->title;
-//    }
 }
