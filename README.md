@@ -12,10 +12,12 @@ Features actualy supported :
   - Movie
   - TV Show
   - Collection
+  - Company
 - Getting informations
   - Movie
   - TV Show
   - Collection
+  - Company
   - Genres
 
 
