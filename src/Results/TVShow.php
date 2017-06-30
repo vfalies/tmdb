@@ -39,49 +39,4 @@ class TVShow extends Results implements TVShowResultsInterface
         $this->poster_path    = $this->data->poster_path;
         $this->backdrop_path  = $this->data->backdrop_path;
     }
-
-//    /**
-//     * Get tvshow ID
-//     * @return int
-//     */
-//    public function getId()
-//    {
-//        return (int) $this->id;
-//    }
-//
-//    /**
-//     * Get tvshow overview
-//     * @return string
-//     */
-//    public function getOverview()
-//    {
-//        return $this->overview;
-//    }
-//
-//    /**
-//     * Get tvshow first air date
-//     * @return string
-//     */
-//    public function getReleaseDate()
-//    {
-//        return $this->release_date;
-//    }
-//
-//    /**
-//     * Get tvshow original name
-//     * @return string
-//     */
-//    public function getOriginalTitle()
-//    {
-//        return $this->original_title;
-//    }
-//
-//    /**
-//     * Get tvshow name
-//     * @return string
-//     */
-//    public function getTitle()
-//    {
-//        return $this->name;
-//    }
 }
