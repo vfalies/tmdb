@@ -9,11 +9,9 @@ use vfalies\tmdb\Interfaces\Results\ResultsInterface;
 abstract class Results implements ResultsInterface
 {
 
-    protected $id                 = null;
     protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger'];
     protected $logger             = null;
     protected $conf               = null;
-    protected $data               = null;
 
     /**
      * Constructor

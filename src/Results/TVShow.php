@@ -11,10 +11,6 @@ use vfalies\tmdb\Traits\Results\ShowTrait;
 class TVShow extends Results implements TVShowResultsInterface
 {
 
-    protected $overview       = null;
-    protected $release_date   = null;
-    protected $original_title = null;
-    protected $title          = null;
     protected $backdrop_path  = null;
     protected $poster_path    = null;
 

@@ -4,6 +4,7 @@ namespace vfalies\tmdb\Traits;
 
 trait ElementTrait
 {
+    protected $data;
 
     /**
      * Get poster path
