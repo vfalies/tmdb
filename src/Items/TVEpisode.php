@@ -41,7 +41,12 @@ class TVEpisode extends Item implements TVEpisodeInterface
      */
     public function getCrew()
     {
-        throw new NotYetImplementedException;
+        if (! empty($this->data->crew)) {
+            foreach ($this->data->crew as $crew) {
+                $crew = new \vfalies\tmdb\Results\Crew($this->tmdb, $crew);
+                yield $crew;
+            }
+        }
     }
 
     public function getEpisodeNumber()
