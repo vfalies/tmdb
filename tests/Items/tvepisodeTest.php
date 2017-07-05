@@ -301,4 +301,18 @@ class TVEpisodeTest extends TestCase
         $this->assertEmpty($TVEpisode->getStillPath());
     }
 
+    /**
+     * @test
+     */
+    public function testGetCrew()
+    {
+        $this->setRequestOk();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+        $Crew = $TVEpisode->getCrew();
+
+        $this->assertInstanceOf(\Generator::class, $Crew);
+        $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $Crew->current());
+    }
+
 }

@@ -36,7 +36,7 @@ class Crew extends Results implements CrewResultsInterface
 
     public function getCreditId()
     {
-        return (int) $this->credit_id;
+        return $this->credit_id;
     }
 
     public function getDepartment()

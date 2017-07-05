@@ -150,4 +150,14 @@ class TVEpisodeTest extends TestCase
         $this->assertStringStartsWith('Jon Arryn, the Hand of the King, is dead.', $this->episode->getOverview());
     }
 
+    /**
+     * @test
+     */
+    public function testGetCrew()
+    {
+        $this->sendRequestOk();
+
+        $this->assertInstanceOf(\Generator::class, $this->episode->getCrew());
+        $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $this->episode->getCrew()->current());
+    }
 }

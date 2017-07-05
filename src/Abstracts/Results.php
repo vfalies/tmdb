@@ -9,9 +9,10 @@ use vfalies\tmdb\Interfaces\Results\ResultsInterface;
 abstract class Results implements ResultsInterface
 {
 
-    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger'];
+    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger', 'tmdb'];
     protected $logger             = null;
     protected $conf               = null;
+    protected $tmdb               = null;
 
     /**
      * Constructor
@@ -32,6 +33,8 @@ abstract class Results implements ResultsInterface
                 throw new NotFoundException($property);
             }
         }
+
+        $this->tmdb = $tmdb;
 
         // Configuration
         $this->conf = $tmdb->getConfiguration();

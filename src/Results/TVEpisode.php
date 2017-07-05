@@ -50,13 +50,16 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
         return $this->air_date;
     }
 
-    /**
-     * @codeCoverageIgnore
-     * @throws NotYetImplementedException
-     */
     public function getCrew()
     {
-        throw new NotYetImplementedException;
+        if (! empty($this->data->crew)) {
+            foreach ($this->data->crew as $crew) {
+                $crew->gender = null;
+
+                $return = new \vfalies\tmdb\Results\Crew($this->tmdb, $crew);
+                yield $return;
+            }
+        }
     }
 
     public function getEpisodeNumber()

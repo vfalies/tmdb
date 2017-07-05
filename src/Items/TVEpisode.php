@@ -35,16 +35,14 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
-    /**
-     * @codeCoverageIgnore
-     * @throws NotYetImplementedException
-     */
     public function getCrew()
     {
         if (! empty($this->data->crew)) {
             foreach ($this->data->crew as $crew) {
-                $crew = new \vfalies\tmdb\Results\Crew($this->tmdb, $crew);
-                yield $crew;
+                $crew->gender = null;
+
+                $return = new \vfalies\tmdb\Results\Crew($this->tmdb, $crew);
+                yield $return;
             }
         }
     }
