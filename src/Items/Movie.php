@@ -7,6 +7,8 @@ use vfalies\tmdb\Interfaces\Items\MovieInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
+use vfalies\tmdb\Items\Credit;
+use vfalies\tmdb\Items\Cast;
 
 class Movie extends Item implements MovieInterface
 {
@@ -140,8 +142,19 @@ class Movie extends Item implements MovieInterface
         return 0;
     }
 
+    /**
+     * Get movie crew
+     * @return \Generator|Results\Crew
+     */
     public function getCrew()
     {
-        throw new NotYetImplementedException;
+        $credit = new Credit($this->tmdb, $this->id);
+        return $credit->getCrew();
+    }
+
+    public function getCast()
+    {
+        $cast = new Cast($this->tmdb, $this->id);
+        return $cast->getCast();
     }
 }
