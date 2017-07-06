@@ -5,10 +5,13 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVSeasonInterface;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class TVSeason extends Item implements TVSeasonInterface
 {
 
+    use ElementTrait;
+    
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb

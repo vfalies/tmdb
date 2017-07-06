@@ -6,9 +6,12 @@ use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\CollectionInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class Collection extends Item implements CollectionInterface
 {
+
+    use ElementTrait;
 
     // Private loaded data
     protected $data = null;

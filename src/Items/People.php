@@ -5,10 +5,13 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\PeopleInterface;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class People extends Item implements PeopleInterface
 {
 
+    use ElementTrait;
+    
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb

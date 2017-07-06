@@ -5,9 +5,12 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\CompanyInterface;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class Company extends Item implements CompanyInterface
 {
+    use ElementTrait;
+
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb

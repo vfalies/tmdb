@@ -6,10 +6,13 @@ use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVEpisodeInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class TVEpisode extends Item implements TVEpisodeInterface
 {
 
+    use ElementTrait;
+    
     public function __construct(Tmdb $tmdb, $tv_id, $season_number, $episode_number, array $options = array())
     {
         parent::__construct($tmdb, $episode_number, $options, 'tv/' . $tv_id . '/' . $season_number);

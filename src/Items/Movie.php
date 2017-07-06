@@ -5,9 +5,13 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\MovieInterface;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Exceptions\NotYetImplementedException;
+use vfalies\tmdb\Traits\ElementTrait;
 
 class Movie extends Item implements MovieInterface
 {
+    use ElementTrait;
+
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
@@ -134,5 +138,10 @@ class Movie extends Item implements MovieInterface
             return (int) $this->data->belongs_to_collection->id;
         }
         return 0;
+    }
+
+    public function getCrew()
+    {
+        throw new NotYetImplementedException;
     }
 }
