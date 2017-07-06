@@ -157,7 +157,13 @@ class TVEpisodeTest extends TestCase
     {
         $this->sendRequestOk();
 
-        $this->assertInstanceOf(\Generator::class, $this->episode->getCrew());
-        $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $this->episode->getCrew()->current());
+        $Crew = $this->episode->getCrew();
+        $this->assertInstanceOf(\Generator::class, $Crew);
+
+        foreach ($Crew as $c)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $c);
+        }
+
     }
 }
