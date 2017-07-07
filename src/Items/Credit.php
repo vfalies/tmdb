@@ -3,6 +3,7 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
+use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Results\Crew;
 use vfalies\tmdb\Results\Cast;
 

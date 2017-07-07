@@ -154,7 +154,7 @@ class Movie extends Item implements MovieInterface
 
     public function getCast()
     {
-        $cast = new Cast($this->tmdb, $this->id);
+        $cast = new Credit($this->tmdb, $this->id);
         return $cast->getCast();
     }
 }
