@@ -5,6 +5,7 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\CompanyInterface;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 class Company extends Item implements CompanyInterface
 {
@@ -67,4 +68,14 @@ class Company extends Item implements CompanyInterface
         return '';
     }
 
+    public function getMovies()
+    {
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/company/'.(int) $this->id.'/movies', null, $this->params);
+
+        foreach ($data->results as $m)
+        {
+            $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $m);
+            yield $movie;
+        }
+    }
 }
