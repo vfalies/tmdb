@@ -7,6 +7,7 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\TVEpisodeResultsInterface;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
+use vfalies\tmdb\Results\Crew;
 
 class TVEpisode extends Results implements TVEpisodeResultsInterface
 {
@@ -56,7 +57,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
             foreach ($this->data->crew as $crew) {
                 $crew->gender = null;
 
-                $return = new \vfalies\tmdb\Results\Crew($this->tmdb, $crew);
+                $return = new Crew($this->tmdb, $crew);
                 yield $return;
             }
         }

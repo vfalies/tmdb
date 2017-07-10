@@ -161,4 +161,34 @@ class Movie extends Item implements MovieInterface
         $cast = new Credit($this->tmdb, $this->id);
         return $cast->getCast();
     }
+
+    public function getProductionCompanies()
+    {
+        if ( ! empty($this->data->production_companies))
+        {
+            foreach ($this->data->production_companies as $p)
+            {
+                $res       = new \stdClass();
+                $res->id   = $p->id;
+                $res->name = $p->name;
+
+                yield $res;
+            }
+        }
+    }
+
+    public function getProductionCountries()
+    {
+        if ( ! empty($this->data->production_countries))
+        {
+            foreach ($this->data->production_countries as $c)
+            {
+                $res             = new \stdClass();
+                $res->iso_3166_1 = $c->iso_3166_1;
+                $res->name       = $c->name;
+
+                yield $res;
+            }
+        }
+    }
 }

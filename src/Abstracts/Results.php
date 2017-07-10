@@ -9,7 +9,7 @@ use vfalies\tmdb\Interfaces\Results\ResultsInterface;
 abstract class Results implements ResultsInterface
 {
 
-    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger', 'tmdb'];
+    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger', 'tmdb', 'params'];
     protected $logger             = null;
     protected $conf               = null;
     protected $tmdb               = null;
@@ -34,11 +34,10 @@ abstract class Results implements ResultsInterface
             }
         }
 
-        $this->tmdb = $tmdb;
-
         // Configuration
         $this->conf = $tmdb->getConfiguration();
         $this->data = $result;
+        $this->tmdb = $tmdb;
     }
 
 }

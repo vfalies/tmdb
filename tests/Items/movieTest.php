@@ -373,5 +373,39 @@ class MovieTest extends TestCase
             $this->assertInstanceOf(\vfalies\tmdb\Results\Cast::class, $c);
         }
     }
+public function testGetProductionCompanies()
+    {
+        $this->setRequestOk();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $companies = $movie->getProductionCompanies();
+        $this->assertInstanceOf(\Generator::class, $companies);
+
+        foreach ($companies as $c)
+        {
+            $this->assertInstanceOf(\stdClass::class, $c);
+            $this->assertNotEmpty($c->name);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function testGetProductionCountries()
+    {
+        $this->setRequestOk();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $countries = $movie->getProductionCountries();
+        $this->assertInstanceOf(\Generator::class, $countries);
+
+        foreach ($countries as $c)
+        {
+            $this->assertInstanceOf(\stdClass::class, $c);
+            $this->assertNotEmpty($c->name);
+        }
+    }
 
 }
