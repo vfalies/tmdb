@@ -319,4 +319,20 @@ class TVEpisodeTest extends TestCase
 
     }
 
+    public function testGetPosters()
+    {
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $posters = $TVEpisode->getPosters();
+
+        $this->assertInstanceOf(\Generator::class, $posters);
+
+        foreach ($posters as $p)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+        }
+    }
 }

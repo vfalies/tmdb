@@ -366,4 +366,38 @@ class TVShowTest extends TestCase
         $this->assertNull($seasons->current());
     }
 
+    public function testGetBackdrops()
+    {
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $backdrops = $TVShow->getBackdrops();
+
+        $this->assertInstanceOf(\Generator::class, $backdrops);
+
+        foreach ($backdrops as $b)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
+        }
+    }
+
+    public function testGetPosters()
+    {
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $posters = $TVShow->getPosters();
+
+        $this->assertInstanceOf(\Generator::class, $posters);
+
+        foreach ($posters as $p)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+        }
+    }
+
 }

@@ -10,8 +10,6 @@ use vfalies\tmdb\Traits\ElementTrait;
 abstract class Item
 {
 
-    use ElementTrait;
-
     protected $id     = null;
     protected $tmdb   = null;
     protected $logger = null;

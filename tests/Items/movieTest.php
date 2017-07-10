@@ -408,4 +408,38 @@ public function testGetProductionCompanies()
         }
     }
 
+
+    public function testGetBackdrops()
+    {
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $backdrops = $movie->getBackdrops();
+
+        $this->assertInstanceOf(\Generator::class, $backdrops);
+
+        foreach ($backdrops as $b)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
+        }
+    }
+
+    public function testGetPosters()
+    {
+        $movie = new movie($this->tmdb, $this->movie_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $posters = $movie->getPosters();
+
+        $this->assertInstanceOf(\Generator::class, $posters);
+
+        foreach ($posters as $p)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+        }
+    }
 }

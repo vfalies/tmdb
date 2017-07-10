@@ -355,4 +355,20 @@ class PeopleTest extends TestCase
         $this->assertEmpty($people->getProfilePath());
     }
 
+    public function testGetProfiles()
+    {
+        $people = new People($this->tmdb, $this->people_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $profiles = $people->getProfiles();
+
+        $this->assertInstanceOf(\Generator::class, $profiles);
+
+        foreach ($profiles as $p)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+        }
+    }
 }

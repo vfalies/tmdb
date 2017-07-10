@@ -5,6 +5,7 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\CollectionInterface;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Traits\ElementTrait;
 
@@ -64,6 +65,28 @@ class Collection extends Item implements CollectionInterface
                 $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
                 yield $movie;
             }
+        }
+    }
+
+    public function getBackdrops()
+    {
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/collection/'.(int) $this->id.'/images', null, $this->params);
+
+        foreach ($data->backdrops as $b)
+        {
+            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            yield $image;
+        }
+    }
+
+    public function getPosters()
+    {
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/collection/'.(int) $this->id.'/images', null, $this->params);
+
+        foreach ($data->posters as $b)
+        {
+            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            yield $image;
         }
     }
 }

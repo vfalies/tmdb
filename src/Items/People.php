@@ -6,12 +6,13 @@ use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\PeopleInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Traits\ElementTrait;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 class People extends Item implements PeopleInterface
 {
 
     use ElementTrait;
-    
+
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
@@ -141,4 +142,14 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
+    public function getProfiles()
+    {
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/person/'.(int) $this->id.'/images', null, $this->params);
+
+        foreach ($data->profiles as $b)
+        {
+            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            yield $image;
+        }
+    }
 }

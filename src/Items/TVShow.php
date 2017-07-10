@@ -6,12 +6,13 @@ use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVShowInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Traits\ElementTrait;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 class TVShow extends Item implements TVShowInterface
 {
 
     use ElementTrait;
-    
+
     public function __construct(Tmdb $tmdb, $tv_id, array $options = array())
     {
         parent::__construct($tmdb, $tv_id, $options, 'tv');
@@ -146,6 +147,28 @@ class TVShow extends Item implements TVShowInterface
                 $season = new \vfalies\tmdb\Results\TVSeason($this->tmdb, $season);
                 yield $season;
             }
+        }
+    }
+
+    public function getBackdrops()
+    {
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/'.(int) $this->id.'/images', null, $this->params);
+
+        foreach ($data->backdrops as $b)
+        {
+            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            yield $image;
+        }
+    }
+
+    public function getPosters()
+    {
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/'.(int) $this->id.'/images', null, $this->params);
+
+        foreach ($data->posters as $b)
+        {
+            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            yield $image;
         }
     }
 }

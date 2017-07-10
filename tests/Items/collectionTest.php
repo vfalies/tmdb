@@ -140,7 +140,7 @@ class CollectionTest extends TestCase
         $this->setRequestOk();
 
         $collection = new Collection($this->tmdb, $this->collection_id);
-        $parts = $collection->getParts();
+        $parts      = $collection->getParts();
 
         $this->assertInstanceOf(\Generator::class, $parts);
         //$this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $parts->current());
@@ -159,9 +159,44 @@ class CollectionTest extends TestCase
         $this->setRequestCollectionEmpty();
 
         $collection = new Collection($this->tmdb, $this->collection_id);
-        $parts = $collection->getParts();
+        $parts      = $collection->getParts();
 
         $this->assertInstanceOf(\Generator::class, $parts);
         $this->assertNull($parts->current());
     }
+
+    public function testGetBackdrops()
+    {
+        $collection = new Collection($this->tmdb, $this->collection_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $backdrops = $collection->getBackdrops();
+
+        $this->assertInstanceOf(\Generator::class, $backdrops);
+
+        foreach ($backdrops as $b)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
+        }
+    }
+
+    public function testGetPosters()
+    {
+        $collection = new Collection($this->tmdb, $this->collection_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $posters = $collection->getPosters();
+
+        $this->assertInstanceOf(\Generator::class, $posters);
+
+        foreach ($posters as $p)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+        }
+    }
+
 }
