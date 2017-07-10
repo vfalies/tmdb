@@ -152,6 +152,10 @@ class Movie extends Item implements MovieInterface
         return $credit->getCrew();
     }
 
+    /**
+     * Get movie cast
+     * @return \Generator|Results\Cast
+     */
     public function getCast()
     {
         $cast = new Credit($this->tmdb, $this->id);

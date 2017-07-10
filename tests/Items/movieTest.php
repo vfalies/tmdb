@@ -338,9 +338,11 @@ class MovieTest extends TestCase
         $this->assertEmpty($movie->getBackdropPath());
     }
 
+    /**
+     * @test
+     */
     public function testGetCrewOk()
     {
-        $this->setRequestOk();
         $movie = new Movie($this->tmdb, $this->movie_id);
 
         $json_object = json_decode(file_get_contents('tests/json/creditOk.json'));
@@ -354,17 +356,19 @@ class MovieTest extends TestCase
         }
     }
 
+    /**
+     * @test
+     */
     public function testGetCastOk()
     {
-        $this->setRequestOk();
         $movie = new Movie($this->tmdb, $this->movie_id);
 
         $json_object = json_decode(file_get_contents('tests/json/creditOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $crew = $movie->getCast();
+        $cast = $movie->getCast();
 
-        foreach ($crew as $c)
+        foreach ($cast as $c)
         {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Cast::class, $c);
         }
