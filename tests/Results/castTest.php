@@ -37,13 +37,10 @@ class CastTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
-        $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
+        $json_object = json_decode(file_get_contents('tests/json/creditOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $Movie      = new \vfalies\tmdb\Items\Movie($this->tmdb, $this->movie_id);
-
-        $json_object = json_decode(file_get_contents('tests/json/creditOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $this->cast = $Movie->getCast()->current();
     }
@@ -56,7 +53,18 @@ class CastTest extends TestCase
         $this->sendRequestOk();
 
         $this->assertInternalType('int', $this->cast->getId());
-        $this->assertEquals(4, $this->cast->getId());
+        $this->assertEquals(819, $this->cast->getId());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetCastId()
+    {
+        $this->sendRequestOk();
+
+        $this->assertInternalType('int', $this->cast->getCastId());
+        $this->assertEquals(4, $this->cast->getCastId());
     }
 
     /**
