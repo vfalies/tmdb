@@ -15,6 +15,7 @@ class People extends Results implements PeopleResultsInterface
     protected $name         = null;
     protected $popularity   = null;
     protected $profile_path = null;
+    protected $id           = null;
 
     /**
      * Constructor

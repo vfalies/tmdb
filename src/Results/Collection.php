@@ -9,11 +9,13 @@ use vfalies\tmdb\Traits\ElementTrait;
 
 class Collection extends Results implements CollectionResultsInterface
 {
+
     use ElementTrait;
 
     protected $name          = null;
     protected $poster_path   = null;
     protected $backdrop_path = null;
+    protected $id            = null;
 
     /**
      * Constructor
@@ -48,4 +50,5 @@ class Collection extends Results implements CollectionResultsInterface
     {
         return $this->name;
     }
+
 }

@@ -16,6 +16,7 @@ class Cast extends Results implements CastResultsInterface
     protected $name         = null;
     protected $profile_path = null;
     protected $order        = null;
+    protected $id           = null;
 
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {
@@ -70,4 +71,5 @@ class Cast extends Results implements CastResultsInterface
     {
         return $this->order;
     }
+
 }

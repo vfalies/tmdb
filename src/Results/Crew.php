@@ -15,6 +15,7 @@ class Crew extends Results implements CrewResultsInterface
     protected $job          = null;
     protected $name         = null;
     protected $profile_path = null;
+    protected $id           = null;
 
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {

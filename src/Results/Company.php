@@ -11,6 +11,7 @@ class Company extends Results implements CompanyResultsInterface
 
     protected $name      = null;
     protected $logo_path = null;
+    protected $id        = null;
 
     /**
      * Constructor

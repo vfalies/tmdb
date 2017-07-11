@@ -9,12 +9,14 @@ use vfalies\tmdb\Traits\ElementTrait;
 
 class TVSeason extends Results implements TVSeasonResultsInterface
 {
+
     use ElementTrait;
 
     protected $episode_count = 0;
     protected $season_number = 0;
     protected $poster_path   = null;
-    protected $air_date  = null;
+    protected $air_date      = null;
+    protected $id            = null;
 
     /**
      * Constructor
@@ -28,7 +30,7 @@ class TVSeason extends Results implements TVSeasonResultsInterface
 
         // Populate data
         $this->id            = $this->data->id;
-        $this->air_date  = $this->data->air_date;
+        $this->air_date      = $this->data->air_date;
         $this->episode_count = $this->data->episode_count;
         $this->poster_path   = $this->data->poster_path;
         $this->season_number = $this->data->season_number;
@@ -53,4 +55,5 @@ class TVSeason extends Results implements TVSeasonResultsInterface
     {
         return (int) $this->season_number;
     }
+
 }

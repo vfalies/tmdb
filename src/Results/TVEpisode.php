@@ -11,6 +11,7 @@ use vfalies\tmdb\Results\Crew;
 
 class TVEpisode extends Results implements TVEpisodeResultsInterface
 {
+
     use ElementTrait;
 
     protected $episode_number  = 0;
@@ -22,6 +23,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
     protected $overview        = '';
     protected $production_code = '';
     protected $still_path      = '';
+    protected $id              = null;
 
     /**
      * Constructor
@@ -53,8 +55,10 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
 
     public function getCrew()
     {
-        if (! empty($this->data->crew)) {
-            foreach ($this->data->crew as $crew) {
+        if ( ! empty($this->data->crew))
+        {
+            foreach ($this->data->crew as $crew)
+            {
                 $crew->gender = null;
 
                 $return = new Crew($this->tmdb, $crew);
