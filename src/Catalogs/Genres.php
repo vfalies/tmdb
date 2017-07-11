@@ -6,9 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
-* @package Tmdb 
-* @author Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
 
@@ -20,9 +19,18 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\TmdbException;
 
+/**
+ * Class to get movie and tv show genres
+  * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Genres implements GenresInterface
 {
 
+    /**
+     * Tmdb object
+     * @var \vfalies\tmdb\Tmdb
+     */
     protected $tmdb = null;
 
     /**

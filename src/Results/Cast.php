@@ -6,12 +6,10 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
-* @package Tmdb 
-* @author Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
-
 
 namespace vfalies\tmdb\Results;
 
@@ -19,18 +17,59 @@ use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Interfaces\Results\CastResultsInterface;
 use vfalies\tmdb\Tmdb;
 
+/**
+ * Class to manipulate a movie or tv show cast
+  * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Cast extends Results implements CastResultsInterface
 {
-
+    /**
+     * Character name
+     * @var string
+     */
     protected $character    = null;
+    /**
+     * Gender
+     * @var string
+     */
     protected $gender       = null;
+    /**
+     * Credit Id
+     * @var string
+     */
     protected $credit_id    = null;
+    /**
+     * Cast Id
+     * @var int
+     */
     protected $cast_id      = null;
+    /**
+     * Name
+     * @var string
+     */
     protected $name         = null;
+    /**
+     * Image profile path
+     * @var string
+     */
     protected $profile_path = null;
+    /**
+     * Order in cast
+     * @var int
+     */
     protected $order        = null;
+    /**
+     * Id
+     * @var int
+     */
     protected $id           = null;
 
+    /**
+     * Constructor
+     * @param Tmdb $tmdb
+     * @param \stdClass $result
+     */
     public function __construct(Tmdb $tmdb, \stdClass $result)
     {
         parent::__construct($tmdb, $result);
@@ -45,41 +84,73 @@ class Cast extends Results implements CastResultsInterface
         $this->order        = $this->data->order;
     }
 
+    /**
+     * Get Id
+     * @return int
+     */
     public function getId()
     {
         return (int) $this->id;
     }
 
+    /**
+     * Get credit Id
+     * @return string
+     */
     public function getCreditId()
     {
         return $this->credit_id;
     }
 
+    /**
+     * Get character name
+     * @return string
+     */
     public function getCharacter()
     {
         return $this->character;
     }
 
+    /**
+     * Get gender
+     * @return string
+     */
     public function getGender()
     {
         return $this->gender;
     }
 
+    /**
+     * Get Cast Id
+     * @return int
+     */
     public function getCastId()
     {
         return $this->cast_id;
     }
 
+    /**
+     * Get name
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * Get profile path
+     * @return string
+     */
     public function getProfilePath()
     {
         return $this->profile_path;
     }
 
+    /**
+     * Get Order
+     * @return int
+     */
     public function getOrder()
     {
         return $this->order;

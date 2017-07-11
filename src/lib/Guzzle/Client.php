@@ -6,9 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
-* @package Tmdb 
-* @author Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
 
@@ -21,15 +20,22 @@ use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\Exceptions\HttpErrorException;
 
+/**
+ * HTTP Client class for all HTTP request
+  * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Client implements HttpRequestInterface
 {
 
     /**
+     * Client variable
      * @var \GuzzleHttp\ClientInterface
      */
     protected $guzzleClient;
 
     /**
+     * Constructor
      * @param \GuzzleHttp\ClientInterface $guzzleClient
      */
     public function __construct(\GuzzleHttp\ClientInterface $guzzleClient)
@@ -38,6 +44,7 @@ class Client implements HttpRequestInterface
     }
 
     /**
+     * Get response method
      * @param  string                               $url
      */
     public function getResponse($url)

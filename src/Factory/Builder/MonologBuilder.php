@@ -6,9 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
-* @package Tmdb 
-* @author Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
 
@@ -19,13 +18,23 @@ use Monolog\Logger;
 use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
 
 /**
- * @package FeedIo
+ * Builder for Monolog logger
+
+  * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
  */
 class MonologBuilder implements LoggerBuilderInterface
 {
+    /**
+     * Logger name string
+     * @var string
+     */
+    protected $loggerName = 'tmdb';
 
-    protected $loggerName = 'feed-io';
-
+    /**
+     * Handler config
+     * @var array
+     */
     protected $handlersConfig = [
         [
             'class' => 'Monolog\Handler\StreamHandler',
@@ -34,6 +43,7 @@ class MonologBuilder implements LoggerBuilderInterface
     ];
 
     /**
+     * Constructor
      * @param array $config
      */
     public function __construct(array $config = [])
@@ -44,6 +54,7 @@ class MonologBuilder implements LoggerBuilderInterface
     }
 
     /**
+     * Get Logger
      * This method MUST return a valid PSR3 logger
      * @return \Monolog\Logger
      */
@@ -60,6 +71,7 @@ class MonologBuilder implements LoggerBuilderInterface
     }
 
     /**
+     * Create new handler
      * @param string $class
      * @param array $params
      * @return Monolog\Handler\HandlerInterface
@@ -76,6 +88,7 @@ class MonologBuilder implements LoggerBuilderInterface
     }
 
     /**
+     * Get main class name
      * This method MUST return the name of the main class
      * @return string
      */
@@ -85,6 +98,7 @@ class MonologBuilder implements LoggerBuilderInterface
     }
 
     /**
+     * Get package name
      * This method MUST return the name of the package name
      * @return string
      */
