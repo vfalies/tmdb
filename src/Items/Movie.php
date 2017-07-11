@@ -7,7 +7,7 @@ use vfalies\tmdb\Interfaces\Items\MovieInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Items\Credit;
+use vfalies\tmdb\Items\MovieCredit;
 use vfalies\tmdb\Items\Cast;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
@@ -160,7 +160,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getCrew()
     {
-        $credit = new Credit($this->tmdb, $this->id);
+        $credit = new MovieCredit($this->tmdb, $this->id);
         return $credit->getCrew();
     }
 
@@ -170,7 +170,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getCast()
     {
-        $cast = new Credit($this->tmdb, $this->id);
+        $cast = new MovieCredit($this->tmdb, $this->id);
         return $cast->getCast();
     }
 

@@ -7,7 +7,7 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Results\Crew;
 use vfalies\tmdb\Results\Cast;
 
-class Credit extends Item
+class MovieCredit extends Item
 {
     protected $crew;
 
