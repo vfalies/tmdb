@@ -8,6 +8,7 @@ use vfalies\tmdb\Tmdb;
 class Image extends Results
 {
 
+    protected $id;
     protected $aspect_ratio;
     protected $file_path;
     protected $height;

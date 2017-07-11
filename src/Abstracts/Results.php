@@ -13,6 +13,7 @@ abstract class Results implements ResultsInterface
     protected $logger             = null;
     protected $conf               = null;
     protected $tmdb               = null;
+    protected $data               = null;
 
     /**
      * Constructor

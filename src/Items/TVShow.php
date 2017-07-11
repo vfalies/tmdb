@@ -7,7 +7,6 @@ use vfalies\tmdb\Interfaces\Items\TVShowInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
-use vfalies\tmdb\Results\TVSeason;
 use vfalies\tmdb\Results\Image;
 
 class TVShow extends Item implements TVShowInterface
@@ -146,7 +145,7 @@ class TVShow extends Item implements TVShowInterface
     {
         if (!empty($this->data->seasons)) {
             foreach ($this->data->seasons as $season) {
-                $season = new TVSeason($this->tmdb, $season);
+                $season = new \vfalies\tmdb\Items\TVSeason($this->tmdb, $season);
                 yield $season;
             }
         }
