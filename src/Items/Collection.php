@@ -8,6 +8,8 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Traits\ElementTrait;
+use vfalies\tmdb\Results\Movie;
+use vfalies\tmdb\Results\Image;
 
 class Collection extends Item implements CollectionInterface
 {
@@ -62,7 +64,7 @@ class Collection extends Item implements CollectionInterface
     {
         if (!empty($this->data->parts)) {
             foreach ($this->data->parts as $part) {
-                $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
+                $movie = new Movie($this->tmdb, $part);
                 yield $movie;
             }
         }
@@ -74,7 +76,7 @@ class Collection extends Item implements CollectionInterface
 
         foreach ($data->backdrops as $b)
         {
-            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $b);
             yield $image;
         }
     }
@@ -85,7 +87,7 @@ class Collection extends Item implements CollectionInterface
 
         foreach ($data->posters as $b)
         {
-            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $b);
             yield $image;
         }
     }

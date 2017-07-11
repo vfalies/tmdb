@@ -10,6 +10,7 @@ use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Items\Credit;
 use vfalies\tmdb\Items\Cast;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Results\Image;
 
 class Movie extends Item implements MovieInterface
 {
@@ -209,7 +210,7 @@ class Movie extends Item implements MovieInterface
 
         foreach ($data->backdrops as $b)
         {
-            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $b);
             yield $image;
         }
     }
@@ -220,7 +221,7 @@ class Movie extends Item implements MovieInterface
 
         foreach ($data->posters as $b)
         {
-            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $b);
             yield $image;
         }
     }

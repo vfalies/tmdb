@@ -7,6 +7,8 @@ use vfalies\tmdb\Interfaces\Items\TVShowInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Results\TVSeason;
+use vfalies\tmdb\Results\Image;
 
 class TVShow extends Item implements TVShowInterface
 {
@@ -144,7 +146,7 @@ class TVShow extends Item implements TVShowInterface
     {
         if (!empty($this->data->seasons)) {
             foreach ($this->data->seasons as $season) {
-                $season = new \vfalies\tmdb\Results\TVSeason($this->tmdb, $season);
+                $season = new TVSeason($this->tmdb, $season);
                 yield $season;
             }
         }
@@ -156,7 +158,7 @@ class TVShow extends Item implements TVShowInterface
 
         foreach ($data->backdrops as $b)
         {
-            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $b);
             yield $image;
         }
     }
@@ -167,7 +169,7 @@ class TVShow extends Item implements TVShowInterface
 
         foreach ($data->posters as $b)
         {
-            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $b);
             yield $image;
         }
     }

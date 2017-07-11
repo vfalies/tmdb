@@ -8,6 +8,8 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Results\Crew;
+use vfalies\tmdb\Results\Image;
 
 class TVEpisode extends Item implements TVEpisodeInterface
 {
@@ -55,7 +57,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
             {
                 $crew->gender = null;
 
-                $return = new \vfalies\tmdb\Results\Crew($this->tmdb, $crew);
+                $return = new Crew($this->tmdb, $crew);
                 yield $return;
             }
         }
@@ -148,7 +150,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
         foreach ($data->posters as $b)
         {
-            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $b);
             yield $image;
         }
     }

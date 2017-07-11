@@ -7,6 +7,7 @@ use vfalies\tmdb\Interfaces\Items\CompanyInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Traits\ElementTrait;
+use vfalies\tmdb\Results\Movie;
 
 class Company extends Item implements CompanyInterface
 {
@@ -77,7 +78,7 @@ class Company extends Item implements CompanyInterface
 
         foreach ($data->results as $m)
         {
-            $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $m);
+            $movie = new Movie($this->tmdb, $m);
             yield $movie;
         }
     }

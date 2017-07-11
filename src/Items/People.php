@@ -7,6 +7,7 @@ use vfalies\tmdb\Interfaces\PeopleInterface;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Results\Image;
 
 class People extends Item implements PeopleInterface
 {
@@ -148,7 +149,7 @@ class People extends Item implements PeopleInterface
 
         foreach ($data->profiles as $b)
         {
-            $image = new \vfalies\tmdb\Results\Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $b);
             yield $image;
         }
     }
