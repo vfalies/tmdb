@@ -15,6 +15,7 @@ abstract class Item
     protected $logger = null;
     protected $conf   = null;
     protected $params = null;
+    protected $data   = null;
 
     /**
      * Constructor
