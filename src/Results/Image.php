@@ -19,6 +19,7 @@ class Image extends Results
 
     public function __construct(Tmdb $tmdb, $id, \stdClass $result)
     {
+        $result->id = $id;
         parent::__construct($tmdb, $result);
 
         $this->id           = (int) $id;

@@ -73,7 +73,7 @@ class TVSeason extends Item implements TVSeasonInterface
         {
             foreach ($this->data->episodes as $episode)
             {
-                $episode = new \vfalies\tmdb\Items\TVEpisode($this->tmdb, $episode);
+                $episode = new \vfalies\tmdb\Results\TVEpisode($this->tmdb, $episode);
                 yield $episode;
             }
         }
