@@ -76,7 +76,7 @@ class Collection extends Item implements CollectionInterface
 
         foreach ($data->backdrops as $b)
         {
-            $image = new Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }
@@ -87,7 +87,7 @@ class Collection extends Item implements CollectionInterface
 
         foreach ($data->posters as $b)
         {
-            $image = new Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }

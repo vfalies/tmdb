@@ -210,7 +210,7 @@ class Movie extends Item implements MovieInterface
 
         foreach ($data->backdrops as $b)
         {
-            $image = new Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }
@@ -221,7 +221,7 @@ class Movie extends Item implements MovieInterface
 
         foreach ($data->posters as $b)
         {
-            $image = new Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }

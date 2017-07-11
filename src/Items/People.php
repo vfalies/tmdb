@@ -149,7 +149,7 @@ class People extends Item implements PeopleInterface
 
         foreach ($data->profiles as $b)
         {
-            $image = new Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }

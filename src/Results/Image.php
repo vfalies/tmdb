@@ -16,10 +16,11 @@ class Image extends Results
     protected $vote_count;
     protected $width;
 
-    public function __construct(Tmdb $tmdb, \stdClass $result)
+    public function __construct(Tmdb $tmdb, $id, \stdClass $result)
     {
         parent::__construct($tmdb, $result);
 
+        $this->id           = (int) $id;
         $this->aspect_ratio = $result->aspect_ratio;
         $this->file_path    = $result->file_path;
         $this->height       = $result->height;

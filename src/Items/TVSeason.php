@@ -104,7 +104,7 @@ class TVSeason extends Item implements TVSeasonInterface
 
         foreach ($data->posters as $b)
         {
-            $image = new Image($this->tmdb, $b);
+            $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }

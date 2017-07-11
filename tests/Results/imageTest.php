@@ -52,7 +52,7 @@ class ImageTest extends TestCase
         $this->sendRequestOk();
 
         $this->assertInternalType('int', $this->result->getId());
-        $this->assertEquals(11, $this->result->getId());
+        $this->assertEquals(10, $this->result->getId());
     }
 
     /**
@@ -64,7 +64,7 @@ class ImageTest extends TestCase
         $result               = new \stdClass();
         $result->not_property = 'test';
 
-        new \vfalies\tmdb\Results\Image($this->tmdb, $result);
+        new \vfalies\tmdb\Results\Image($this->tmdb, 10, $result);
     }
 
     /**
