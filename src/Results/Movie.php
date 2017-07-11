@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -21,9 +21,22 @@ use vfalies\tmdb\Interfaces\Results\MovieResultsInterface;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Traits\Results\ShowTrait;
 
+/**
+ * Movie results class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Movie extends Results implements MovieResultsInterface
 {
+    /**
+     * Image poster path
+     * @var string
+     */
     protected $poster_path    = null;
+    /**
+     * Image backdrop path
+     * @var string
+     */
     protected $backdrop_path  = null;
 
     use ElementTrait;

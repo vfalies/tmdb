@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -18,13 +18,16 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\MovieInterface;
 use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Items\MovieCredit;
-use vfalies\tmdb\Items\Cast;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
 
+/**
+ * Movie class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Movie extends Item implements MovieInterface
 {
 
@@ -187,6 +190,10 @@ class Movie extends Item implements MovieInterface
         return $cast->getCast();
     }
 
+    /**
+     * Get production compagnies
+     * @return \Generator|stdClass
+     */
     public function getProductionCompanies()
     {
         if ( ! empty($this->data->production_companies))
@@ -202,6 +209,10 @@ class Movie extends Item implements MovieInterface
         }
     }
 
+    /**
+     * Get production countries
+     * @return \Generator|stdClass
+     */
     public function getProductionCountries()
     {
         if ( ! empty($this->data->production_countries))
@@ -217,6 +228,10 @@ class Movie extends Item implements MovieInterface
         }
     }
 
+    /**
+     * Get image backdrops list
+     * @return \Generator|Results\Image
+     */
     public function getBackdrops()
     {
         $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/'.(int) $this->id.'/images', null, $this->params);
@@ -228,6 +243,10 @@ class Movie extends Item implements MovieInterface
         }
     }
 
+    /**
+     * Get image posters list
+     * @return \Generator|Results\Image
+     */
     public function getPosters()
     {
         $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/'.(int) $this->id.'/images', null, $this->params);

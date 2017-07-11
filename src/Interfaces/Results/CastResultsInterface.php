@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -15,19 +15,45 @@
 
 namespace vfalies\tmdb\Interfaces\Results;
 
+/**
+ * Interface for Cast results type object
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 interface CastResultsInterface {
 
+    /**
+     * Credit Id
+     */
     public function getCreditId();
 
+    /**
+     * Character name
+     */
     public function getCharacter();
 
+    /**
+     * Gender
+     */
     public function getGender();
 
+    /**
+     * Cast Id
+     */
     public function getCastId();
 
+    /**
+     * Name
+     */
     public function getName();
 
+    /**
+     * Image profile path
+     */
     public function getProfilePath();
 
+    /**
+     * Order
+     */
     public function getOrder();
 }

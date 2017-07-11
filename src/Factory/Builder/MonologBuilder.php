@@ -19,8 +19,7 @@ use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
 
 /**
  * Builder for Monolog logger
-
-  * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
 class MonologBuilder implements LoggerBuilderInterface

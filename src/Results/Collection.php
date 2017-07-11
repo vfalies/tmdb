@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -20,12 +20,25 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\CollectionResultsInterface;
 use vfalies\tmdb\Traits\ElementTrait;
 
+/**
+ * Collection class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Collection extends Results implements CollectionResultsInterface
 {
 
     use ElementTrait;
 
+    /**
+     * Collection name
+     * @var string
+     */
     protected $name          = null;
+    /**
+     *
+     * @var string 
+     */
     protected $poster_path   = null;
     protected $backdrop_path = null;
     protected $id            = null;

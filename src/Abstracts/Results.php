@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -19,13 +19,37 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Interfaces\Results\ResultsInterface;
 
+/**
+ * Abstract results class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 abstract class Results implements ResultsInterface
 {
-
+    /**
+     * Properties to ignore in object control validation in constructor
+     * @var array
+     */
     protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger', 'tmdb', 'params'];
+    /**
+     * Logger object
+     * @var LoggerInterface
+     */
     protected $logger             = null;
+    /**
+     * Configuration array
+     * @var \stdClass
+     */
     protected $conf               = null;
+    /**
+     * Tmdb object
+     * @var \vfalies\tmdb\Tmdb
+     */
     protected $tmdb               = null;
+    /**
+     * Data object
+     * @var \stdClass
+     */
     protected $data               = null;
 
     /**

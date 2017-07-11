@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -21,6 +21,11 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Traits\ElementTrait;
 
+/**
+ * Company class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Company extends Item implements CompanyInterface
 {
     use ElementTrait;
@@ -36,6 +41,10 @@ class Company extends Item implements CompanyInterface
         parent::__construct($tmdb, $company_id, $options, 'company');
     }
 
+    /**
+     * Company description
+     * @return string
+     */
     public function getDescription()
     {
         if (isset($this->data->description)) {
@@ -44,6 +53,10 @@ class Company extends Item implements CompanyInterface
         return '';
     }
 
+    /**
+     * Company Head quarters
+     * @return string
+     */
     public function getHeadQuarters()
     {
         if (isset($this->data->headquarters)) {
@@ -52,6 +65,10 @@ class Company extends Item implements CompanyInterface
         return '';
     }
 
+    /**
+     * Company Homepage
+     * @return string
+     */
     public function getHomePage()
     {
         if (isset($this->data->homepage)) {
@@ -60,6 +77,10 @@ class Company extends Item implements CompanyInterface
         return '';
     }
 
+    /**
+     * Company Id
+     * @return int
+     */
     public function getId()
     {
         if (isset($this->data->id)) {
@@ -68,6 +89,10 @@ class Company extends Item implements CompanyInterface
         return 0;
     }
 
+    /**
+     * Company image logo path
+     * @return string
+     */
     public function getLogoPath()
     {
         if (isset($this->data->logo_path)) {
@@ -76,6 +101,10 @@ class Company extends Item implements CompanyInterface
         return '';
     }
 
+    /**
+     * Company name
+     * @return string
+     */
     public function getName()
     {
         if (isset($this->data->name)) {
@@ -84,6 +113,10 @@ class Company extends Item implements CompanyInterface
         return '';
     }
 
+    /**
+     * Company movies list
+     * @return \Generator|Results\Movie
+     */
     public function getMovies()
     {
         $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/company/'.(int) $this->id.'/movies', null, $this->params);

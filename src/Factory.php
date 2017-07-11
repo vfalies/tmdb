@@ -68,7 +68,7 @@ class Factory
 
     public function checkDependency(BuilderInterface $builder)
     {
-        if (! class_exists($builder->getMainCLassName())) {
+        if (! class_exists($builder->getMainClassName())) {
             $message = "missing {$builder->getPackageName()}, please install it using composer : composer require {$builder->getPackageName()}";
             throw new MissingDependencyException($message);
         }

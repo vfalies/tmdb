@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -17,7 +17,12 @@ namespace vfalies\tmdb\Exceptions;
 
 use vfalies\tmdb\Exceptions\TmdbException;
 
+/**
+ * Not found Exception class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class NotFoundException extends TmdbException
 {
-    
+
 }
