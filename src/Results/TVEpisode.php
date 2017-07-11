@@ -7,12 +7,13 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\TVEpisodeResultsInterface;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Results\Crew;
+use vfalies\tmdb\Traits\TVEpisodeTrait;
 
 class TVEpisode extends Results implements TVEpisodeResultsInterface
 {
 
     use ElementTrait;
+    use TVEpisodeTrait;
 
     protected $episode_number  = 0;
     protected $name            = '';
@@ -51,20 +52,6 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
     public function getAirDate()
     {
         return $this->air_date;
-    }
-
-    public function getCrew()
-    {
-        if ( ! empty($this->data->crew))
-        {
-            foreach ($this->data->crew as $crew)
-            {
-                $crew->gender = null;
-
-                $return = new Crew($this->tmdb, $crew);
-                yield $return;
-            }
-        }
     }
 
     public function getEpisodeNumber()
