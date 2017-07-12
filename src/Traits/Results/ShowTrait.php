@@ -17,6 +17,7 @@ namespace vfalies\tmdb\Traits\Results;
 
 /**
  * Trait with methods for Show (Movie & TVShow)
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

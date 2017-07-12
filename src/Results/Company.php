@@ -21,6 +21,7 @@ use vfalies\tmdb\Interfaces\Results\CompanyResultsInterface;
 
 /**
  * Class to manipulate a company result
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

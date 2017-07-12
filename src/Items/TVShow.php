@@ -24,6 +24,7 @@ use vfalies\tmdb\Results\Image;
 
 /**
  * TVShow class
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

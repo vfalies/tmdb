@@ -21,6 +21,7 @@ use vfalies\tmdb\Tmdb;
 
 /**
  * Class to manipulate a crew result
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

@@ -23,6 +23,7 @@ use vfalies\tmdb\Traits\Results\ShowTrait;
 
 /**
  * Movie results class
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

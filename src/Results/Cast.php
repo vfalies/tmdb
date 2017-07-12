@@ -19,7 +19,8 @@ use vfalies\tmdb\Tmdb;
 
 /**
  * Class to manipulate a movie or tv show cast result
-  * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @package Tmdb
+ * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
 class Cast extends Results implements CastResultsInterface

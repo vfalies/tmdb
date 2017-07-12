@@ -22,6 +22,7 @@ use vfalies\tmdb\Traits\ElementTrait;
 
 /**
  * Class to manipulate a collection result
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

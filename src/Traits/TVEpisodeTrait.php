@@ -18,6 +18,7 @@ use vfalies\tmdb\Results\Crew;
 
 /**
  * TV Episode trait
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

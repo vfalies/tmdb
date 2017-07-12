@@ -22,7 +22,8 @@ use vfalies\tmdb\Exceptions\HttpErrorException;
 
 /**
  * HTTP Client class for all HTTP request
-  * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @package Tmdb
+ * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
 class Client implements HttpRequestInterface

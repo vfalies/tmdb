@@ -19,6 +19,7 @@ use vfalies\tmdb\Exceptions\TmdbException;
 
 /**
  * Incorrect param Exception class
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

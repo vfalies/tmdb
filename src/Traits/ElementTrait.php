@@ -16,6 +16,7 @@ namespace vfalies\tmdb\Traits;
 
 /**
  * Common element methods trait
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

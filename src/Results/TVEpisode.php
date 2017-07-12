@@ -23,6 +23,7 @@ use vfalies\tmdb\Traits\TVEpisodeTrait;
 
 /**
  * Class to manipulate a TV Episode result
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

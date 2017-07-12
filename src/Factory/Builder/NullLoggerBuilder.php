@@ -18,6 +18,7 @@ use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
 
 /**
  * Builder to implement Logger with Null object
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

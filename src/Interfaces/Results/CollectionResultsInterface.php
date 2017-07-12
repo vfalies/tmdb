@@ -17,6 +17,7 @@ namespace vfalies\tmdb\Interfaces\Results;
 
 /**
  * Interface for Collection results type object
+ * @package Tmdb
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
