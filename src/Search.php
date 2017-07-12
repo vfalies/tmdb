@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -19,20 +19,43 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\Exceptions\TmdbException;
 
+/**
+ * Search class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Search
 {
-
+    /**
+     * Tmdb object
+     * @var Tmdb
+     */
     private $tmdb          = null;
+    /**
+     * Logger
+     * @var LoggerInterface
+     */
     private $logger        = null;
-    private $page          = 1; // Page number of the search result
-    private $total_pages   = 1; // Total pages of the search result
-    private $total_results = 0; // Total results of the search result
+    /**
+     * Page number of the search result
+     * @var int
+     */
+    private $page          = 1;
+    /**
+     * Total pages of the search result
+     * @var int
+     */
+    private $total_pages   = 1;
+    /**
+     * Total results of the search result
+     * @var int
+     */
+    private $total_results = 0;
 
     /**
      * Constructor
      * @param \vfalies\tmdb\Tmdb $tmdb
      */
-
     public function __construct(Tmdb $tmdb)
     {
         $this->tmdb   = $tmdb;
@@ -156,7 +179,7 @@ class Search
         try
         {
             $this->logger->debug('Starting search people');
-            return $this->searchItem('people', $query, $options, Results\People::class);           
+            return $this->searchItem('people', $query, $options, Results\People::class);
         }
         catch (TmdbException $ex)
         {

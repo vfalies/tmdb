@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -19,10 +19,24 @@ use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
 use vfalies\tmdb\Interfaces\Factory\BuilderInterface;
 use vfalies\tmdb\Exceptions\MissingDependencyException;
 
+/**
+ * Factory class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Factory
 {
+    /**
+     * Logger builder
+     * @var loggerBuilderInterface
+     */
     protected $loggerBuilder;
 
+    /**
+     * Create
+     * @param array $loggerConf
+     * @return \static
+     */
     public static function create($loggerConf = ['builder' => 'NullLogger', 'config' => []])
     {
         $factory = new static();
@@ -32,7 +46,7 @@ class Factory
     }
 
     /**
-     *
+     * Get Tmdb object
      * @param string $api_key
      * @return \vfalies\tmdb\Tmdb
      */
@@ -41,6 +55,12 @@ class Factory
         return new Tmdb($api_key, $this->loggerBuilder->getLogger());
     }
 
+    /**
+     * Get Builder
+     * @param string $builder
+     * @param array $args
+     * @return type
+     */
     public function getBuilder($builder, array $args = [])
     {
         $class = "\\vfalies\\tmdb\\Factory\\Builder\\{$builder}Builder";
@@ -50,6 +70,11 @@ class Factory
         return $reflection->newInstanceArgs($args);
     }
 
+    /**
+     * Set logger builder
+     * @param LoggerBuilderInterface $loggerBuilder
+     * @return $this
+     */
     public function setLoggerBuilder(LoggerBuilderInterface $loggerBuilder)
     {
         $this->loggerBuilder = $loggerBuilder;
@@ -58,6 +83,7 @@ class Factory
     }
 
     /**
+     * Extract config
      * @param $builderConfig
      * @return array
      */
@@ -66,6 +92,12 @@ class Factory
         return isset($builderConfig['config']) ? $builderConfig['config']:[];
     }
 
+    /**
+     * Check dependency
+     * @param BuilderInterface $builder
+     * @return boolean
+     * @throws MissingDependencyException
+     */
     public function checkDependency(BuilderInterface $builder)
     {
         if (! class_exists($builder->getMainClassName())) {

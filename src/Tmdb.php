@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -25,23 +25,49 @@ use vfalies\tmdb\Exceptions\ServerErrorException;
 
 /**
  * Tmdb wrapper core class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
  */
 class Tmdb implements TmdbInterface
 {
 
-    // Private variables
-    private $api_key         = null; // API Key
-    private $language        = 'fr-FR'; // Default language for API response'; // Base URL of the API
-    private $include_adult   = false; // Include adult content in search result
-    private $page            = 1; // API Page result
-    // Protected variables
-    protected $configuration = null; // API Configuration
-    protected $genres        = null; // API Genres
-    // Public variables
-    public $base_api_url     = 'https://api.themoviedb.org/3/'; // Base URL of the API
-
     /**
-     *
+     * API Key
+     * @var string
+     */
+    private $api_key         = null;
+    /**
+     * Default language for API response
+     * @var string
+     */
+    private $language        = 'fr-FR';
+    /**
+     * Include adult content in search result
+     * @var boolean
+     */
+    private $include_adult   = false;
+    /**
+     * API Page result
+     * @var int
+     */
+    private $page            = 1;
+    /**
+     * API configuration
+     * @var \stdClass
+     */
+    protected $configuration = null;
+    /**
+     * API Genres
+     * @var \stdClass
+     */
+    protected $genres        = null;
+    /**
+     * Base URL of the API
+     * @var string
+     */
+    public $base_api_url     = 'https://api.themoviedb.org/3/';
+    /**
+     * Logger
      * @var LoggerInterface
      */
     public $logger           = null;

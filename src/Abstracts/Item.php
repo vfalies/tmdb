@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -20,14 +20,42 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Traits\ElementTrait;
 
+/**
+ * abstract item class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 abstract class Item
 {
-
+    /**
+     * id
+     * @var int
+     */
     protected $id     = null;
+    /**
+     * Tmdb object
+     * @var Tmdb
+     */
     protected $tmdb   = null;
+    /**
+     * Logger
+     * @var LoggerInterface
+     */
     protected $logger = null;
+    /**
+     * Configuration
+     * @var \stdClass
+     */
     protected $conf   = null;
+    /**
+     * Params
+     * @var array
+     */
     protected $params = null;
+    /**
+     * Data
+     * @var \stdClass
+     */
     protected $data   = null;
 
     /**

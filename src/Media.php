@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -19,11 +19,27 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 
+/**
+ * Media class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Media
 {
-
+    /**
+     * Tmdb object
+     * @var Tmdb
+     */
     protected $tmdb   = null;
+    /**
+     * Configuration
+     * @var \stdClass
+     */
     protected $conf   = null;
+    /**
+     * Logger
+     * @var LoggerInterface
+     */
     protected $logger = null;
 
     /**
