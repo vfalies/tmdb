@@ -65,7 +65,7 @@ class PeopleTVShowCredit extends Item
         {
             foreach ($this->data->cast as $c)
             {
-                $cast = new PeopleTVSHowCast($this->tmdb, $c);
+                $cast = new PeopleTVShowCast($this->tmdb, $c);
                 yield $cast;
             }
         }

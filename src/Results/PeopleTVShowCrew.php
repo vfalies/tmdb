@@ -87,6 +87,7 @@ class PeopleTVShowCrew extends Results
      */
     public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
+        if (!isset($result->episode_count)) { $result->episode_count = null; }
         parent::__construct($tmdb, $result);
 
         $this->id             = $this->data->id;
