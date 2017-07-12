@@ -16,9 +16,9 @@
 namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\PeopleResultsInterface;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * People class
@@ -61,11 +61,11 @@ class People extends Results implements PeopleResultsInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param \stdClass $result
      * @throws \Exception
      */
-    public function __construct(Tmdb $tmdb, \stdClass $result)
+    public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
         parent::__construct($tmdb, $result);
 

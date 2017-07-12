@@ -20,6 +20,7 @@ use vfalies\tmdb\Items\Collection;
 use vfalies\tmdb\Items\TVShow;
 use vfalies\tmdb\Items\People;
 use vfalies\tmdb\Items\Company;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Item class
@@ -42,10 +43,10 @@ class Item
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface; $tmdb
      */
 
-    public function __construct(Tmdb $tmdb)
+    public function __construct(TmdbInterface $tmdb)
     {
         $this->tmdb   = $tmdb;
         $this->logger = $tmdb->logger;

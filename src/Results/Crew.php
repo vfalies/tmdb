@@ -17,7 +17,7 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Interfaces\Results\CrewResultsInterface;
-use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to manipulate a crew result
@@ -65,10 +65,10 @@ class Crew extends Results implements CrewResultsInterface
 
     /**
      * Constructor
-     * @param Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param \stdClass $result
      */
-    public function __construct(Tmdb $tmdb, \stdClass $result)
+    public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
         parent::__construct($tmdb, $result);
 

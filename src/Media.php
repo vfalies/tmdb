@@ -15,9 +15,9 @@
 
 namespace vfalies\tmdb;
 
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Media class
@@ -45,9 +45,9 @@ class Media
 
     /**
      * Constructor
-     * @param Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      */
-    public function __construct(Tmdb $tmdb)
+    public function __construct(TmdbInterface $tmdb)
     {
         $this->tmdb   = $tmdb;
         $this->logger = $tmdb->logger;

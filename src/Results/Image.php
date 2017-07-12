@@ -16,7 +16,7 @@
 namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
-use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to manipulate a image result
@@ -69,11 +69,11 @@ class Image extends Results
 
     /**
      * Constructor
-     * @param Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param int $id
      * @param \stdClass $result
      */
-    public function __construct(Tmdb $tmdb, $id, \stdClass $result)
+    public function __construct(TmdbInterface $tmdb, $id, \stdClass $result)
     {
         $result->id = $id;
         parent::__construct($tmdb, $result);

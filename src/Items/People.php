@@ -17,10 +17,10 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\PeopleInterface;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * People class
@@ -35,12 +35,12 @@ class People extends Item implements PeopleInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param int $people_id
      * @param array $options
      * @throws Exception
      */
-    public function __construct(Tmdb $tmdb, $people_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, $people_id, array $options = array())
     {
         parent::__construct($tmdb, $people_id, $options, 'people');
     }

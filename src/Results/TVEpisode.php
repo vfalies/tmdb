@@ -15,11 +15,11 @@
 namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\TVEpisodeResultsInterface;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Traits\TVEpisodeTrait;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to manipulate a TV Episode result
@@ -86,11 +86,11 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param \stdClass $result
      * @throws \Exception
      */
-    public function __construct(Tmdb $tmdb, \stdClass $result)
+    public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
         parent::__construct($tmdb, $result);
 

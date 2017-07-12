@@ -16,12 +16,12 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVEpisodeInterface;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Traits\TVEpisodeTrait;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * TVEpisode class
@@ -48,13 +48,13 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     /**
      * Constructor
-     * @param Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param int $tv_id
      * @param int $season_number
      * @param int $episode_number
      * @param array $options
      */
-    public function __construct(Tmdb $tmdb, $tv_id, $season_number, $episode_number, array $options = array())
+    public function __construct(TmdbInterface $tmdb, $tv_id, $season_number, $episode_number, array $options = array())
     {
         parent::__construct($tmdb, $episode_number, $options, 'tv/'.$tv_id.'/'.$season_number);
 

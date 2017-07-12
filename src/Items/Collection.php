@@ -17,11 +17,11 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\CollectionInterface;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Results\Image;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to manipulate a collection
@@ -57,11 +57,11 @@ class Collection extends Item implements CollectionInterface
 
     /**
      * Constructor
-     * @param Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param int $collection_id
      * @param array $options
      */
-    public function __construct(Tmdb $tmdb, $collection_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, $collection_id, array $options = array())
     {
         parent::__construct($tmdb, $collection_id, $options, 'collection');
     }

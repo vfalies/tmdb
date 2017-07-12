@@ -17,9 +17,9 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\CompanyInterface;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Traits\ElementTrait;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Company class
@@ -33,11 +33,11 @@ class Company extends Item implements CompanyInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface; $tmdb
      * @param int $company_id
      * @param array $options
      */
-    public function __construct(Tmdb $tmdb, $company_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, $company_id, array $options = array())
     {
         parent::__construct($tmdb, $company_id, $options, 'company');
     }

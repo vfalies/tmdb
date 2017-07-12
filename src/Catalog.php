@@ -16,6 +16,7 @@
 namespace vfalies\tmdb;
 
 use vfalies\tmdb\Catalogs\Genres;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Catalog class
@@ -38,9 +39,9 @@ class Catalog
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      */
-    public function __construct(Tmdb $tmdb)
+    public function __construct(TmdbInterface $tmdb)
     {
         $this->tmdb   = $tmdb;
         $this->logger = $tmdb->logger;

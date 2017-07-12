@@ -17,10 +17,10 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVShowInterface;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * TVShow class
@@ -35,11 +35,11 @@ class TVShow extends Item implements TVShowInterface
 
     /**
      * Constructor
-     * @param Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param int $tv_id
      * @param array $options
      */
-    public function __construct(Tmdb $tmdb, $tv_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, $tv_id, array $options = array())
     {
         parent::__construct($tmdb, $tv_id, $options, 'tv');
     }

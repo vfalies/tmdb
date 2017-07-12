@@ -17,11 +17,11 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\MovieInterface;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Items\MovieCredit;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Movie class
@@ -36,11 +36,11 @@ class Movie extends Item implements MovieInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param int $movie_id
      * @param array $options
      */
-    public function __construct(Tmdb $tmdb, $movie_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, $movie_id, array $options = array())
     {
         parent::__construct($tmdb, $movie_id, $options, 'movie');
     }

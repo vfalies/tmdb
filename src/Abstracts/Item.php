@@ -15,10 +15,9 @@
 
 namespace vfalies\tmdb\Abstracts;
 
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Traits\ElementTrait;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * abstract item class
@@ -61,13 +60,13 @@ abstract class Item
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param int $item_id
      * @param array $options
      * @param string $item_name
      * @throws \Exception
      */
-    public function __construct(Tmdb $tmdb, $item_id, array $options, $item_name)
+    public function __construct(TmdbInterface $tmdb, $item_id, array $options, $item_name)
     {
         try
         {

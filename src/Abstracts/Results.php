@@ -15,9 +15,9 @@
 
 namespace vfalies\tmdb\Abstracts;
 
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Interfaces\Results\ResultsInterface;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Abstract results class
@@ -55,11 +55,11 @@ abstract class Results implements ResultsInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param \stdClass $result
      * @throws NotFoundException
      */
-    public function __construct(Tmdb $tmdb, \stdClass $result)
+    public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
         $this->logger = $tmdb->logger;
 

@@ -4,7 +4,6 @@ namespace vfalies\tmdb\lib\Guzzle;
 
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\Exceptions\NotFoundException;
 
 /**
  * @cover Client

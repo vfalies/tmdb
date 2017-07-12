@@ -16,9 +16,9 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Results\Crew;
 use vfalies\tmdb\Results\Cast;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Movie Credit class
@@ -36,11 +36,11 @@ class MovieCredit extends Item
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param int $movie_id
      * @param array $options
      */
-    public function __construct(Tmdb $tmdb, $movie_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, $movie_id, array $options = array())
     {
         parent::__construct($tmdb, '/credits', $options, 'movie/'.$movie_id);
     }

@@ -15,9 +15,9 @@
 namespace vfalies\tmdb\Catalogs;
 
 use vfalies\tmdb\Interfaces\GenresInterface;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\TmdbException;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to get movie and tv show genres
@@ -36,9 +36,9 @@ class Genres implements GenresInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface; $tmdb
      */
-    public function __construct(Tmdb $tmdb)
+    public function __construct(TmdbInterface $tmdb)
     {
         $this->tmdb = $tmdb;
     }
