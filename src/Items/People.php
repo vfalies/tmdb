@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb package.
  *
@@ -12,7 +13,6 @@
  * @copyright Copyright (c) 2017
  */
 
-
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
@@ -21,6 +21,8 @@ use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Interfaces\TmdbInterface;
+use vfalies\tmdb\Items\PeopleMovieCredit;
+use vfalies\tmdb\Items\PeopleTVShowCredit;
 
 /**
  * People class
@@ -227,5 +229,46 @@ class People extends Item implements PeopleInterface
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
+    }
+
+    /**
+     * Get movies cast
+     * @return \Generator|Results\PeopleMovieCast
+     */
+    public function getMoviesCast()
+    {
+        $credit = new PeopleMovieCredit($this->tmdb, $this->id);
+        return $credit->getCast();
+    }
+
+    /**
+     * Get movies crew
+     * @return \Generator|Results\PeopleMovieCast
+     */
+    public function getMoviesCrew()
+    {
+        $credit = new PeopleMovieCredit($this->tmdb, $this->id);
+        return $credit->getCrew();
+    }
+
+
+    /**
+     * Get TVShow cast
+     * @return \Generator|Results\PeopleTVShowCast
+     */
+    public function getTVShowCast()
+    {
+        $credit = new PeopleTVShowCredit($this->tmdb, $this->id);
+        return $credit->getCast();
+    }
+
+    /**
+     * Get TVShow crew
+     * @return \Generator|Results\PeopleTVShowCast
+     */
+    public function getTVShowCrew()
+    {
+        $credit = new PeopleTVShowCredit($this->tmdb, $this->id);
+        return $credit->getCrew();
     }
 }
