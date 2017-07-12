@@ -15,6 +15,7 @@
 
 namespace vfalies\tmdb\Items;
 
+use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Results\PeopleMovieCast;
 use vfalies\tmdb\Results\PeopleMovieCrew;

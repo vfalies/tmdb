@@ -371,4 +371,72 @@ class PeopleTest extends TestCase
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
         }
     }
+
+    public function testGetMoviesCast()
+    {
+        $people = new People($this->tmdb, $this->people_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/PeopleMovieCreditOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $moviecast = $people->getMoviesCast();
+
+        $this->assertInstanceOf(\Generator::class, $moviecast);
+
+        foreach ($moviecast as $mc)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleMovieCast::class, $mc);
+        }
+    }
+
+    public function testGetMoviesCrew()
+    {
+        $people = new People($this->tmdb, $this->people_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/PeopleMovieCreditOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $moviecrew = $people->getMoviesCrew();
+
+        $this->assertInstanceOf(\Generator::class, $moviecrew);
+
+        foreach ($moviecrew as $mc)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleMovieCrew::class, $mc);
+        }
+    }
+
+    public function testGetTVShowCast()
+    {
+        $people = new People($this->tmdb, $this->people_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/PeopleTVShowCreditOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $tvshowcast = $people->getTVShowCast();
+
+        $this->assertInstanceOf(\Generator::class, $tvshowcast);
+
+        foreach ($tvshowcast as $tvc)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleTVShowCast::class, $tvc);
+        }
+    }
+
+    public function testGetTVShowCrew()
+    {
+        $people = new People($this->tmdb, $this->people_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/PeopleTVShowCreditOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $tvshowcrew = $people->getTVShowCrew();
+
+        $this->assertInstanceOf(\Generator::class, $tvshowcrew);
+
+        foreach ($tvshowcrew as $tvc)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleTVShowCrew::class, $tvc);
+        }
+    }
 }
