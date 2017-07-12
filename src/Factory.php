@@ -48,12 +48,13 @@ class Factory
 
     /**
      * Get Tmdb object
-     * @param string $api_key
+     * @param string $api_key API Key
+     * @param int $version API Version (not yet used)
      * @return \vfalies\tmdb\Tmdb
      */
-    public function getTmdb($api_key)
+    public function getTmdb($api_key, $version = 3)
     {
-        return new Tmdb($api_key, $this->loggerBuilder->getLogger());
+        return new Tmdb($api_key, $version, $this->loggerBuilder->getLogger());
     }
 
     /**
