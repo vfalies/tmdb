@@ -21,7 +21,7 @@ use vfalies\tmdb\Interfaces\Results\CollectionResultsInterface;
 use vfalies\tmdb\Traits\ElementTrait;
 
 /**
- * Collection class
+ * Class to manipulate a collection result
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -36,11 +36,19 @@ class Collection extends Results implements CollectionResultsInterface
      */
     protected $name          = null;
     /**
-     *
-     * @var string 
+     * Image poster path
+     * @var string
      */
     protected $poster_path   = null;
+    /**
+     * Image backdrop path
+     * @var string
+     */
     protected $backdrop_path = null;
+    /**
+     * Id
+     * @var int
+     */
     protected $id            = null;
 
     /**

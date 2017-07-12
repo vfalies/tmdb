@@ -96,6 +96,7 @@ class People extends Results implements PeopleResultsInterface
     }
 
     /**
+     * Known for
      * @codeCoverageIgnore
      * @throws NotYetImplementedException
      */

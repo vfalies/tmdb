@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -21,10 +21,22 @@ use vfalies\tmdb\Interfaces\Results\TVShowResultsInterface;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Traits\Results\ShowTrait;
 
+/**
+ * Class to manipulate a TV Season result
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class TVShow extends Results implements TVShowResultsInterface
 {
-
+    /**
+     * Image backdrop path
+     * @var string
+     */
     protected $backdrop_path  = null;
+    /**
+     * Image poster path
+     * @var string
+     */
     protected $poster_path    = null;
 
     use ElementTrait;

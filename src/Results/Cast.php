@@ -18,7 +18,7 @@ use vfalies\tmdb\Interfaces\Results\CastResultsInterface;
 use vfalies\tmdb\Tmdb;
 
 /**
- * Class to manipulate a movie or tv show cast
+ * Class to manipulate a movie or tv show cast result
   * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */

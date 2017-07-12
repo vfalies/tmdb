@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -20,15 +20,40 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Interfaces\Results\TVSeasonResultsInterface;
 use vfalies\tmdb\Traits\ElementTrait;
 
+/**
+ * Class to manipulate a TV Season result
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class TVSeason extends Results implements TVSeasonResultsInterface
 {
 
     use ElementTrait;
 
+    /**
+     * Episode count
+     * @var int
+     */
     protected $episode_count = 0;
+    /**
+     * Season number
+     * @var int
+     */
     protected $season_number = 0;
+    /**
+     * Image poster path
+     * @var string
+     */
     protected $poster_path   = null;
+    /**
+     * Air date
+     * @var string
+     */
     protected $air_date      = null;
+    /**
+     * Id
+     * @var int
+     */
     protected $id            = null;
 
     /**
@@ -49,21 +74,37 @@ class TVSeason extends Results implements TVSeasonResultsInterface
         $this->season_number = $this->data->season_number;
     }
 
+    /**
+     * Id
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Air date
+     * @return string
+     */
     public function getAirDate()
     {
         return $this->air_date;
     }
 
+    /**
+     * Episode count
+     * @return int
+     */
     public function getEpisodeCount()
     {
         return (int) $this->episode_count;
     }
 
+    /**
+     * Season Number
+     * @return int
+     */
     public function getSeasonNumber()
     {
         return (int) $this->season_number;

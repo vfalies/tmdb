@@ -6,7 +6,7 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
+ *
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -16,9 +16,16 @@ namespace vfalies\tmdb\Traits;
 
 use vfalies\tmdb\Results\Crew;
 
+/**
+ * TV Episode trait
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 trait TVEpisodeTrait
 {
-
+    /**
+     * Get crew of TV Episode
+     */
     public function getCrew()
     {
         if ( ! empty($this->data->crew))
