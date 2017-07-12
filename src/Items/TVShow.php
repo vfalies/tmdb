@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -22,11 +22,22 @@ use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
 
+/**
+ * TVShow class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class TVShow extends Item implements TVShowInterface
 {
 
     use ElementTrait;
 
+    /**
+     * Constructor
+     * @param Tmdb $tmdb
+     * @param int $tv_id
+     * @param array $options
+     */
     public function __construct(Tmdb $tmdb, $tv_id, array $options = array())
     {
         parent::__construct($tmdb, $tv_id, $options, 'tv');
@@ -151,8 +162,7 @@ class TVShow extends Item implements TVShowInterface
 
     /**
      * Get TVShow seasons
-     * @return \Generator
-     * @throws \Exception
+     * @return \Generator|Results\TVSeason
      */
     public function getSeasons()
     {
@@ -164,6 +174,10 @@ class TVShow extends Item implements TVShowInterface
         }
     }
 
+    /**
+     * Backdrops list
+     * @return \Generator|Results\Image
+     */
     public function getBackdrops()
     {
         $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/'.(int) $this->id.'/images', null, $this->params);
@@ -175,6 +189,10 @@ class TVShow extends Item implements TVShowInterface
         }
     }
 
+    /**
+     * Posters list
+     * @return \Generator|Results\Image
+     */
     public function getPosters()
     {
         $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/'.(int) $this->id.'/images', null, $this->params);

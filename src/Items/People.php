@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -22,6 +22,11 @@ use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
 
+/**
+ * People class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class People extends Item implements PeopleInterface
 {
 
@@ -39,6 +44,10 @@ class People extends Item implements PeopleInterface
         parent::__construct($tmdb, $people_id, $options, 'people');
     }
 
+    /**
+     * Adult
+     * @return boolean
+     */
     public function getAdult()
     {
         if (isset($this->data->adult))
@@ -48,6 +57,10 @@ class People extends Item implements PeopleInterface
         return false;
     }
 
+    /**
+     * Alse Known as
+     * @return array
+     */
     public function getAlsoKnownAs()
     {
         if (isset($this->data->also_known_as))
@@ -57,6 +70,10 @@ class People extends Item implements PeopleInterface
         return [];
     }
 
+    /**
+     * Biography
+     * @return string
+     */
     public function getBiography()
     {
         if (isset($this->data->biography))
@@ -66,6 +83,10 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
+    /**
+     * Birthday
+     * @return string
+     */
     public function getBirthday()
     {
         if (isset($this->data->birthday))
@@ -75,6 +96,10 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
+    /**
+     * Deathday
+     * @return string
+     */
     public function getDeathday()
     {
         if (isset($this->data->deathday))
@@ -84,6 +109,10 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
+    /**
+     * Gender
+     * @return int
+     */
     public function getGender()
     {
         if (isset($this->data->gender))
@@ -93,6 +122,10 @@ class People extends Item implements PeopleInterface
         return 0;
     }
 
+    /**
+     * Homepage
+     * @return string
+     */
     public function getHomepage()
     {
         if (isset($this->data->homepage))
@@ -102,6 +135,10 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
+    /**
+     * Id
+     * @return int
+     */
     public function getId()
     {
         if (isset($this->data->id))
@@ -111,6 +148,10 @@ class People extends Item implements PeopleInterface
         return 0;
     }
 
+    /**
+     * Imdb Id
+     * @return string
+     */
     public function getImdbId()
     {
         if (isset($this->data->imdb_id))
@@ -120,6 +161,10 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
+    /**
+     * Name
+     * @return string
+     */
     public function getName()
     {
         if (isset($this->data->name))
@@ -129,6 +174,10 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
+    /**
+     * Place of birth
+     * @return string
+     */
     public function getPlaceOfBirth()
     {
         if (isset($this->data->place_of_birth))
@@ -138,6 +187,10 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
+    /**
+     * Popularity
+     * @return int
+     */
     public function getPopularity()
     {
         if (isset($this->data->popularity))
@@ -147,6 +200,10 @@ class People extends Item implements PeopleInterface
         return 0;
     }
 
+    /**
+     * Image profile path
+     * @return string
+     */
     public function getProfilePath()
     {
         if (isset($this->data->profile_path))
@@ -156,6 +213,10 @@ class People extends Item implements PeopleInterface
         return '';
     }
 
+    /**
+     * Images Profiles
+     * @return \Generator|Results\Image
+     */
     public function getProfiles()
     {
         $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/person/'.(int) $this->id.'/images', null, $this->params);

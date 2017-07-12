@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -20,8 +20,17 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Results\Crew;
 use vfalies\tmdb\Results\Cast;
 
+/**
+ * Movie Credit class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class MovieCredit extends Item
 {
+    /**
+     * Crew
+     * @var \stdClass
+     */
     protected $crew;
 
     /**
@@ -35,6 +44,10 @@ class MovieCredit extends Item
         parent::__construct($tmdb, '/credits', $options, 'movie/'.$movie_id);
     }
 
+    /**
+     * Crew
+     * @return \Generator|Results\Crew
+     */
     public function getCrew()
     {
         if (!empty($this->data->crew))
@@ -47,6 +60,10 @@ class MovieCredit extends Item
         }
     }
 
+    /**
+     * Cast
+     * @return \Generator|Results\Cast
+     */
     public function getCast()
     {
         if (!empty($this->data->cast))

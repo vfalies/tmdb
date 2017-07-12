@@ -6,7 +6,7 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
+ *
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -23,15 +23,36 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Traits\TVEpisodeTrait;
 
+/**
+ * TVEpisode class
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class TVEpisode extends Item implements TVEpisodeInterface
 {
 
     use ElementTrait;
     use TVEpisodeTrait;
 
+    /**
+     * Season number
+     * @var int
+     */
     protected $season_number;
+    /**
+     * Episode number
+     * @var int
+     */
     protected $episode_number;
 
+    /**
+     * Constructor
+     * @param Tmdb $tmdb
+     * @param int $tv_id
+     * @param int $season_number
+     * @param int $episode_number
+     * @param array $options
+     */
     public function __construct(Tmdb $tmdb, $tv_id, $season_number, $episode_number, array $options = array())
     {
         parent::__construct($tmdb, $episode_number, $options, 'tv/'.$tv_id.'/'.$season_number);
@@ -53,6 +74,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return 0;
     }
 
+    /**
+     * Air date
+     * @return string
+     */
     public function getAirDate()
     {
         if (isset($this->data->air_date))
@@ -62,6 +87,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
+    /**
+     * Episode number
+     * @return int
+     */
     public function getEpisodeNumber()
     {
         if (isset($this->data->episode_number))
@@ -72,6 +101,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
     }
 
     /**
+     * Guests stars
      * @codeCoverageIgnore
      * @throws NotYetImplementedException
      */
@@ -80,6 +110,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         throw new NotYetImplementedException;
     }
 
+    /**
+     * Name
+     * @return string
+     */
     public function getName()
     {
         if (isset($this->data->name))
@@ -89,6 +123,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
+    /**
+     * Note
+     * @return float
+     */
     public function getNote()
     {
         if (isset($this->data->vote_average))
@@ -98,6 +136,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return 0;
     }
 
+    /**
+     * Note count
+     * @return int
+     */
     public function getNoteCount()
     {
         if (isset($this->data->vote_count))
@@ -107,6 +149,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return 0;
     }
 
+    /**
+     * Overview
+     * @return string
+     */
     public function getOverview()
     {
         if (isset($this->data->overview))
@@ -116,6 +162,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
+    /**
+     * Production code
+     * @return string
+     */
     public function getProductionCode()
     {
         if (isset($this->data->production_code))
@@ -125,6 +175,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
+    /**
+     * Season number
+     * @return int
+     */
     public function getSeasonNumber()
     {
         if (isset($this->data->season_number))
@@ -134,6 +188,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return 0;
     }
 
+    /**
+     * Image still path
+     * @return string
+     */
     public function getStillPath()
     {
         if (isset($this->data->still_path))
@@ -143,6 +201,10 @@ class TVEpisode extends Item implements TVEpisodeInterface
         return '';
     }
 
+    /**
+     * Image posters
+     * @return \Generator|Results\Image
+     */
     public function getPosters()
     {
         $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/'.(int) $this->id.'/seasons/'.$this->season_number.'/episode/'.$this->episode_number.'/images', null, $this->params);

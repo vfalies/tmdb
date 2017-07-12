@@ -6,8 +6,8 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
- 
+ *
+
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -23,15 +23,35 @@ use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Results\Image;
 
+/**
+ * Class to manipulate a collection
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Collection extends Item implements CollectionInterface
 {
 
     use ElementTrait;
 
-    // Private loaded data
+    /**
+     * Data
+     * @var \stdClass
+     */
     protected $data = null;
+    /**
+     * Configuration
+     * @var \stdClass
+     */
     protected $conf = null;
+    /**
+     * Id
+     * @var int
+     */
     protected $id   = null;
+    /**
+     * Tmdb object
+     * @var Tmdb
+     */
     protected $tmdb = null;
 
     /**
@@ -82,6 +102,10 @@ class Collection extends Item implements CollectionInterface
         }
     }
 
+    /**
+     * Get collection backdrops
+     * @return \Generator|Results\Image
+     */
     public function getBackdrops()
     {
         $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/collection/'.(int) $this->id.'/images', null, $this->params);
@@ -93,6 +117,10 @@ class Collection extends Item implements CollectionInterface
         }
     }
 
+    /**
+     * Get collection posters
+     * @return \Generator|Results\Image
+     */
     public function getPosters()
     {
         $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/collection/'.(int) $this->id.'/images', null, $this->params);
