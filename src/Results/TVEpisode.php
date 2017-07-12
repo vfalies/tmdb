@@ -129,6 +129,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Guests stars
      * @codeCoverageIgnore
      * @throws NotYetImplementedException
+     * @todo getGuestStars() Not yet implemented
      */
     public function getGuestStars()
     {

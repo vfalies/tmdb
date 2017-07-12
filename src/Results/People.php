@@ -100,6 +100,7 @@ class People extends Results implements PeopleResultsInterface
      * Known for
      * @codeCoverageIgnore
      * @throws NotYetImplementedException
+     * @todo getKnownFor() Not yet implemented
      */
     public function getKnownFor()
     {

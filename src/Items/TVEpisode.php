@@ -105,6 +105,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Guests stars
      * @codeCoverageIgnore
      * @throws NotYetImplementedException
+     * @todo getGuestStars() Not yet implemented
      */
     public function getGuestStars()
     {
