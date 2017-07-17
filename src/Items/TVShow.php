@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb package.
  *
@@ -11,7 +12,6 @@
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
-
 
 namespace vfalies\tmdb\Items;
 
@@ -59,7 +59,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getGenres()
     {
-        if (isset($this->data->genres)) {
+        if (isset($this->data->genres))
+        {
             return $this->data->genres;
         }
         return [];
@@ -71,7 +72,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getNote()
     {
-        if (isset($this->data->vote_average)) {
+        if (isset($this->data->vote_average))
+        {
             return $this->data->vote_average;
         }
         return 0;
@@ -83,7 +85,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getNumberEpisodes()
     {
-        if (isset($this->data->number_of_episodes)) {
+        if (isset($this->data->number_of_episodes))
+        {
             return $this->data->number_of_episodes;
         }
         return 0;
@@ -95,7 +98,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getNumberSeasons()
     {
-        if (isset($this->data->number_of_seasons)) {
+        if (isset($this->data->number_of_seasons))
+        {
             return $this->data->number_of_seasons;
         }
         return 0;
@@ -107,7 +111,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getOriginalTitle()
     {
-        if (isset($this->data->original_name)) {
+        if (isset($this->data->original_name))
+        {
             return $this->data->original_name;
         }
         return '';
@@ -119,7 +124,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getOverview()
     {
-        if (isset($this->data->overview)) {
+        if (isset($this->data->overview))
+        {
             return $this->data->overview;
         }
         return '';
@@ -131,7 +137,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getReleaseDate()
     {
-        if (isset($this->data->first_air_date)) {
+        if (isset($this->data->first_air_date))
+        {
             return $this->data->first_air_date;
         }
         return '';
@@ -143,7 +150,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getStatus()
     {
-        if (isset($this->data->status)) {
+        if (isset($this->data->status))
+        {
             return $this->data->status;
         }
         return '';
@@ -155,7 +163,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getTitle()
     {
-        if (isset($this->data->name)) {
+        if (isset($this->data->name))
+        {
             return $this->data->name;
         }
         return '';
@@ -167,10 +176,31 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getSeasons()
     {
-        if (!empty($this->data->seasons)) {
-            foreach ($this->data->seasons as $season) {
+        if ( ! empty($this->data->seasons))
+        {
+            foreach ($this->data->seasons as $season)
+            {
                 $season = new \vfalies\tmdb\Results\TVSeason($this->tmdb, $season);
                 yield $season;
+            }
+        }
+    }
+
+    /**
+     * Get TVShow networks
+     * @return \Generator|\stdClass
+     */
+    public function getNetworks()
+    {
+        if ( ! empty($this->data->networks))
+        {
+            foreach ($this->data->networks as $network)
+            {
+                $n       = new \stdClass();
+                $n->id   = $network->id;
+                $n->name = $network->name;
+
+                yield $n;
             }
         }
     }
@@ -204,4 +234,5 @@ class TVShow extends Item implements TVShowInterface
             yield $image;
         }
     }
+
 }

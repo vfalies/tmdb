@@ -400,4 +400,19 @@ class TVShowTest extends TestCase
         }
     }
 
+    public function testGetNetworks()
+    {
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $networks = $TVShow->getNetworks();
+        $this->assertInstanceOf(\Generator::class, $networks);
+
+        foreach ($networks as $n)
+        {
+            $this->assertObjectHasAttribute('id', $n);
+            $this->assertObjectHasAttribute('name', $n);
+        }
+    }
 }
