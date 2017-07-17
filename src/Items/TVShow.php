@@ -21,6 +21,7 @@ use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Interfaces\TmdbInterface;
+use vfalies\tmdb\Results\TVShow as ResultTVShow;
 
 /**
  * TVShow class
@@ -202,6 +203,21 @@ class TVShow extends Item implements TVShowInterface
         {
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
+        }
+    }
+
+    /**
+     * Get Similar TVShow
+     * @return \Generator|Results\TVShow
+     */
+    public function getSimilar()
+    {
+        $similar = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/'.(int) $this->id.'/similar', null, $this->params);
+
+        foreach ($similar->results as $t)
+        {
+            $tvshow = new ResultTVShow($this->tmdb, $t);
+            yield $tvshow;
         }
     }
 }

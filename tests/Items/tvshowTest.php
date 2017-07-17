@@ -400,4 +400,20 @@ class TVShowTest extends TestCase
         }
     }
 
+    public function testGetSimilarTVShow()
+    {
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/TVShowSimilarOK.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $similar = $TVShow->getSimilar();
+
+        $this->assertInstanceOf(\Generator::class, $similar);
+
+        foreach ($similar as $s)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\TVShow::class, $s);
+        }
+    }
 }
