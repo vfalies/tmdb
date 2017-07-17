@@ -16,6 +16,7 @@
 namespace vfalies\tmdb;
 
 use vfalies\tmdb\Catalogs\Genres;
+use vfalies\tmdb\Catalogs\Jobs;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
@@ -69,5 +70,17 @@ class Catalog
         $this->logger->debug('Starting getting tv show genres');
         $catalog = new Genres($this->tmdb);
         return $catalog->getTVList($options);
+    }
+
+    /**
+     * Get Job list
+     * @param array $options
+     * @return \Generator|\stdClass
+     */
+    public function getJobsList(array $options = array())
+    {
+        $this->logger->debug('Starting getting jobs list');
+        $catalog = new Jobs($this->tmdb);
+        return $catalog->getList($options);
     }
 }
