@@ -442,4 +442,23 @@ public function testGetProductionCompanies()
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
         }
     }
+
+    public function testGetSimilar()
+    {
+        $movie = new movie($this->tmdb, $this->movie_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/movieSimilarOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $similar = $movie->getSimilar();
+
+        $this->assertInstanceOf(\Generator::class, $similar);
+
+        foreach ($similar as $s)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $s);
+            $this->assertEquals(106912, $s->getId());
+            $this->assertEquals("Darna: The Return", $s->getTitle());
+        }
+    }
 }

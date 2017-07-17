@@ -22,6 +22,7 @@ use vfalies\tmdb\Items\MovieCredit;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Interfaces\TmdbInterface;
+use vfalies\tmdb\Results\Movie as ResultMovie;
 
 /**
  * Movie class
@@ -259,4 +260,18 @@ class Movie extends Item implements MovieInterface
         }
     }
 
+    /**
+     * Get similar movies from current movie
+     * @return \Generator|Results\Movie
+     */
+    public function getSimilar()
+    {
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/'.(int) $this->id.'/similar', null, $this->params);
+
+        foreach ($data->results as $s)
+        {
+            $movie = new ResultMovie($this->tmdb, $s);
+            yield $movie;
+        }
+    }
 }
