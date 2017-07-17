@@ -20,6 +20,7 @@ use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Results\Image;
+use vfalies\tmdb\Results\Cast;
 use vfalies\tmdb\Traits\TVEpisodeTrait;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
@@ -103,13 +104,21 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     /**
      * Guests stars
-     * @codeCoverageIgnore
-     * @throws NotYetImplementedException
-     * @todo getGuestStars() Not yet implemented
+     * @return \Generator|Results\Cast
      */
     public function getGuestStars()
     {
-        throw new NotYetImplementedException;
+        if (isset($this->data->guest_stars))
+        {
+            foreach ($this->data->guest_stars as $gs)
+            {
+                $gs->gender = null;
+                $gs->cast_id = null;
+
+                $star = new Cast($this->tmdb, $gs);
+                yield $star;
+            }
+        }
     }
 
     /**
