@@ -83,6 +83,11 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * @var int
      */
     protected $id              = null;
+    /**
+     * Guest stars
+     * @var array
+     */
+    protected $guest_stars = [];
 
     /**
      * Constructor
@@ -105,6 +110,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
         $this->overview        = $this->data->overview;
         $this->production_code = $this->data->production_code;
         $this->still_path      = $this->data->still_path;
+        $this->guest_stars     = $this->data->guest_stars;
     }
 
     /**
@@ -127,13 +133,21 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
 
     /**
      * Guests stars
-     * @codeCoverageIgnore
-     * @throws NotYetImplementedException
-     * @todo getGuestStars() Not yet implemented
+     * @return \Generator|Results\Cast
      */
     public function getGuestStars()
     {
-        throw new NotYetImplementedException;
+        if (isset($this->guest_stars))
+        {
+            foreach ($this->guest_stars as $gs)
+            {
+                $gs->gender = null;
+                $gs->cast_id = null;
+
+                $star = new Cast($this->tmdb, $gs);
+                yield $star;
+            }
+        }
     }
 
     /**
