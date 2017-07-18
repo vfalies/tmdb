@@ -309,14 +309,13 @@ class TVEpisodeTest extends TestCase
         $this->setRequestOk();
 
         $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
-        $Crew = $TVEpisode->getCrew();
+        $Crew      = $TVEpisode->getCrew();
 
         $this->assertInstanceOf(\Generator::class, $Crew);
         foreach ($Crew as $c)
         {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $c);
         }
-
     }
 
     public function testGetPosters()
@@ -335,4 +334,19 @@ class TVEpisodeTest extends TestCase
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
         }
     }
+
+    /**
+     * @test
+     */
+    public function testGetGuestStars()
+    {
+        $this->setRequestOk();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $stars = $TVEpisode->getGuestStars()->current();
+
+        $this->assertEquals(117642, $stars->getId());
+    }
+
 }

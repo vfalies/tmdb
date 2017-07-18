@@ -10,11 +10,11 @@ use PHPUnit\Framework\TestCase;
 class TVEpisodeTest extends TestCase
 {
 
-    protected $tmdb   = null;
-    protected $result = null;
-    protected $tv_id  = 253;
+    protected $tmdb          = null;
+    protected $result        = null;
+    protected $tv_id         = 253;
     protected $season_number = 1;
-    protected $episode = null;
+    protected $episode       = null;
 
     public function setUp()
     {
@@ -41,7 +41,7 @@ class TVEpisodeTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/TVSeasonOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $TVSeason       = new \vfalies\tmdb\Items\TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+        $TVSeason      = new \vfalies\tmdb\Items\TVSeason($this->tmdb, $this->tv_id, $this->season_number);
         $this->episode = $TVSeason->getEpisodes()->current();
     }
 
@@ -164,6 +164,18 @@ class TVEpisodeTest extends TestCase
         {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $c);
         }
-
     }
+
+    /**
+     * @test
+     */
+    public function testGetGuestStars()
+    {
+        $this->sendRequestOk();
+
+        $stars = $this->episode->getGuestStars()->current();
+
+        $this->assertEquals(117642, $stars->getId());
+    }
+
 }
