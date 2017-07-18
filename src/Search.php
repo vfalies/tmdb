@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -32,22 +31,22 @@ class Search
      * Tmdb object
      * @var TmdbInterface
      */
-    private $tmdb          = null;
+    private $tmdb = null;
     /**
      * Logger
      * @var \Psr\Log\LoggerInterface
      */
-    private $logger        = null;
+    private $logger = null;
     /**
      * Page number of the search result
      * @var int
      */
-    private $page          = 1;
+    private $page = 1;
     /**
      * Total pages of the search result
      * @var int
      */
-    private $total_pages   = 1;
+    private $total_pages = 1;
     /**
      * Total results of the search result
      * @var int
@@ -85,7 +84,7 @@ class Search
                 throw new IncorrectParamException;
             }
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'search/'.$item, $query, $params);
+            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'search/' . $item, $query, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
@@ -128,7 +127,9 @@ class Search
         {
             $this->logger->debug('Starting search movie');
             return $this->searchItem('movie', $query, $options, Results\Movie::class);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -146,7 +147,9 @@ class Search
         {
             $this->logger->debug('Starting search tv show');
             return $this->searchItem('tv', $query, $options, Results\TVShow::class);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -164,7 +167,9 @@ class Search
         {
             $this->logger->debug('Starting search collection');
             return $this->searchItem('collection', $query, $options, Results\Collection::class);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }

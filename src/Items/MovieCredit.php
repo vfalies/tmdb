@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -42,7 +41,7 @@ class MovieCredit extends Item
      */
     public function __construct(TmdbInterface $tmdb, $movie_id, array $options = array())
     {
-        parent::__construct($tmdb, '/credits', $options, 'movie/'.$movie_id);
+        parent::__construct($tmdb, '/credits', $options, 'movie/' . $movie_id);
     }
 
     /**

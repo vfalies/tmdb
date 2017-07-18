@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -31,12 +30,12 @@ abstract class Item
      * id
      * @var int
      */
-    protected $id     = null;
+    protected $id = null;
     /**
      * Tmdb object
      * @var TmdbInterface
      */
-    protected $tmdb   = null;
+    protected $tmdb = null;
     /**
      * Logger
      * @var \Psr\Log\LoggerInterface
@@ -46,7 +45,7 @@ abstract class Item
      * Configuration
      * @var \stdClass
      */
-    protected $conf   = null;
+    protected $conf = null;
     /**
      * Params
      * @var array
@@ -56,7 +55,7 @@ abstract class Item
      * Data
      * @var \stdClass
      */
-    protected $data   = null;
+    protected $data = null;
 
     /**
      * Constructor
@@ -75,7 +74,7 @@ abstract class Item
             $this->logger = $tmdb->getLogger();
             $this->conf   = $this->tmdb->getConfiguration();
             $this->params = $this->tmdb->checkOptions($options);
-            $this->data   = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $item_name.'/'.(int) $item_id, null, $this->params);
+            $this->data   = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $item_name . '/' . (int) $item_id, null, $this->params);
         }
         catch (TmdbException $ex)
         {

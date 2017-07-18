@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -32,22 +31,22 @@ class People extends Results implements PeopleResultsInterface
      * Adult
      * @var string
      */
-    protected $adult        = null;
+    protected $adult = null;
     /**
      * People known for
      * @var array
      */
-    protected $known_for    = null;
+    protected $known_for = null;
     /**
      * People name
      * @var string
      */
-    protected $name         = null;
+    protected $name = null;
     /**
      * Popularity
      * @var int
      */
-    protected $popularity   = null;
+    protected $popularity = null;
     /**
      * Image profile path
      * @var string
@@ -57,7 +56,7 @@ class People extends Results implements PeopleResultsInterface
      * Id
      * @var int
      */
-    protected $id           = null;
+    protected $id = null;
 
     /**
      * Constructor

@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -222,7 +221,7 @@ class People extends Item implements PeopleInterface
      */
     public function getProfiles()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/person/'.(int) $this->id.'/images', null, $this->params);
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/person/' . (int) $this->id . '/images', null, $this->params);
 
         foreach ($data->profiles as $b)
         {

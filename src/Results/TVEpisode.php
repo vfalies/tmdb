@@ -37,37 +37,37 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Episode number
      * @var int
      */
-    protected $episode_number  = 0;
+    protected $episode_number = 0;
     /**
      * Name
      * @var string
      */
-    protected $name            = '';
+    protected $name = '';
     /**
      * Air date
      * @var string
      */
-    protected $air_date        = null;
+    protected $air_date = null;
     /**
      * Season number
      * @var int
      */
-    protected $season_number   = 0;
+    protected $season_number = 0;
     /**
      * Vote average
      * @var float
      */
-    protected $vote_average    = 0;
+    protected $vote_average = 0;
     /**
      * Vote count
      * @var int
      */
-    protected $vote_count      = 0;
+    protected $vote_count = 0;
     /**
      * Overview
      * @var string
      */
-    protected $overview        = '';
+    protected $overview = '';
     /**
      * Production code
      * @var string
@@ -77,12 +77,12 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Image still path
      * @var string
      */
-    protected $still_path      = '';
+    protected $still_path = '';
     /**
      * Id
      * @var int
      */
-    protected $id              = null;
+    protected $id = null;
     /**
      * Guest stars
      * @var array

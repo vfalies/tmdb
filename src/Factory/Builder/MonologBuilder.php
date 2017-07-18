@@ -48,9 +48,9 @@ class MonologBuilder implements LoggerBuilderInterface
      */
     public function __construct(array $config = [])
     {
-        $this->loggerName = isset($config['name']) ? $config['name']:$this->loggerName;
+        $this->loggerName = isset($config['name']) ? $config['name'] : $this->loggerName;
 
-        $this->handlersConfig = isset($config['handlers']) ? $config['handlers']:$this->handlersConfig;
+        $this->handlersConfig = isset($config['handlers']) ? $config['handlers'] : $this->handlersConfig;
     }
 
     /**
@@ -62,7 +62,8 @@ class MonologBuilder implements LoggerBuilderInterface
     {
         $logger = new Logger($this->loggerName);
 
-        foreach ($this->handlersConfig as $config) {
+        foreach ($this->handlersConfig as $config)
+        {
             $handler = $this->newHandler($config['class'], $config['params']);
             $logger->pushHandler($handler);
         }
@@ -80,7 +81,7 @@ class MonologBuilder implements LoggerBuilderInterface
     {
         $reflection = new \ReflectionClass($class);
 
-        if (! $reflection->implementsInterface('Monolog\Handler\HandlerInterface')) {
+        if (!$reflection->implementsInterface('Monolog\Handler\HandlerInterface')) {
             throw new \InvalidArgumentException();
         }
 

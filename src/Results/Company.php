@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -31,7 +30,7 @@ class Company extends Results implements CompanyResultsInterface
      * Collection name
      * @var string
      */
-    protected $name      = null;
+    protected $name = null;
     /**
      * Collection image logo path
      * @var string
@@ -41,7 +40,7 @@ class Company extends Results implements CompanyResultsInterface
      * Collection Id
      * @var int
      */
-    protected $id        = null;
+    protected $id = null;
 
     /**
      * Constructor
