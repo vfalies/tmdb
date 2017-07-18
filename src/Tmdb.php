@@ -78,7 +78,7 @@ class Tmdb implements TmdbInterface
      * Logger
      * @var LoggerInterface
      */
-    public $logger     = null;
+    protected $logger     = null;
 
     /**
      * API Version
@@ -238,6 +238,15 @@ class Tmdb implements TmdbInterface
             throw new IncorrectParamException;
         }
         return $language;
+    }
+
+    /**
+     * Get logger
+     * @return LoggerInterface
+     */
+    public function getLogger()
+    {
+        return $this->logger;
     }
 
 }

@@ -45,7 +45,7 @@ class Catalog
     public function __construct(TmdbInterface $tmdb)
     {
         $this->tmdb   = $tmdb;
-        $this->logger = $tmdb->logger;
+        $this->logger = $tmdb->getLogger();
     }
 
     /**

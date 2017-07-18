@@ -46,4 +46,10 @@ interface TmdbInterface
      * @return array
      */
     public function checkOptions(array $options);
+
+    /**
+     * Get current logger
+     * @return LoggerInterface
+     */
+    public function getLogger();
 }

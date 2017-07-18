@@ -61,7 +61,7 @@ abstract class Results implements ResultsInterface
      */
     public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
-        $this->logger = $tmdb->logger;
+        $this->logger = $tmdb->getLogger();
 
         // Valid input object
         $properties = get_object_vars($this);

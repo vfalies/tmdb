@@ -34,7 +34,7 @@ abstract class Item
     protected $id     = null;
     /**
      * Tmdb object
-     * @var Tmdb
+     * @var TmdbInterface
      */
     protected $tmdb   = null;
     /**
@@ -72,7 +72,7 @@ abstract class Item
         {
             $this->id     = (int) $item_id;
             $this->tmdb   = $tmdb;
-            $this->logger = $tmdb->logger;
+            $this->logger = $tmdb->getLogger();
             $this->conf   = $this->tmdb->getConfiguration();
             $this->params = $this->tmdb->checkOptions($options);
             $this->data   = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $item_name.'/'.(int) $item_id, null, $this->params);
