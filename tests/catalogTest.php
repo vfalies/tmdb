@@ -116,4 +116,20 @@ class CatalogTest extends TestCase
         $this->assertEquals('Action & Adventure', $genre->name);
     }
 
+    /**
+     * @test
+     */
+    public function tetsGetJobs()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/jobsOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $jobs = new Catalog($this->tmdb);
+        $list = $jobs->getJobsList(array('language' => 'fr-FR'));
+
+        $job = $list->current();
+
+        $this->assertEquals('Writing', $job->department);
+    }
+
 }
