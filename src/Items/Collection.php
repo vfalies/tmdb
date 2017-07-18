@@ -35,11 +35,6 @@ class Collection extends Item implements CollectionInterface
     use ElementTrait;
 
     /**
-     * Data
-     * @var \stdClass
-     */
-    protected $data = null;
-    /**
      * Configuration
      * @var \stdClass
      */
