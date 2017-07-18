@@ -127,9 +127,22 @@ class CatalogTest extends TestCase
         $jobs = new Catalog($this->tmdb);
         $list = $jobs->getJobsList(array('language' => 'fr-FR'));
 
-        $job = $list->current();
+        foreach ($list as $job)
+        {
+            $this->assertEquals('Writing', $job->department);
+        }        
+    }
 
-        $this->assertEquals('Writing', $job->department);
+    /**
+     * @test
+     * @expectedException vfalies\tmdb\Exceptions\TmdbException
+     */
+    public function tetsGetJobsNok()
+    {
+        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
+
+        $jobs = new Catalog($this->tmdb);
+        $list = $jobs->getJobsList(array('wrong option'));
     }
 
 }

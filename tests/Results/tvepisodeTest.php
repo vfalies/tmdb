@@ -173,9 +173,18 @@ class TVEpisodeTest extends TestCase
     {
         $this->sendRequestOk();
 
-        $stars = $this->episode->getGuestStars()->current();
+        $stars = $this->episode->getGuestStars();
 
-        $this->assertEquals(117642, $stars->getId());
+        $i = 0;
+        foreach ($stars as $star)
+        {
+            if ($i == 0)
+            {
+                $this->assertEquals(117642, $star->getId());
+            }
+            $i++;
+        }
+
     }
 
 }

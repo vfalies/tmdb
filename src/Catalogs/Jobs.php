@@ -16,6 +16,7 @@ namespace vfalies\tmdb\Catalogs;
 
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Exceptions\TmdbException;
 
 /**
  * Class to get jobs list with department
@@ -57,13 +58,14 @@ class Jobs
             $jobs = [];
             if (isset($response->jobs))
             {
+                $results = [];
                 foreach ($response->jobs as $j)
                 {
                     $result             = new \stdClass();
                     $result->department = $j->department;
                     $result->jobs       = $j->job_list;
 
-                    yield $result;
+                    $results[] = $result;
                 }
             }
         }
@@ -71,6 +73,17 @@ class Jobs
         {
             throw $ex;
         }
+        return $this->genreItemGenerator($results);
     }
 
+    /**
+     * Genre Item generator method
+     * @param array $results
+     */
+    private function genreItemGenerator(array $results)
+    {
+        foreach ($results as $result) {
+            yield $result;
+        }
+    }
 }

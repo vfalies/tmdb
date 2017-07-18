@@ -344,9 +344,17 @@ class TVEpisodeTest extends TestCase
 
         $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
 
-        $stars = $TVEpisode->getGuestStars()->current();
+        $stars = $TVEpisode->getGuestStars();
+        $i = 0;
+        foreach ($stars as $star)
+        {
+            if ($i == 0)
+            {
+                $this->assertEquals(117642, $star->getId());
+            }
+            $i++;
+        }
 
-        $this->assertEquals(117642, $stars->getId());
     }
 
 }
