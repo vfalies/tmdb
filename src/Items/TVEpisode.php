@@ -57,7 +57,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      */
     public function __construct(TmdbInterface $tmdb, $tv_id, $season_number, $episode_number, array $options = array())
     {
-        parent::__construct($tmdb, $episode_number, $options, 'tv/'.$tv_id.'/'.$season_number);
+        parent::__construct($tmdb, $episode_number, $options, 'tv/' . $tv_id . '/' . $season_number);
 
         $this->season_number = $season_number;
         $this->episode_number = $episode_number;
@@ -218,7 +218,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/'.(int) $this->id.'/seasons/'.$this->season_number.'/episode/'.$this->episode_number.'/images', null, $this->params);
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/episode/' . $this->episode_number . '/images', null, $this->params);
 
         foreach ($data->posters as $b)
         {

@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -36,7 +35,7 @@ class PeopleTVShowCredit extends Item
      */
     public function __construct(TmdbInterface $tmdb, $people_id, array $options = array())
     {
-        parent::__construct($tmdb, '/tv_credits', $options, 'person/'.$people_id);
+        parent::__construct($tmdb, '/tv_credits', $options, 'person/' . $people_id);
     }
 
     /**

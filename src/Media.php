@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -31,12 +30,12 @@ class Media
      * Tmdb object
      * @var TmdbInterface
      */
-    protected $tmdb   = null;
+    protected $tmdb = null;
     /**
      * Configuration
      * @var \stdClass
      */
-    protected $conf   = null;
+    protected $conf = null;
     /**
      * Logger
      * @var \Psr\Log\LoggerInterface
@@ -120,12 +119,14 @@ class Media
      */
     private function getImage($type, $size, $filepath)
     {
-        if (!isset($this->conf->images->base_url)) {
+        if (!isset($this->conf->images->base_url))
+        {
             $this->logger->error('No image base url found from configuration');
             throw new NotFoundException;
         }
         $sizes = $type . '_sizes';
-        if (!in_array($size, $this->conf->images->$sizes)) {
+        if (!in_array($size, $this->conf->images->$sizes))
+        {
             $this->logger->error('Incorrect param image size', array('type' => $type, 'size' => $size, 'filepath' => $filepath));
             throw new IncorrectParamException;
         }

@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -31,27 +30,27 @@ class Crew extends Results implements CrewResultsInterface
      * Department
      * @var string
      */
-    protected $department   = null;
+    protected $department = null;
     /**
      * Gender
      * @var string
      */
-    protected $gender       = null;
+    protected $gender = null;
     /**
      * Credit id
      * @var string
      */
-    protected $credit_id    = null;
+    protected $credit_id = null;
     /**
      * Job
      * @var string
      */
-    protected $job          = null;
+    protected $job = null;
     /**
      * Name
      * @var string
      */
-    protected $name         = null;
+    protected $name = null;
     /**
      * Image profile path
      * @var string
@@ -61,7 +60,7 @@ class Crew extends Results implements CrewResultsInterface
      * Id
      * @var int
      */
-    protected $id           = null;
+    protected $id = null;
 
     /**
      * Constructor
