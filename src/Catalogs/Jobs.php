@@ -55,10 +55,9 @@ class Jobs
             $params   = $this->tmdb->checkOptions($options);
             $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'job/list', null, $params);
 
-            $jobs = [];
+            $results = [];
             if (isset($response->jobs))
             {
-                $results = [];
                 foreach ($response->jobs as $j)
                 {
                     $result             = new \stdClass();
