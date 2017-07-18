@@ -30,7 +30,7 @@ class Genres implements GenresInterface
 
     /**
      * Tmdb object
-     * @var \vfalies\tmdb\Tmdb
+     * @var TmdbInterface
      */
     protected $tmdb = null;
 

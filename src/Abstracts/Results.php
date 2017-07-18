@@ -44,7 +44,7 @@ abstract class Results implements ResultsInterface
     protected $conf               = null;
     /**
      * Tmdb object
-     * @var \vfalies\tmdb\Tmdb
+     * @var TmdbInterface
      */
     protected $tmdb               = null;
     /**

@@ -51,7 +51,7 @@ class Collection extends Item implements CollectionInterface
     protected $id   = null;
     /**
      * Tmdb object
-     * @var Tmdb
+     * @var TmdbInterface
      */
     protected $tmdb = null;
 

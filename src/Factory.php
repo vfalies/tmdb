@@ -50,7 +50,7 @@ class Factory
      * Get Tmdb object
      * @param string $api_key API Key
      * @param int $version API Version (not yet used)
-     * @return \vfalies\tmdb\Tmdb
+     * @return TmdbInterface
      */
     public function getTmdb($api_key, $version = 3)
     {

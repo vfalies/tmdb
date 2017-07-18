@@ -32,7 +32,7 @@ class Item
 {
     /**
      * Tmdb object
-     * @var \vfalies\tmdb\Tmdb
+     * @var TmdbInterface
      */
     private $tmdb   = null;
     /**

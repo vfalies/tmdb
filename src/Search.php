@@ -30,7 +30,7 @@ class Search
 {
     /**
      * Tmdb object
-     * @var Tmdb
+     * @var TmdbInterface
      */
     private $tmdb          = null;
     /**

@@ -29,7 +29,7 @@ class Media
 {
     /**
      * Tmdb object
-     * @var Tmdb
+     * @var TmdbInterface
      */
     protected $tmdb   = null;
     /**
