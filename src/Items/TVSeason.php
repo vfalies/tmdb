@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -49,7 +48,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function __construct(TmdbInterface $tmdb, $tv_id, $season_number, array $options = array())
     {
-        parent::__construct($tmdb, $season_number, $options, 'tv/'.$tv_id);
+        parent::__construct($tmdb, $season_number, $options, 'tv/' . $tv_id);
 
         $this->season_number = $season_number;
     }
@@ -60,7 +59,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getId()
     {
-        if ( ! empty($this->data->id))
+        if (!empty($this->data->id))
         {
             return (int) $this->data->id;
         }
@@ -73,7 +72,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getAirDate()
     {
-        if ( ! empty($this->data->air_date))
+        if (!empty($this->data->air_date))
         {
             return $this->data->air_date;
         }
@@ -86,7 +85,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getEpisodeCount()
     {
-        if ( ! empty($this->data->episodes))
+        if (!empty($this->data->episodes))
         {
             return count($this->data->episodes);
         }
@@ -99,7 +98,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getSeasonNumber()
     {
-        if ( ! empty($this->data->season_number))
+        if (!empty($this->data->season_number))
         {
             return (int) $this->data->season_number;
         }
@@ -112,7 +111,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getEpisodes()
     {
-        if ( ! empty($this->data->episodes))
+        if (!empty($this->data->episodes))
         {
             foreach ($this->data->episodes as $episode)
             {
@@ -128,7 +127,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getName()
     {
-        if ( ! empty($this->data->name))
+        if (!empty($this->data->name))
         {
             return $this->data->name;
         }
@@ -141,7 +140,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getOverview()
     {
-        if ( ! empty($this->data->overview))
+        if (!empty($this->data->overview))
         {
             return $this->data->overview;
         }
@@ -154,7 +153,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/'.(int) $this->id.'/seasons/'.$this->season_number.'/images', null, $this->params);
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/images', null, $this->params);
 
         foreach ($data->posters as $b)
         {

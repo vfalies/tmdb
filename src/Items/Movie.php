@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -165,7 +164,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getCollectionId()
     {
-        if ( ! empty($this->data->belongs_to_collection))
+        if (!empty($this->data->belongs_to_collection))
         {
             return (int) $this->data->belongs_to_collection->id;
         }
@@ -198,7 +197,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getProductionCompanies()
     {
-        if ( ! empty($this->data->production_companies))
+        if (!empty($this->data->production_companies))
         {
             foreach ($this->data->production_companies as $p)
             {
@@ -217,7 +216,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getProductionCountries()
     {
-        if ( ! empty($this->data->production_countries))
+        if (!empty($this->data->production_countries))
         {
             foreach ($this->data->production_countries as $c)
             {
@@ -236,7 +235,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getBackdrops()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/'.(int) $this->id.'/images', null, $this->params);
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/' . (int) $this->id . '/images', null, $this->params);
 
         foreach ($data->backdrops as $b)
         {
@@ -251,7 +250,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/'.(int) $this->id.'/images', null, $this->params);
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/' . (int) $this->id . '/images', null, $this->params);
 
         foreach ($data->posters as $b)
         {
@@ -266,7 +265,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getSimilar()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/'.(int) $this->id.'/similar', null, $this->params);
+        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/' . (int) $this->id . '/similar', null, $this->params);
 
         foreach ($data->results as $s)
         {

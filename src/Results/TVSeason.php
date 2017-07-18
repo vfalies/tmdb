@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -45,17 +44,17 @@ class TVSeason extends Results implements TVSeasonResultsInterface
      * Image poster path
      * @var string
      */
-    protected $poster_path   = null;
+    protected $poster_path = null;
     /**
      * Air date
      * @var string
      */
-    protected $air_date      = null;
+    protected $air_date = null;
     /**
      * Id
      * @var int
      */
-    protected $id            = null;
+    protected $id = null;
 
     /**
      * Constructor

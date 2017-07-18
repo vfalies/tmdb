@@ -29,27 +29,27 @@ class Cast extends Results implements CastResultsInterface
      * Character name
      * @var string
      */
-    protected $character    = null;
+    protected $character = null;
     /**
      * Gender
      * @var string
      */
-    protected $gender       = null;
+    protected $gender = null;
     /**
      * Credit Id
      * @var string
      */
-    protected $credit_id    = null;
+    protected $credit_id = null;
     /**
      * Cast Id
      * @var int
      */
-    protected $cast_id      = null;
+    protected $cast_id = null;
     /**
      * Name
      * @var string
      */
-    protected $name         = null;
+    protected $name = null;
     /**
      * Image profile path
      * @var string
@@ -59,12 +59,12 @@ class Cast extends Results implements CastResultsInterface
      * Order in cast
      * @var int
      */
-    protected $order        = null;
+    protected $order = null;
     /**
      * Id
      * @var int
      */
-    protected $id           = null;
+    protected $id = null;
 
     /**
      * Constructor

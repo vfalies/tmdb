@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -36,22 +35,22 @@ abstract class Results implements ResultsInterface
      * Logger object
      * @var \Psr\Log\LoggerInterface
      */
-    protected $logger             = null;
+    protected $logger = null;
     /**
      * Configuration array
      * @var \stdClass
      */
-    protected $conf               = null;
+    protected $conf = null;
     /**
      * Tmdb object
      * @var TmdbInterface
      */
-    protected $tmdb               = null;
+    protected $tmdb = null;
     /**
      * Data object
      * @var \stdClass
      */
-    protected $data               = null;
+    protected $data = null;
 
     /**
      * Constructor
@@ -67,7 +66,7 @@ abstract class Results implements ResultsInterface
         $properties = get_object_vars($this);
         foreach (array_keys($properties) as $property)
         {
-            if ( ! in_array($property, $this->property_blacklist) && ! property_exists($result, $property))
+            if (!in_array($property, $this->property_blacklist) && !property_exists($result, $property))
             {
                 throw new NotFoundException($property);
             }

@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -78,7 +77,7 @@ class Tmdb implements TmdbInterface
      * Logger
      * @var LoggerInterface
      */
-    protected $logger     = null;
+    protected $logger = null;
 
     /**
      * API Version
@@ -132,12 +131,12 @@ class Tmdb implements TmdbInterface
     private function buildHTTPUrl($action, $query, $options)
     {
         // Url construction
-        $url = $this->base_api_url.$action;
+        $url = $this->base_api_url . $action;
 
         // Parameters
         $params            = [];
         $params['api_key'] = $this->api_key;
-        if ( ! is_null($query))
+        if (!is_null($query))
         {
             $params['query'] = $query;
         }
@@ -145,7 +144,7 @@ class Tmdb implements TmdbInterface
         $params = array_merge($params, $options);
 
         // URL with paramters construction
-        $url = $url.'?'.http_build_query($params);
+        $url = $url . '?' . http_build_query($params);
 
         return $url;
     }

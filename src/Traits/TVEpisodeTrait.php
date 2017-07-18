@@ -29,7 +29,7 @@ trait TVEpisodeTrait
      */
     public function getCrew()
     {
-        if ( ! empty($this->data->crew))
+        if (!empty($this->data->crew))
         {
             foreach ($this->data->crew as $crew)
             {

@@ -50,13 +50,18 @@ class Client implements HttpRequestInterface
      */
     public function getResponse($url)
     {
-        try {
+        try
+        {
             return $this->guzzleClient->request('GET', $url);
-        } catch (RequestException $e) {
-            if (is_null($e->getResponse())) {
+        }
+        catch (RequestException $e)
+        {
+            if (is_null($e->getResponse()))
+            {
                 throw new HttpErrorException;
             }
-            switch ((int) $e->getResponse()->getStatusCode()) {
+            switch ((int) $e->getResponse()->getStatusCode())
+            {
                 case 404:
                     throw new NotFoundException($e->getMessage());
                 default:

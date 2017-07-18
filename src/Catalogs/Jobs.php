@@ -81,7 +81,8 @@ class Jobs
      */
     private function genreItemGenerator(array $results)
     {
-        foreach ($results as $result) {
+        foreach ($results as $result)
+        {
             yield $result;
         }
     }

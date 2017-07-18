@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
-
  * @author Vincent Faliès <vincent.falies@gmail.com>
  * @copyright Copyright (c) 2017
  */
@@ -36,7 +35,7 @@ class Factory
     /**
      * Create
      * @param array $loggerConf
-     * @return \static
+     * @return Factory
      */
     public static function create($loggerConf = ['builder' => 'NullLogger', 'config' => []])
     {
@@ -50,7 +49,7 @@ class Factory
      * Get Tmdb object
      * @param string $api_key API Key
      * @param int $version API Version (not yet used)
-     * @return TmdbInterface
+     * @return Tmdb
      */
     public function getTmdb($api_key, $version = 3)
     {
@@ -61,11 +60,11 @@ class Factory
      * Get Builder
      * @param string $builder
      * @param array $args
-     * @return type
+     * @return LoggerBuilderInterface
      */
     public function getBuilder($builder, array $args = [])
     {
-        $class = "\\vfalies\\tmdb\\Factory\\Builder\\{$builder}Builder";
+        $class = "\\vfalies\\tmdb\\Factory\\Builder\\{$builder}builder";
 
         $reflection = new \ReflectionClass($class);
 
@@ -91,7 +90,7 @@ class Factory
      */
     public function extractConfig(array $builderConfig)
     {
-        return isset($builderConfig['config']) ? $builderConfig['config']:[];
+        return isset($builderConfig['config']) ? $builderConfig['config'] : [];
     }
 
     /**
@@ -102,7 +101,7 @@ class Factory
      */
     public function checkDependency(BuilderInterface $builder)
     {
-        if (! class_exists($builder->getMainClassName())) {
+        if (!class_exists($builder->getMainClassName())) {
             $message = "missing {$builder->getPackageName()}, please install it using composer : composer require {$builder->getPackageName()}";
             throw new MissingDependencyException($message);
         }
