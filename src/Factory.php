@@ -29,7 +29,7 @@ class Factory
 {
     /**
      * Logger builder
-     * @var loggerBuilderInterface
+     * @var \vfalies\tmdb\Interfaces\Factory\loggerBuilderInterface
      */
     protected $loggerBuilder;
 

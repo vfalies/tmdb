@@ -43,7 +43,7 @@ class Item
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface; $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      */
 
     public function __construct(TmdbInterface $tmdb)
