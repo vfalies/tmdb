@@ -49,7 +49,7 @@ interface TmdbInterface
 
     /**
      * Get current logger
-     * @return LoggerInterface
+     * @return \Psr\Log\LoggerInterface
      */
     public function getLogger();
 }

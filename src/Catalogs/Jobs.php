@@ -28,7 +28,7 @@ class Jobs
 
     /**
      * Tmdb object
-     * @var \vfalies\tmdb\Tmdb
+     * @var TmdbInterface
      */
     protected $tmdb = null;
 
