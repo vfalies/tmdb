@@ -177,6 +177,25 @@ class TVShow extends Item implements TVShowInterface
     }
 
     /**
+     * Get TVShow networks
+     * @return \Generator|\stdClass
+     */
+    public function getNetworks()
+    {
+        if ( ! empty($this->data->networks))
+        {
+            foreach ($this->data->networks as $network)
+            {
+                $n       = new \stdClass();
+                $n->id   = $network->id;
+                $n->name = $network->name;
+
+                yield $n;
+            }
+        }
+    }
+
+    /**
      * Backdrops list
      * @return \Generator|Results\Image
      */
