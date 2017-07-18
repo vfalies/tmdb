@@ -37,7 +37,7 @@ class Item
     private $tmdb   = null;
     /**
      * Logger object
-     * @var LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger = null;
 

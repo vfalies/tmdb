@@ -34,7 +34,7 @@ class Catalog
     private $tmdb   = null;
     /**
      * Logger
-     * @var LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger = null;
 

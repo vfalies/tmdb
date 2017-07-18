@@ -39,7 +39,7 @@ class Media
     protected $conf   = null;
     /**
      * Logger
-     * @var LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     protected $logger = null;
 

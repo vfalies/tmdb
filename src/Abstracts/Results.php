@@ -34,7 +34,7 @@ abstract class Results implements ResultsInterface
     protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger', 'tmdb', 'params'];
     /**
      * Logger object
-     * @var LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     protected $logger             = null;
     /**

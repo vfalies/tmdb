@@ -39,7 +39,7 @@ abstract class Item
     protected $tmdb   = null;
     /**
      * Logger
-     * @var LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     protected $logger = null;
     /**
