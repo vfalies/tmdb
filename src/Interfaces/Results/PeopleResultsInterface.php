@@ -34,11 +34,6 @@ interface PeopleResultsInterface extends ResultsInterface
     public function getAdult();
 
     /**
-     * People known for
-     */
-    public function getKnownFor();
-
-    /**
      * People name
      */
     public function getName();
