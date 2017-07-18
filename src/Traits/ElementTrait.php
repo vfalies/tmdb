@@ -22,11 +22,6 @@ namespace vfalies\tmdb\Traits;
  */
 trait ElementTrait
 {
-    /**
-     * Data
-     * @var \stdClass
-     */
-    protected $data;
 
     /**
      * Get poster path
