@@ -1,26 +1,55 @@
 <?php
+/**
+ * This file is part of the Tmdb package.
+ *
+ * (c) Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
+
 
 namespace vfalies\tmdb;
 
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
+/**
+ * Media class
+ * @package Tmdb
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Media
 {
-
-    protected $tmdb   = null;
-    protected $conf   = null;
+    /**
+     * Tmdb object
+     * @var TmdbInterface
+     */
+    protected $tmdb = null;
+    /**
+     * Configuration
+     * @var \stdClass
+     */
+    protected $conf = null;
+    /**
+     * Logger
+     * @var \Psr\Log\LoggerInterface
+     */
     protected $logger = null;
 
     /**
      * Constructor
-     * @param Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      */
-    public function __construct(Tmdb $tmdb)
+    public function __construct(TmdbInterface $tmdb)
     {
         $this->tmdb   = $tmdb;
-        $this->logger = $tmdb->logger;
+        $this->logger = $tmdb->getLogger();
         $this->conf   = $this->tmdb->getConfiguration();
     }
 
@@ -90,12 +119,14 @@ class Media
      */
     private function getImage($type, $size, $filepath)
     {
-        if (!isset($this->conf->images->base_url)) {
+        if (!isset($this->conf->images->base_url))
+        {
             $this->logger->error('No image base url found from configuration');
             throw new NotFoundException;
         }
         $sizes = $type . '_sizes';
-        if (!in_array($size, $this->conf->images->$sizes)) {
+        if (!in_array($size, $this->conf->images->$sizes))
+        {
             $this->logger->error('Incorrect param image size', array('type' => $type, 'size' => $size, 'filepath' => $filepath));
             throw new IncorrectParamException;
         }

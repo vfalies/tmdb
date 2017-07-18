@@ -1,22 +1,44 @@
 <?php
+/**
+ * This file is part of the Tmdb package.
+ *
+ * (c) Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
+
 
 namespace vfalies\tmdb\Catalogs;
 
 use vfalies\tmdb\Interfaces\GenresInterface;
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\TmdbException;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
+/**
+ * Class to get movie and tv show genres
+ * @package Tmdb
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Genres implements GenresInterface
 {
 
+    /**
+     * Tmdb object
+     * @var TmdbInterface
+     */
     protected $tmdb = null;
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      */
-    public function __construct(Tmdb $tmdb)
+    public function __construct(TmdbInterface $tmdb)
     {
         $this->tmdb = $tmdb;
     }
@@ -29,9 +51,12 @@ class Genres implements GenresInterface
      */
     public function getMovieList(array $options = array())
     {
-        try {
+        try
+        {
             return $this->getList('genre/movie/list', $options);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -44,9 +69,12 @@ class Genres implements GenresInterface
      */
     public function getTVList(array $options = array())
     {
-        try {
+        try
+        {
             return $this->getList('genre/tv/list', $options);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -60,17 +88,21 @@ class Genres implements GenresInterface
      */
     private function getList($type, array $options)
     {
-        try {
+        try
+        {
             $params   = $this->tmdb->checkOptions($options);
             $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), $type, null, $params);
 
             $genres = [];
-            if (isset($response->genres)) {
+            if (isset($response->genres))
+            {
                 $genres = $response->genres;
             }
 
             return $this->genreItemGenerator($genres);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -81,7 +113,8 @@ class Genres implements GenresInterface
      */
     private function genreItemGenerator(array $results)
     {
-        foreach ($results as $result) {
+        foreach ($results as $result)
+        {
             yield $result;
         }
     }

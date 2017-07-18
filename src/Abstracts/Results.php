@@ -1,33 +1,72 @@
 <?php
+/**
+ * This file is part of the Tmdb package.
+ *
+ * (c) Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
+
 
 namespace vfalies\tmdb\Abstracts;
 
-use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Interfaces\Results\ResultsInterface;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
+/**
+ * Abstract results class
+ * @package Tmdb
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 abstract class Results implements ResultsInterface
 {
-
-    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger'];
-    protected $logger             = null;
-    protected $conf               = null;
+    /**
+     * Properties to ignore in object control validation in constructor
+     * @var array
+     */
+    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger', 'tmdb', 'params'];
+    /**
+     * Logger object
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger = null;
+    /**
+     * Configuration array
+     * @var \stdClass
+     */
+    protected $conf = null;
+    /**
+     * Tmdb object
+     * @var TmdbInterface
+     */
+    protected $tmdb = null;
+    /**
+     * Data object
+     * @var \stdClass
+     */
+    protected $data = null;
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param \stdClass $result
      * @throws NotFoundException
      */
-    public function __construct(Tmdb $tmdb, \stdClass $result)
+    public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
-        $this->logger = $tmdb->logger;
+        $this->logger = $tmdb->getLogger();
 
         // Valid input object
         $properties = get_object_vars($this);
         foreach (array_keys($properties) as $property)
         {
-            if ( ! in_array($property, $this->property_blacklist) && ! property_exists($result, $property))
+            if (!in_array($property, $this->property_blacklist) && !property_exists($result, $property))
             {
                 throw new NotFoundException($property);
             }
@@ -36,6 +75,7 @@ abstract class Results implements ResultsInterface
         // Configuration
         $this->conf = $tmdb->getConfiguration();
         $this->data = $result;
+        $this->tmdb = $tmdb;
     }
 
 }

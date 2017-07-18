@@ -1,19 +1,57 @@
 <?php
+/**
+ * This file is part of the Tmdb package.
+ *
+ * (c) Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
+
 
 namespace vfalies\tmdb\Traits\Results;
 
+/**
+ * Trait with methods for Show (Movie & TVShow)
+ * @package Tmdb
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 trait ShowTrait
 {
+    /**
+     * Id
+     * @var int
+     */
     protected $id;
+    /**
+     * Overview
+     * @var string
+     */
     protected $overview;
+    /**
+     * Release date
+     * @var string
+     */
     protected $release_date;
+    /**
+     * Original title
+     * @var string
+     */
     protected $original_title;
+    /**
+     * Title
+     * @var string
+     */
     protected $title;
 
-     /**
-     * Get show ID
-     * @return int
-     */
+        /**
+         * Get show ID
+         * @return int
+         */
     public function getId()
     {
         return (int) $this->id;

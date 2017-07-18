@@ -20,7 +20,7 @@ class TVSeasonTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -228,11 +228,28 @@ class TVSeasonTest extends TestCase
     {
         $this->setRequestTVSeasonEmpty();
 
-        $TVSeason  = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
-        $seasons = $TVSeason->getEpisodes();
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+        $seasons  = $TVSeason->getEpisodes();
 
         $this->assertInstanceOf(\Generator::class, $seasons);
         $this->assertNull($seasons->current());
+    }
+
+    public function testGetPosters()
+    {
+        $TVSeason = new TVSeason($this->tmdb, $this->tv_id, $this->season_number);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $posters = $TVSeason->getPosters();
+
+        $this->assertInstanceOf(\Generator::class, $posters);
+
+        foreach ($posters as $p)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+        }
     }
 
 }

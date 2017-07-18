@@ -19,7 +19,7 @@ class MovieTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -338,4 +338,127 @@ class MovieTest extends TestCase
         $this->assertEmpty($movie->getBackdropPath());
     }
 
+    /**
+     * @test
+     */
+    public function testGetCrewOk()
+    {
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/creditOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $crew = $movie->getCrew();
+
+        foreach ($crew as $c)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $c);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function testGetCastOk()
+    {
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/creditOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $cast = $movie->getCast();
+
+        foreach ($cast as $c)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Cast::class, $c);
+        }
+    }
+public function testGetProductionCompanies()
+    {
+        $this->setRequestOk();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $companies = $movie->getProductionCompanies();
+        $this->assertInstanceOf(\Generator::class, $companies);
+
+        foreach ($companies as $c)
+        {
+            $this->assertInstanceOf(\stdClass::class, $c);
+            $this->assertNotEmpty($c->name);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function testGetProductionCountries()
+    {
+        $this->setRequestOk();
+
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $countries = $movie->getProductionCountries();
+        $this->assertInstanceOf(\Generator::class, $countries);
+
+        foreach ($countries as $c)
+        {
+            $this->assertInstanceOf(\stdClass::class, $c);
+            $this->assertNotEmpty($c->name);
+        }
+    }
+
+
+    public function testGetBackdrops()
+    {
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $backdrops = $movie->getBackdrops();
+
+        $this->assertInstanceOf(\Generator::class, $backdrops);
+
+        foreach ($backdrops as $b)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
+        }
+    }
+
+    public function testGetPosters()
+    {
+        $movie = new movie($this->tmdb, $this->movie_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $posters = $movie->getPosters();
+
+        $this->assertInstanceOf(\Generator::class, $posters);
+
+        foreach ($posters as $p)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+        }
+    }
+
+    public function testGetSimilar()
+    {
+        $movie = new movie($this->tmdb, $this->movie_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/movieSimilarOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $similar = $movie->getSimilar();
+
+        $this->assertInstanceOf(\Generator::class, $similar);
+
+        foreach ($similar as $s)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $s);
+            $this->assertEquals(106912, $s->getId());
+            $this->assertEquals("Darna: The Return", $s->getTitle());
+        }
+    }
 }

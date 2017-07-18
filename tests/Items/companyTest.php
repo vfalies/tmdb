@@ -19,7 +19,7 @@ class CompanyTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -210,6 +210,24 @@ class CompanyTest extends TestCase
         $company = new Company($this->tmdb, $this->company_id);
         $this->assertInternalType('string', $company->getLogoPath());
         $this->assertEmpty($company->getLogoPath());
+    }
+
+    public function testGetMovies()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_object = json_decode(file_get_contents('tests/json/companyMoviesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $company = new Company($this->tmdb, $this->company_id);
+        $movies = $company->getMovies();
+
+        $this->assertInstanceOf(\Generator::class, $movies);
+        foreach ($movies as $m)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $m);
+        }
     }
 
 }

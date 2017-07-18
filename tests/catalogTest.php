@@ -18,7 +18,7 @@ class CatalogTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest'])
                 ->getMock();
     }
@@ -114,6 +114,35 @@ class CatalogTest extends TestCase
 
         $this->assertEquals(10759, $genre->id);
         $this->assertEquals('Action & Adventure', $genre->name);
+    }
+
+    /**
+     * @test
+     */
+    public function tetsGetJobs()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/jobsOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $jobs = new Catalog($this->tmdb);
+        $list = $jobs->getJobsList(array('language' => 'fr-FR'));
+
+        foreach ($list as $job)
+        {
+            $this->assertEquals('Writing', $job->department);
+        }        
+    }
+
+    /**
+     * @test
+     * @expectedException vfalies\tmdb\Exceptions\TmdbException
+     */
+    public function tetsGetJobsNok()
+    {
+        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
+
+        $jobs = new Catalog($this->tmdb);
+        $list = $jobs->getJobsList(array('wrong option'));
     }
 
 }

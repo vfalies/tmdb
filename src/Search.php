@@ -1,29 +1,66 @@
 <?php
+/**
+ * This file is part of the Tmdb package.
+ *
+ * (c) Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
+
 
 namespace vfalies\tmdb;
 
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\Exceptions\TmdbException;
+use vfalies\tmdb\Interfaces\TmdbInterface;
 
+/**
+ * Search class
+ * @package Tmdb
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
 class Search
 {
-
-    private $tmdb          = null;
-    private $logger        = null;
-    private $page          = 1; // Page number of the search result
-    private $total_pages   = 1; // Total pages of the search result
-    private $total_results = 0; // Total results of the search result
+    /**
+     * Tmdb object
+     * @var TmdbInterface
+     */
+    private $tmdb = null;
+    /**
+     * Logger
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger = null;
+    /**
+     * Page number of the search result
+     * @var int
+     */
+    private $page = 1;
+    /**
+     * Total pages of the search result
+     * @var int
+     */
+    private $total_pages = 1;
+    /**
+     * Total results of the search result
+     * @var int
+     */
+    private $total_results = 0;
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Tmdb $tmdb
+     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      */
-
-    public function __construct(Tmdb $tmdb)
+    public function __construct(TmdbInterface $tmdb)
     {
         $this->tmdb   = $tmdb;
-        $this->logger = $tmdb->logger;
+        $this->logger = $tmdb->getLogger();
     }
 
     /**
@@ -47,7 +84,7 @@ class Search
                 throw new IncorrectParamException;
             }
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'search/'.$item, $query, $params);
+            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'search/' . $item, $query, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
@@ -90,7 +127,9 @@ class Search
         {
             $this->logger->debug('Starting search movie');
             return $this->searchItem('movie', $query, $options, Results\Movie::class);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -108,7 +147,9 @@ class Search
         {
             $this->logger->debug('Starting search tv show');
             return $this->searchItem('tv', $query, $options, Results\TVShow::class);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -126,7 +167,9 @@ class Search
         {
             $this->logger->debug('Starting search collection');
             return $this->searchItem('collection', $query, $options, Results\Collection::class);
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -143,7 +186,7 @@ class Search
         try
         {
             $this->logger->debug('Starting search people');
-            return $this->searchItem('people', $query, $options, Results\People::class);           
+            return $this->searchItem('people', $query, $options, Results\People::class);
         }
         catch (TmdbException $ex)
         {

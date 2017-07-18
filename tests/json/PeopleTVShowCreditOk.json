@@ -1,0 +1,219 @@
+{
+  "cast": [
+    {
+      "character": "Devon",
+      "credit_id": "5328ddb6c3a3683d430006a7",
+      "episode_count": 1,
+      "first_air_date": "2009-09-17",
+      "id": 18347,
+      "name": "Community",
+      "original_name": "Community",
+      "poster_path": "/kMceNzAgVtl6MwU5C7Iv9azPbih.jpg"
+    },
+    {
+      "character": "Himself",
+      "credit_id": "56c9f199c3a36840870083e9",
+      "episode_count": 1,
+      "first_air_date": "2016-02-15",
+      "id": 65664,
+      "name": "Talking Saul",
+      "original_name": "Talking Saul",
+      "poster_path": "/goAGIZla7EwdH1R4eSX6UXGUov0.jpg"
+    },
+    {
+      "character": "Self",
+      "credit_id": "56cb156392514108620001bf",
+      "episode_count": 1,
+      "first_air_date": "2003-01-23",
+      "id": 1428,
+      "name": "MythBusters",
+      "original_name": "MythBusters",
+      "poster_path": "/vTRwO0OsAQfwwWQtls9z8W4DU7j.jpg"
+    }
+  ],
+  "crew": [
+    {
+      "credit_id": "52542287760ee31328001af1",
+      "department": "Production",
+      "episode_count": 68,
+      "first_air_date": "2008-01-19",
+      "id": 1396,
+      "job": "Executive Producer",
+      "name": "Breaking Bad",
+      "original_name": "Breaking Bad",
+      "poster_path": "/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg"
+    },
+    {
+      "credit_id": "52542275760ee313280006ce",
+      "department": "Writing",
+      "episode_count": 81,
+      "first_air_date": "2008-01-19",
+      "id": 1396,
+      "job": "Writer",
+      "name": "Breaking Bad",
+      "original_name": "Breaking Bad",
+      "poster_path": "/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg"
+    },
+    {
+      "credit_id": "52542275760ee313280006e8",
+      "department": "Directing",
+      "episode_count": 26,
+      "first_air_date": "2008-01-19",
+      "id": 1396,
+      "job": "Director",
+      "name": "Breaking Bad",
+      "original_name": "Breaking Bad",
+      "poster_path": "/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg"
+    },
+    {
+      "credit_id": "52571051760ee3776a0b8adf",
+      "department": "Writing",
+      "episode_count": 1,
+      "first_air_date": "2005-09-29",
+      "id": 1684,
+      "job": "Writer",
+      "name": "Night Stalker",
+      "original_name": "Night Stalker",
+      "poster_path": "/c3KDFmH2R5L1UXGb7vnPGCiAQGX.jpg"
+    },
+    {
+      "credit_id": "5257500f760ee36aaa1a4276",
+      "department": "Writing",
+      "episode_count": 1,
+      "first_air_date": "2002-09-27",
+      "id": 3381,
+      "job": "Writer",
+      "name": "Robbery Homicide Division",
+      "original_name": "Robbery Homicide Division",
+      "poster_path": "/g6EvuCLq4cFG1ZewRrArx4BC43j.jpg"
+    },
+    {
+      "credit_id": "52575e80760ee36aaa2cad8f",
+      "department": "Directing",
+      "episode_count": 2,
+      "first_air_date": "1993-09-10",
+      "id": 4087,
+      "job": "Director",
+      "name": "The X-Files",
+      "original_name": "The X-Files",
+      "poster_path": "/yYTUUa4hrpOUyt5MeJDJsuVFZY.jpg"
+    },
+    {
+      "credit_id": "52575f27760ee36aaa2d0c29",
+      "department": "Production",
+      "episode_count": 219,
+      "first_air_date": "1993-09-10",
+      "id": 4087,
+      "job": "Producer",
+      "name": "The X-Files",
+      "original_name": "The X-Files",
+      "poster_path": "/yYTUUa4hrpOUyt5MeJDJsuVFZY.jpg"
+    },
+    {
+      "credit_id": "5257645f760ee36aaa34946d",
+      "department": "Writing",
+      "episode_count": 1,
+      "first_air_date": "1996-10-25",
+      "id": 4330,
+      "job": "Writer",
+      "name": "Millennium",
+      "original_name": "Millennium",
+      "poster_path": "/mo9KCG3o2zKhp5pCsVbuUCRV4DB.jpg"
+    },
+    {
+      "credit_id": "525782af19c29531db275efa",
+      "department": "Writing",
+      "episode_count": 7,
+      "first_air_date": "2001-03-04",
+      "id": 5715,
+      "job": "Writer",
+      "name": "The Lone Gunmen",
+      "original_name": "The Lone Gunmen",
+      "poster_path": "/hSYQJCCRjbOBoNNzXZLwYD12w0W.jpg"
+    },
+    {
+      "credit_id": "52575c6b760ee36aaa2bd52e",
+      "department": "Writing",
+      "episode_count": 30,
+      "first_air_date": "1993-09-10",
+      "id": 4087,
+      "job": "Writer",
+      "name": "The X-Files",
+      "original_name": "The X-Files",
+      "poster_path": "/yYTUUa4hrpOUyt5MeJDJsuVFZY.jpg"
+    },
+    {
+      "credit_id": "553820bb92514166aa007f1f",
+      "department": "Directing",
+      "episode_count": 1,
+      "first_air_date": "2015-02-08",
+      "id": 60059,
+      "job": "Director",
+      "name": "Better Call Saul",
+      "original_name": "Better Call Saul",
+      "poster_path": "/b6tpspJMOauCQqud0KOcwNSq3F3.jpg"
+    },
+    {
+      "credit_id": "564b8b61c3a3686037004315",
+      "department": "Production",
+      "episode_count": 20,
+      "first_air_date": "2015-02-08",
+      "id": 60059,
+      "job": "Executive Producer",
+      "name": "Better Call Saul",
+      "original_name": "Better Call Saul",
+      "poster_path": "/b6tpspJMOauCQqud0KOcwNSq3F3.jpg"
+    },
+    {
+      "credit_id": "52542286760ee31328001a7b",
+      "department": "Creator",
+      "first_air_date": "2008-01-19",
+      "id": 1396,
+      "job": "Creator",
+      "name": "Breaking Bad",
+      "original_name": "Breaking Bad",
+      "poster_path": "/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg"
+    },
+    {
+      "credit_id": "525782e719c29531db276bbb",
+      "department": "Creator",
+      "first_air_date": "2001-03-04",
+      "id": 5715,
+      "job": "Creator",
+      "name": "The Lone Gunmen",
+      "original_name": "The Lone Gunmen",
+      "poster_path": "/hSYQJCCRjbOBoNNzXZLwYD12w0W.jpg"
+    },
+    {
+      "credit_id": "52599cb3760ee34661b60d94",
+      "department": "Creator",
+      "first_air_date": "2015-02-08",
+      "id": 60059,
+      "job": "Creator",
+      "name": "Better Call Saul",
+      "original_name": "Better Call Saul",
+      "poster_path": "/b6tpspJMOauCQqud0KOcwNSq3F3.jpg"
+    },
+    {
+      "credit_id": "5482411cc3a3685c0e000d58",
+      "department": "Creator",
+      "first_air_date": "2015-03-01",
+      "id": 61676,
+      "job": "Creator",
+      "name": "Battle Creek",
+      "original_name": "Battle Creek",
+      "poster_path": "/3Mr4K88qw4qh3DhCqj5wLvi3iRg.jpg"
+    },
+    {
+      "credit_id": "55b333a4c3a3682ff9010732",
+      "department": "Creator",
+      "first_air_date": null,
+      "id": 27286,
+      "job": "Creator",
+      "name": "A.M.P.E.D.",
+      "original_name": "A.M.P.E.D.",
+      "poster_path": null
+    }
+  ],
+  "id": 66633
+}

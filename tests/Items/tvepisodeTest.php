@@ -21,7 +21,7 @@ class TVEpisodeTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -299,6 +299,62 @@ class TVEpisodeTest extends TestCase
         $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
 
         $this->assertEmpty($TVEpisode->getStillPath());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetCrew()
+    {
+        $this->setRequestOk();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+        $Crew      = $TVEpisode->getCrew();
+
+        $this->assertInstanceOf(\Generator::class, $Crew);
+        foreach ($Crew as $c)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $c);
+        }
+    }
+
+    public function testGetPosters()
+    {
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $posters = $TVEpisode->getPosters();
+
+        $this->assertInstanceOf(\Generator::class, $posters);
+
+        foreach ($posters as $p)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function testGetGuestStars()
+    {
+        $this->setRequestOk();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+
+        $stars = $TVEpisode->getGuestStars();
+        $i = 0;
+        foreach ($stars as $star)
+        {
+            if ($i == 0)
+            {
+                $this->assertEquals(117642, $star->getId());
+            }
+            $i++;
+        }
+
     }
 
 }

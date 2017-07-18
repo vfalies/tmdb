@@ -4,7 +4,6 @@ namespace vfalies\tmdb\lib\Guzzle;
 
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\Exceptions\NotFoundException;
 
 /**
  * @cover Client
@@ -19,7 +18,7 @@ class ClientTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest'])
                 ->getMock();
     }

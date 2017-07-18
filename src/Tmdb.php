@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * This file is part of the Tmdb package.
+ *
+ * (c) Vincent Faliès <vincent.falies@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
+ */
+
 namespace vfalies\tmdb;
 
 use vfalies\tmdb\Interfaces\TmdbInterface;
@@ -12,36 +24,78 @@ use vfalies\tmdb\Exceptions\ServerErrorException;
 
 /**
  * Tmdb wrapper core class
+ * @package Tmdb
+ * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @copyright Copyright (c) 2017
  */
 class Tmdb implements TmdbInterface
 {
 
-    // Private variables
-    private $api_key         = null; // API Key
-    private $language        = 'fr-FR'; // Default language for API response'; // Base URL of the API
-    private $include_adult   = false; // Include adult content in search result
-    private $page            = 1; // API Page result
-    // Protected variables
-    protected $configuration = null; // API Configuration
-    protected $genres        = null; // API Genres
-    // Public variables
-    public $base_api_url     = 'https://api.themoviedb.org/3/'; // Base URL of the API
+    /**
+     * API Key
+     * @var string
+     */
+    private $api_key = null;
 
     /**
-     *
+     * Default language for API response
+     * @var string
+     */
+    private $language = 'fr-FR';
+
+    /**
+     * Include adult content in search result
+     * @var boolean
+     */
+    private $include_adult = false;
+
+    /**
+     * API Page result
+     * @var int
+     */
+    private $page = 1;
+
+    /**
+     * API configuration
+     * @var \stdClass
+     */
+    protected $configuration = null;
+
+    /**
+     * API Genres
+     * @var \stdClass
+     */
+    protected $genres = null;
+
+    /**
+     * Base URL of the API
+     * @var string
+     */
+    public $base_api_url = 'https://api.themoviedb.org/3/';
+
+    /**
+     * Logger
      * @var LoggerInterface
      */
-    public $logger           = null;
+    protected $logger = null;
+
+    /**
+     * API Version
+     * @var int
+     */
+    protected $version = null;
 
     /**
      * Constructor
      * @param string $api_key TMDB API Key
+     * @param string $version Version of API (Not yet used)
      * @param LoggerInterface $logger Logger used in the class
      */
-    public function __construct($api_key, LoggerInterface $logger)
+    public function __construct($api_key, $version = 3, LoggerInterface $logger)
     {
         $this->api_key = $api_key;
         $this->logger  = $logger;
+        $this->version = $version;
     }
 
     /**
@@ -59,7 +113,8 @@ class Tmdb implements TmdbInterface
         $res = $http_request->getResponse($url);
 
         $response = json_decode($res->getBody());
-        if (empty($response)) {
+        if (empty($response))
+        {
             $this->logger->error('Request Body can not be decode', array('action' => $action, 'query' => $query, 'options' => $options));
             throw new ServerErrorException();
         }
@@ -81,7 +136,8 @@ class Tmdb implements TmdbInterface
         // Parameters
         $params            = [];
         $params['api_key'] = $this->api_key;
-        if (!is_null($query)) {
+        if (!is_null($query))
+        {
             $params['query'] = $query;
         }
 
@@ -100,14 +156,18 @@ class Tmdb implements TmdbInterface
      */
     public function getConfiguration()
     {
-        try {
+        try
+        {
             $this->logger->debug('Start getting configuration');
-            if (is_null($this->configuration)) {
+            if (is_null($this->configuration))
+            {
                 $this->logger->debug('No configuration found, sending HTTP request to get it');
                 $this->configuration = $this->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'configuration');
             }
             return $this->configuration;
-        } catch (TmdbException $ex) {
+        }
+        catch (TmdbException $ex)
+        {
             throw $ex;
         }
     }
@@ -126,8 +186,10 @@ class Tmdb implements TmdbInterface
         $params['include_adult'] = $this->include_adult;
         $params['page']          = $this->page;
         // Check options
-        foreach ($options as $key => $value) {
-            switch ($key) {
+        foreach ($options as $key => $value)
+        {
+            switch ($key)
+            {
                 case 'year':
                     $params[$key] = $this->checkYear($value);
                     break;
@@ -169,10 +231,21 @@ class Tmdb implements TmdbInterface
     private function checkLanguage($language)
     {
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
-        if ($check === 0 || $check === false) {
+        if ($check === 0 || $check === false)
+        {
             $this->logger->error('Incorrect language param option', array('language' => $language));
             throw new IncorrectParamException;
         }
         return $language;
     }
+
+    /**
+     * Get logger
+     * @return LoggerInterface
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
 }

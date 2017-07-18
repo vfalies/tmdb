@@ -1,0 +1,50 @@
+{
+  "cast": [
+    {
+      "adult": false,
+      "character": "Himself",
+      "credit_id": "52fe4e93c3a36847f8299dff",
+      "id": 239459,
+      "original_title": "No Half Measures: Creating the Final Season of Breaking Bad",
+      "poster_path": "/8OixSR45U5dbqv8F0tlspmTbXxN.jpg",
+      "release_date": "2013-11-26",
+      "title": "No Half Measures: Creating the Final Season of Breaking Bad"
+    }
+  ],
+  "crew": [
+    {
+      "adult": false,
+      "credit_id": "52fe44cbc3a36847f80aa581",
+      "department": "Writing",
+      "id": 8960,
+      "job": "Screenplay",
+      "original_title": "Hancock",
+      "poster_path": "/dsCxSr4w3g2ylhlZg3v5CB5Pid7.jpg",
+      "release_date": "2008-07-01",
+      "title": "Hancock"
+    },
+    {
+      "adult": false,
+      "credit_id": "52fe44d59251416c75042907",
+      "department": "Writing",
+      "id": 12257,
+      "job": "Screenplay",
+      "original_title": "Home Fries",
+      "poster_path": "/canLYYy0QvAFQLSwvIB75zcuLVk.jpg",
+      "release_date": "1998-11-25",
+      "title": "Home Fries"
+    },
+    {
+      "adult": false,
+      "credit_id": "52fe48e7c3a36847f817fc27",
+      "department": "Writing",
+      "id": 55950,
+      "job": "Writer",
+      "original_title": "Wilder Napalm",
+      "poster_path": "/pdfEU6WqcR4l4zrNMpv2hwvKwxJ.jpg",
+      "release_date": "1993-08-20",
+      "title": "Wilder Napalm"
+    }
+  ],
+  "id": 66633
+}

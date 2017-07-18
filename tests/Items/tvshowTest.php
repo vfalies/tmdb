@@ -18,7 +18,7 @@ class TVShowTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
@@ -366,4 +366,70 @@ class TVShowTest extends TestCase
         $this->assertNull($seasons->current());
     }
 
+    public function testGetBackdrops()
+    {
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $backdrops = $TVShow->getBackdrops();
+
+        $this->assertInstanceOf(\Generator::class, $backdrops);
+
+        foreach ($backdrops as $b)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
+        }
+    }
+
+    public function testGetPosters()
+    {
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $posters = $TVShow->getPosters();
+
+        $this->assertInstanceOf(\Generator::class, $posters);
+
+        foreach ($posters as $p)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+        }
+    }
+
+    public function testGetNetworks()
+    {
+        $this->setRequestOk();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $networks = $TVShow->getNetworks();
+        $this->assertInstanceOf(\Generator::class, $networks);
+
+        foreach ($networks as $n)
+        {
+            $this->assertObjectHasAttribute('id', $n);
+            $this->assertObjectHasAttribute('name', $n);
+        }
+    }
+
+    public function testGetSimilarTVShow()
+    {
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/TVShowSimilarOK.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $similar = $TVShow->getSimilar();
+
+        $this->assertInstanceOf(\Generator::class, $similar);
+
+        foreach ($similar as $s)
+        {
+            $this->assertInstanceOf(\vfalies\tmdb\Results\TVShow::class, $s);
+        }
+    }
 }
