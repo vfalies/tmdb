@@ -80,7 +80,7 @@ Bugs and feature request are tracked on [GitHub](https://github.com/vfalies/tmdb
 
 ### Author
 
-Vincent Faliès - <vincent.falies@gmail.com>
+Vincent Faliès - <vincent@vfac.fr>
 
 ### License
 

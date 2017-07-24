@@ -3,12 +3,12 @@
 /**
  * This file is part of the Tmdb package.
  *
- * (c) Vincent Faliès <vincent.falies@gmail.com>
+ * (c) Vincent Faliès <vincent@vfac.fr>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
 
@@ -21,7 +21,7 @@ use vfalies\tmdb\Exceptions\TmdbException;
 /**
  * Class to get jobs list with department
  * @package Tmdb
- * @author Vincent Faliès <vincent.falies@gmail.com>
+ * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
 class Jobs
