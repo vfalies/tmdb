@@ -45,7 +45,7 @@ class Tmdb implements TmdbInterface
 
     /**
      * Include adult content in search result
-     * @var boolean
+     * @var bool
      */
     private $include_adult = false;
 
