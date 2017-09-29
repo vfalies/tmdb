@@ -48,16 +48,29 @@ class Account
       $this->logger = $tmdb->getLogger();
   }
 
-  public function connect()
+  /**
+   * Account connexion
+   * @param string $redirect_to URL redirect after authentification
+   * @return void
+   */
+  public function connect(string $redirect_to) : void
   {
       try {
-          $token = $this->getRequestToken();
+          $token = $this->getTemporaryRequestToken();
+
+          header("Location: https://www.themoviedb.org/authenticate/$token?redirect_to=$redirect_to", 301);
+          exit();
       } catch (TmdbException $e) {
         throw $e;
       }
   }
 
-  private function getRequestToken()
+  /**
+   * Get temporary request token
+   * @return string temporary request token
+   * @throws InvalidResponseException
+   */
+  private function getTemporaryRequestToken()
   {
       $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/authentification/token/new', null, []);
 
@@ -66,5 +79,21 @@ class Account
           throw new InvalidResponseException();
       }
      return $data->request_token;
+  }
+
+  /**
+   * Create an user session id
+   * @param  string $request_token TMDB request token, return after Account::connect() call
+   * @return string                Session ID
+   */
+  public function createSession(string $request_token) : string
+  {
+      $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/authentification/token/new', null, ['request_token' => $request_token]);
+
+      if (!isset($data->success) || $data->success != 'true')
+      {
+          throw new InvalidResponseException();
+      }
+      return $data->session_id;
   }
 }
