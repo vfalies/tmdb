@@ -14,29 +14,45 @@
 
 namespace vfalies\tmdb;
 
+use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\InvalidResponseException;
 
 /**
-* Account class
+* Auth class
 * @package Tmdb
 * @author Vincent Faliès <vincent@vfac.fr>
 * @copyright Copyright (c) 2017
  */
-class Account
+class Auth
 {
   /**
    * Tmdb object
    * @var TmdbInterface
    */
-   private $tmdb = null;
+  private $tmdb = null;
   /**
    * Logger object
    * @var \Psr\Log\LoggerInterface
    */
   private $logger = null;
+  /**
+   * Request token
+   * @var string
+   */
+  private $request_token = null;
+  /**
+   * Expiration date of request token
+   * @var \DateTime
+   */
+  private $request_token_expiration = null;
+  /**
+   * Session Id
+   * @var string
+   */
+  private $session_id  = null;
 
   /**
    * Constructor
@@ -50,13 +66,13 @@ class Account
 
   /**
    * Connect and valid request token
-   * @param  string $request_token Request token
    * @param  string|null $redirect_url Redirection url after connection (optional)
    * @return bool
    */
-  public function connect(string $request_token, ?string $redirect_url = null) : bool
+  public function connect(?string $redirect_url = null) : bool
   {
-      $url = "https://www.themoviedb.org/authenticate/$request_token";
+      $this->getRequestToken();
+      $url = "https://www.themoviedb.org/authenticate/$this->request_token";
       if (!is_null($redirect_url))
       {
           if (!filter_var($redirect_url, FILTER_VALIDATE_URL))
@@ -71,9 +87,9 @@ class Account
 
   /**
    * Get a new request token
-   * @return string Request token
+   * @return void
    */
-  public function getRequestToken() : string
+  private function getRequestToken() : void
   {
       $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/authentification/token/new', null, []);
 
@@ -81,22 +97,39 @@ class Account
       {
           throw new InvalidResponseException("Getting request token failed");
       }
-     return $data->request_token;
+     $this->request_token            = $data->request_token;
+     $this->request_token_expiration = \DateTime::createFromFormat('Y-m-d H:i:s e', $data->expires_at);
   }
 
   /**
-   * Create a new session Account
-   * @param  string $request_token Request token create by Account::getRequestToken() and validate by Account::connect()
-   * @return string                Session token string
+   * Create a new session Auth
+   * @return void
    */
-  public function createSession(string $request_token) : string
+  public function createSession() : void
   {
-      $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/authentification/session/new', null, ['request_token' => $request_token]);
+      $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/authentification/session/new', null, ['request_token' => $this->request_token]);
 
       if (!isset($data->success) || $data->success != 'true' || !isset($data->session_id))
       {
           throw new InvalidResponseException("Creating session failed");
       }
-      return $data->session_id;
+      $this->session_id = $data->session_id;
+  }
+
+  /**
+   * Magical getter
+   * @param  string $name Name of the variable to get
+   * @return mixed        Value of the variable getted
+   */
+  public function __get(string $name)
+  {
+      switch ($name)
+      {
+          case 'request_token':
+          case 'session_id':
+              return $this->$name;
+          default:
+              throw new NotFoundException();
+      }
   }
 }
