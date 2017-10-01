@@ -25,11 +25,6 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
 class WatchList
 {
     /**
-     * Configuration
-     * @var \stdClass
-     */
-    protected $conf = null;
-    /**
      * Tmdb object
      * @var TmdbInterface
      */

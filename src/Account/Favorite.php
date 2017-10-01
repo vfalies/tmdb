@@ -26,11 +26,6 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
 class Favorite
 {
     /**
-     * Configuration
-     * @var \stdClass
-     */
-    protected $conf = null;
-    /**
      * Tmdb object
      * @var TmdbInterface
      */
