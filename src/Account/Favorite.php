@@ -14,8 +14,10 @@
 
 namespace vfalies\tmdb\Account;
 use vfalies\tmdb\Auth;
+use vfalies\tmdb\Results;
 use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 /**
  * Class to manipulate account favorite
@@ -35,34 +37,115 @@ class Favorite
      * @var Auth
      */
     protected $auth = null;
-
+    /**
+     * Account id
+     * @var int
+     */
+    protected $account_id;
+    /**
+     * Options
+     * @var array
+     */
+    protected $options = [];
     /**
      * Constructor
      * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
      * @param Auth $auth
+     * @param int $account_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, Auth $auth, array $options = array())
+    public function __construct(TmdbInterface $tmdb, Auth $auth, int $account_id, array $options = array())
     {
         if (empty($auth->session_id))
         {
             throw new ServerErrorException('No account session found');
         }
-        $this->auth = $auth;
+        $this->auth       = $auth;
+        $this->account_id = $account_id;
+        $this->options    = $this->tmdb->checkOptions($options);
     }
 
-    public function getMovies()
+    /**
+     * Get account favorite movies
+     * @return \Generator|Results\Movie
+     */
+    public function getMovies() : \Generator
     {
-
+        return $this->getAccountItems('movies', Results\Movie::class);
     }
 
-    public function getTVShows()
+    /**
+     * Get account favorite tvshows
+     * @return \Generator|Results\TVShow
+     */
+    public function getTVShows() : \Generator
     {
-
+        return $this->getAccountItems('tv', Results\TVShow::class);
     }
 
     public function markAsFavorite()
     {
 
     }
+
+    /**
+     * Get account favorite items
+     * @param  string $item         item name, possible value : movies / tv
+     * @param  string $result_class class for the results
+     * @return \Generator
+     */
+    private function getAccountItems(string $item, string $result_class)
+    {
+        $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/account/'.$this->account_id.'/favorite/'.$item, null, $this->options);
+
+        $this->page          = (int) $response->page;
+        $this->total_pages   = (int) $response->total_pages;
+        $this->total_results = (int) $response->total_results;
+
+        return $this->searchItemGenerator($response->results, $result_class);
+    }
+
+    /**
+     * Search Item generator method
+     * @param array $results
+     * @param string $class
+     */
+    private function searchItemGenerator(array $results, $class)
+    {
+        $this->logger->debug('Starting search item generator');
+        foreach ($results as $result)
+        {
+            $element = new $class($this->tmdb, $result);
+
+            yield $element;
+        }
+    }
+
+    /**
+     * Get page from result search
+     * @return int
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * Get total page from result search
+     * @return int
+     */
+    public function getTotalPages()
+    {
+        return $this->total_pages;
+    }
+
+    /**
+     * Get total results from search
+     * @return int
+     */
+    public function getTotalResults()
+    {
+        return $this->total_results;
+    }
+
 }

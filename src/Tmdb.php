@@ -202,6 +202,9 @@ class Tmdb implements TmdbInterface
                 case 'page':
                     $params[$key] = (int) $value;
                     break;
+                case 'sort_by':
+                    $params[$key] = $this->checkSort($value);
+                    break;
                 default:
                     $this->logger->error('Unknown param options', array('options', $options));
                     throw new IncorrectParamException;
@@ -216,7 +219,7 @@ class Tmdb implements TmdbInterface
      * @return int year validated
      * @throws \Exception
      */
-    private function checkYear($year)
+    private function checkYear($year) : int
     {
         $year = (int) $year;
         return $year;
@@ -228,7 +231,7 @@ class Tmdb implements TmdbInterface
      * @return string Language string validated
      * @throws IncorrectParamException
      */
-    private function checkLanguage($language)
+    private function checkLanguage($language) : string
     {
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
         if ($check === 0 || $check === false)
@@ -240,10 +243,29 @@ class Tmdb implements TmdbInterface
     }
 
     /**
+     * Check sort direction
+     * @param  string $direction direction of sorting
+     * @return string            Sort string validated
+     * @throws IncorrectParamException
+     */
+    private function checkSort(string $direction) : string
+    {
+        switch ($direction)
+        {
+            case 'asc':
+            case 'desc':
+                break;
+            default:
+                throw new IncorrectParamException;
+        }
+        return 'created_at.'.$direction;
+    }
+
+    /**
      * Get logger
      * @return LoggerInterface
      */
-    public function getLogger()
+    public function getLogger() : LoggerInterface
     {
         return $this->logger;
     }
