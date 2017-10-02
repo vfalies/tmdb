@@ -28,7 +28,7 @@ class Factory
 {
     /**
      * Logger builder
-     * @var \vfalies\tmdb\Interfaces\Factory\loggerBuilderInterface
+     * @var LoggerBuilderInterface
      */
     protected $loggerBuilder;
 
@@ -47,13 +47,13 @@ class Factory
 
     /**
      * Get Tmdb object
-     * @param string $api_key API Key
+     * @param string $apiKey API Key
      * @param int $version API Version (not yet used)
      * @return Tmdb
      */
-    public function getTmdb($api_key, $version = 3)
+    public function getTmdb($apiKey, $version = 3)
     {
-        return new Tmdb($api_key, $version, $this->loggerBuilder->getLogger());
+        return new Tmdb($apiKey, $version, $this->loggerBuilder->getLogger());
     }
 
     /**
@@ -85,7 +85,7 @@ class Factory
 
     /**
      * Extract config
-     * @param $builderConfig
+     * @param array $builderConfig
      * @return array
      */
     public function extractConfig(array $builderConfig)
@@ -96,7 +96,7 @@ class Factory
     /**
      * Check dependency
      * @param BuilderInterface $builder
-     * @return boolean
+     * @return bool
      * @throws MissingDependencyException
      */
     public function checkDependency(BuilderInterface $builder)
