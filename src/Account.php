@@ -20,6 +20,7 @@ use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Account\Favorite;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Auth;
 
 /**
  * Account class
