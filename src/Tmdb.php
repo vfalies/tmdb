@@ -71,7 +71,7 @@ class Tmdb implements TmdbInterface
      * Base URL of the API
      * @var string
      */
-    public $base_api_url = 'https://api.themoviedb.org/3/';
+    public $base_api_url = 'https://api.themoviedb.org/';
 
     /**
      * Logger
@@ -83,7 +83,7 @@ class Tmdb implements TmdbInterface
      * API Version
      * @var int
      */
-    protected $version = null;
+    protected $version = 3;
 
     /**
      * Constructor
@@ -131,7 +131,7 @@ class Tmdb implements TmdbInterface
     private function buildHTTPUrl($action, $query, $options)
     {
         // Url construction
-        $url = $this->base_api_url . $action;
+        $url = $this->base_api_url . $this->version . '/' . $action;
 
         // Parameters
         $params            = [];
