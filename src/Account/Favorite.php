@@ -13,7 +13,7 @@
 
 
 namespace vfalies\tmdb\Account;
-use vfalies\tmdb\Auth;
+use vfalies\tmdb\Interfaces\AuthInterface;
 use vfalies\tmdb\Results;
 use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
@@ -38,7 +38,7 @@ class Favorite
     protected $tmdb = null;
     /**
      * Auth object
-     * @var Auth
+     * @var AuthInterface
      */
     protected $auth = null;
     /**
@@ -53,12 +53,12 @@ class Favorite
     protected $options = [];
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
-     * @param Auth $auth
+     * @param TmdbInterface $tmdb
+     * @param AuthInterface $auth
      * @param int $account_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, Auth $auth, int $account_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, AuthInterface $auth, int $account_id, array $options = array())
     {
         if (empty($auth->session_id))
         {

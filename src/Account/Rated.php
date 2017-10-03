@@ -15,6 +15,7 @@
 namespace vfalies\tmdb\Account;
 use vfalies\tmdb\Auth;
 use vfalies\tmdb\Interfaces\TmdbInterface;
+use vfalies\tmdb\Interfaces\AuthInterface;
 use vfalies\tmdb\Traits\ListItems;
 
 /**
@@ -41,11 +42,11 @@ class Rated
     /**
      * Constructor
      * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
-     * @param Auth $auth
+     * @param AuthInterface $auth
      * @param int $account_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, Auth $auth, int $account_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, AuthInterface $auth, int $account_id, array $options = array())
     {
 
     }

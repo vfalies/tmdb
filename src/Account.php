@@ -20,7 +20,7 @@ use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Account\Favorite;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
-use vfalies\tmdb\Auth;
+use vfalies\tmdb\Interfaces\AuthInterface;
 
 /**
  * Account class
@@ -42,7 +42,7 @@ class Account
     private $logger = null;
     /**
      * Auth object
-     * @var \vfalies\tmdb\Auth
+     * @var \vfalies\tmdb\Interfaces\AuthInterface
      */
     private $auth = null;
     /**
@@ -54,9 +54,9 @@ class Account
     /**
      * Constructor
      * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
-     * @param \vfalies\tmdb\Auth $auth
+     * @param \vfalies\tmdb\Interfaces\AuthInterface $auth
      */
-    public function __construct(TmdbInterface $tmdb, Auth $auth)
+    public function __construct(TmdbInterface $tmdb, AuthInterface $auth)
     {
         $this->tmdb   = $tmdb;
         $this->logger = $tmdb->getLogger();

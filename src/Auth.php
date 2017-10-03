@@ -17,6 +17,7 @@ namespace vfalies\tmdb;
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
+use vfalies\tmdb\Interfaces\AuthInterface;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\InvalidResponseException;
 
@@ -26,7 +27,7 @@ use vfalies\tmdb\Exceptions\InvalidResponseException;
 * @author Vincent Faliès <vincent@vfac.fr>
 * @copyright Copyright (c) 2017
  */
-class Auth
+class Auth implements AuthInterface
 {
   /**
    * Tmdb object
