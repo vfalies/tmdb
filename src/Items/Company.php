@@ -32,7 +32,7 @@ class Company extends Item implements CompanyInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $company_id
      * @param array $options
      */

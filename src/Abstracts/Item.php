@@ -59,7 +59,7 @@ abstract class Item
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $item_id
      * @param array $options
      * @param string $item_name

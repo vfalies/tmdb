@@ -35,7 +35,7 @@ class MovieCredit extends Item
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $movie_id
      * @param array $options
      */

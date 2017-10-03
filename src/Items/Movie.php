@@ -36,7 +36,7 @@ class Movie extends Item implements MovieInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $movie_id
      * @param array $options
      */

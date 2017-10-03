@@ -91,7 +91,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param \stdClass $result
      * @throws \Exception
      */

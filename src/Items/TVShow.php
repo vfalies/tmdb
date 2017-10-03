@@ -35,7 +35,7 @@ class TVShow extends Item implements TVShowInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $tv_id
      * @param array $options
      */

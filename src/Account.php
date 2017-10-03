@@ -53,8 +53,8 @@ class Account
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
-     * @param \vfalies\tmdb\Interfaces\AuthInterface $auth
+     * @param TmdbInterface $tmdb
+     * @param AuthInterface $auth
      */
     public function __construct(TmdbInterface $tmdb, AuthInterface $auth)
     {

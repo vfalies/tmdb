@@ -36,7 +36,7 @@ class People extends Item implements PeopleInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $people_id
      * @param array $options
      * @throws Exception

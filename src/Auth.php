@@ -57,7 +57,7 @@ class Auth implements AuthInterface
 
   /**
    * Constructor
-   * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+   * @param TmdbInterface $tmdb
    */
   public function __construct(TmdbInterface $tmdb)
   {

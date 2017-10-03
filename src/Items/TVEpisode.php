@@ -49,7 +49,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $tv_id
      * @param int $season_number
      * @param int $episode_number

@@ -58,7 +58,7 @@ class TVSeason extends Results implements TVSeasonResultsInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param \stdClass $result
      * @throws \Exception
      */

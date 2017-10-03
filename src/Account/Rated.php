@@ -41,7 +41,7 @@ class Rated
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param AuthInterface $auth
      * @param int $account_id
      * @param array $options

@@ -40,7 +40,7 @@ class TVSeason extends Item implements TVSeasonInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $tv_id
      * @param int $season_number
      * @param array $options

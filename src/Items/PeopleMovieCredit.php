@@ -29,7 +29,7 @@ class PeopleMovieCredit extends Item
 {
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $people_id
      * @param array $options
      */

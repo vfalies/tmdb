@@ -76,7 +76,7 @@ class PeopleTVShowCast extends Results
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param \stdClass $result
      */
     public function __construct(TmdbInterface $tmdb, \stdClass $result)

@@ -68,7 +68,7 @@ class Image extends Results
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $id
      * @param \stdClass $result
      */

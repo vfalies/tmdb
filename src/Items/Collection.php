@@ -51,7 +51,7 @@ class Collection extends Item implements CollectionInterface
 
     /**
      * Constructor
-     * @param \vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      * @param int $collection_id
      * @param array $options
      */
