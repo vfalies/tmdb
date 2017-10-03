@@ -211,7 +211,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getBackdrops()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->sendRequest('/tv/' . (int) $this->id . '/images', null, $this->params);
 
         foreach ($data->backdrops as $b)
         {
@@ -226,7 +226,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->sendRequest('/tv/' . (int) $this->id . '/images', null, $this->params);
 
         foreach ($data->posters as $b)
         {
@@ -241,7 +241,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getSimilar()
     {
-        $similar = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/tv/' . (int) $this->id . '/similar', null, $this->params);
+        $similar = $this->tmdb->sendRequest('/tv/' . (int) $this->id . '/similar', null, $this->params);
 
         foreach ($similar->results as $t)
         {

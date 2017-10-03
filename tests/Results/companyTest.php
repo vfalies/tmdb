@@ -3,6 +3,7 @@
 namespace vfalies\tmdb\Results;
 
 use PHPUnit\Framework\TestCase;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 /**
  * @cover Company
@@ -18,7 +19,7 @@ class CompanyTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }

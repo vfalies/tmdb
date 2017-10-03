@@ -2,6 +2,7 @@
 
 namespace vfalies\tmdb;
 use vfalies\tmdb\Exceptions\TmdbException;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 class TmdbTest extends \PHPUnit_Framework_TestCase
 {
@@ -11,7 +12,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckOptionsOk()
     {
-        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
         $options = $tmdb->checkOptions(array('year'          => '2014',
             'language'      => 'fr-FR',
             'include_adult' => false,
@@ -34,7 +35,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckOptionsLanguageNOK()
     {
-        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
         $tmdb->checkOptions(array('language' => 'fr'));
     }
 
@@ -44,7 +45,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testGetConfigurationOK()
     {
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
@@ -63,7 +64,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     public function testGetConfigurationNOK()
     {
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest'])
                 ->getMock();
 
@@ -88,8 +89,8 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
-        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
-        $tmdb->sendRequest($http_request, 'fake/');
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
+        $tmdb->sendRequest('fake/');
     }
 
     /**
@@ -108,9 +109,9 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
-        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
         $tmdb->base_api_url = 'invalid_url';
-        $tmdb->sendRequest($http_request, 'action');
+        $tmdb->sendRequest('action');
     }
 
     /**
@@ -131,8 +132,8 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
-        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
-        $tmdb->sendRequest($http_request, 'action');
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
+        $tmdb->sendRequest('action');
 
     }
 
@@ -141,8 +142,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      */
     public function testSendRequestOk()
     {
-        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]));
-
         $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
                 ->setMethods(['getBody'])
                 ->getMock();
@@ -151,10 +150,12 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
         ->setMethods(['getResponse'])
         ->getMock();
 
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
+
         $guzzleclient->method('getBody')->willReturn(file_get_contents('tests/json/configurationOk.json'));
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
-        $result = $tmdb->sendRequest($http_request, '/test', 'param=1');
+        $result = $tmdb->sendRequest('/test', ['param=1']);
 
         $this->assertInstanceOf(\stdClass::class, $result);
     }

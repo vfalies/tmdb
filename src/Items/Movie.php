@@ -235,7 +235,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getBackdrops()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->sendRequest('/movie/' . (int) $this->id . '/images', null, $this->params);
 
         foreach ($data->backdrops as $b)
         {
@@ -250,7 +250,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->sendRequest('/movie/' . (int) $this->id . '/images', null, $this->params);
 
         foreach ($data->posters as $b)
         {
@@ -265,7 +265,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getSimilar()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/movie/' . (int) $this->id . '/similar', null, $this->params);
+        $data = $this->tmdb->sendRequest('/movie/' . (int) $this->id . '/similar', null, $this->params);
 
         foreach ($data->results as $s)
         {

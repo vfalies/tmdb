@@ -17,6 +17,7 @@ namespace vfalies\tmdb;
 use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
 use vfalies\tmdb\Interfaces\Factory\BuilderInterface;
 use vfalies\tmdb\Exceptions\MissingDependencyException;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 /**
  * Factory class
@@ -53,7 +54,7 @@ class Factory
      */
     public function getTmdb($apiKey, $version = 3)
     {
-        return new Tmdb($apiKey, $version, $this->loggerBuilder->getLogger());
+        return new Tmdb($apiKey, $version, $this->loggerBuilder->getLogger(), new HttpClient(new \GuzzleHttp\Client()));
     }
 
     /**

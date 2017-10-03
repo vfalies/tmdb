@@ -4,6 +4,7 @@ namespace vfalies\tmdb;
 
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\Exceptions\TmdbException;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 /**
  * @cover Catalog
@@ -18,7 +19,7 @@ class CatalogTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest'])
                 ->getMock();
     }
@@ -130,7 +131,7 @@ class CatalogTest extends TestCase
         foreach ($list as $job)
         {
             $this->assertEquals('Writing', $job->department);
-        }        
+        }
     }
 
     /**

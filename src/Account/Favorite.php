@@ -100,7 +100,7 @@ class Favorite
      */
     private function getAccountItems(string $item, string $result_class)
     {
-        $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/account/'.$this->account_id.'/favorite/'.$item, null, $this->options);
+        $response = $this->tmdb->sendRequest('/account/'.$this->account_id.'/favorite/'.$item, null, $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;

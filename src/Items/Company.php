@@ -125,7 +125,7 @@ class Company extends Item implements CompanyInterface
      */
     public function getMovies()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/company/' . (int) $this->id . '/movies', null, $this->params);
+        $data = $this->tmdb->sendRequest('/company/' . (int) $this->id . '/movies', null, $this->params);
 
         foreach ($data->results as $m)
         {

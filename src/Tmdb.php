@@ -86,31 +86,38 @@ class Tmdb implements TmdbInterface
     protected $version = 3;
 
     /**
+     * Http request object
+     * @var HttpRequestInterface
+     */
+    protected $http_request = null;
+
+    /**
      * Constructor
      * @param string $api_key TMDB API Key
      * @param string $version Version of API (Not yet used)
      * @param LoggerInterface $logger Logger used in the class
+     * @param HttpRequestInterface $http_request
      */
-    public function __construct($api_key, $version = 3, LoggerInterface $logger)
+    public function __construct($api_key, $version = 3, LoggerInterface $logger, HttpRequestInterface $http_request)
     {
-        $this->api_key = $api_key;
-        $this->logger  = $logger;
-        $this->version = $version;
+        $this->api_key      = $api_key;
+        $this->logger       = $logger;
+        $this->version      = $version;
+        $this->http_request = $http_request;
     }
 
     /**
      * Send request to TMDB API
-     * @param HttpRequestInterface $http_request
      * @param string $action API action to request
      * @param string $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function sendRequest(HttpRequestInterface $http_request, $action, $query = null, array $options = array())
+    public function sendRequest($action, $query = null, array $options = array())
     {
         $this->logger->debug('Start sending HTTP request');
         $url = $this->buildHTTPUrl($action, $query, $options);
-        $res = $http_request->getResponse($url);
+        $res = $this->http_request->getResponse($url);
 
         $response = json_decode($res->getBody());
         if (empty($response))
@@ -162,7 +169,7 @@ class Tmdb implements TmdbInterface
             if (is_null($this->configuration))
             {
                 $this->logger->debug('No configuration found, sending HTTP request to get it');
-                $this->configuration = $this->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'configuration');
+                $this->configuration = $this->sendRequest('configuration');
             }
             return $this->configuration;
         }

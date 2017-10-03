@@ -221,7 +221,7 @@ class People extends Item implements PeopleInterface
      */
     public function getProfiles()
     {
-        $data = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), '/person/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->sendRequest('/person/' . (int) $this->id . '/images', null, $this->params);
 
         foreach ($data->profiles as $b)
         {

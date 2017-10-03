@@ -72,7 +72,7 @@ class Search
                 throw new IncorrectParamException;
             }
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest(new HttpClient(new \GuzzleHttp\Client()), 'search/' . $item, $query, $params);
+            $response = $this->tmdb->sendRequest('search/' . $item, $query, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;

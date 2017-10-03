@@ -4,6 +4,7 @@ namespace vfalies\tmdb\lib\Guzzle;
 
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\Tmdb;
+use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 /**
  * @cover Client
@@ -18,7 +19,7 @@ class ClientTest extends TestCase
         parent::setUp();
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
-                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')])))
+                ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest'])
                 ->getMock();
     }
