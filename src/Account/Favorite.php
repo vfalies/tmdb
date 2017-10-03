@@ -18,6 +18,7 @@ use vfalies\tmdb\Results;
 use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use vfalies\tmdb\Traits\ListItems;
 
 /**
  * Class to manipulate account favorite
@@ -27,6 +28,9 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class Favorite
 {
+
+    use ListItems;
+
     /**
      * Tmdb object
      * @var TmdbInterface
@@ -120,32 +124,4 @@ class Favorite
             yield $element;
         }
     }
-
-    /**
-     * Get page from result search
-     * @return int
-     */
-    public function getPage()
-    {
-        return $this->page;
-    }
-
-    /**
-     * Get total page from result search
-     * @return int
-     */
-    public function getTotalPages()
-    {
-        return $this->total_pages;
-    }
-
-    /**
-     * Get total results from search
-     * @return int
-     */
-    public function getTotalResults()
-    {
-        return $this->total_results;
-    }
-
 }

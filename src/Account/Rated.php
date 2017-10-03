@@ -15,6 +15,7 @@
 namespace vfalies\tmdb\Account;
 use vfalies\tmdb\Auth;
 use vfalies\tmdb\Interfaces\TmdbInterface;
+use vfalies\tmdb\Traits\ListItems;
 
 /**
  * Class to manipulate account rated
@@ -24,6 +25,8 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
  */
 class Rated
 {
+    use ListItems;
+
     /**
      * Tmdb object
      * @var TmdbInterface
