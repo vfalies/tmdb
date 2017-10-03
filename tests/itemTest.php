@@ -4,12 +4,13 @@ namespace vfalies\tmdb;
 
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
-/**
- * @cover Item
- */
+
 class ItemTest extends TestCase
 {
-
+    /**
+     * TMDB Object
+     * @var Tmdb
+     */
     protected $tmdb = null;
 
     public function setUp()
