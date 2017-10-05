@@ -15,11 +15,8 @@
 namespace vfalies\tmdb\Account;
 
 use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Interfaces\AuthInterface;
 use vfalies\tmdb\Results;
-use vfalies\tmdb\Exceptions\ServerErrorException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-
+use vfalies\tmdb\Abstracts;
 use vfalies\tmdb\Traits\ListItems;
 
 /**
@@ -28,46 +25,9 @@ use vfalies\tmdb\Traits\ListItems;
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
-class Favorite
+class Favorite extends Abstracts\Account
 {
     use ListItems;
-
-    /**
-     * Tmdb object
-     * @var TmdbInterface
-     */
-    protected $tmdb = null;
-    /**
-     * Auth object
-     * @var AuthInterface
-     */
-    protected $auth = null;
-    /**
-     * Account id
-     * @var int
-     */
-    protected $account_id;
-    /**
-     * Options
-     * @var array
-     */
-    protected $options = [];
-    /**
-     * Constructor
-     * @param TmdbInterface $tmdb
-     * @param AuthInterface $auth
-     * @param int $account_id
-     * @param array $options
-     */
-    public function __construct(TmdbInterface $tmdb, AuthInterface $auth, int $account_id, array $options = array())
-    {
-        if (empty($auth->session_id)) {
-            throw new ServerErrorException('No account session found');
-        }
-        $this->auth       = $auth;
-        $this->account_id = $account_id;
-        $this->options    = $this->tmdb->checkOptions($options);
-    }
 
     /**
      * Get account favorite movies
