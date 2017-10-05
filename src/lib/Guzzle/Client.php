@@ -48,14 +48,17 @@ class Client implements HttpRequestInterface
      * Send response method from specific http method
      * @param  string $method  Http method (GET, POST)
      * @param  string $url
-     * @param  array  $options 
+     * @param  array  $options
+     * @param array $form_params
      * @return mixed
      */
-    private function sendResponse(string $method, string $url, array $options = [])
+    private function sendResponse(string $method, string $url, array $options = [], array $form_params = array())
     {
         try
         {
-            return $this->guzzleClient->request($method, $url);
+            $params = array_merge($options, array('form_params' => $form_params));            
+
+            return $this->guzzleClient->request($method, $url, $params);
         }
         catch (RequestException $e)
         {
@@ -87,9 +90,10 @@ class Client implements HttpRequestInterface
      * Post response method
      * @param  string $url
      * @param  array  $options
+     * @param  array $form_params
      * @return mixed
      */
-    public function postResponse(string $url, array $options = [])
+    public function postResponse(string $url, array $options = [], array $form_params = array())
     {
         return $this->sendResponse('POST', $url);
     }

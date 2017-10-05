@@ -123,12 +123,13 @@ class Tmdb implements TmdbInterface
      * @param string $action API action to request
      * @param string|null $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
+     * @param array $form_params form_params for request options
      * @return \stdClass
      */
-    public function postRequest(string $action, ?string $query = null, array $options = array())
+    public function postRequest(string $action, ?string $query = null, array $options = array(), array $form_params = array())
     {
         $this->logger->debug('Start sending HTTP request with POST method');
-        return $this->sendRequest('POST', $action, $query, $options);
+        return $this->sendRequest('POST', $action, $query, $options, $form_params);
     }
 
     /**
@@ -137,9 +138,10 @@ class Tmdb implements TmdbInterface
      * @param string $action API action to request
      * @param string|null $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
+     * @param array $form_params form params request options
      * @return \stdClass
      */
-    private function sendRequest(string $method, string $action, ?string $query = null, array $options = array())
+    private function sendRequest(string $method, string $action, ?string $query = null, array $options = array(), array $form_params = array())
     {
         $url = $this->buildHTTPUrl($action, $query, $options);
 
@@ -149,7 +151,7 @@ class Tmdb implements TmdbInterface
                   $res = $this->http_request->getResponse($url);
                   break;
               case 'POST':
-                  $res = $this->http_request->postResponse($url, $options);
+                  $res = $this->http_request->postResponse($url, $options, $form_params);
                   break;
             default:
                 throw new IncorrectParamException("$method is a unknown method");
