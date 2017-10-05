@@ -24,13 +24,22 @@ interface TmdbInterface
 {
 
     /**
-     * Send cUrl request to TMDB API
+     * Send cUrl request to TMDB API with GET Http method
      * @param string $action API action to request
-     * @param string $query Query of the request (optional)
+     * @param string|null $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function getRequest($action, $query = null, array $options = array());
+    public function getRequest(string $action, ?string $query = null, array $options = array());
+
+    /**
+     * Send cUrl request to TMDB API with POST Http method
+     * @param string $action API action to request
+     * @param string|null $query Query of the request (optional)
+     * @param array $options Array of options of the request (optional)
+     * @return \stdClass
+     */
+    public function postRequest(string $action, ?string $query = null, array $options = array());
 
     /**
      * Get API Configuration

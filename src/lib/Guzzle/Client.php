@@ -45,14 +45,17 @@ class Client implements HttpRequestInterface
     }
 
     /**
-     * Get response method
-     * @param  string                               $url
+     * Send response method from specific http method
+     * @param  string $method  Http method (GET, POST)
+     * @param  string $url
+     * @param  array  $options 
+     * @return mixed
      */
-    public function getResponse($url)
+    private function sendResponse(string $method, string $url, array $options = [])
     {
         try
         {
-            return $this->guzzleClient->request('GET', $url);
+            return $this->guzzleClient->request($method, $url);
         }
         catch (RequestException $e)
         {
@@ -68,5 +71,26 @@ class Client implements HttpRequestInterface
                     throw new ServerErrorException($e->getMessage());
             }
         }
+    }
+
+    /**
+     * Get response method
+     * @param string $url
+     * @return mixed
+     */
+    public function getResponse(string $url)
+    {
+        return $this->sendResponse('GET', $url);
+    }
+
+    /**
+     * Post response method
+     * @param  string $url
+     * @param  array  $options
+     * @return mixed
+     */
+    public function postResponse(string $url, array $options = [])
+    {
+        return $this->sendResponse('POST', $url);
     }
 }

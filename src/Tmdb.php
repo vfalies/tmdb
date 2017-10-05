@@ -106,17 +106,55 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Send request to TMDB API
+     * Send request to TMDB API with GET method
      * @param string $action API action to request
-     * @param string $query Query of the request (optional)
+     * @param string|null $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function getRequest($action, $query = null, array $options = array())
+    public function getRequest(string $action, ?string $query = null, array $options = array())
     {
-        $this->logger->debug('Start sending HTTP request');
+        $this->logger->debug('Start sending HTTP request with GET method');
+        return $this->sendRequest('GET', $action, $query, $options);
+    }
+
+    /**
+     * Send request to TMDB API with POST method
+     * @param string $action API action to request
+     * @param string|null $query Query of the request (optional)
+     * @param array $options Array of options of the request (optional)
+     * @return \stdClass
+     */
+    public function postRequest(string $action, ?string $query = null, array $options = array())
+    {
+        $this->logger->debug('Start sending HTTP request with POST method');
+        return $this->sendRequest('POST', $action, $query, $options);
+    }
+
+    /**
+     * Send request to TMDB API with GET method
+     * @param string $method HTTP method (GET, POST)
+     * @param string $action API action to request
+     * @param string|null $query Query of the request (optional)
+     * @param array $options Array of options of the request (optional)
+     * @return \stdClass
+     */
+    private function sendRequest(string $method, string $action, ?string $query = null, array $options = array())
+    {
         $url = $this->buildHTTPUrl($action, $query, $options);
-        $res = $this->http_request->getResponse($url);
+
+        switch ($method)
+        {
+              case 'GET':
+                  $res = $this->http_request->getResponse($url);
+                  break;
+              case 'POST':
+                  $res = $this->http_request->postResponse($url, $options);
+                  break;
+            default:
+                throw new IncorrectParamException("$method is a unknown method");
+                break;
+        }
 
         $response = json_decode($res->getBody());
         if (empty($response))

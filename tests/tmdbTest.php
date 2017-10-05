@@ -155,7 +155,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
         $guzzleclient->method('getBody')->willReturn(file_get_contents('tests/json/configurationOk.json'));
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
-        $result = $tmdb->getRequest('/test', ['param=1']);
+        $result = $tmdb->getRequest('/test', null, ['param=1']);
 
         $this->assertInstanceOf(\stdClass::class, $result);
     }

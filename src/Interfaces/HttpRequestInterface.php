@@ -26,5 +26,6 @@ interface HttpRequestInterface
      * Get response http from specified url
      * @param string $url
      */
-    public function getResponse($url);
+    public function getResponse(string $url);
+
 }
