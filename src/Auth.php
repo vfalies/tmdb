@@ -18,7 +18,7 @@ use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Interfaces\AuthInterface;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+
 use vfalies\tmdb\Exceptions\InvalidResponseException;
 
 /**

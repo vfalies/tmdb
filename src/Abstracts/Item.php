@@ -14,7 +14,7 @@
 
 namespace vfalies\tmdb\Abstracts;
 
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 

@@ -15,7 +15,7 @@
 namespace vfalies\tmdb\Catalogs;
 
 use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+
 use vfalies\tmdb\Exceptions\TmdbException;
 
 /**

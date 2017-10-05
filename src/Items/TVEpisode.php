@@ -18,7 +18,7 @@ use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVEpisodeInterface;
 use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+
 use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Results\Cast;
 use vfalies\tmdb\Traits\TVEpisodeTrait;

@@ -16,7 +16,7 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\CompanyInterface;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 

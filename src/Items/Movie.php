@@ -18,7 +18,7 @@ use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\MovieInterface;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Items\MovieCredit;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+
 use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Results\Movie as ResultMovie;

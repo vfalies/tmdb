@@ -14,7 +14,7 @@
 
 namespace vfalies\tmdb;
 
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Interfaces\TmdbInterface;

@@ -17,7 +17,7 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVSeasonInterface;
 use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+
 use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 

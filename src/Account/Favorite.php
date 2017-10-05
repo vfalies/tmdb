@@ -17,7 +17,7 @@ use vfalies\tmdb\Interfaces\AuthInterface;
 use vfalies\tmdb\Results;
 use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+
 use vfalies\tmdb\Traits\ListItems;
 
 /**
