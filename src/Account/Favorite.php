@@ -13,6 +13,8 @@
 
 
 namespace vfalies\tmdb\Account;
+
+use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Interfaces\AuthInterface;
 use vfalies\tmdb\Results;
 use vfalies\tmdb\Exceptions\ServerErrorException;
@@ -28,7 +30,6 @@ use vfalies\tmdb\Traits\ListItems;
  */
 class Favorite
 {
-
     use ListItems;
 
     /**
@@ -60,8 +61,7 @@ class Favorite
      */
     public function __construct(TmdbInterface $tmdb, AuthInterface $auth, int $account_id, array $options = array())
     {
-        if (empty($auth->session_id))
-        {
+        if (empty($auth->session_id)) {
             throw new ServerErrorException('No account session found');
         }
         $this->auth       = $auth;
@@ -87,9 +87,67 @@ class Favorite
         return $this->getAccountItems('tv', Results\TVShow::class);
     }
 
-    public function markAsFavorite()
+    /**
+     * Mark / unmark favorite items
+     * @param  string $media_type type of media (movie / tv)
+     * @param  int    $media_id   media id
+     * @param  bool   $favorite
+     * @return Favorite
+     */
+    private function markAsFavorite(string  $media_type, int $media_id, bool $favorite) : Favorite
     {
+        try {
+            $params               = [];
+            $params['media_type'] = $media_type;
+            $params['media_id']   = $media_id;
+            $params['favorite']   = $favorite;
 
+            $this->tmdb->postRequest('/account/'.$this->account_id.'/favorite/', null, $this->options);
+
+            return $this;
+        } catch (TmdbException $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * Marl a movie as favorite
+     * @param  int    $movie_id Movie id
+     * @return Favorite
+     */
+    public function markMovieAsFavorite(int $movie_id) : Favorite
+    {
+        return $this->markAsFavorite('movie', $movie_id, true);
+    }
+    /**
+
+     * Unmark a movie as favorite
+     * @param int $movie_id Movie id
+     * @return Favorite
+     */
+    public function unmarkMovieAsFavorite(int $movie_id) : Favorite
+    {
+        return $this->markAsFavorite('movie', $movie_id, false);
+    }
+
+    /**
+     * Mark a TV show as favorkite
+     * @param  int $tvshow_id TV show id
+     * @return Favorite
+     */
+    public function markTVShowAsFavorite(int $tvshow_id) : Favorite
+    {
+        return $this->markAsFavorite('tv', $tvshow_id, true);
+    }
+
+    /**
+     * Unmark a TV show as favorite
+     * @param  int $tvshow_id TV Show id
+     * @return Favorite
+     */
+    public function unmarkTVShowAsFavorite(int $tvshow_id) : Favorite
+    {
+        return $this->markAsFavorite('tv', $tvshow_id, false);
     }
 
     /**
@@ -98,7 +156,7 @@ class Favorite
      * @param  string $result_class class for the results
      * @return \Generator
      */
-    private function getAccountItems(string $item, string $result_class)
+    private function getAccountItems(string $item, string $result_class) : \Generator
     {
         $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/favorite/'.$item, null, $this->options);
 
@@ -117,8 +175,7 @@ class Favorite
     private function searchItemGenerator(array $results, $class)
     {
         $this->logger->debug('Starting search item generator');
-        foreach ($results as $result)
-        {
+        foreach ($results as $result) {
             $element = new $class($this->tmdb, $result);
 
             yield $element;

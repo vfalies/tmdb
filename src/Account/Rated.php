@@ -13,7 +13,9 @@
 
 
 namespace vfalies\tmdb\Account;
-use vfalies\tmdb\Auth;
+use vfalies\tmdb\Results;
+use vfalies\tmdb\Abstracts\Results;
+use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Interfaces\AuthInterface;
 use vfalies\tmdb\Traits\ListItems;
@@ -48,22 +50,57 @@ class Rated
      */
     public function __construct(TmdbInterface $tmdb, AuthInterface $auth, int $account_id, array $options = array())
     {
-
+      if (empty($auth->session_id)) {
+          throw new ServerErrorException('No account session found');
+      }
+      $this->auth       = $auth;
+      $this->account_id = $account_id;
+      $this->options    = $this->tmdb->checkOptions($options);
     }
 
-    public function getMovies()
+    /**
+     * Get movies rated
+     * @return \Generator|Results\Movie
+     */
+    public function getMovies() : \Generator
     {
+      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/movies', null, $this->options);
 
+      $this->page          = (int) $response->page;
+      $this->total_pages   = (int) $response->total_pages;
+      $this->total_results = (int) $response->total_results;
+
+      return $this->searchItemGenerator($response->results, Results\Movie::class);
     }
 
-    public function getTVShows()
+    /**
+     * Get TV shows rated
+     * @return \Generator|Results\TVShow
+     */
+    public function getTVShows() : \Generator
     {
+      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/tv', null, $this->options);
 
+      $this->page          = (int) $response->page;
+      $this->total_pages   = (int) $response->total_pages;
+      $this->total_results = (int) $response->total_results;
+
+      return $this->searchItemGenerator($response->results, Results\TVShow::class);
     }
 
-    public function getTVEpisodes()
+    /**
+     * Get TV episodes rated
+     * @return \Generator|Results\TVEpisode
+     */
+    public function getTVEpisodes() : \Generator
     {
+      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/tv/episodes', null, $this->options);
 
+      $this->page          = (int) $response->page;
+      $this->total_pages   = (int) $response->total_pages;
+      $this->total_results = (int) $response->total_results;
+
+      return $this->searchItemGenerator($response->results, Results\TVEpisode::class);
     }
 
 }

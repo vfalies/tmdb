@@ -13,7 +13,9 @@
 
 
 namespace vfalies\tmdb\Account;
-use vfalies\tmdb\Auth;
+use vfalies\tmdb\Results;
+use vfalies\tmdb\Exceptions\TmdbException;
+use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Interfaces\AuthInterface;
 use vfalies\tmdb\Traits\ListItems;
@@ -48,21 +50,105 @@ class WatchList
      */
     public function __construct(TmdbInterface $tmdb, AuthInterface $auth, int $account_id, array $options = array())
     {
+      if (empty($auth->session_id)) {
+          throw new ServerErrorException('No account session found');
+      }
+      $this->auth       = $auth;
+      $this->account_id = $account_id;
+      $this->options    = $this->tmdb->checkOptions($options);
+    }
+
+    /**
+     * Get movies watchlist
+     * @return \Generator|Results\Movie
+     */
+    public function getMovies() : \Generator
+    {
+      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/movies', null, $this->options);
+
+      $this->page          = (int) $response->page;
+      $this->total_pages   = (int) $response->total_pages;
+      $this->total_results = (int) $response->total_results;
+
+      return $this->searchItemGenerator($response->results, Results\Movie::class);
+    }
+
+    /**
+     * Get TV shows watchlist
+     * @return \Generator|Results\TVShow
+     */
+    public function getTVShows() : \Generator
+    {
+      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/tv', null, $this->options);
+
+      $this->page          = (int) $response->page;
+      $this->total_pages   = (int) $response->total_pages;
+      $this->total_results = (int) $response->total_results;
+
+      return $this->searchItemGenerator($response->results, Results\TVShow::class);
+    }
+
+    /**
+     * Add / remove in watchlist items
+     * @param  string    $media_type Media type (movie / tv)
+     * @param  int       $item_id    item id
+     * @param  bool      $watchlist
+     * @return WatchList
+     */
+    private function setWatchlistItem(string $media_type, int $item_id, bool $watchlist) : WatchList
+    {
+      try {
+          $params               = [];
+          $params['media_type'] = $media_type;
+          $params['media_id']   = $media_id;
+          $params['favorite']   = $favorite;
+
+          $this->tmdb->postRequest('/account/'.$this->account_id.'/watchlist', null, $this->options);
+
+          return $this;
+      } catch (TmdbException $e) {
+          throw $e;
+      }
 
     }
 
-    public function getMovies()
+    /**
+     * Add movie in watchlist
+     * @param  int       $movie_id movie id
+     * @return WatchList
+     */
+    public function addMovie(int $movie_id) : WatchList
     {
-
+        return $this->setWatchlistItem('movie', $movie_id, true);
     }
 
-    public function getTVShows()
+    /**
+     * Remove movie from watchlist
+     * @param  int       $movie_id movie id
+     * @return WatchList
+     */
+    public function removeMovie(int $movie_id) : WatchList
     {
-
+        return $this->setWatchlistItem('movie', $movie_id, false);
     }
 
-    public function add()
+    /**
+     * Add TV show in watchlist
+     * @param  [type]    $tvshow_id TV show id
+     * @return WatchList
+     */
+    public function addTVShow($tvshow_id) : WatchList
     {
+        return $this->setWatchlistItem('tv', $tvshow_id, true);
+    }
 
+    /**
+     * Remove TV show from watchlist
+     * @param  [type]    $tvshow_id TV show id
+     * @return WatchList            
+     */
+    public function removeTVShow($tvshow_id) : WatchList
+    {
+        return $this->setWatchlistItem('tv', $tvshow_id, false);
     }
 }
