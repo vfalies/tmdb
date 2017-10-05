@@ -22,7 +22,7 @@ class CastTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -33,13 +33,13 @@ class CastTest extends TestCase
         $this->tmdb = null;
     }
 
-    private function sendRequestOk()
+    private function getRequestOk()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/creditOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $Movie      = new \vfalies\tmdb\Items\Movie($this->tmdb, $this->movie_id);
 
@@ -51,7 +51,7 @@ class CastTest extends TestCase
      */
     public function testGetId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int', $this->cast->getId());
         $this->assertEquals(819, $this->cast->getId());
@@ -62,7 +62,7 @@ class CastTest extends TestCase
      */
     public function testGetCastId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int', $this->cast->getCastId());
         $this->assertEquals(4, $this->cast->getCastId());
@@ -73,7 +73,7 @@ class CastTest extends TestCase
      */
     public function getCreditId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('52fe4250c3a36847f80149f3', $this->cast->getCreditId());
     }
@@ -83,7 +83,7 @@ class CastTest extends TestCase
      */
     public function testGetCharacter()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('The Narrator', $this->cast->getCharacter());
     }
@@ -93,7 +93,7 @@ class CastTest extends TestCase
      */
     public function testGetGender()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals(2, $this->cast->getGender());
     }
@@ -103,7 +103,7 @@ class CastTest extends TestCase
      */
     public function testGetOrder()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals(0, $this->cast->getOrder());
     }
@@ -113,7 +113,7 @@ class CastTest extends TestCase
      */
     public function testGetName()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Edward Norton', $this->cast->getName());
     }
@@ -123,7 +123,7 @@ class CastTest extends TestCase
      */
     public function testGetProfilePath()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('/eIkFHNlfretLS1spAcIoihKUS62.jpg', $this->cast->getProfilePath());
     }

@@ -92,7 +92,7 @@ class Auth implements AuthInterface
    */
   private function getRequestToken() : void
   {
-      $data = $this->tmdb->sendRequest('/authentification/token/new', null, []);
+      $data = $this->tmdb->getRequest('/authentification/token/new', null, []);
 
       if (!isset($data->success) || $data->success != 'true' || !isset($data->request_token))
       {
@@ -108,7 +108,7 @@ class Auth implements AuthInterface
    */
   public function createSession() : void
   {
-      $data = $this->tmdb->sendRequest('/authentification/session/new', null, ['request_token' => $this->request_token]);
+      $data = $this->tmdb->getRequest('/authentification/session/new', null, ['request_token' => $this->request_token]);
 
       if (!isset($data->success) || $data->success != 'true' || !isset($data->session_id))
       {

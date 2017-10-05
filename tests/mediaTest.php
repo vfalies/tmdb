@@ -19,7 +19,7 @@ class MediaTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 

@@ -22,7 +22,7 @@ class TVSeasonTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -33,13 +33,13 @@ class TVSeasonTest extends TestCase
         $this->tmdb = null;
     }
 
-    private function sendRequestOk()
+    private function getRequestOk()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/TVShowOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $TVShow       = new \vfalies\tmdb\Items\TVShow($this->tmdb, $this->tv_id);
         $this->season = $TVShow->getSeasons()->current();
@@ -50,7 +50,7 @@ class TVSeasonTest extends TestCase
      */
     public function testGetId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int', $this->season->getId());
         $this->assertEquals(816, $this->season->getId());
@@ -61,7 +61,7 @@ class TVSeasonTest extends TestCase
      */
     public function testGetAirDate()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->season->getAirDate());
         $this->assertEquals('1988-10-15', $this->season->getAirDate());
@@ -72,7 +72,7 @@ class TVSeasonTest extends TestCase
      */
     public function testGetEpisodeCount()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals(5, $this->season->getEpisodeCount());
     }
@@ -82,7 +82,7 @@ class TVSeasonTest extends TestCase
      */
     public function testGetSeasonNumber()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals(0, $this->season->getSeasonNumber());
     }

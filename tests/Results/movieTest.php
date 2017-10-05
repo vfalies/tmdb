@@ -20,7 +20,7 @@ class MovieTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -31,25 +31,25 @@ class MovieTest extends TestCase
         $this->tmdb = null;
     }
 
-    private function sendRequestOk()
+    private function getRequestOk()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/searchMovieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search       = new \vfalies\tmdb\Search($this->tmdb);
         $this->result = $search->movie('star wars', array('language' => 'fr-FR'))->current();
     }
 
-    private function sendRequestConfNok()
+    private function getRequestConfNok()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationEmptyOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/searchMovieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search       = new \vfalies\tmdb\Search($this->tmdb);
         $this->result = $search->movie('star wars', array('language' => 'fr-FR'))->current();
@@ -60,7 +60,7 @@ class MovieTest extends TestCase
      */
     public function testGetId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int', $this->result->getId());
         $this->assertEquals(11, $this->result->getId());
@@ -83,7 +83,7 @@ class MovieTest extends TestCase
      */
     public function testGetOverview()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->result->getOverview());
         $this->assertStringStartsWith('Il y a bien longtemps, dans une galaxie très lointaine...', $this->result->getOverview());
@@ -94,7 +94,7 @@ class MovieTest extends TestCase
      */
     public function testGetReleaseDate()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->result->getReleaseDate());
         $this->assertEquals('1977-05-25', $this->result->getReleaseDate());
@@ -105,7 +105,7 @@ class MovieTest extends TestCase
      */
     public function testGetOriginalTitle()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->result->getOriginalTitle());
         $this->assertEquals('Star Wars', $this->result->getOriginalTitle());
@@ -116,7 +116,7 @@ class MovieTest extends TestCase
      */
     public function testGetTitle()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->result->getTitle());
         $this->assertEquals('La Guerre des étoiles', $this->result->getTitle());

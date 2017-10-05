@@ -66,7 +66,7 @@ class Account
         $this->auth         = $auth;
 
         // Get details account
-        $this->data   = $this->tmdb->sendRequest('/account', null, array('session_id' => $this->auth->session_id));
+        $this->data   = $this->tmdb->getRequest('/account', null, array('session_id' => $this->auth->session_id));
     }
 
     /**

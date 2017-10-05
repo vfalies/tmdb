@@ -46,11 +46,11 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     {
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest'])
+                ->setMethods(['getRequest'])
                 ->getMock();
 
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
-        $tmdb->method('sendRequest')->willReturn($json_object);
+        $tmdb->method('getRequest')->willReturn($json_object);
 
         $conf = $tmdb->getConfiguration();
 
@@ -65,10 +65,10 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     {
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest'])
+                ->setMethods(['getRequest'])
                 ->getMock();
 
-        $tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
+        $tmdb->method('getRequest')->will($this->throwException(new TmdbException()));
 
         $tmdb->getConfiguration();
     }
@@ -77,7 +77,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
      * @test
      * @expectedException \Exception
      */
-    public function testSendRequestHttpError()
+    public function testgetRequestHttpError()
     {
         $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
                 ->setMethods(['getBody'])
@@ -90,14 +90,14 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
-        $tmdb->sendRequest('fake/');
+        $tmdb->getRequest('fake/');
     }
 
     /**
      * @test
      * @expectedException \Exception
      */
-    public function testSendRequestExecError()
+    public function testgetRequestExecError()
     {
         $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
                 ->setMethods(['getBody'])
@@ -111,14 +111,14 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
         $tmdb->base_api_url = 'invalid_url';
-        $tmdb->sendRequest('action');
+        $tmdb->getRequest('action');
     }
 
     /**
      * @test
      * @expectedException \Exception
      */
-    public function testSendRequestHttpErrorNotJson()
+    public function testgetRequestHttpErrorNotJson()
     {
         $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
                 ->setMethods(['getBody'])
@@ -133,14 +133,14 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
-        $tmdb->sendRequest('action');
+        $tmdb->getRequest('action');
 
     }
 
     /**
      * @test
      */
-    public function testSendRequestOk()
+    public function testgetRequestOk()
     {
         $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
                 ->setMethods(['getBody'])
@@ -155,7 +155,7 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
         $guzzleclient->method('getBody')->willReturn(file_get_contents('tests/json/configurationOk.json'));
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
-        $result = $tmdb->sendRequest('/test', ['param=1']);
+        $result = $tmdb->getRequest('/test', ['param=1']);
 
         $this->assertInstanceOf(\stdClass::class, $result);
     }

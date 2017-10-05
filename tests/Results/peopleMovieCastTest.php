@@ -22,7 +22,7 @@ class PeopleMovieCastTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -33,7 +33,7 @@ class PeopleMovieCastTest extends TestCase
         $this->tmdb = null;
     }
 
-    private function sendRequestOk()
+    private function getRequestOk()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
@@ -41,7 +41,7 @@ class PeopleMovieCastTest extends TestCase
         $People      = new \vfalies\tmdb\Items\People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/PeopleMovieCreditOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $this->moviecast = $People->getMoviesCast()->current();
     }
@@ -51,7 +51,7 @@ class PeopleMovieCastTest extends TestCase
      */
     public function testGetId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int',$this->moviecast->getId());
         $this->assertEquals(239459,$this->moviecast->getId());
@@ -62,7 +62,7 @@ class PeopleMovieCastTest extends TestCase
      */
     public function getCreditId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('52fe4e93c3a36847f8299dff',$this->moviecast->getCreditId());
     }
@@ -72,7 +72,7 @@ class PeopleMovieCastTest extends TestCase
      */
     public function testGetTitle()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('No Half Measures: Creating the Final Season of Breaking Bad',$this->moviecast->getTitle());
     }
@@ -82,7 +82,7 @@ class PeopleMovieCastTest extends TestCase
      */
     public function testGetOriginalTitle()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('No Half Measures: Creating the Final Season of Breaking Bad',$this->moviecast->getOriginalTitle());
     }
@@ -92,7 +92,7 @@ class PeopleMovieCastTest extends TestCase
      */
     public function testGetCharacter()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Himself',$this->moviecast->getCharacter());
     }
@@ -102,7 +102,7 @@ class PeopleMovieCastTest extends TestCase
      */
     public function testGetReleaseDate()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('2013-11-26',$this->moviecast->getReleaseDate());
     }
@@ -112,7 +112,7 @@ class PeopleMovieCastTest extends TestCase
      */
     public function testGetAdult()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals(false,$this->moviecast->getAdult());
     }
@@ -122,7 +122,7 @@ class PeopleMovieCastTest extends TestCase
      */
     public function testGetPosterPath()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('/8OixSR45U5dbqv8F0tlspmTbXxN.jpg',$this->moviecast->getPosterPath());
     }

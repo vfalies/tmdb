@@ -20,7 +20,7 @@ class CatalogTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest'])
+                ->setMethods(['getRequest'])
                 ->getMock();
     }
 
@@ -37,7 +37,7 @@ class CatalogTest extends TestCase
     public function testGetMovieList()
     {
         $json_object = json_decode(file_get_contents('tests/json/genresOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $genres = new Catalog($this->tmdb);
         $list   = $genres->getMovieGenres(array('language' => 'fr-FR'));
@@ -54,7 +54,7 @@ class CatalogTest extends TestCase
     public function testGetMovieListNoResult()
     {
         $json_object = json_decode(file_get_contents('tests/json/genresEmptyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $genres = new Catalog($this->tmdb);
         $list   = $genres->getMovieGenres(array('language' => 'fr-FR'));
@@ -70,7 +70,7 @@ class CatalogTest extends TestCase
      */
     public function testGetMovieGenresNok()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
+        $this->tmdb->method('getRequest')->will($this->throwException(new TmdbException()));
 
         $genres = new Catalog($this->tmdb);
         $genres->getMovieGenres(array('language' => 'fr-FR'));
@@ -82,7 +82,7 @@ class CatalogTest extends TestCase
      */
     public function testGetMovieListNok()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
+        $this->tmdb->method('getRequest')->will($this->throwException(new TmdbException()));
 
         $genres = new Catalogs\Genres($this->tmdb);
         $genres->getMovieList(array('language' => 'fr-FR'));
@@ -94,7 +94,7 @@ class CatalogTest extends TestCase
      */
     public function testGetTVListNok()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
+        $this->tmdb->method('getRequest')->will($this->throwException(new TmdbException()));
 
         $genres = new Catalog($this->tmdb);
         $genres->getTVShowGenres(array('language' => 'fr-FR'));
@@ -106,7 +106,7 @@ class CatalogTest extends TestCase
     public function testGetTVList()
     {
         $json_object = json_decode(file_get_contents('tests/json/genresTVOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $genres = new Catalog($this->tmdb);
         $list   = $genres->getTVShowGenres(array('language' => 'fr-FR'));
@@ -123,7 +123,7 @@ class CatalogTest extends TestCase
     public function tetsGetJobs()
     {
         $json_object = json_decode(file_get_contents('tests/json/jobsOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $jobs = new Catalog($this->tmdb);
         $list = $jobs->getJobsList(array('language' => 'fr-FR'));
@@ -140,7 +140,7 @@ class CatalogTest extends TestCase
      */
     public function tetsGetJobsNok()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
+        $this->tmdb->method('getRequest')->will($this->throwException(new TmdbException()));
 
         $jobs = new Catalog($this->tmdb);
         $list = $jobs->getJobsList(array('wrong option'));

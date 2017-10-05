@@ -20,7 +20,7 @@ class TVShowTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -31,25 +31,25 @@ class TVShowTest extends TestCase
         $this->tmdb = null;
     }
 
-    private function sendRequestOk()
+    private function getRequestOk()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/searchTVShowOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search       = new \vfalies\tmdb\Search($this->tmdb);
         $this->result = $search->tvshow('star trek', array('language' => 'fr-FR'))->current();
     }
 
-    private function sendRequestConfNok()
+    private function getRequestConfNok()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationEmptyOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/searchTVShowOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search       = new \vfalies\tmdb\Search($this->tmdb);
         $this->result = $search->tvshow('star trek', array('language' => 'fr-FR'))->current();
@@ -60,7 +60,7 @@ class TVShowTest extends TestCase
      */
     public function testGetId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int', $this->result->getId());
         $this->assertEquals(253, $this->result->getId());
@@ -71,7 +71,7 @@ class TVShowTest extends TestCase
      */
     public function testGetOverview()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->result->getOverview());
         $this->assertStringStartsWith('Star Trek, ou Patrouille du cosmos au Québec et au Nouveau-Brunswick', $this->result->getOverview());
@@ -82,7 +82,7 @@ class TVShowTest extends TestCase
      */
     public function testGetReleaseDate()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->result->getReleaseDate());
         $this->assertEquals('1966-09-08', $this->result->getReleaseDate());
@@ -93,7 +93,7 @@ class TVShowTest extends TestCase
      */
     public function testGetOriginalTitle()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->result->getOriginalTitle());
         $this->assertEquals('Star Trek', $this->result->getOriginalTitle());
@@ -104,7 +104,7 @@ class TVShowTest extends TestCase
      */
     public function testGetTitle()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->result->getTitle());
         $this->assertEquals('Star Trek', $this->result->getTitle());

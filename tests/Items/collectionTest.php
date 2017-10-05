@@ -21,7 +21,7 @@ class CollectionTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -38,7 +38,7 @@ class CollectionTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/collectionOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
     }
 
     private function setRequestCollectionEmpty()
@@ -47,7 +47,7 @@ class CollectionTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/collectionEmptyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
     }
 
     private function setRequestConfigurationEmpty()
@@ -56,7 +56,7 @@ class CollectionTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/collectionOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
     }
 
     /**
@@ -65,7 +65,7 @@ class CollectionTest extends TestCase
      */
     public function testContructFailure()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new \vfalies\tmdb\Exceptions\TmdbException()));
+        $this->tmdb->method('getRequest')->will($this->throwException(new \vfalies\tmdb\Exceptions\TmdbException()));
 
         new Collection($this->tmdb, $this->collection_id);
     }
@@ -171,7 +171,7 @@ class CollectionTest extends TestCase
         $collection = new Collection($this->tmdb, $this->collection_id);
 
         $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $backdrops = $collection->getBackdrops();
 
@@ -188,7 +188,7 @@ class CollectionTest extends TestCase
         $collection = new Collection($this->tmdb, $this->collection_id);
 
         $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $posters = $collection->getPosters();
 

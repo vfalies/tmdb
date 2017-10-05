@@ -19,7 +19,7 @@ class SearchTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest'])
+                ->setMethods(['getRequest'])
                 ->getMock();
     }
 
@@ -36,7 +36,7 @@ class SearchTest extends TestCase
     public function testSearchMovieValid()
     {
         $json_object = json_decode(file_get_contents('tests/json/searchMovieOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
         $responses = $search->movie('star wars', array('language' => 'fr-FR'));
@@ -53,7 +53,7 @@ class SearchTest extends TestCase
     public function testSearchMovieEmptyValid()
     {
         $json_object = json_decode(file_get_contents('tests/json/searchMovieEmptyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
         $responses = $search->movie('search_with_no_result', array('language' => 'fr-FR'));
@@ -90,7 +90,7 @@ class SearchTest extends TestCase
     public function testSearchTVShowValid()
     {
         $json_object = json_decode(file_get_contents('tests/json/searchTVShowOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
         $responses = $search->tvshow('star trek', array('language' => 'fr-FR'));
@@ -129,7 +129,7 @@ class SearchTest extends TestCase
     public function testSearchCollectionValid()
     {
         $json_object = json_decode(file_get_contents('tests/json/searchCollectionOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
         $responses = $search->collection('star wars', array('language' => 'fr-FR'));
@@ -195,7 +195,7 @@ class SearchTest extends TestCase
     public function testSearchPeopleValid()
     {
         $json_object = json_decode(file_get_contents('tests/json/searchPeopleOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
         $responses = $search->people('Bradley Cooper', array('language' => 'fr-FR'));
@@ -212,7 +212,7 @@ class SearchTest extends TestCase
     public function testSearchPeopleEmptyValid()
     {
         $json_object = json_decode(file_get_contents('tests/json/searchPeopleEmptyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
         $responses = $search->people('search_with_no_result', array('language' => 'fr-FR'));
@@ -248,7 +248,7 @@ class SearchTest extends TestCase
     public function testSearchCompanyValid()
     {
         $json_object = json_decode(file_get_contents('tests/json/searchCompanyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
         $responses = $search->company('lucasfilm', array('language' => 'fr-FR'));
@@ -265,7 +265,7 @@ class SearchTest extends TestCase
     public function testSearchCompanyEmptyValid()
     {
         $json_object = json_decode(file_get_contents('tests/json/searchCompanyEmptyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $search    = new Search($this->tmdb);
         $responses = $search->company('search_with_no_result', array('language' => 'fr-FR'));

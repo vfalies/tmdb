@@ -22,7 +22,7 @@ class PeopleTVShowCrewTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -33,7 +33,7 @@ class PeopleTVShowCrewTest extends TestCase
         $this->tmdb = null;
     }
 
-    private function sendRequestOk()
+    private function getRequestOk()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
@@ -41,7 +41,7 @@ class PeopleTVShowCrewTest extends TestCase
         $People = new \vfalies\tmdb\Items\People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/PeopleTVShowCreditOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $this->moviecrew = $People->getTVShowCrew()->current();
     }
@@ -51,7 +51,7 @@ class PeopleTVShowCrewTest extends TestCase
      */
     public function testGetId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int', $this->moviecrew->getId());
         $this->assertEquals(1396, $this->moviecrew->getId());
@@ -62,7 +62,7 @@ class PeopleTVShowCrewTest extends TestCase
      */
     public function getCreditId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('52542287760ee31328001af1', $this->moviecrew->getCreditId());
     }
@@ -72,7 +72,7 @@ class PeopleTVShowCrewTest extends TestCase
      */
     public function testGetName()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Breaking Bad', $this->moviecrew->getName());
     }
@@ -82,7 +82,7 @@ class PeopleTVShowCrewTest extends TestCase
      */
     public function testGetOriginalName()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Breaking Bad', $this->moviecrew->getOriginalName());
     }
@@ -92,7 +92,7 @@ class PeopleTVShowCrewTest extends TestCase
      */
     public function testGetDepartment()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Production', $this->moviecrew->getDepartment());
     }
@@ -102,7 +102,7 @@ class PeopleTVShowCrewTest extends TestCase
      */
     public function testGetFirstAirDate()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('2008-01-19', $this->moviecrew->getFirstAirDate());
     }
@@ -112,7 +112,7 @@ class PeopleTVShowCrewTest extends TestCase
      */
     public function testGetPosterPath()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg', $this->moviecrew->getPosterPath());
     }
@@ -122,7 +122,7 @@ class PeopleTVShowCrewTest extends TestCase
      */
     public function testGetEpisodeCount()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals(68, $this->moviecrew->getEpisodeCount());
     }
@@ -132,7 +132,7 @@ class PeopleTVShowCrewTest extends TestCase
      */
     public function testGetJob()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Executive Producer', $this->moviecrew->getJob());
     }

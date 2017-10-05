@@ -23,7 +23,7 @@ class TVEpisodeTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -34,13 +34,13 @@ class TVEpisodeTest extends TestCase
         $this->tmdb = null;
     }
 
-    private function sendRequestOk()
+    private function getRequestOk()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/TVSeasonOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $TVSeason      = new \vfalies\tmdb\Items\TVSeason($this->tmdb, $this->tv_id, $this->season_number);
         $this->episode = $TVSeason->getEpisodes()->current();
@@ -51,7 +51,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int', $this->episode->getId());
         $this->assertEquals(63056, $this->episode->getId());
@@ -62,7 +62,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetSeasonNumber()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals(1, $this->episode->getSeasonNumber());
     }
@@ -72,7 +72,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetAirDate()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('2011-04-17', $this->episode->getAirDate());
     }
@@ -82,7 +82,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetEpisodeNumber()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals(1, $this->episode->getEpisodeNumber());
     }
@@ -92,7 +92,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetName()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Winter Is Coming', $this->episode->getName());
     }
@@ -102,7 +102,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetNote()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('double', $this->episode->getNote());
         $this->assertEquals('7.11904761904762', $this->episode->getNote());
@@ -113,7 +113,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetNoteCount()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int', $this->episode->getNoteCount());
         $this->assertEquals(21, $this->episode->getNoteCount());
@@ -124,7 +124,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetProductionCode()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->episode->getProductionCode());
         $this->assertEquals('101', $this->episode->getProductionCode());
@@ -135,7 +135,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetStillPath()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('string', $this->episode->getStillPath());
         $this->assertEquals('/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg', $this->episode->getStillPath());
@@ -146,7 +146,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetOverview()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertStringStartsWith('Jon Arryn, the Hand of the King, is dead.', $this->episode->getOverview());
     }
@@ -156,7 +156,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetCrew()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $Crew = $this->episode->getCrew();
         $this->assertInstanceOf(\Generator::class, $Crew);
@@ -172,7 +172,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetGuestStars()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $stars = $this->episode->getGuestStars();
 

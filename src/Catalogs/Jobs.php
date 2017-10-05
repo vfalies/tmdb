@@ -53,7 +53,7 @@ class Jobs
         try
         {
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->sendRequest('job/list', null, $params);
+            $response = $this->tmdb->getRequest('job/list', null, $params);
 
             $results = [];
             if (isset($response->jobs))

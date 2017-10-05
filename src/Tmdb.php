@@ -17,7 +17,6 @@ namespace vfalies\tmdb;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Interfaces\HttpRequestInterface;
 use Psr\Log\LoggerInterface;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\Exceptions\ServerErrorException;
@@ -113,7 +112,7 @@ class Tmdb implements TmdbInterface
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function sendRequest($action, $query = null, array $options = array())
+    public function getRequest($action, $query = null, array $options = array())
     {
         $this->logger->debug('Start sending HTTP request');
         $url = $this->buildHTTPUrl($action, $query, $options);
@@ -169,7 +168,7 @@ class Tmdb implements TmdbInterface
             if (is_null($this->configuration))
             {
                 $this->logger->debug('No configuration found, sending HTTP request to get it');
-                $this->configuration = $this->sendRequest('configuration');
+                $this->configuration = $this->getRequest('configuration');
             }
             return $this->configuration;
         }

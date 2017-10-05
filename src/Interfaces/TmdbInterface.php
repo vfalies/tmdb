@@ -30,7 +30,7 @@ interface TmdbInterface
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function sendRequest($action, $query = null, array $options = array());
+    public function getRequest($action, $query = null, array $options = array());
 
     /**
      * Get API Configuration

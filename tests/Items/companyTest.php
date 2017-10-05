@@ -21,7 +21,7 @@ class CompanyTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -38,7 +38,7 @@ class CompanyTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/companyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
     }
 
     private function setRequestCompanyEmpty()
@@ -47,7 +47,7 @@ class CompanyTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/companyEmptyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
     }
 
     private function setRequestConfigurationEmpty()
@@ -56,7 +56,7 @@ class CompanyTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/companyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
     }
 
     /**
@@ -65,7 +65,7 @@ class CompanyTest extends TestCase
      */
     public function testContructFailure()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+        $this->tmdb->method('getRequest')->will($this->throwException(new \Exception()));
 
         new Company($this->tmdb, $this->company_id);
     }
@@ -219,7 +219,7 @@ class CompanyTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/companyMoviesOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $company = new Company($this->tmdb, $this->company_id);
         $movies = $company->getMovies();

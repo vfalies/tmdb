@@ -20,7 +20,7 @@ class TVShowTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -37,7 +37,7 @@ class TVShowTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/TVShowOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
     }
 
     private function setRequestTVShowEmpty()
@@ -46,7 +46,7 @@ class TVShowTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/TVShowEmptyOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
     }
 
     private function setRequestConfigurationEmpty()
@@ -55,7 +55,7 @@ class TVShowTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/TVShowOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
     }
 
     /**
@@ -64,7 +64,7 @@ class TVShowTest extends TestCase
      */
     public function testContructFailure()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
+        $this->tmdb->method('getRequest')->will($this->throwException(new \Exception()));
 
         new TVShow($this->tmdb, $this->tv_id);
     }
@@ -372,7 +372,7 @@ class TVShowTest extends TestCase
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
 
         $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $backdrops = $TVShow->getBackdrops();
 
@@ -389,7 +389,7 @@ class TVShowTest extends TestCase
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
 
         $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $posters = $TVShow->getPosters();
 
@@ -422,7 +422,7 @@ class TVShowTest extends TestCase
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
 
         $json_object = json_decode(file_get_contents('tests/json/TVShowSimilarOK.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $similar = $TVShow->getSimilar();
 

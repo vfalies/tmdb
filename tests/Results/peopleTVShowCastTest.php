@@ -22,7 +22,7 @@ class PeopleTVShowCastTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['sendRequest', 'getConfiguration'])
+                ->setMethods(['getRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -33,7 +33,7 @@ class PeopleTVShowCastTest extends TestCase
         $this->tmdb = null;
     }
 
-    private function sendRequestOk()
+    private function getRequestOk()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
@@ -41,7 +41,7 @@ class PeopleTVShowCastTest extends TestCase
         $People      = new \vfalies\tmdb\Items\People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/PeopleTVShowCreditOk.json'));
-        $this->tmdb->method('sendRequest')->willReturn($json_object);
+        $this->tmdb->method('getRequest')->willReturn($json_object);
 
         $this->moviecast = $People->getTVShowCast()->current();
     }
@@ -51,7 +51,7 @@ class PeopleTVShowCastTest extends TestCase
      */
     public function testGetId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertInternalType('int',$this->moviecast->getId());
         $this->assertEquals(18347,$this->moviecast->getId());
@@ -62,7 +62,7 @@ class PeopleTVShowCastTest extends TestCase
      */
     public function getCreditId()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('5328ddb6c3a3683d430006a7',$this->moviecast->getCreditId());
     }
@@ -72,7 +72,7 @@ class PeopleTVShowCastTest extends TestCase
      */
     public function testGetName()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Community',$this->moviecast->getName());
     }
@@ -82,7 +82,7 @@ class PeopleTVShowCastTest extends TestCase
      */
     public function testGetOriginalName()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Community',$this->moviecast->getOriginalName());
     }
@@ -92,7 +92,7 @@ class PeopleTVShowCastTest extends TestCase
      */
     public function testGetCharacter()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('Devon',$this->moviecast->getCharacter());
     }
@@ -102,7 +102,7 @@ class PeopleTVShowCastTest extends TestCase
      */
     public function testGetFirstAirDate()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('2009-09-17',$this->moviecast->getFirstAirDate());
     }
@@ -112,7 +112,7 @@ class PeopleTVShowCastTest extends TestCase
      */
     public function testGetPosterPath()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals('/kMceNzAgVtl6MwU5C7Iv9azPbih.jpg',$this->moviecast->getPosterPath());
     }
@@ -122,7 +122,7 @@ class PeopleTVShowCastTest extends TestCase
      */
     public function testGetEpisodeCount()
     {
-        $this->sendRequestOk();
+        $this->getRequestOk();
 
         $this->assertEquals(1,$this->moviecast->getEpisodeCount());
     }
