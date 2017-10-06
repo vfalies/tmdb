@@ -13,6 +13,7 @@
 
 
 namespace vfalies\tmdb\Account;
+
 use vfalies\tmdb\Results;
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Traits\ListItems;
@@ -34,13 +35,13 @@ class WatchList extends Abstracts\Account
      */
     public function getMovies() : \Generator
     {
-      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/movies', null, $this->options);
+        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/movies', null, $this->options);
 
-      $this->page          = (int) $response->page;
-      $this->total_pages   = (int) $response->total_pages;
-      $this->total_results = (int) $response->total_results;
+        $this->page          = (int) $response->page;
+        $this->total_pages   = (int) $response->total_pages;
+        $this->total_results = (int) $response->total_results;
 
-      return $this->searchItemGenerator($response->results, Results\Movie::class);
+        return $this->searchItemGenerator($response->results, Results\Movie::class);
     }
 
     /**
@@ -49,13 +50,13 @@ class WatchList extends Abstracts\Account
      */
     public function getTVShows() : \Generator
     {
-      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/tv', null, $this->options);
+        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/tv', null, $this->options);
 
-      $this->page          = (int) $response->page;
-      $this->total_pages   = (int) $response->total_pages;
-      $this->total_results = (int) $response->total_results;
+        $this->page          = (int) $response->page;
+        $this->total_pages   = (int) $response->total_pages;
+        $this->total_results = (int) $response->total_results;
 
-      return $this->searchItemGenerator($response->results, Results\TVShow::class);
+        return $this->searchItemGenerator($response->results, Results\TVShow::class);
     }
 
     /**
@@ -67,19 +68,18 @@ class WatchList extends Abstracts\Account
      */
     private function setWatchlistItem(string $media_type, int $item_id, bool $watchlist) : WatchList
     {
-      try {
-          $params               = [];
-          $params['media_type'] = $media_type;
-          $params['media_id']   = $media_id;
-          $params['favorite']   = $favorite;
+        try {
+            $params               = [];
+            $params['media_type'] = $media_type;
+            $params['media_id']   = $media_id;
+            $params['favorite']   = $favorite;
 
-          $this->tmdb->postRequest('/account/'.$this->account_id.'/watchlist', null, $this->options);
+            $this->tmdb->postRequest('/account/'.$this->account_id.'/watchlist', null, $this->options);
 
-          return $this;
-      } catch (TmdbException $e) {
-          throw $e;
-      }
-
+            return $this;
+        } catch (TmdbException $e) {
+            throw $e;
+        }
     }
 
     /**

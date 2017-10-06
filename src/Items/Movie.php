@@ -31,7 +31,6 @@ use vfalies\tmdb\Results\Movie as ResultMovie;
  */
 class Movie extends Item implements MovieInterface
 {
-
     use ElementTrait;
 
     /**
@@ -51,8 +50,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getGenres()
     {
-        if (isset($this->data->genres))
-        {
+        if (isset($this->data->genres)) {
             return $this->data->genres;
         }
         return [];
@@ -64,8 +62,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getTitle()
     {
-        if (isset($this->data->title))
-        {
+        if (isset($this->data->title)) {
             return $this->data->title;
         }
         return '';
@@ -77,8 +74,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getOverview()
     {
-        if (isset($this->data->overview))
-        {
+        if (isset($this->data->overview)) {
             return $this->data->overview;
         }
         return '';
@@ -90,8 +86,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getReleaseDate()
     {
-        if (isset($this->data->release_date))
-        {
+        if (isset($this->data->release_date)) {
             return $this->data->release_date;
         }
         return '';
@@ -103,8 +98,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getOriginalTitle()
     {
-        if (isset($this->data->original_title))
-        {
+        if (isset($this->data->original_title)) {
             return $this->data->original_title;
         }
         return '';
@@ -116,8 +110,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getNote()
     {
-        if (isset($this->data->vote_average))
-        {
+        if (isset($this->data->vote_average)) {
             return $this->data->vote_average;
         }
         return 0;
@@ -138,8 +131,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getIMDBId()
     {
-        if (isset($this->data->imdb_id))
-        {
+        if (isset($this->data->imdb_id)) {
             return $this->data->imdb_id;
         }
         return '';
@@ -151,8 +143,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getTagLine()
     {
-        if (isset($this->data->tagline))
-        {
+        if (isset($this->data->tagline)) {
             return $this->data->tagline;
         }
         return '';
@@ -164,8 +155,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getCollectionId()
     {
-        if (!empty($this->data->belongs_to_collection))
-        {
+        if (!empty($this->data->belongs_to_collection)) {
             return (int) $this->data->belongs_to_collection->id;
         }
         return 0;
@@ -197,10 +187,8 @@ class Movie extends Item implements MovieInterface
      */
     public function getProductionCompanies()
     {
-        if (!empty($this->data->production_companies))
-        {
-            foreach ($this->data->production_companies as $p)
-            {
+        if (!empty($this->data->production_companies)) {
+            foreach ($this->data->production_companies as $p) {
                 $res       = new \stdClass();
                 $res->id   = $p->id;
                 $res->name = $p->name;
@@ -216,10 +204,8 @@ class Movie extends Item implements MovieInterface
      */
     public function getProductionCountries()
     {
-        if (!empty($this->data->production_countries))
-        {
-            foreach ($this->data->production_countries as $c)
-            {
+        if (!empty($this->data->production_countries)) {
+            foreach ($this->data->production_countries as $c) {
                 $res             = new \stdClass();
                 $res->iso_3166_1 = $c->iso_3166_1;
                 $res->name       = $c->name;
@@ -237,8 +223,7 @@ class Movie extends Item implements MovieInterface
     {
         $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', null, $this->params);
 
-        foreach ($data->backdrops as $b)
-        {
+        foreach ($data->backdrops as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
@@ -252,8 +237,7 @@ class Movie extends Item implements MovieInterface
     {
         $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', null, $this->params);
 
-        foreach ($data->posters as $b)
-        {
+        foreach ($data->posters as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
@@ -267,8 +251,7 @@ class Movie extends Item implements MovieInterface
     {
         $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/similar', null, $this->params);
 
-        foreach ($data->results as $s)
-        {
+        foreach ($data->results as $s) {
             $movie = new ResultMovie($this->tmdb, $s);
             yield $movie;
         }

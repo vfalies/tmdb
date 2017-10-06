@@ -27,7 +27,6 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
  */
 class Collection extends Results implements CollectionResultsInterface
 {
-
     use ElementTrait;
 
     /**
@@ -84,5 +83,4 @@ class Collection extends Results implements CollectionResultsInterface
     {
         return $this->name;
     }
-
 }

@@ -24,5 +24,4 @@ use vfalies\tmdb\Exceptions\TmdbException;
  */
 class MissingDependencyException extends TmdbException
 {
-
 }

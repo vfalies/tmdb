@@ -29,7 +29,6 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
  */
 class TVEpisode extends Results implements TVEpisodeResultsInterface
 {
-
     use ElementTrait;
     use TVEpisodeTrait;
 
@@ -137,10 +136,8 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      */
     public function getGuestStars()
     {
-        if (isset($this->guest_stars))
-        {
-            foreach ($this->guest_stars as $gs)
-            {
+        if (isset($this->guest_stars)) {
+            foreach ($this->guest_stars as $gs) {
                 $gs->gender = null;
                 $gs->cast_id = null;
 
@@ -221,5 +218,4 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
     {
         return $this->still_path;
     }
-
 }

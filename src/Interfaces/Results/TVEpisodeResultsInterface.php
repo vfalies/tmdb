@@ -24,5 +24,4 @@ use vfalies\tmdb\Interfaces\Items\TVEpisodeInterface;
  */
 interface TVEpisodeResultsInterface extends TVEpisodeInterface
 {
-
 }

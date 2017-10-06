@@ -30,7 +30,6 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
  */
 class Collection extends Item implements CollectionInterface
 {
-
     use ElementTrait;
 
     /**
@@ -76,8 +75,7 @@ class Collection extends Item implements CollectionInterface
      */
     public function getName()
     {
-        if (isset($this->data->name))
-        {
+        if (isset($this->data->name)) {
             return $this->data->name;
         }
         $this->logger->error('Collection name not found', array('collection_id' => $this->id));
@@ -90,10 +88,8 @@ class Collection extends Item implements CollectionInterface
      */
     public function getParts()
     {
-        if (!empty($this->data->parts))
-        {
-            foreach ($this->data->parts as $part)
-            {
+        if (!empty($this->data->parts)) {
+            foreach ($this->data->parts as $part) {
                 $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
                 yield $movie;
             }
@@ -108,8 +104,7 @@ class Collection extends Item implements CollectionInterface
     {
         $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', null, $this->params);
 
-        foreach ($data->backdrops as $b)
-        {
+        foreach ($data->backdrops as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
@@ -123,8 +118,7 @@ class Collection extends Item implements CollectionInterface
     {
         $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', null, $this->params);
 
-        foreach ($data->posters as $b)
-        {
+        foreach ($data->posters as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }

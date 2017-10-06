@@ -26,41 +26,41 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
  */
 abstract class Account
 {
-  /**
-   * Tmdb object
-   * @var TmdbInterface
-   */
-  protected $tmdb = null;
-  /**
-   * Auth object
-   * @var AuthInterface
-   */
-  protected $auth = null;
-  /**
-   * Account id
-   * @var int
-   */
-  protected $account_id;
-  /**
-   * Options
-   * @var array
-   */
-  protected $options = [];
-  /**
-   * Constructor
-   * @param TmdbInterface $tmdb
-   * @param AuthInterface $auth
-   * @param int $account_id
-   * @param array $options
-   */
-  public function __construct(TmdbInterface $tmdb, AuthInterface $auth, int $account_id, array $options = array())
-  {
-      if (empty($auth->session_id)) {
-          throw new ServerErrorException('No account session found');
-      }
-      $this->tmdb       = $tmdb;
-      $this->auth       = $auth;
-      $this->account_id = $account_id;
-      $this->options    = $this->tmdb->checkOptions($options);
-  }
+    /**
+     * Tmdb object
+     * @var TmdbInterface
+     */
+    protected $tmdb = null;
+    /**
+     * Auth object
+     * @var AuthInterface
+     */
+    protected $auth = null;
+    /**
+     * Account id
+     * @var int
+     */
+    protected $account_id;
+    /**
+     * Options
+     * @var array
+     */
+    protected $options = [];
+    /**
+     * Constructor
+     * @param TmdbInterface $tmdb
+     * @param AuthInterface $auth
+     * @param int $account_id
+     * @param array $options
+     */
+    public function __construct(TmdbInterface $tmdb, AuthInterface $auth, int $account_id, array $options = array())
+    {
+        if (empty($auth->session_id)) {
+            throw new ServerErrorException('No account session found');
+        }
+        $this->tmdb       = $tmdb;
+        $this->auth       = $auth;
+        $this->account_id = $account_id;
+        $this->options    = $this->tmdb->checkOptions($options);
+    }
 }

@@ -14,7 +14,6 @@
 
 namespace vfalies\tmdb\Abstracts;
 
-
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
@@ -67,19 +66,15 @@ abstract class Item
      */
     public function __construct(TmdbInterface $tmdb, $item_id, array $options, $item_name)
     {
-        try
-        {
+        try {
             $this->id     = (int) $item_id;
             $this->tmdb   = $tmdb;
             $this->logger = $tmdb->getLogger();
             $this->conf   = $this->tmdb->getConfiguration();
             $this->params = $this->tmdb->checkOptions($options);
             $this->data   = $this->tmdb->getRequest($item_name . '/' . (int) $item_id, null, $this->params);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
-
 }

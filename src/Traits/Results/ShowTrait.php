@@ -48,10 +48,10 @@ trait ShowTrait
      */
     protected $title;
 
-        /**
-         * Get show ID
-         * @return int
-         */
+    /**
+     * Get show ID
+     * @return int
+     */
     public function getId()
     {
         return (int) $this->id;
@@ -92,5 +92,4 @@ trait ShowTrait
     {
         return $this->title;
     }
-
 }

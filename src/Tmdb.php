@@ -145,8 +145,7 @@ class Tmdb implements TmdbInterface
     {
         $url = $this->buildHTTPUrl($action, $query, $options);
 
-        switch ($method)
-        {
+        switch ($method) {
               case 'GET':
                   $res = $this->http_request->getResponse($url);
                   break;
@@ -159,8 +158,7 @@ class Tmdb implements TmdbInterface
         }
 
         $response = json_decode($res->getBody());
-        if (empty($response))
-        {
+        if (empty($response)) {
             $this->logger->error('Request Body can not be decode', array('action' => $action, 'query' => $query, 'options' => $options));
             throw new ServerErrorException();
         }
@@ -182,8 +180,7 @@ class Tmdb implements TmdbInterface
         // Parameters
         $params            = [];
         $params['api_key'] = $this->api_key;
-        if (!is_null($query))
-        {
+        if (!is_null($query)) {
             $params['query'] = $query;
         }
 
@@ -202,18 +199,14 @@ class Tmdb implements TmdbInterface
      */
     public function getConfiguration()
     {
-        try
-        {
+        try {
             $this->logger->debug('Start getting configuration');
-            if (is_null($this->configuration))
-            {
+            if (is_null($this->configuration)) {
                 $this->logger->debug('No configuration found, sending HTTP request to get it');
                 $this->configuration = $this->getRequest('configuration');
             }
             return $this->configuration;
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -232,10 +225,8 @@ class Tmdb implements TmdbInterface
         $params['include_adult'] = $this->include_adult;
         $params['page']          = $this->page;
         // Check options
-        foreach ($options as $key => $value)
-        {
-            switch ($key)
-            {
+        foreach ($options as $key => $value) {
+            switch ($key) {
                 case 'year':
                     $params[$key] = $this->checkYear($value);
                     break;
@@ -280,8 +271,7 @@ class Tmdb implements TmdbInterface
     private function checkLanguage($language) : string
     {
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
-        if ($check === 0 || $check === false)
-        {
+        if ($check === 0 || $check === false) {
             $this->logger->error('Incorrect language param option', array('language' => $language));
             throw new IncorrectParamException;
         }
@@ -296,8 +286,7 @@ class Tmdb implements TmdbInterface
      */
     private function checkSort(string $direction) : string
     {
-        switch ($direction)
-        {
+        switch ($direction) {
             case 'asc':
             case 'desc':
                 break;
@@ -315,5 +304,4 @@ class Tmdb implements TmdbInterface
     {
         return $this->logger;
     }
-
 }

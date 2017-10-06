@@ -50,10 +50,8 @@ class MovieCredit extends Item
      */
     public function getCrew()
     {
-        if (!empty($this->data->crew))
-        {
-            foreach ($this->data->crew as $c)
-            {
+        if (!empty($this->data->crew)) {
+            foreach ($this->data->crew as $c) {
                 $crew = new Crew($this->tmdb, $c);
                 yield $crew;
             }
@@ -66,14 +64,11 @@ class MovieCredit extends Item
      */
     public function getCast()
     {
-        if (!empty($this->data->cast))
-        {
-            foreach ($this->data->cast as $c)
-            {
+        if (!empty($this->data->cast)) {
+            foreach ($this->data->cast as $c) {
                 $cast = new Cast($this->tmdb, $c);
                 yield $cast;
             }
         }
     }
-
 }

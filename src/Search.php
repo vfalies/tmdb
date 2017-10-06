@@ -14,7 +14,6 @@
 
 namespace vfalies\tmdb;
 
-
 use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
@@ -62,12 +61,10 @@ class Search
      */
     private function searchItem($item, $query, array $options, $result_class)
     {
-        try
-        {
+        try {
             $this->logger->debug('Starting search item');
             $query = trim($query);
-            if (empty($query))
-            {
+            if (empty($query)) {
                 $this->logger->error('Query param cannot be empty', array('item' => $item, 'query' => $query, 'options' => $options, 'result_class' => $result_class));
                 throw new IncorrectParamException;
             }
@@ -79,9 +76,7 @@ class Search
             $this->total_results = (int) $response->total_results;
 
             return $this->searchItemGenerator($response->results, $result_class);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -94,8 +89,7 @@ class Search
     private function searchItemGenerator(array $results, $class)
     {
         $this->logger->debug('Starting search item generator');
-        foreach ($results as $result)
-        {
+        foreach ($results as $result) {
             $element = new $class($this->tmdb, $result);
 
             yield $element;
@@ -111,13 +105,10 @@ class Search
      */
     public function movie($query, array $options = array())
     {
-        try
-        {
+        try {
             $this->logger->debug('Starting search movie');
             return $this->searchItem('movie', $query, $options, Results\Movie::class);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -131,13 +122,10 @@ class Search
      */
     public function tvshow($query, array $options = array())
     {
-        try
-        {
+        try {
             $this->logger->debug('Starting search tv show');
             return $this->searchItem('tv', $query, $options, Results\TVShow::class);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -151,13 +139,10 @@ class Search
      */
     public function collection($query, array $options = array())
     {
-        try
-        {
+        try {
             $this->logger->debug('Starting search collection');
             return $this->searchItem('collection', $query, $options, Results\Collection::class);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -171,13 +156,10 @@ class Search
      */
     public function people($query, array $options = array())
     {
-        try
-        {
+        try {
             $this->logger->debug('Starting search people');
             return $this->searchItem('people', $query, $options, Results\People::class);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -191,15 +173,11 @@ class Search
      */
     public function company($query, array $options = array())
     {
-        try
-        {
+        try {
             $this->logger->debug('Starting search company');
             return $this->searchItem('people', $query, $options, Results\Company::class);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
-
 }

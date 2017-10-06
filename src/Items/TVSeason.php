@@ -29,7 +29,6 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
  */
 class TVSeason extends Item implements TVSeasonInterface
 {
-
     use ElementTrait;
 
     /**
@@ -59,8 +58,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getId()
     {
-        if (!empty($this->data->id))
-        {
+        if (!empty($this->data->id)) {
             return (int) $this->data->id;
         }
         return 0;
@@ -72,8 +70,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getAirDate()
     {
-        if (!empty($this->data->air_date))
-        {
+        if (!empty($this->data->air_date)) {
             return $this->data->air_date;
         }
         return '';
@@ -85,8 +82,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getEpisodeCount()
     {
-        if (!empty($this->data->episodes))
-        {
+        if (!empty($this->data->episodes)) {
             return count($this->data->episodes);
         }
         return 0;
@@ -98,8 +94,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getSeasonNumber()
     {
-        if (!empty($this->data->season_number))
-        {
+        if (!empty($this->data->season_number)) {
             return (int) $this->data->season_number;
         }
         return 0;
@@ -111,10 +106,8 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getEpisodes()
     {
-        if (!empty($this->data->episodes))
-        {
-            foreach ($this->data->episodes as $episode)
-            {
+        if (!empty($this->data->episodes)) {
+            foreach ($this->data->episodes as $episode) {
                 $episode = new \vfalies\tmdb\Results\TVEpisode($this->tmdb, $episode);
                 yield $episode;
             }
@@ -127,8 +120,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getName()
     {
-        if (!empty($this->data->name))
-        {
+        if (!empty($this->data->name)) {
             return $this->data->name;
         }
         return '';
@@ -140,8 +132,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getOverview()
     {
-        if (!empty($this->data->overview))
-        {
+        if (!empty($this->data->overview)) {
             return $this->data->overview;
         }
         return '';
@@ -155,11 +146,9 @@ class TVSeason extends Item implements TVSeasonInterface
     {
         $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/images', null, $this->params);
 
-        foreach ($data->posters as $b)
-        {
+        foreach ($data->posters as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }
-
 }

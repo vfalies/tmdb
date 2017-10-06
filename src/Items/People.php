@@ -31,7 +31,6 @@ use vfalies\tmdb\Items\PeopleTVShowCredit;
  */
 class People extends Item implements PeopleInterface
 {
-
     use ElementTrait;
 
     /**
@@ -52,8 +51,7 @@ class People extends Item implements PeopleInterface
      */
     public function getAdult()
     {
-        if (isset($this->data->adult))
-        {
+        if (isset($this->data->adult)) {
             return $this->data->adult;
         }
         return false;
@@ -65,8 +63,7 @@ class People extends Item implements PeopleInterface
      */
     public function getAlsoKnownAs()
     {
-        if (isset($this->data->also_known_as))
-        {
+        if (isset($this->data->also_known_as)) {
             return $this->data->also_known_as;
         }
         return [];
@@ -78,8 +75,7 @@ class People extends Item implements PeopleInterface
      */
     public function getBiography()
     {
-        if (isset($this->data->biography))
-        {
+        if (isset($this->data->biography)) {
             return $this->data->biography;
         }
         return '';
@@ -91,8 +87,7 @@ class People extends Item implements PeopleInterface
      */
     public function getBirthday()
     {
-        if (isset($this->data->birthday))
-        {
+        if (isset($this->data->birthday)) {
             return $this->data->birthday;
         }
         return '';
@@ -104,8 +99,7 @@ class People extends Item implements PeopleInterface
      */
     public function getDeathday()
     {
-        if (isset($this->data->deathday))
-        {
+        if (isset($this->data->deathday)) {
             return $this->data->deathday;
         }
         return '';
@@ -117,8 +111,7 @@ class People extends Item implements PeopleInterface
      */
     public function getGender()
     {
-        if (isset($this->data->gender))
-        {
+        if (isset($this->data->gender)) {
             return $this->data->gender;
         }
         return 0;
@@ -130,8 +123,7 @@ class People extends Item implements PeopleInterface
      */
     public function getHomepage()
     {
-        if (isset($this->data->homepage))
-        {
+        if (isset($this->data->homepage)) {
             return $this->data->homepage;
         }
         return '';
@@ -143,8 +135,7 @@ class People extends Item implements PeopleInterface
      */
     public function getId()
     {
-        if (isset($this->data->id))
-        {
+        if (isset($this->data->id)) {
             return $this->data->id;
         }
         return 0;
@@ -156,8 +147,7 @@ class People extends Item implements PeopleInterface
      */
     public function getImdbId()
     {
-        if (isset($this->data->imdb_id))
-        {
+        if (isset($this->data->imdb_id)) {
             return $this->data->imdb_id;
         }
         return '';
@@ -169,8 +159,7 @@ class People extends Item implements PeopleInterface
      */
     public function getName()
     {
-        if (isset($this->data->name))
-        {
+        if (isset($this->data->name)) {
             return $this->data->name;
         }
         return '';
@@ -182,8 +171,7 @@ class People extends Item implements PeopleInterface
      */
     public function getPlaceOfBirth()
     {
-        if (isset($this->data->place_of_birth))
-        {
+        if (isset($this->data->place_of_birth)) {
             return $this->data->place_of_birth;
         }
         return '';
@@ -195,8 +183,7 @@ class People extends Item implements PeopleInterface
      */
     public function getPopularity()
     {
-        if (isset($this->data->popularity))
-        {
+        if (isset($this->data->popularity)) {
             return $this->data->popularity;
         }
         return 0;
@@ -208,8 +195,7 @@ class People extends Item implements PeopleInterface
      */
     public function getProfilePath()
     {
-        if (isset($this->data->profile_path))
-        {
+        if (isset($this->data->profile_path)) {
             return $this->data->profile_path;
         }
         return '';
@@ -223,8 +209,7 @@ class People extends Item implements PeopleInterface
     {
         $data = $this->tmdb->getRequest('/person/' . (int) $this->id . '/images', null, $this->params);
 
-        foreach ($data->profiles as $b)
-        {
+        foreach ($data->profiles as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }

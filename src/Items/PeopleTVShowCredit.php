@@ -44,10 +44,8 @@ class PeopleTVShowCredit extends Item
      */
     public function getCrew()
     {
-        if (!empty($this->data->crew))
-        {
-            foreach ($this->data->crew as $c)
-            {
+        if (!empty($this->data->crew)) {
+            foreach ($this->data->crew as $c) {
                 $crew = new PeopleTVShowCrew($this->tmdb, $c);
                 yield $crew;
             }
@@ -60,10 +58,8 @@ class PeopleTVShowCredit extends Item
      */
     public function getCast()
     {
-        if (!empty($this->data->cast))
-        {
-            foreach ($this->data->cast as $c)
-            {
+        if (!empty($this->data->cast)) {
+            foreach ($this->data->cast as $c) {
                 $cast = new PeopleTVShowCast($this->tmdb, $c);
                 yield $cast;
             }

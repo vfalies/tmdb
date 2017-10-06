@@ -62,8 +62,7 @@ class MonologBuilder implements LoggerBuilderInterface
     {
         $logger = new Logger($this->loggerName);
 
-        foreach ($this->handlersConfig as $config)
-        {
+        foreach ($this->handlersConfig as $config) {
             $handler = $this->newHandler($config['class'], $config['params']);
             $logger->pushHandler($handler);
         }

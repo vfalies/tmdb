@@ -47,8 +47,7 @@ class Company extends Item implements CompanyInterface
      */
     public function getDescription()
     {
-        if (isset($this->data->description))
-        {
+        if (isset($this->data->description)) {
             return $this->data->description;
         }
         return '';
@@ -60,8 +59,7 @@ class Company extends Item implements CompanyInterface
      */
     public function getHeadQuarters()
     {
-        if (isset($this->data->headquarters))
-        {
+        if (isset($this->data->headquarters)) {
             return $this->data->headquarters;
         }
         return '';
@@ -73,8 +71,7 @@ class Company extends Item implements CompanyInterface
      */
     public function getHomePage()
     {
-        if (isset($this->data->homepage))
-        {
+        if (isset($this->data->homepage)) {
             return $this->data->homepage;
         }
         return '';
@@ -86,8 +83,7 @@ class Company extends Item implements CompanyInterface
      */
     public function getId()
     {
-        if (isset($this->data->id))
-        {
+        if (isset($this->data->id)) {
             return $this->data->id;
         }
         return 0;
@@ -99,8 +95,7 @@ class Company extends Item implements CompanyInterface
      */
     public function getLogoPath()
     {
-        if (isset($this->data->logo_path))
-        {
+        if (isset($this->data->logo_path)) {
             return $this->data->logo_path;
         }
         return '';
@@ -112,8 +107,7 @@ class Company extends Item implements CompanyInterface
      */
     public function getName()
     {
-        if (isset($this->data->name))
-        {
+        if (isset($this->data->name)) {
             return $this->data->name;
         }
         return '';
@@ -127,8 +121,7 @@ class Company extends Item implements CompanyInterface
     {
         $data = $this->tmdb->getRequest('/company/' . (int) $this->id . '/movies', null, $this->params);
 
-        foreach ($data->results as $m)
-        {
+        foreach ($data->results as $m) {
             $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $m);
             yield $movie;
         }

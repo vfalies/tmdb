@@ -156,5 +156,4 @@ class Cast extends Results implements CastResultsInterface
     {
         return $this->order;
     }
-
 }

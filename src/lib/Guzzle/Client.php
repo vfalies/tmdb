@@ -54,20 +54,15 @@ class Client implements HttpRequestInterface
      */
     private function sendResponse(string $method, string $url, array $options = [], array $form_params = array())
     {
-        try
-        {
-            $params = array_merge($options, array('form_params' => $form_params));            
+        try {
+            $params = array_merge($options, array('form_params' => $form_params));
 
             return $this->guzzleClient->request($method, $url, $params);
-        }
-        catch (RequestException $e)
-        {
-            if (is_null($e->getResponse()))
-            {
+        } catch (RequestException $e) {
+            if (is_null($e->getResponse())) {
                 throw new HttpErrorException;
             }
-            switch ((int) $e->getResponse()->getStatusCode())
-            {
+            switch ((int) $e->getResponse()->getStatusCode()) {
                 case 404:
                     throw new NotFoundException($e->getMessage());
                 default:

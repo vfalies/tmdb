@@ -27,5 +27,4 @@ interface HttpRequestInterface
      * @param string $url
      */
     public function getResponse(string $url);
-
 }

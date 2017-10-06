@@ -50,16 +50,13 @@ class Jobs
      */
     public function getList(array $options = array())
     {
-        try
-        {
+        try {
             $params   = $this->tmdb->checkOptions($options);
             $response = $this->tmdb->getRequest('job/list', null, $params);
 
             $results = [];
-            if (isset($response->jobs))
-            {
-                foreach ($response->jobs as $j)
-                {
+            if (isset($response->jobs)) {
+                foreach ($response->jobs as $j) {
                     $result             = new \stdClass();
                     $result->department = $j->department;
                     $result->jobs       = $j->job_list;
@@ -67,9 +64,7 @@ class Jobs
                     $results[] = $result;
                 }
             }
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
         return $this->genreItemGenerator($results);
@@ -81,8 +76,7 @@ class Jobs
      */
     private function genreItemGenerator(array $results)
     {
-        foreach ($results as $result)
-        {
+        foreach ($results as $result) {
             yield $result;
         }
     }

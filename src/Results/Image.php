@@ -158,5 +158,4 @@ class Image extends Results
     {
         return $this->width;
     }
-
 }

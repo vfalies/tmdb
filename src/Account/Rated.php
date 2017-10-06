@@ -13,6 +13,7 @@
 
 
 namespace vfalies\tmdb\Account;
+
 use vfalies\tmdb\Results;
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Exceptions\ServerErrorException;
@@ -37,13 +38,13 @@ class Rated extends Abstracts\Account
      */
     public function getMovies() : \Generator
     {
-      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/movies', null, $this->options);
+        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/movies', null, $this->options);
 
-      $this->page          = (int) $response->page;
-      $this->total_pages   = (int) $response->total_pages;
-      $this->total_results = (int) $response->total_results;
+        $this->page          = (int) $response->page;
+        $this->total_pages   = (int) $response->total_pages;
+        $this->total_results = (int) $response->total_results;
 
-      return $this->searchItemGenerator($response->results, Results\Movie::class);
+        return $this->searchItemGenerator($response->results, Results\Movie::class);
     }
 
     /**
@@ -52,13 +53,13 @@ class Rated extends Abstracts\Account
      */
     public function getTVShows() : \Generator
     {
-      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/tv', null, $this->options);
+        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/tv', null, $this->options);
 
-      $this->page          = (int) $response->page;
-      $this->total_pages   = (int) $response->total_pages;
-      $this->total_results = (int) $response->total_results;
+        $this->page          = (int) $response->page;
+        $this->total_pages   = (int) $response->total_pages;
+        $this->total_results = (int) $response->total_results;
 
-      return $this->searchItemGenerator($response->results, Results\TVShow::class);
+        return $this->searchItemGenerator($response->results, Results\TVShow::class);
     }
 
     /**
@@ -67,13 +68,12 @@ class Rated extends Abstracts\Account
      */
     public function getTVEpisodes() : \Generator
     {
-      $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/tv/episodes', null, $this->options);
+        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/tv/episodes', null, $this->options);
 
-      $this->page          = (int) $response->page;
-      $this->total_pages   = (int) $response->total_pages;
-      $this->total_results = (int) $response->total_results;
+        $this->page          = (int) $response->page;
+        $this->total_pages   = (int) $response->total_pages;
+        $this->total_results = (int) $response->total_results;
 
-      return $this->searchItemGenerator($response->results, Results\TVEpisode::class);
+        return $this->searchItemGenerator($response->results, Results\TVEpisode::class);
     }
-
 }

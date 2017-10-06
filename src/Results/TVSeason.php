@@ -27,7 +27,6 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
  */
 class TVSeason extends Results implements TVSeasonResultsInterface
 {
-
     use ElementTrait;
 
     /**
@@ -109,5 +108,4 @@ class TVSeason extends Results implements TVSeasonResultsInterface
     {
         return (int) $this->season_number;
     }
-
 }

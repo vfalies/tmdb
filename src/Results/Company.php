@@ -83,5 +83,4 @@ class Company extends Results implements CompanyResultsInterface
     {
         return $this->name;
     }
-
 }

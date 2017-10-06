@@ -51,12 +51,9 @@ class Genres implements GenresInterface
      */
     public function getMovieList(array $options = array())
     {
-        try
-        {
+        try {
             return $this->getList('genre/movie/list', $options);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -69,12 +66,9 @@ class Genres implements GenresInterface
      */
     public function getTVList(array $options = array())
     {
-        try
-        {
+        try {
             return $this->getList('genre/tv/list', $options);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -88,21 +82,17 @@ class Genres implements GenresInterface
      */
     private function getList($type, array $options)
     {
-        try
-        {
+        try {
             $params   = $this->tmdb->checkOptions($options);
             $response = $this->tmdb->getRequest($type, null, $params);
 
             $genres = [];
-            if (isset($response->genres))
-            {
+            if (isset($response->genres)) {
                 $genres = $response->genres;
             }
 
             return $this->genreItemGenerator($genres);
-        }
-        catch (TmdbException $ex)
-        {
+        } catch (TmdbException $ex) {
             throw $ex;
         }
     }
@@ -113,8 +103,7 @@ class Genres implements GenresInterface
      */
     private function genreItemGenerator(array $results)
     {
-        foreach ($results as $result)
-        {
+        foreach ($results as $result) {
             yield $result;
         }
     }

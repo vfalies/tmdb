@@ -30,7 +30,6 @@ use vfalies\tmdb\Results\TVShow as ResultTVShow;
  */
 class TVShow extends Item implements TVShowInterface
 {
-
     use ElementTrait;
 
     /**
@@ -59,8 +58,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getGenres()
     {
-        if (isset($this->data->genres))
-        {
+        if (isset($this->data->genres)) {
             return $this->data->genres;
         }
         return [];
@@ -72,8 +70,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getNote()
     {
-        if (isset($this->data->vote_average))
-        {
+        if (isset($this->data->vote_average)) {
             return $this->data->vote_average;
         }
         return 0;
@@ -85,8 +82,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getNumberEpisodes()
     {
-        if (isset($this->data->number_of_episodes))
-        {
+        if (isset($this->data->number_of_episodes)) {
             return $this->data->number_of_episodes;
         }
         return 0;
@@ -98,8 +94,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getNumberSeasons()
     {
-        if (isset($this->data->number_of_seasons))
-        {
+        if (isset($this->data->number_of_seasons)) {
             return $this->data->number_of_seasons;
         }
         return 0;
@@ -111,8 +106,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getOriginalTitle()
     {
-        if (isset($this->data->original_name))
-        {
+        if (isset($this->data->original_name)) {
             return $this->data->original_name;
         }
         return '';
@@ -124,8 +118,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getOverview()
     {
-        if (isset($this->data->overview))
-        {
+        if (isset($this->data->overview)) {
             return $this->data->overview;
         }
         return '';
@@ -137,8 +130,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getReleaseDate()
     {
-        if (isset($this->data->first_air_date))
-        {
+        if (isset($this->data->first_air_date)) {
             return $this->data->first_air_date;
         }
         return '';
@@ -150,8 +142,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getStatus()
     {
-        if (isset($this->data->status))
-        {
+        if (isset($this->data->status)) {
             return $this->data->status;
         }
         return '';
@@ -163,8 +154,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getTitle()
     {
-        if (isset($this->data->name))
-        {
+        if (isset($this->data->name)) {
             return $this->data->name;
         }
         return '';
@@ -176,10 +166,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getSeasons()
     {
-        if (!empty($this->data->seasons))
-        {
-            foreach ($this->data->seasons as $season)
-            {
+        if (!empty($this->data->seasons)) {
+            foreach ($this->data->seasons as $season) {
                 $season = new \vfalies\tmdb\Results\TVSeason($this->tmdb, $season);
                 yield $season;
             }
@@ -192,10 +180,8 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getNetworks()
     {
-        if (!empty($this->data->networks))
-        {
-            foreach ($this->data->networks as $network)
-            {
+        if (!empty($this->data->networks)) {
+            foreach ($this->data->networks as $network) {
                 $n       = new \stdClass();
                 $n->id   = $network->id;
                 $n->name = $network->name;
@@ -213,8 +199,7 @@ class TVShow extends Item implements TVShowInterface
     {
         $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', null, $this->params);
 
-        foreach ($data->backdrops as $b)
-        {
+        foreach ($data->backdrops as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
@@ -228,8 +213,7 @@ class TVShow extends Item implements TVShowInterface
     {
         $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', null, $this->params);
 
-        foreach ($data->posters as $b)
-        {
+        foreach ($data->posters as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
             yield $image;
         }
@@ -243,8 +227,7 @@ class TVShow extends Item implements TVShowInterface
     {
         $similar = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/similar', null, $this->params);
 
-        foreach ($similar->results as $t)
-        {
+        foreach ($similar->results as $t) {
             $tvshow = new ResultTVShow($this->tmdb, $t);
             yield $tvshow;
         }

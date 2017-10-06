@@ -25,17 +25,17 @@ trait ListItems
      * Page number
      * @var int
      */
-    var $page = 1;
+    public $page = 1;
     /**
      * Total pages
      * @var int
      */
-    var $total_pages = 1;
+    public $total_pages = 1;
     /**
      * Total results
      * @var int
      */
-    var $total_results = 0;
+    public $total_results = 0;
 
     /**
      * Get page from result search
@@ -63,5 +63,4 @@ trait ListItems
     {
         return $this->total_results;
     }
-
 }

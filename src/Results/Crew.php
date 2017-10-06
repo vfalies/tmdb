@@ -142,5 +142,4 @@ class Crew extends Results implements CrewResultsInterface
     {
         return $this->profile_path;
     }
-
 }

@@ -164,5 +164,4 @@ class PeopleTVShowCast extends Results
     {
         return $this->episode_count;
     }
-
 }

@@ -121,5 +121,4 @@ class People extends Results implements PeopleResultsInterface
     {
         return $this->profile_path;
     }
-
 }

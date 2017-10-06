@@ -64,10 +64,8 @@ abstract class Results implements ResultsInterface
 
         // Valid input object
         $properties = get_object_vars($this);
-        foreach (array_keys($properties) as $property)
-        {
-            if (!in_array($property, $this->property_blacklist) && !property_exists($result, $property))
-            {
+        foreach (array_keys($properties) as $property) {
+            if (!in_array($property, $this->property_blacklist) && !property_exists($result, $property)) {
                 throw new NotFoundException($property);
             }
         }
@@ -77,5 +75,4 @@ abstract class Results implements ResultsInterface
         $this->data = $result;
         $this->tmdb = $tmdb;
     }
-
 }
