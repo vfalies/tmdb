@@ -11,7 +11,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class ClientTest extends TestCase
 {
-
     protected $tmdb = null;
 
     public function setUp()
@@ -79,5 +78,4 @@ class ClientTest extends TestCase
         $client   = new Client($guzzleClient);
         $client->getResponse('http://httpstat.us/500');
     }
-
 }

@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class SearchTest extends TestCase
 {
-
     protected $tmdb = null;
 
     public function setUp()
@@ -295,5 +294,4 @@ class SearchTest extends TestCase
 
         $search->company('');
     }
-
 }

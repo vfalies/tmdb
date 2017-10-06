@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class MovieTest extends TestCase
 {
-
     protected $tmdb     = null;
     protected $movie    = null;
     protected $movie_id = 11;
@@ -316,9 +315,9 @@ class MovieTest extends TestCase
         $this->assertEmpty($movie->getPosterPath());
     }
 
-   /**
-     * @test
-     */
+    /**
+      * @test
+      */
     public function testGetBackdropPath()
     {
         $this->setRequestOk();
@@ -351,8 +350,7 @@ class MovieTest extends TestCase
 
         $crew = $movie->getCrew();
 
-        foreach ($crew as $c)
-        {
+        foreach ($crew as $c) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $c);
         }
     }
@@ -369,12 +367,11 @@ class MovieTest extends TestCase
 
         $cast = $movie->getCast();
 
-        foreach ($cast as $c)
-        {
+        foreach ($cast as $c) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Cast::class, $c);
         }
     }
-public function testGetProductionCompanies()
+    public function testGetProductionCompanies()
     {
         $this->setRequestOk();
 
@@ -383,8 +380,7 @@ public function testGetProductionCompanies()
         $companies = $movie->getProductionCompanies();
         $this->assertInstanceOf(\Generator::class, $companies);
 
-        foreach ($companies as $c)
-        {
+        foreach ($companies as $c) {
             $this->assertInstanceOf(\stdClass::class, $c);
             $this->assertNotEmpty($c->name);
         }
@@ -402,8 +398,7 @@ public function testGetProductionCompanies()
         $countries = $movie->getProductionCountries();
         $this->assertInstanceOf(\Generator::class, $countries);
 
-        foreach ($countries as $c)
-        {
+        foreach ($countries as $c) {
             $this->assertInstanceOf(\stdClass::class, $c);
             $this->assertNotEmpty($c->name);
         }
@@ -421,8 +416,7 @@ public function testGetProductionCompanies()
 
         $this->assertInstanceOf(\Generator::class, $backdrops);
 
-        foreach ($backdrops as $b)
-        {
+        foreach ($backdrops as $b) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
         }
     }
@@ -438,8 +432,7 @@ public function testGetProductionCompanies()
 
         $this->assertInstanceOf(\Generator::class, $posters);
 
-        foreach ($posters as $p)
-        {
+        foreach ($posters as $p) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
         }
     }
@@ -455,8 +448,7 @@ public function testGetProductionCompanies()
 
         $this->assertInstanceOf(\Generator::class, $similar);
 
-        foreach ($similar as $s)
-        {
+        foreach ($similar as $s) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $s);
             $this->assertEquals(106912, $s->getId());
             $this->assertEquals("Darna: The Return", $s->getTitle());

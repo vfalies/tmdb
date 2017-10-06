@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class PeopleTest extends TestCase
 {
-
     protected $tmdb     = null;
     protected $people    = null;
     protected $people_id = 287;
@@ -367,8 +366,7 @@ class PeopleTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $profiles);
 
-        foreach ($profiles as $p)
-        {
+        foreach ($profiles as $p) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
         }
     }
@@ -384,8 +382,7 @@ class PeopleTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $moviecast);
 
-        foreach ($moviecast as $mc)
-        {
+        foreach ($moviecast as $mc) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleMovieCast::class, $mc);
         }
     }
@@ -401,8 +398,7 @@ class PeopleTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $moviecrew);
 
-        foreach ($moviecrew as $mc)
-        {
+        foreach ($moviecrew as $mc) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleMovieCrew::class, $mc);
         }
     }
@@ -418,8 +414,7 @@ class PeopleTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $tvshowcast);
 
-        foreach ($tvshowcast as $tvc)
-        {
+        foreach ($tvshowcast as $tvc) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleTVShowCast::class, $tvc);
         }
     }
@@ -435,8 +430,7 @@ class PeopleTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $tvshowcrew);
 
-        foreach ($tvshowcrew as $tvc)
-        {
+        foreach ($tvshowcrew as $tvc) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleTVShowCrew::class, $tvc);
         }
     }

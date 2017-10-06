@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class PeopleMovieCrewTest extends TestCase
 {
-
     protected $tmdb      = null;
     protected $result    = null;
     protected $people_id = 66633;
@@ -136,5 +135,4 @@ class PeopleMovieCrewTest extends TestCase
 
         $this->assertEquals('/dsCxSr4w3g2ylhlZg3v5CB5Pid7.jpg', $this->moviecrew->getPosterPath());
     }
-
 }

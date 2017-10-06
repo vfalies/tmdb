@@ -104,5 +104,4 @@ class ItemTest extends TestCase
         $this->assertInstanceOf(Items\Company::class, $responses);
         $this->assertEquals(1, $responses->getId());
     }
-
 }

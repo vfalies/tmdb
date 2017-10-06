@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class TVShowTest extends TestCase
 {
-
     protected $tmdb  = null;
     protected $tv_id = 253;
 
@@ -347,8 +346,7 @@ class TVShowTest extends TestCase
 
         $seasons = $TVShow->getSeasons();
         $this->assertInstanceOf(\Generator::class, $seasons);
-        foreach ($seasons as $season)
-        {
+        foreach ($seasons as $season) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\TVSeason::class, $season);
         }
     }
@@ -378,8 +376,7 @@ class TVShowTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $backdrops);
 
-        foreach ($backdrops as $b)
-        {
+        foreach ($backdrops as $b) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
         }
     }
@@ -395,8 +392,7 @@ class TVShowTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $posters);
 
-        foreach ($posters as $p)
-        {
+        foreach ($posters as $p) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
         }
     }
@@ -410,8 +406,7 @@ class TVShowTest extends TestCase
         $networks = $TVShow->getNetworks();
         $this->assertInstanceOf(\Generator::class, $networks);
 
-        foreach ($networks as $n)
-        {
+        foreach ($networks as $n) {
             $this->assertObjectHasAttribute('id', $n);
             $this->assertObjectHasAttribute('name', $n);
         }
@@ -428,8 +423,7 @@ class TVShowTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $similar);
 
-        foreach ($similar as $s)
-        {
+        foreach ($similar as $s) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\TVShow::class, $s);
         }
     }

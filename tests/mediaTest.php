@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class MediaTest extends TestCase
 {
-
     protected $tmdb = null;
 
     public function setUp()
@@ -87,5 +86,4 @@ class MediaTest extends TestCase
         $media = new Media($this->tmdb);
         $media->getBackdropUrl($path, 'incorrectsize');
     }
-
 }

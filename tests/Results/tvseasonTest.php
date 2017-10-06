@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class TVSeasonTest extends TestCase
 {
-
     protected $tmdb   = null;
     protected $result = null;
     protected $tv_id  = 253;
@@ -86,5 +85,4 @@ class TVSeasonTest extends TestCase
 
         $this->assertEquals(0, $this->season->getSeasonNumber());
     }
-
 }

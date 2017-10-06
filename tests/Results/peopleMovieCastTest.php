@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class PeopleMovieCastTest extends TestCase
 {
-
     protected $tmdb          = null;
     protected $result        = null;
     protected $people_id         = 66633;
@@ -53,8 +52,8 @@ class PeopleMovieCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int',$this->moviecast->getId());
-        $this->assertEquals(239459,$this->moviecast->getId());
+        $this->assertInternalType('int', $this->moviecast->getId());
+        $this->assertEquals(239459, $this->moviecast->getId());
     }
 
     /**
@@ -64,7 +63,7 @@ class PeopleMovieCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('52fe4e93c3a36847f8299dff',$this->moviecast->getCreditId());
+        $this->assertEquals('52fe4e93c3a36847f8299dff', $this->moviecast->getCreditId());
     }
 
     /**
@@ -74,7 +73,7 @@ class PeopleMovieCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('No Half Measures: Creating the Final Season of Breaking Bad',$this->moviecast->getTitle());
+        $this->assertEquals('No Half Measures: Creating the Final Season of Breaking Bad', $this->moviecast->getTitle());
     }
 
     /**
@@ -84,7 +83,7 @@ class PeopleMovieCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('No Half Measures: Creating the Final Season of Breaking Bad',$this->moviecast->getOriginalTitle());
+        $this->assertEquals('No Half Measures: Creating the Final Season of Breaking Bad', $this->moviecast->getOriginalTitle());
     }
 
     /**
@@ -94,7 +93,7 @@ class PeopleMovieCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('Himself',$this->moviecast->getCharacter());
+        $this->assertEquals('Himself', $this->moviecast->getCharacter());
     }
 
     /**
@@ -104,7 +103,7 @@ class PeopleMovieCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('2013-11-26',$this->moviecast->getReleaseDate());
+        $this->assertEquals('2013-11-26', $this->moviecast->getReleaseDate());
     }
 
     /**
@@ -114,7 +113,7 @@ class PeopleMovieCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals(false,$this->moviecast->getAdult());
+        $this->assertEquals(false, $this->moviecast->getAdult());
     }
 
     /**
@@ -124,7 +123,6 @@ class PeopleMovieCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('/8OixSR45U5dbqv8F0tlspmTbXxN.jpg',$this->moviecast->getPosterPath());
+        $this->assertEquals('/8OixSR45U5dbqv8F0tlspmTbXxN.jpg', $this->moviecast->getPosterPath());
     }
-
 }

@@ -11,7 +11,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class CatalogTest extends TestCase
 {
-
     protected $tmdb = null;
 
     public function setUp()
@@ -128,8 +127,7 @@ class CatalogTest extends TestCase
         $jobs = new Catalog($this->tmdb);
         $list = $jobs->getJobsList(array('language' => 'fr-FR'));
 
-        foreach ($list as $job)
-        {
+        foreach ($list as $job) {
             $this->assertEquals('Writing', $job->department);
         }
     }
@@ -145,5 +143,4 @@ class CatalogTest extends TestCase
         $jobs = new Catalog($this->tmdb);
         $list = $jobs->getJobsList(array('wrong option'));
     }
-
 }

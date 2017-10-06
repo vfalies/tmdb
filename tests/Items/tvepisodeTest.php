@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class TVEpisodeTest extends TestCase
 {
-
     protected $tmdb           = null;
     protected $TVEpisode      = null;
     protected $tv_id          = 11;
@@ -313,8 +312,7 @@ class TVEpisodeTest extends TestCase
         $Crew      = $TVEpisode->getCrew();
 
         $this->assertInstanceOf(\Generator::class, $Crew);
-        foreach ($Crew as $c)
-        {
+        foreach ($Crew as $c) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $c);
         }
     }
@@ -330,8 +328,7 @@ class TVEpisodeTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $posters);
 
-        foreach ($posters as $p)
-        {
+        foreach ($posters as $p) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
         }
     }
@@ -347,15 +344,11 @@ class TVEpisodeTest extends TestCase
 
         $stars = $TVEpisode->getGuestStars();
         $i = 0;
-        foreach ($stars as $star)
-        {
-            if ($i == 0)
-            {
+        foreach ($stars as $star) {
+            if ($i == 0) {
                 $this->assertEquals(117642, $star->getId());
             }
             $i++;
         }
-
     }
-
 }

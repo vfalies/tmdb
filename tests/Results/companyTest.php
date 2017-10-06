@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class CompanyTest extends TestCase
 {
-
     protected $tmdb   = null;
     protected $result = null;
 
@@ -99,5 +98,4 @@ class CompanyTest extends TestCase
         $this->assertInternalType('string', $this->result->getLogoPath());
         $this->assertEquals('/8rUnVMVZjlmQsJ45UGotD0Uznxj.png', $this->result->getlogoPath());
     }
-
 }

@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class PeopleTVShowCrewTest extends TestCase
 {
-
     protected $tmdb      = null;
     protected $result    = null;
     protected $people_id = 66633;
@@ -136,5 +135,4 @@ class PeopleTVShowCrewTest extends TestCase
 
         $this->assertEquals('Executive Producer', $this->moviecrew->getJob());
     }
-
 }

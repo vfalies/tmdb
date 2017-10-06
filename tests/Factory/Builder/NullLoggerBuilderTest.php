@@ -30,9 +30,9 @@ class NullLoggerBuilderTest extends TestCase
         $this->assertInstanceOf(\Psr\Log\NullLogger::class, $nullLoggerBuilder->getLogger());
     }
 
-   /**
-     * @test
-     */
+    /**
+      * @test
+      */
     public function testGetPackageName()
     {
         $nullLoggerBuilder = new \vfalies\tmdb\Factory\Builder\NullLoggerBuilder();

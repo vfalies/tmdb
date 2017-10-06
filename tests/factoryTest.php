@@ -63,16 +63,16 @@ class FactoryTest extends TestCase
 
     public function testExtractConfig()
     {
-         $builderConfig = [];
+        $builderConfig = [];
 
-         $factory = new Factory();
-         $extract = $factory->extractConfig($builderConfig);
+        $factory = new Factory();
+        $extract = $factory->extractConfig($builderConfig);
 
-         $this->assertEmpty($extract);
+        $this->assertEmpty($extract);
 
-         $builderConfig['config'] = 'testconfig';
-         $extract = $factory->extractConfig($builderConfig);
+        $builderConfig['config'] = 'testconfig';
+        $extract = $factory->extractConfig($builderConfig);
 
-         $this->assertEquals('testconfig', $extract);
+        $this->assertEquals('testconfig', $extract);
     }
 }

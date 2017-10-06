@@ -58,7 +58,8 @@ class AuthTest extends TestCase
         $Auth->connect($redirect_url);
 
         $this->assertContains(
-            'Location: https://www.themoviedb.org/authenticate/'.$Auth->request_token.'?redirect_to='.$redirect_url, xdebug_get_headers()
+            'Location: https://www.themoviedb.org/authenticate/'.$Auth->request_token.'?redirect_to='.$redirect_url,
+            xdebug_get_headers()
         );
     }
 

@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class CollectionTest extends TestCase
 {
-
     protected $tmdb          = null;
     protected $collection    = null;
     protected $collection_id = 10;
@@ -146,8 +145,7 @@ class CollectionTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $parts);
         //$this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $parts->current());
 
-        foreach ($parts as $part)
-        {
+        foreach ($parts as $part) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $part);
         }
     }
@@ -177,8 +175,7 @@ class CollectionTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $backdrops);
 
-        foreach ($backdrops as $b)
-        {
+        foreach ($backdrops as $b) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
         }
     }
@@ -194,10 +191,8 @@ class CollectionTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $posters);
 
-        foreach ($posters as $p)
-        {
+        foreach ($posters as $p) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
         }
     }
-
 }

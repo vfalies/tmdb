@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class ImageTest extends TestCase
 {
-
     protected $tmdb          = null;
     protected $result        = null;
     protected $collection_id = 10;
@@ -142,5 +141,4 @@ class ImageTest extends TestCase
         $this->assertInternalType('int', $this->result->getWidth());
         $this->assertEquals(1920, $this->result->getWidth());
     }
-
 }

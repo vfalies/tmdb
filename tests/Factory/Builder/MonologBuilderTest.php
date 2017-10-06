@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
  */
 class MonologBuilderTest extends TestCase
 {
-
     protected $monologBuilder = null;
 
 
@@ -36,9 +35,9 @@ class MonologBuilderTest extends TestCase
         $this->assertInstanceOf(\Monolog\Logger::class, $this->monologBuilder->getLogger());
     }
 
-   /**
-     * @test
-     */
+    /**
+      * @test
+      */
     public function testGetPackageName()
     {
         $this->assertEquals('monolog/monolog', $this->monologBuilder->getPackageName());

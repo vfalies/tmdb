@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class CollectionTest extends TestCase
 {
-
     protected $tmdb   = null;
     protected $result = null;
 
@@ -76,5 +75,4 @@ class CollectionTest extends TestCase
         $this->assertInternalType('string', $this->result->getTitle());
         $this->assertEquals('Star Wars: Clone Wars Collection', $this->result->getTitle());
     }
-
 }

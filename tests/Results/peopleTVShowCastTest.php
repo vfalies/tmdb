@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class PeopleTVShowCastTest extends TestCase
 {
-
     protected $tmdb          = null;
     protected $result        = null;
     protected $people_id         = 66633;
@@ -53,8 +52,8 @@ class PeopleTVShowCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int',$this->moviecast->getId());
-        $this->assertEquals(18347,$this->moviecast->getId());
+        $this->assertInternalType('int', $this->moviecast->getId());
+        $this->assertEquals(18347, $this->moviecast->getId());
     }
 
     /**
@@ -64,7 +63,7 @@ class PeopleTVShowCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('5328ddb6c3a3683d430006a7',$this->moviecast->getCreditId());
+        $this->assertEquals('5328ddb6c3a3683d430006a7', $this->moviecast->getCreditId());
     }
 
     /**
@@ -74,7 +73,7 @@ class PeopleTVShowCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('Community',$this->moviecast->getName());
+        $this->assertEquals('Community', $this->moviecast->getName());
     }
 
     /**
@@ -84,7 +83,7 @@ class PeopleTVShowCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('Community',$this->moviecast->getOriginalName());
+        $this->assertEquals('Community', $this->moviecast->getOriginalName());
     }
 
     /**
@@ -94,7 +93,7 @@ class PeopleTVShowCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('Devon',$this->moviecast->getCharacter());
+        $this->assertEquals('Devon', $this->moviecast->getCharacter());
     }
 
     /**
@@ -104,7 +103,7 @@ class PeopleTVShowCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('2009-09-17',$this->moviecast->getFirstAirDate());
+        $this->assertEquals('2009-09-17', $this->moviecast->getFirstAirDate());
     }
 
     /**
@@ -114,7 +113,7 @@ class PeopleTVShowCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('/kMceNzAgVtl6MwU5C7Iv9azPbih.jpg',$this->moviecast->getPosterPath());
+        $this->assertEquals('/kMceNzAgVtl6MwU5C7Iv9azPbih.jpg', $this->moviecast->getPosterPath());
     }
 
     /**
@@ -124,6 +123,6 @@ class PeopleTVShowCastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals(1,$this->moviecast->getEpisodeCount());
+        $this->assertEquals(1, $this->moviecast->getEpisodeCount());
     }
 }

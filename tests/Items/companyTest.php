@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class CompanyTest extends TestCase
 {
-
     protected $tmdb     = null;
     protected $company    = null;
     protected $company_id = 11;
@@ -190,9 +189,9 @@ class CompanyTest extends TestCase
         $this->assertEquals(0, $company->getId());
     }
 
-   /**
-     * @test
-     */
+    /**
+      * @test
+      */
     public function testGetLogoPath()
     {
         $this->setRequestOk();
@@ -225,10 +224,8 @@ class CompanyTest extends TestCase
         $movies = $company->getMovies();
 
         $this->assertInstanceOf(\Generator::class, $movies);
-        foreach ($movies as $m)
-        {
+        foreach ($movies as $m) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $m);
         }
     }
-
 }

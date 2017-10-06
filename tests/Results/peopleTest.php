@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class PeopleTest extends TestCase
 {
-
     protected $tmdb   = null;
     protected $result = null;
 
@@ -105,5 +104,4 @@ class PeopleTest extends TestCase
 
         $this->assertEquals(6.431053, $this->result->getPopularity());
     }
-
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace vfalies\tmdb;
+
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
@@ -134,7 +135,6 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
         $tmdb->getRequest('action');
-
     }
 
     /**

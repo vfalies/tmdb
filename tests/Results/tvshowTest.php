@@ -10,7 +10,6 @@ use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
  */
 class TVShowTest extends TestCase
 {
-
     protected $tmdb   = null;
     protected $result = null;
 
