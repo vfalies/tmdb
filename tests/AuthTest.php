@@ -57,12 +57,13 @@ class AuthTest extends TestCase
         $Auth = new Auth($this->tmdb);
         $Auth->connect($redirect_url);
 
-        if (function_exists('xdebug_get_headers')) {
-            $this->assertContains(
-                'Location: https://www.themoviedb.org/authenticate/'.$Auth->request_token.'?redirect_to='.$redirect_url,
-                xdebug_get_headers()
-            );
+        if (!function_exists('xdebug_get_headers')) {
+            $this->markTestSkipped('XDebug not available on the system');
         }
+        $this->assertContains(
+            'Location: https://www.themoviedb.org/authenticate/'.$Auth->request_token.'?redirect_to='.$redirect_url,
+            xdebug_get_headers()
+        );
     }
 
     /**
