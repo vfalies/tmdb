@@ -21,7 +21,7 @@ class PeopleMovieCastTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['getRequest', 'getConfiguration'])
+                ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -40,7 +40,7 @@ class PeopleMovieCastTest extends TestCase
         $People      = new \vfalies\tmdb\Items\People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/PeopleMovieCreditOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $this->moviecast = $People->getMoviesCast()->current();
     }

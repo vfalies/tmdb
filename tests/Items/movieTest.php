@@ -20,7 +20,7 @@ class MovieTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['getRequest', 'getConfiguration'])
+                ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -37,7 +37,7 @@ class MovieTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
     private function setRequestMovieEmpty()
@@ -46,7 +46,7 @@ class MovieTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/movieEmptyOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
     private function setRequestConfigurationEmpty()
@@ -55,7 +55,7 @@ class MovieTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/movieOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
     /**
@@ -64,7 +64,7 @@ class MovieTest extends TestCase
      */
     public function testContructFailure()
     {
-        $this->tmdb->method('getRequest')->will($this->throwException(new \Exception()));
+        $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
 
         new Movie($this->tmdb, $this->movie_id);
     }
@@ -346,7 +346,7 @@ class MovieTest extends TestCase
         $movie = new Movie($this->tmdb, $this->movie_id);
 
         $json_object = json_decode(file_get_contents('tests/json/creditOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $crew = $movie->getCrew();
 
@@ -363,7 +363,7 @@ class MovieTest extends TestCase
         $movie = new Movie($this->tmdb, $this->movie_id);
 
         $json_object = json_decode(file_get_contents('tests/json/creditOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $cast = $movie->getCast();
 
@@ -410,7 +410,7 @@ class MovieTest extends TestCase
         $movie = new Movie($this->tmdb, $this->movie_id);
 
         $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $backdrops = $movie->getBackdrops();
 
@@ -426,7 +426,7 @@ class MovieTest extends TestCase
         $movie = new movie($this->tmdb, $this->movie_id);
 
         $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $posters = $movie->getPosters();
 
@@ -442,7 +442,7 @@ class MovieTest extends TestCase
         $movie = new movie($this->tmdb, $this->movie_id);
 
         $json_object = json_decode(file_get_contents('tests/json/movieSimilarOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $similar = $movie->getSimilar();
 

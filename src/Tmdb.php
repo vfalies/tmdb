@@ -136,9 +136,9 @@ class Tmdb implements TmdbInterface
      * @param string $action API action to request
      * @param array $options Array of options of the request (optional)
      * @param array $form_params form params request options
-     * @return \stdClass
+     * @return \stdClass|null
      */
-    private function sendRequest(string $method, string $action, array $options = array(), array $form_params = array()) : \stdClass
+    protected function sendRequest(string $method, string $action, array $options = array(), array $form_params = array()) : ?\stdClass
     {
         $url = $this->buildHTTPUrl($action, $options);
 

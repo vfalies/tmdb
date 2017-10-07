@@ -19,7 +19,7 @@ class AuthTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['getRequest'])
+                ->setMethods(['sendRequest'])
                 ->getMock();
     }
 
@@ -52,7 +52,7 @@ class AuthTest extends TestCase
     {
         $redirect_url  = 'https://vfac.fr';
 
-        $this->tmdb->method('getRequest')->willReturn($this->createRequestTokenValid());
+        $this->tmdb->method('sendRequest')->willReturn($this->createRequestTokenValid());
 
         $Auth = new Auth($this->tmdb);
         $Auth->connect($redirect_url);
@@ -74,7 +74,7 @@ class AuthTest extends TestCase
     {
         $redirect_url  = 'vfac.fr';
 
-        $this->tmdb->method('getRequest')->willReturn($this->createRequestTokenValid());
+        $this->tmdb->method('sendRequest')->willReturn($this->createRequestTokenValid());
 
         $Auth = new Auth($this->tmdb);
         $Auth->connect($redirect_url);
@@ -87,7 +87,7 @@ class AuthTest extends TestCase
     public function testConnectInvalidRequestToken()
     {
         $json_object = json_decode(file_get_contents('tests/json/requestTokenNok.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $Auth = new Auth($this->tmdb);
         $Auth->connect();
@@ -99,7 +99,7 @@ class AuthTest extends TestCase
     public function testCreateSession()
     {
         $json_object = json_decode(file_get_contents('tests/json/sessionOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $Auth = new Auth($this->tmdb);
         $Auth->createSession();
@@ -114,7 +114,7 @@ class AuthTest extends TestCase
     public function testCreateSessionNok()
     {
         $json_object = json_decode(file_get_contents('tests/json/sessionNok.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $Auth = new Auth($this->tmdb);
         $Auth->createSession();

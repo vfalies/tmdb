@@ -20,7 +20,7 @@ class ImageTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['getRequest', 'getConfiguration'])
+                ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -39,7 +39,7 @@ class ImageTest extends TestCase
         $collection = new \vfalies\tmdb\Items\Collection($this->tmdb, $this->collection_id);
 
         $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $this->result = $collection->getBackdrops()->current();
     }

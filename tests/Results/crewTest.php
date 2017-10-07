@@ -23,7 +23,7 @@ class CrewTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['getRequest', 'getConfiguration'])
+                ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -40,7 +40,7 @@ class CrewTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/TVSeasonOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $TVSeason      = new \vfalies\tmdb\Items\TVSeason($this->tmdb, $this->tv_id, $this->season_number);
         $this->episode = $TVSeason->getEpisodes()->current();

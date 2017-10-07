@@ -47,11 +47,11 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     {
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['getRequest'])
+                ->setMethods(['sendRequest'])
                 ->getMock();
 
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
-        $tmdb->method('getRequest')->willReturn($json_object);
+        $tmdb->method('sendRequest')->willReturn($json_object);
 
         $conf = $tmdb->getConfiguration();
 
@@ -66,10 +66,10 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
     {
         $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['getRequest'])
+                ->setMethods(['sendRequest'])
                 ->getMock();
 
-        $tmdb->method('getRequest')->will($this->throwException(new TmdbException()));
+        $tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
         $tmdb->getConfiguration();
     }

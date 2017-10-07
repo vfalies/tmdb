@@ -20,7 +20,7 @@ class PeopleTest extends TestCase
 
         $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
-                ->setMethods(['getRequest', 'getConfiguration'])
+                ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
     }
 
@@ -37,7 +37,7 @@ class PeopleTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/peopleOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
     private function setRequestPeopleEmpty()
@@ -46,7 +46,7 @@ class PeopleTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/peopleEmptyOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
     private function setRequestConfigurationEmpty()
@@ -55,7 +55,7 @@ class PeopleTest extends TestCase
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
         $json_object = json_decode(file_get_contents('tests/json/peopleOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
     /**
@@ -64,7 +64,7 @@ class PeopleTest extends TestCase
      */
     public function testContructFailure()
     {
-        $this->tmdb->method('getRequest')->will($this->throwException(new \Exception()));
+        $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
 
         new People($this->tmdb, $this->people_id);
     }
@@ -360,7 +360,7 @@ class PeopleTest extends TestCase
         $people = new People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $profiles = $people->getProfiles();
 
@@ -376,7 +376,7 @@ class PeopleTest extends TestCase
         $people = new People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/PeopleMovieCreditOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $moviecast = $people->getMoviesCast();
 
@@ -392,7 +392,7 @@ class PeopleTest extends TestCase
         $people = new People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/PeopleMovieCreditOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $moviecrew = $people->getMoviesCrew();
 
@@ -408,7 +408,7 @@ class PeopleTest extends TestCase
         $people = new People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/PeopleTVShowCreditOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $tvshowcast = $people->getTVShowCast();
 
@@ -424,7 +424,7 @@ class PeopleTest extends TestCase
         $people = new People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/PeopleTVShowCreditOk.json'));
-        $this->tmdb->method('getRequest')->willReturn($json_object);
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $tvshowcrew = $people->getTVShowCrew();
 

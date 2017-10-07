@@ -4,9 +4,6 @@ namespace vfalies\tmdb;
 
 use PHPUnit\Framework\TestCase;
 
-/**
- * @cover Factory
- */
 class FactoryTest extends TestCase
 {
 
@@ -51,6 +48,11 @@ class FactoryTest extends TestCase
         );
     }
 
+    /**
+     * Get Builder
+     * @param  string $className
+     * @param  string $package
+     */
     protected function getBuilder($className, $package)
     {
         $builder = $this->getMockForAbstractClass('\vfalies\tmdb\Interfaces\Factory\BuilderInterface');
@@ -60,5 +62,4 @@ class FactoryTest extends TestCase
 
         return $builder;
     }
-
 }
