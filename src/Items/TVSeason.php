@@ -15,10 +15,11 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
+use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Interfaces\Items\TVSeasonInterface;
 use vfalies\tmdb\Traits\ElementTrait;
 
-use vfalies\tmdb\Results\Image;
+use vfalies\tmdb\Results;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
@@ -43,7 +44,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * @param int $tv_id
      * @param int $season_number
      * @param array $options
-     * @throws Exception
+     * @throws TmdbException
      */
     public function __construct(TmdbInterface $tmdb, $tv_id, $season_number, array $options = array())
     {
@@ -108,7 +109,7 @@ class TVSeason extends Item implements TVSeasonInterface
     {
         if (!empty($this->data->episodes)) {
             foreach ($this->data->episodes as $episode) {
-                $episode = new \vfalies\tmdb\Results\TVEpisode($this->tmdb, $episode);
+                $episode = new Results\TVEpisode($this->tmdb, $episode);
                 yield $episode;
             }
         }
@@ -147,7 +148,7 @@ class TVSeason extends Item implements TVSeasonInterface
         $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/images', $this->params);
 
         foreach ($data->posters as $b) {
-            $image = new Image($this->tmdb, $this->id, $b);
+            $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }

@@ -20,7 +20,7 @@ use vfalies\tmdb\Traits\ElementTrait;
 
 use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Results\TVShow as ResultTVShow;
+use vfalies\tmdb\Results;
 
 /**
  * TVShow class
@@ -168,7 +168,7 @@ class TVShow extends Item implements TVShowInterface
     {
         if (!empty($this->data->seasons)) {
             foreach ($this->data->seasons as $season) {
-                $season = new \vfalies\tmdb\Results\TVSeason($this->tmdb, $season);
+                $season = new Results\TVSeason($this->tmdb, $season);
                 yield $season;
             }
         }
@@ -228,7 +228,7 @@ class TVShow extends Item implements TVShowInterface
         $similar = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/similar', $this->params);
 
         foreach ($similar->results as $t) {
-            $tvshow = new ResultTVShow($this->tmdb, $t);
+            $tvshow = new Results\TVShow($this->tmdb, $t);
             yield $tvshow;
         }
     }

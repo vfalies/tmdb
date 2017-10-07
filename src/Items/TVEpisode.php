@@ -16,11 +16,8 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVEpisodeInterface;
-use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
-
-use vfalies\tmdb\Results\Image;
-use vfalies\tmdb\Results\Cast;
+use vfalies\tmdb\Results;
 use vfalies\tmdb\Traits\TVEpisodeTrait;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
@@ -109,7 +106,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
                 $gs->gender = null;
                 $gs->cast_id = null;
 
-                $star = new Cast($this->tmdb, $gs);
+                $star = new Results\Cast($this->tmdb, $gs);
                 yield $star;
             }
         }
@@ -208,7 +205,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
         $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/episode/' . $this->episode_number . '/images', $this->params);
 
         foreach ($data->posters as $b) {
-            $image = new Image($this->tmdb, $this->id, $b);
+            $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }

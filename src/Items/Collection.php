@@ -19,7 +19,7 @@ use vfalies\tmdb\Interfaces\Items\CollectionInterface;
 
 use vfalies\tmdb\Exceptions\NotFoundException;
 use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Results\Image;
+use vfalies\tmdb\Results;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
@@ -84,13 +84,13 @@ class Collection extends Item implements CollectionInterface
 
     /**
      * Get collection parts
-     * @return Generator
+     * @return \Generator
      */
     public function getParts()
     {
         if (!empty($this->data->parts)) {
             foreach ($this->data->parts as $part) {
-                $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $part);
+                $movie = new Results\Movie($this->tmdb, $part);
                 yield $movie;
             }
         }
@@ -105,7 +105,7 @@ class Collection extends Item implements CollectionInterface
         $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->backdrops as $b) {
-            $image = new Image($this->tmdb, $this->id, $b);
+            $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }
@@ -119,7 +119,7 @@ class Collection extends Item implements CollectionInterface
         $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->posters as $b) {
-            $image = new Image($this->tmdb, $this->id, $b);
+            $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }

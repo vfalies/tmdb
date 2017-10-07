@@ -17,11 +17,11 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\PeopleInterface;
 use vfalies\tmdb\Traits\ElementTrait;
-
-use vfalies\tmdb\Results\Image;
+use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Items\PeopleMovieCredit;
 use vfalies\tmdb\Items\PeopleTVShowCredit;
+use vfalies\tmdb\Results;
 
 /**
  * People class
@@ -38,7 +38,7 @@ class People extends Item implements PeopleInterface
      * @param TmdbInterface $tmdb
      * @param int $people_id
      * @param array $options
-     * @throws Exception
+     * @throws TmdbException
      */
     public function __construct(TmdbInterface $tmdb, $people_id, array $options = array())
     {
@@ -47,7 +47,7 @@ class People extends Item implements PeopleInterface
 
     /**
      * Adult
-     * @return boolean
+     * @return bool
      */
     public function getAdult()
     {
@@ -210,7 +210,7 @@ class People extends Item implements PeopleInterface
         $data = $this->tmdb->getRequest('/person/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->profiles as $b) {
-            $image = new Image($this->tmdb, $this->id, $b);
+            $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }

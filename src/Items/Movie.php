@@ -18,10 +18,8 @@ use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\MovieInterface;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Items\MovieCredit;
-
-use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Results\Movie as ResultMovie;
+use vfalies\tmdb\Results;
 
 /**
  * Movie class
@@ -183,7 +181,7 @@ class Movie extends Item implements MovieInterface
 
     /**
      * Get production compagnies
-     * @return \Generator|stdClass
+     * @return \Generator|\stdClass
      */
     public function getProductionCompanies()
     {
@@ -200,7 +198,7 @@ class Movie extends Item implements MovieInterface
 
     /**
      * Get production countries
-     * @return \Generator|stdClass
+     * @return \Generator|\stdClass
      */
     public function getProductionCountries()
     {
@@ -224,7 +222,7 @@ class Movie extends Item implements MovieInterface
         $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->backdrops as $b) {
-            $image = new Image($this->tmdb, $this->id, $b);
+            $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }
@@ -238,7 +236,7 @@ class Movie extends Item implements MovieInterface
         $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->posters as $b) {
-            $image = new Image($this->tmdb, $this->id, $b);
+            $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }
@@ -252,7 +250,7 @@ class Movie extends Item implements MovieInterface
         $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/similar', $this->params);
 
         foreach ($data->results as $s) {
-            $movie = new ResultMovie($this->tmdb, $s);
+            $movie = new Results\Movie($this->tmdb, $s);
             yield $movie;
         }
     }
