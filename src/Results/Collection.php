@@ -70,7 +70,7 @@ class Collection extends Results implements CollectionResultsInterface
      * Get collection ID
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -79,7 +79,7 @@ class Collection extends Results implements CollectionResultsInterface
      * Get collection name
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->name;
     }

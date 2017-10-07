@@ -72,7 +72,7 @@ class Image extends Results
      * @param int $id
      * @param \stdClass $result
      */
-    public function __construct(TmdbInterface $tmdb, $id, \stdClass $result)
+    public function __construct(TmdbInterface $tmdb, int $id, \stdClass $result)
     {
         $result->id = $id;
         parent::__construct($tmdb, $result);
@@ -91,16 +91,16 @@ class Image extends Results
      * Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
-        return (int) $this->id;
+        return $this->id;
     }
 
     /**
      * Aspect ratio
      * @return float
      */
-    public function getAspectRatio()
+    public function getAspectRatio() : float
     {
         return $this->aspect_ratio;
     }
@@ -109,7 +109,7 @@ class Image extends Results
      * Image file path
      * @return string
      */
-    public function getFilePath()
+    public function getFilePath() : string
     {
         return $this->file_path;
     }
@@ -118,16 +118,16 @@ class Image extends Results
      * Height
      * @return int
      */
-    public function getHeight()
+    public function getHeight() : int
     {
         return $this->height;
     }
 
     /**
      * Language format ISO 639 1
-     * @return string
+     * @return string|null
      */
-    public function getIso6391()
+    public function getIso6391() : ?string
     {
         return $this->iso_639_1;
     }
@@ -136,7 +136,7 @@ class Image extends Results
      * Vote average
      * @return float
      */
-    public function getVoteAverage()
+    public function getVoteAverage() : float
     {
         return $this->vote_average;
     }
@@ -145,7 +145,7 @@ class Image extends Results
      * Vote count
      * @return int
      */
-    public function getVoteCount()
+    public function getVoteCount() : int
     {
         return $this->vote_count;
     }
@@ -154,7 +154,7 @@ class Image extends Results
      * Width
      * @return int
      */
-    public function getWidth()
+    public function getWidth() : int
     {
         return $this->width;
     }

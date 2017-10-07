@@ -17,8 +17,6 @@ namespace vfalies\tmdb\Items;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\TVShowInterface;
 use vfalies\tmdb\Traits\ElementTrait;
-
-use vfalies\tmdb\Results\Image;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Results;
 
@@ -38,7 +36,7 @@ class TVShow extends Item implements TVShowInterface
      * @param int $tv_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, $tv_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, int $tv_id, array $options = array())
     {
         parent::__construct($tmdb, $tv_id, $options, 'tv');
     }
@@ -47,7 +45,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TV show id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -56,7 +54,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVSHow genres
      * @return array
      */
-    public function getGenres()
+    public function getGenres() : array
     {
         if (isset($this->data->genres)) {
             return $this->data->genres;
@@ -68,7 +66,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVshow note
      *  @return float
      */
-    public function getNote()
+    public function getNote() : float
     {
         if (isset($this->data->vote_average)) {
             return $this->data->vote_average;
@@ -80,7 +78,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVshow number of episodes
      * @return int
      */
-    public function getNumberEpisodes()
+    public function getNumberEpisodes() : int
     {
         if (isset($this->data->number_of_episodes)) {
             return $this->data->number_of_episodes;
@@ -92,7 +90,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVShow number of seasons
      * @return int
      */
-    public function getNumberSeasons()
+    public function getNumberSeasons() : int
     {
         if (isset($this->data->number_of_seasons)) {
             return $this->data->number_of_seasons;
@@ -104,7 +102,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVShow original title
      * @return string
      */
-    public function getOriginalTitle()
+    public function getOriginalTitle() : string
     {
         if (isset($this->data->original_name)) {
             return $this->data->original_name;
@@ -116,7 +114,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVShow overview
      * @return string
      */
-    public function getOverview()
+    public function getOverview() : string
     {
         if (isset($this->data->overview)) {
             return $this->data->overview;
@@ -128,7 +126,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVShow release date
      * @return string
      */
-    public function getReleaseDate()
+    public function getReleaseDate() : string
     {
         if (isset($this->data->first_air_date)) {
             return $this->data->first_air_date;
@@ -140,7 +138,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVShow status
      * @return string
      */
-    public function getStatus()
+    public function getStatus() : string
     {
         if (isset($this->data->status)) {
             return $this->data->status;
@@ -152,7 +150,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVShow title
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         if (isset($this->data->name)) {
             return $this->data->name;
@@ -164,7 +162,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVShow seasons
      * @return \Generator|Results\TVSeason
      */
-    public function getSeasons()
+    public function getSeasons() : \Generator
     {
         if (!empty($this->data->seasons)) {
             foreach ($this->data->seasons as $season) {
@@ -178,7 +176,7 @@ class TVShow extends Item implements TVShowInterface
      * Get TVShow networks
      * @return \Generator|\stdClass
      */
-    public function getNetworks()
+    public function getNetworks() : \Generator
     {
         if (!empty($this->data->networks)) {
             foreach ($this->data->networks as $network) {
@@ -195,12 +193,12 @@ class TVShow extends Item implements TVShowInterface
      * Backdrops list
      * @return \Generator|Results\Image
      */
-    public function getBackdrops()
+    public function getBackdrops() : \Generator
     {
         $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->backdrops as $b) {
-            $image = new Image($this->tmdb, $this->id, $b);
+            $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }
@@ -209,12 +207,12 @@ class TVShow extends Item implements TVShowInterface
      * Posters list
      * @return \Generator|Results\Image
      */
-    public function getPosters()
+    public function getPosters() : \Generator
     {
         $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->posters as $b) {
-            $image = new Image($this->tmdb, $this->id, $b);
+            $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
     }
@@ -223,7 +221,7 @@ class TVShow extends Item implements TVShowInterface
      * Get Similar TVShow
      * @return \Generator|Results\TVShow
      */
-    public function getSimilar()
+    public function getSimilar() : \Generator
     {
         $similar = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/similar', $this->params);
 

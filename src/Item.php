@@ -14,11 +14,7 @@
 
 namespace vfalies\tmdb;
 
-use vfalies\tmdb\Items\Movie;
-use vfalies\tmdb\Items\Collection;
-use vfalies\tmdb\Items\TVShow;
-use vfalies\tmdb\Items\People;
-use vfalies\tmdb\Items\Company;
+use vfalies\tmdb\Items;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
@@ -55,12 +51,12 @@ class Item
      * Get movie details
      * @param int $movie_id
      * @param array $options
-     * @return \vfalies\tmdb\Items\Movie
+     * @return Items\Movie
      */
-    public function getMovie($movie_id, array $options = array())
+    public function getMovie(int $movie_id, array $options = array()) : Items\Movie
     {
         $this->logger->debug('Starting getting movie');
-        $movie = new Movie($this->tmdb, $movie_id, $options);
+        $movie = new Items\Movie($this->tmdb, $movie_id, $options);
 
         return $movie;
     }
@@ -69,12 +65,12 @@ class Item
      * Get collection details
      * @param int $collection_id
      * @param array $options
-     * @return \vfalies\tmdb\Items\Collection
+     * @return Items\Collection
      */
-    public function getCollection($collection_id, array $options = array())
+    public function getCollection(int $collection_id, array $options = array()) : Items\Collection
     {
         $this->logger->debug('Starting getting collection');
-        $collection = new Collection($this->tmdb, $collection_id, $options);
+        $collection = new Items\Collection($this->tmdb, $collection_id, $options);
 
         return $collection;
     }
@@ -83,12 +79,12 @@ class Item
      * Get TV Show details
      * @param int $tv_id
      * @param array $options
-     * @return \vfalies\tmdb\Items\TVShow
+     * @return Items\TVShow
      */
-    public function getTVShow($tv_id, array $options = array())
+    public function getTVShow(int $tv_id, array $options = array()) : Items\TVShow
     {
         $this->logger->debug('Starting getting tvshow');
-        $tv = new TVShow($this->tmdb, $tv_id, $options);
+        $tv = new Items\TVShow($this->tmdb, $tv_id, $options);
 
         return $tv;
     }
@@ -97,12 +93,12 @@ class Item
      * Get People details
      * @param int $people_id
      * @param array $options
-     * @return \vfalies\tmdb\Items\People
+     * @return Items\People
      */
-    public function getPeople($people_id, array $options = array())
+    public function getPeople(int $people_id, array $options = array()) : Items\People
     {
         $this->logger->debug('Starting getting people');
-        $people = new People($this->tmdb, $people_id, $options);
+        $people = new Items\People($this->tmdb, $people_id, $options);
 
         return $people;
     }
@@ -111,12 +107,12 @@ class Item
      * Get Company details
      * @param int $company_id
      * @param array $options
-     * @return \vfalies\tmdb\Items\Company
+     * @return Items\Company
      */
-    public function getCompany($company_id, array $options = array())
+    public function getCompany(int $company_id, array $options = array()) : Items\Company
     {
         $this->logger->debug('Starting getting company');
-        $company = new Company($this->tmdb, $company_id, $options);
+        $company = new Items\Company($this->tmdb, $company_id, $options);
 
         return $company;
     }

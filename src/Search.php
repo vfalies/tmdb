@@ -59,7 +59,7 @@ class Search
      * @return \Generator
      * @throws TmdbException
      */
-    private function searchItem($item, $query, array $options, $result_class)
+    private function searchItem(string $item, string $query, array $options, string $result_class) : \Generator
     {
         try {
             $this->logger->debug('Starting search item');
@@ -87,7 +87,7 @@ class Search
      * @param array $results
      * @param string $class
      */
-    private function searchItemGenerator(array $results, $class)
+    private function searchItemGenerator(array $results, string $class)
     {
         $this->logger->debug('Starting search item generator');
         foreach ($results as $result) {
@@ -104,7 +104,7 @@ class Search
      * @return \Generator|Results\Movie
      * @throws TmdbException
      */
-    public function movie($query, array $options = array())
+    public function movie(string $query, array $options = array()) : \Generator
     {
         try {
             $this->logger->debug('Starting search movie');
@@ -121,7 +121,7 @@ class Search
      * @return \Generator|Results\TVShow
      * @throws TmdbException
      */
-    public function tvshow($query, array $options = array())
+    public function tvshow(string $query, array $options = array()) : \Generator
     {
         try {
             $this->logger->debug('Starting search tv show');
@@ -138,7 +138,7 @@ class Search
      * @return \Generator|Results\Collection
      * @throws TmdbException
      */
-    public function collection($query, array $options = array())
+    public function collection(string $query, array $options = array()) : \Generator
     {
         try {
             $this->logger->debug('Starting search collection');
@@ -155,7 +155,7 @@ class Search
      * @return \Generator|Results\People
      * @throws TmdbException
      */
-    public function people($query, array $options = array())
+    public function people(string $query, array $options = array()) : \Generator
     {
         try {
             $this->logger->debug('Starting search people');
@@ -172,7 +172,7 @@ class Search
      * @return \Generator|Results\Company
      * @throws TmdbException
      */
-    public function company($query, array $options = array())
+    public function company(string $query, array $options = array()) : \Generator
     {
         try {
             $this->logger->debug('Starting search company');

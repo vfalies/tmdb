@@ -48,7 +48,7 @@ class Jobs
      * @return \Generator|\stdClass
      * @throws TmdbException
      */
-    public function getList(array $options = array())
+    public function getList(array $options = array()) : \Generator
     {
         try {
             $params   = $this->tmdb->checkOptions($options);
@@ -73,8 +73,9 @@ class Jobs
     /**
      * Genre Item generator method
      * @param array $results
+     * @return \Generator
      */
-    private function genreItemGenerator(array $results)
+    private function genreItemGenerator(array $results) : \Generator
     {
         foreach ($results as $result) {
             yield $result;

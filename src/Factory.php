@@ -38,7 +38,7 @@ class Factory
      * @param array $loggerConf
      * @return Factory
      */
-    public static function create($loggerConf = ['builder' => 'NullLogger', 'config' => []])
+    public static function create(array $loggerConf = ['builder' => 'NullLogger', 'config' => []]) : Factory
     {
         $factory = new static();
         $factory->setLoggerBuilder($factory->getBuilder($loggerConf['builder']));
@@ -52,7 +52,7 @@ class Factory
      * @param int $version API Version (not yet used)
      * @return Tmdb
      */
-    public function getTmdb($apiKey, $version = 3)
+    public function getTmdb(string $apiKey, int $version = 3) : Tmdb
     {
         return new Tmdb($apiKey, $version, $this->loggerBuilder->getLogger(), new HttpClient(new \GuzzleHttp\Client()));
     }
@@ -63,7 +63,7 @@ class Factory
      * @param array $args
      * @return LoggerBuilderInterface
      */
-    public function getBuilder($builder, array $args = [])
+    public function getBuilder(string $builder, array $args = []) : LoggerBuilderInterface
     {
         $class = "\\vfalies\\tmdb\\Factory\\Builder\\{$builder}builder";
 
@@ -75,23 +75,13 @@ class Factory
     /**
      * Set logger builder
      * @param LoggerBuilderInterface $loggerBuilder
-     * @return $this
+     * @return Factory
      */
-    public function setLoggerBuilder(LoggerBuilderInterface $loggerBuilder)
+    public function setLoggerBuilder(LoggerBuilderInterface $loggerBuilder) : Factory
     {
         $this->loggerBuilder = $loggerBuilder;
 
         return $this;
-    }
-
-    /**
-     * Extract config
-     * @param array $builderConfig
-     * @return array
-     */
-    public function extractConfig(array $builderConfig)
-    {
-        return isset($builderConfig['config']) ? $builderConfig['config'] : [];
     }
 
     /**
@@ -100,7 +90,7 @@ class Factory
      * @return bool
      * @throws MissingDependencyException
      */
-    public function checkDependency(BuilderInterface $builder)
+    public function checkDependency(BuilderInterface $builder) : bool
     {
         if (!class_exists($builder->getMainClassName())) {
             $message = "missing {$builder->getPackageName()}, please install it using composer : composer require {$builder->getPackageName()}";

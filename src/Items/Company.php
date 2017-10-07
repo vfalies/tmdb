@@ -16,7 +16,7 @@ namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Interfaces\Items\CompanyInterface;
-
+use vfalies\tmdb\Results;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
@@ -36,7 +36,7 @@ class Company extends Item implements CompanyInterface
      * @param int $company_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, $company_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, int $company_id, array $options = array())
     {
         parent::__construct($tmdb, $company_id, $options, 'company');
     }
@@ -45,7 +45,7 @@ class Company extends Item implements CompanyInterface
      * Company description
      * @return string
      */
-    public function getDescription()
+    public function getDescription() : string
     {
         if (isset($this->data->description)) {
             return $this->data->description;
@@ -57,7 +57,7 @@ class Company extends Item implements CompanyInterface
      * Company Head quarters
      * @return string
      */
-    public function getHeadQuarters()
+    public function getHeadQuarters() : string
     {
         if (isset($this->data->headquarters)) {
             return $this->data->headquarters;
@@ -69,7 +69,7 @@ class Company extends Item implements CompanyInterface
      * Company Homepage
      * @return string
      */
-    public function getHomePage()
+    public function getHomePage() : string
     {
         if (isset($this->data->homepage)) {
             return $this->data->homepage;
@@ -81,7 +81,7 @@ class Company extends Item implements CompanyInterface
      * Company Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         if (isset($this->data->id)) {
             return $this->data->id;
@@ -93,7 +93,7 @@ class Company extends Item implements CompanyInterface
      * Company image logo path
      * @return string
      */
-    public function getLogoPath()
+    public function getLogoPath() : string
     {
         if (isset($this->data->logo_path)) {
             return $this->data->logo_path;
@@ -105,7 +105,7 @@ class Company extends Item implements CompanyInterface
      * Company name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         if (isset($this->data->name)) {
             return $this->data->name;
@@ -115,14 +115,14 @@ class Company extends Item implements CompanyInterface
 
     /**
      * Company movies list
-     * @return \Generator
+     * @return \Generator|Results\Movie
      */
-    public function getMovies()
+    public function getMovies() : \Generator
     {
         $data = $this->tmdb->getRequest('/company/' . (int) $this->id . '/movies', $this->params);
 
         foreach ($data->results as $m) {
-            $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $m);
+            $movie = new Results\Movie($this->tmdb, $m);
             yield $movie;
         }
     }

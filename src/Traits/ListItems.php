@@ -41,7 +41,7 @@ trait ListItems
      * Get page from result search
      * @return int
      */
-    public function getPage()
+    public function getPage() : int
     {
         return $this->page;
     }
@@ -50,7 +50,7 @@ trait ListItems
      * Get total page from result search
      * @return int
      */
-    public function getTotalPages()
+    public function getTotalPages() : int
     {
         return $this->total_pages;
     }
@@ -59,7 +59,7 @@ trait ListItems
      * Get total results from search
      * @return int
      */
-    public function getTotalResults()
+    public function getTotalResults() : int
     {
         return $this->total_results;
     }

@@ -97,7 +97,7 @@ class PeopleTVShowCast extends Results
      * Get Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -106,7 +106,7 @@ class PeopleTVShowCast extends Results
      * Get credit Id
      * @return string
      */
-    public function getCreditId()
+    public function getCreditId() : string
     {
         return $this->credit_id;
     }
@@ -115,7 +115,7 @@ class PeopleTVShowCast extends Results
      * Get character name
      * @return string
      */
-    public function getCharacter()
+    public function getCharacter() : string
     {
         return $this->character;
     }
@@ -124,7 +124,7 @@ class PeopleTVShowCast extends Results
      * Get name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
@@ -133,7 +133,7 @@ class PeopleTVShowCast extends Results
      * Get original name
      * @return string
      */
-    public function getOriginalName()
+    public function getOriginalName() : string
     {
         return $this->original_name;
     }
@@ -142,7 +142,7 @@ class PeopleTVShowCast extends Results
      * Get poster path
      * @return string
      */
-    public function getPosterPath()
+    public function getPosterPath() : string
     {
         return $this->poster_path;
     }
@@ -151,16 +151,16 @@ class PeopleTVShowCast extends Results
      * Get first air date
      * @return string
      */
-    public function getFirstAirDate()
+    public function getFirstAirDate() : string
     {
         return $this->first_air_date;
     }
 
     /**
      * Episode count
-     * @return boolean
+     * @return bool
      */
-    public function getEpisodeCount()
+    public function getEpisodeCount() : bool
     {
         return $this->episode_count;
     }

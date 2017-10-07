@@ -46,7 +46,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * @param array $options
      * @throws TmdbException
      */
-    public function __construct(TmdbInterface $tmdb, $tv_id, $season_number, array $options = array())
+    public function __construct(TmdbInterface $tmdb, int $tv_id, int $season_number, array $options = array())
     {
         parent::__construct($tmdb, $season_number, $options, 'tv/' . $tv_id);
 
@@ -57,7 +57,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         if (!empty($this->data->id)) {
             return (int) $this->data->id;
@@ -69,7 +69,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * Air date
      * @return string
      */
-    public function getAirDate()
+    public function getAirDate() : string
     {
         if (!empty($this->data->air_date)) {
             return $this->data->air_date;
@@ -81,7 +81,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * Episode count
      * @return int
      */
-    public function getEpisodeCount()
+    public function getEpisodeCount() : int
     {
         if (!empty($this->data->episodes)) {
             return count($this->data->episodes);
@@ -93,7 +93,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * Season number
      * @return int
      */
-    public function getSeasonNumber()
+    public function getSeasonNumber() : int
     {
         if (!empty($this->data->season_number)) {
             return (int) $this->data->season_number;
@@ -105,7 +105,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * Episodes list
      * @return \Generator|Results\TVEpisode
      */
-    public function getEpisodes()
+    public function getEpisodes() : \Generator
     {
         if (!empty($this->data->episodes)) {
             foreach ($this->data->episodes as $episode) {
@@ -119,7 +119,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * Name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         if (!empty($this->data->name)) {
             return $this->data->name;
@@ -131,7 +131,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * Overview
      * @return string
      */
-    public function getOverview()
+    public function getOverview() : string
     {
         if (!empty($this->data->overview)) {
             return $this->data->overview;
@@ -143,7 +143,7 @@ class TVSeason extends Item implements TVSeasonInterface
      * Posters list
      * @return \Generator|Results\Image
      */
-    public function getPosters()
+    public function getPosters() : \Generator
     {
         $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/images', $this->params);
 

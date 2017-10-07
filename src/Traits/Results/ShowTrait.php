@@ -52,7 +52,7 @@ trait ShowTrait
      * Get show ID
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -61,7 +61,7 @@ trait ShowTrait
      * Get show overview
      * @return string
      */
-    public function getOverview()
+    public function getOverview() : string
     {
         return $this->overview;
     }
@@ -70,7 +70,7 @@ trait ShowTrait
      * Get show first air date
      * @return string
      */
-    public function getReleaseDate()
+    public function getReleaseDate() : string
     {
         return $this->release_date;
     }
@@ -79,7 +79,7 @@ trait ShowTrait
      * Get show original name
      * @return string
      */
-    public function getOriginalTitle()
+    public function getOriginalTitle() : string
     {
         return $this->original_title;
     }
@@ -88,7 +88,7 @@ trait ShowTrait
      * Get show name
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->title;
     }

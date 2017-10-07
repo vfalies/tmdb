@@ -132,7 +132,7 @@ class Favorite extends Abstracts\Account
      * @param array $results
      * @param string $class
      */
-    private function searchItemGenerator(array $results, $class)
+    private function searchItemGenerator(array $results, string $class) : \Generator
     {
         $this->logger->debug('Starting search item generator');
         foreach ($results as $result) {

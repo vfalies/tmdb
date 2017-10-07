@@ -54,7 +54,7 @@ class Collection extends Item implements CollectionInterface
      * @param int $collection_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, $collection_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, int $collection_id, array $options = array())
     {
         parent::__construct($tmdb, $collection_id, $options, 'collection');
     }
@@ -63,7 +63,7 @@ class Collection extends Item implements CollectionInterface
      * Get collection ID
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -73,7 +73,7 @@ class Collection extends Item implements CollectionInterface
      * @return string
      * @throws NotFoundException
      */
-    public function getName()
+    public function getName() : string
     {
         if (isset($this->data->name)) {
             return $this->data->name;
@@ -86,7 +86,7 @@ class Collection extends Item implements CollectionInterface
      * Get collection parts
      * @return \Generator
      */
-    public function getParts()
+    public function getParts() : \Generator
     {
         if (!empty($this->data->parts)) {
             foreach ($this->data->parts as $part) {
@@ -100,7 +100,7 @@ class Collection extends Item implements CollectionInterface
      * Get collection backdrops
      * @return \Generator|Results\Image
      */
-    public function getBackdrops()
+    public function getBackdrops() : \Generator
     {
         $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', $this->params);
 
@@ -114,7 +114,7 @@ class Collection extends Item implements CollectionInterface
      * Get collection posters
      * @return \Generator|Results\Image
      */
-    public function getPosters()
+    public function getPosters() : \Generator
     {
         $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', $this->params);
 

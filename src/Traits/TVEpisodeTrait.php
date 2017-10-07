@@ -14,7 +14,7 @@
 
 namespace vfalies\tmdb\Traits;
 
-use vfalies\tmdb\Results\Crew;
+use vfalies\tmdb\Results;
 
 /**
  * TV Episode trait
@@ -26,14 +26,15 @@ trait TVEpisodeTrait
 {
     /**
      * Get crew of TV Episode
+     * @return \Generator|Results\Crew
      */
-    public function getCrew()
+    public function getCrew() : \Generator
     {
         if (!empty($this->data->crew)) {
             foreach ($this->data->crew as $crew) {
                 $crew->gender = null;
 
-                $return = new Crew($this->tmdb, $crew);
+                $return = new Results\Crew($this->tmdb, $crew);
                 yield $return;
             }
         }

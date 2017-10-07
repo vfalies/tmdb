@@ -27,5 +27,5 @@ interface ResultsInterface
      * Get  ID
      * @return int
      */
-    public function getId();
+    public function getId() : int;
 }

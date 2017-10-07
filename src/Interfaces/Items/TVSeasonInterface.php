@@ -24,41 +24,49 @@ interface TVSeasonInterface
 {
     /**
      * Id
+     * @return int
      */
-    public function getId();
+    public function getId() : int;
 
     /**
      * Image poster path
+     * @return string
      */
-    public function getPosterPath();
+    public function getPosterPath() : string;
 
     /**
      * Episode count
+     * @return int
      */
-    public function getEpisodeCount();
+    public function getEpisodeCount() : int;
 
     /**
      * Episodes list
+     * @return \Generator
      */
-    public function getEpisodes();
+    public function getEpisodes() : \Generator;
 
     /**
      * Air date
+     * @return string
      */
-    public function getAirDate();
+    public function getAirDate() : string;
 
     /**
      * Season number
+     * @return int
      */
-    public function getSeasonNumber();
+    public function getSeasonNumber() : int;
 
     /**
      * Name
+     * @return string
      */
-    public function getName();
+    public function getName() : string;
 
     /**
      * Overview
+     * @return string
      */
-    public function getOverview();
+    public function getOverview() : string;
 }

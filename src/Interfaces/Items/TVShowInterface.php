@@ -27,75 +27,77 @@ interface TVShowInterface
      * Get TV show id
      * @return int
      */
-    public function getId();
+    public function getId() : int;
 
     /**
      * Get TVShow genres
      * @return array
      */
-    public function getGenres();
+    public function getGenres() : array;
 
     /**
      * Get TVShow title
      * @return string
      */
-    public function getTitle();
+    public function getTitle() : string;
 
     /**
      * Get TVShow overview
      * @return string
      */
-    public function getOverview();
+    public function getOverview() : string;
 
     /**
      * Get TVShow release date
      * @return string
      */
-    public function getReleaseDate();
+    public function getReleaseDate() : string;
 
     /**
      * Get TVShow original title
      * @return string
      */
-    public function getOriginalTitle();
+    public function getOriginalTitle() : string;
 
     /**
      * Get TVShow note
      * @return float
      */
-    public function getNote();
+    public function getNote() : float;
 
     /**
      * Get TVShow number of episodes
      * @return int
      */
-    public function getNumberEpisodes();
+    public function getNumberEpisodes() : int;
 
     /**
      * Get TVShow number of seasons
      * @return int
      */
-    public function getNumberSeasons();
+    public function getNumberSeasons() : int;
 
     /**
      * Get TVShow status
      * @return string
      */
-    public function getStatus();
+    public function getStatus() : string;
 
     /**
      * Get TVShow seasons
      * @return \Generator
      */
-    public function getSeasons();
+    public function getSeasons() : \Generator;
 
     /**
      * Get poster path
+     * @return string
      */
-    public function getPosterPath();
+    public function getPosterPath() : string;
 
     /**
      * Get backdrop path
+     * @return string
      */
-    public function getBackdropPath();
+    public function getBackdropPath() : string;
 }

@@ -37,7 +37,7 @@ class Movie extends Item implements MovieInterface
      * @param int $movie_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, $movie_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, int $movie_id, array $options = array())
     {
         parent::__construct($tmdb, $movie_id, $options, 'movie');
     }
@@ -46,7 +46,7 @@ class Movie extends Item implements MovieInterface
      * Get movie genres
      * @return array
      */
-    public function getGenres()
+    public function getGenres() : array
     {
         if (isset($this->data->genres)) {
             return $this->data->genres;
@@ -58,7 +58,7 @@ class Movie extends Item implements MovieInterface
      * Get movie title
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         if (isset($this->data->title)) {
             return $this->data->title;
@@ -70,7 +70,7 @@ class Movie extends Item implements MovieInterface
      * Get movie overview
      * @return string
      */
-    public function getOverview()
+    public function getOverview() : string
     {
         if (isset($this->data->overview)) {
             return $this->data->overview;
@@ -82,7 +82,7 @@ class Movie extends Item implements MovieInterface
      * Get movie release date
      * @return string
      */
-    public function getReleaseDate()
+    public function getReleaseDate() : string
     {
         if (isset($this->data->release_date)) {
             return $this->data->release_date;
@@ -94,7 +94,7 @@ class Movie extends Item implements MovieInterface
      * Get movie original title
      * @return string
      */
-    public function getOriginalTitle()
+    public function getOriginalTitle() : string
     {
         if (isset($this->data->original_title)) {
             return $this->data->original_title;
@@ -106,7 +106,7 @@ class Movie extends Item implements MovieInterface
      * Get movie note
      * @return float
      */
-    public function getNote()
+    public function getNote() : float
     {
         if (isset($this->data->vote_average)) {
             return $this->data->vote_average;
@@ -118,7 +118,7 @@ class Movie extends Item implements MovieInterface
      * Get movie id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -127,7 +127,7 @@ class Movie extends Item implements MovieInterface
      * Get IMDB movie id
      * @return string
      */
-    public function getIMDBId()
+    public function getIMDBId() : string
     {
         if (isset($this->data->imdb_id)) {
             return $this->data->imdb_id;
@@ -139,7 +139,7 @@ class Movie extends Item implements MovieInterface
      * Get movie tagline
      * @return string
      */
-    public function getTagLine()
+    public function getTagLine() : string
     {
         if (isset($this->data->tagline)) {
             return $this->data->tagline;
@@ -151,7 +151,7 @@ class Movie extends Item implements MovieInterface
      * Get collection id
      * @return int
      */
-    public function getCollectionId()
+    public function getCollectionId() : int
     {
         if (!empty($this->data->belongs_to_collection)) {
             return (int) $this->data->belongs_to_collection->id;
@@ -163,7 +163,7 @@ class Movie extends Item implements MovieInterface
      * Get movie crew
      * @return \Generator|Results\Crew
      */
-    public function getCrew()
+    public function getCrew() : \Generator
     {
         $credit = new MovieCredit($this->tmdb, $this->id);
         return $credit->getCrew();
@@ -171,9 +171,9 @@ class Movie extends Item implements MovieInterface
 
     /**
      * Get movie cast
-     * @return \Generator|Results\Cast
+     * @return \Generator|MovieCredit
      */
-    public function getCast()
+    public function getCast() : \Generator
     {
         $cast = new MovieCredit($this->tmdb, $this->id);
         return $cast->getCast();
@@ -183,7 +183,7 @@ class Movie extends Item implements MovieInterface
      * Get production compagnies
      * @return \Generator|\stdClass
      */
-    public function getProductionCompanies()
+    public function getProductionCompanies() : \Generator
     {
         if (!empty($this->data->production_companies)) {
             foreach ($this->data->production_companies as $p) {
@@ -200,7 +200,7 @@ class Movie extends Item implements MovieInterface
      * Get production countries
      * @return \Generator|\stdClass
      */
-    public function getProductionCountries()
+    public function getProductionCountries() : \Generator
     {
         if (!empty($this->data->production_countries)) {
             foreach ($this->data->production_countries as $c) {
@@ -217,7 +217,7 @@ class Movie extends Item implements MovieInterface
      * Get image backdrops list
      * @return \Generator|Results\Image
      */
-    public function getBackdrops()
+    public function getBackdrops() : \Generator
     {
         $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', $this->params);
 
@@ -231,7 +231,7 @@ class Movie extends Item implements MovieInterface
      * Get image posters list
      * @return \Generator|Results\Image
      */
-    public function getPosters()
+    public function getPosters() : \Generator
     {
         $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', $this->params);
 
@@ -245,7 +245,7 @@ class Movie extends Item implements MovieInterface
      * Get similar movies from current movie
      * @return \Generator|Results\Movie
      */
-    public function getSimilar()
+    public function getSimilar() : \Generator
     {
         $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/similar', $this->params);
 

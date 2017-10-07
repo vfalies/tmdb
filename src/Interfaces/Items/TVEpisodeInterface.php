@@ -24,61 +24,73 @@ interface TVEpisodeInterface
 {
     /**
      * Id
+     * @return int
      */
-    public function getId();
+    public function getId() : int;
 
     /**
      * Air Date
+     * @return string
      */
-    public function getAirDate();
+    public function getAirDate() : string;
 
     /**
      * Season Number
+     * @return int
      */
-    public function getSeasonNumber();
+    public function getSeasonNumber() : int;
 
     /**
      * Name
+     * @return string
      */
-    public function getName();
+    public function getName() : string;
 
     /**
      * Overview
+     * @return string
      */
-    public function getOverview();
+    public function getOverview() : string;
 
     /**
      * Crew
+     * @return \Generator
      */
-    public function getCrew();
+    public function getCrew() : \Generator;
 
     /**
      * Episode number
+     * @return int
      */
-    public function getEpisodeNumber();
+    public function getEpisodeNumber() : int;
 
     /**
      * Guests stars
+     * @return \Generator
      */
-    public function getGuestStars();
+    public function getGuestStars() : \Generator;
 
     /**
      * Production code
+     * @return string
      */
-    public function getProductionCode();
+    public function getProductionCode() : string;
 
     /**
      * Image still path
+     * @return string
      */
-    public function getStillPath();
+    public function getStillPath() : string;
 
     /**
      * Note
+     * @return float
      */
-    public function getNote();
+    public function getNote() : float;
 
     /**
      * Note count
+     * @return int
      */
-    public function getNoteCount();
+    public function getNoteCount() : int;
 }

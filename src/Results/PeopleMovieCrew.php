@@ -28,9 +28,9 @@ class PeopleMovieCrew extends Results
 
     /**
      * Adult
-     * @var boolean
+     * @var bool
      */
-    protected $adult = null;
+    protected $adult = false;
 
     /**
      * Credit Id
@@ -104,7 +104,7 @@ class PeopleMovieCrew extends Results
      * Get Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -113,7 +113,7 @@ class PeopleMovieCrew extends Results
      * Get credit Id
      * @return string
      */
-    public function getCreditId()
+    public function getCreditId() : string
     {
         return $this->credit_id;
     }
@@ -122,7 +122,7 @@ class PeopleMovieCrew extends Results
      * Get department name
      * @return string
      */
-    public function getDepartment()
+    public function getDepartment() : string
     {
         return $this->department;
     }
@@ -131,7 +131,7 @@ class PeopleMovieCrew extends Results
      * Get job
      * @return string
      */
-    public function getJob()
+    public function getJob() : string
     {
         return $this->job;
     }
@@ -140,7 +140,7 @@ class PeopleMovieCrew extends Results
      * Get title
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->title;
     }
@@ -149,7 +149,7 @@ class PeopleMovieCrew extends Results
      * Get original title
      * @return string
      */
-    public function getOriginalTitle()
+    public function getOriginalTitle() : string
     {
         return $this->original_title;
     }
@@ -158,7 +158,7 @@ class PeopleMovieCrew extends Results
      * Get poster path
      * @return string
      */
-    public function getPosterPath()
+    public function getPosterPath() : string
     {
         return $this->poster_path;
     }
@@ -167,16 +167,16 @@ class PeopleMovieCrew extends Results
      * Get release date
      * @return string
      */
-    public function getReleaseDate()
+    public function getReleaseDate() : string
     {
         return $this->release_date;
     }
 
     /**
      * Adult
-     * @return boolean
+     * @return bool
      */
-    public function getAdult()
+    public function getAdult() : bool
     {
         return $this->adult;
     }

@@ -28,9 +28,9 @@ class PeopleMovieCast extends Results
 
     /**
      * Adult
-     * @var boolean
+     * @var bool
      */
-    protected $adult = null;
+    protected $adult = false;
 
     /**
      * Character name
@@ -97,7 +97,7 @@ class PeopleMovieCast extends Results
      * Get Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -106,7 +106,7 @@ class PeopleMovieCast extends Results
      * Get credit Id
      * @return string
      */
-    public function getCreditId()
+    public function getCreditId() : string
     {
         return $this->credit_id;
     }
@@ -115,7 +115,7 @@ class PeopleMovieCast extends Results
      * Get character name
      * @return string
      */
-    public function getCharacter()
+    public function getCharacter() : string
     {
         return $this->character;
     }
@@ -124,7 +124,7 @@ class PeopleMovieCast extends Results
      * Get title
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->title;
     }
@@ -133,7 +133,7 @@ class PeopleMovieCast extends Results
      * Get original title
      * @return string
      */
-    public function getOriginalTitle()
+    public function getOriginalTitle() : string
     {
         return $this->original_title;
     }
@@ -142,7 +142,7 @@ class PeopleMovieCast extends Results
      * Get poster path
      * @return string
      */
-    public function getPosterPath()
+    public function getPosterPath() : string
     {
         return $this->poster_path;
     }
@@ -151,16 +151,16 @@ class PeopleMovieCast extends Results
      * Get release date
      * @return string
      */
-    public function getReleaseDate()
+    public function getReleaseDate() : string
     {
         return $this->release_date;
     }
 
     /**
      * Adult
-     * @return boolean
+     * @return bool
      */
-    public function getAdult()
+    public function getAdult() : bool
     {
         return $this->adult;
     }

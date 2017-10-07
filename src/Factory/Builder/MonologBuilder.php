@@ -56,9 +56,9 @@ class MonologBuilder implements LoggerBuilderInterface
     /**
      * Get Logger
      * This method MUST return a valid PSR3 logger
-     * @return \Monolog\Logger
+     * @return \Psr\Log\LoggerInterface
      */
-    public function getLogger()
+    public function getLogger() : \Psr\Log\LoggerInterface
     {
         $logger = new Logger($this->loggerName);
 
@@ -74,9 +74,9 @@ class MonologBuilder implements LoggerBuilderInterface
      * Create new handler
      * @param string $class
      * @param array $params
-     * @return Monolog\Handler\HandlerInterface
+     * @return \Monolog\Handler\HandlerInterface
      */
-    public function newHandler($class, array $params = [])
+    public function newHandler(string $class, array $params = []) : \Monolog\Handler\HandlerInterface
     {
         $reflection = new \ReflectionClass($class);
 
@@ -92,7 +92,7 @@ class MonologBuilder implements LoggerBuilderInterface
      * This method MUST return the name of the main class
      * @return string
      */
-    public function getMainClassName()
+    public function getMainClassName() : string
     {
         return 'Monolog\Logger';
     }
@@ -102,7 +102,7 @@ class MonologBuilder implements LoggerBuilderInterface
      * This method MUST return the name of the package name
      * @return string
      */
-    public function getPackageName()
+    public function getPackageName() : string
     {
         return 'monolog/monolog';
     }

@@ -26,5 +26,5 @@ interface CollectionResultsInterface extends ResultsInterface
      * Get movie title
      * @return string
      */
-    public function getTitle();
+    public function getTitle() : string;
 }

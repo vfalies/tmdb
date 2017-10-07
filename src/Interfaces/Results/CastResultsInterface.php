@@ -25,36 +25,43 @@ interface CastResultsInterface
 
     /**
      * Credit Id
+     * @return string
      */
-    public function getCreditId();
+    public function getCreditId() : string;
 
     /**
      * Character name
+     * @return string
      */
-    public function getCharacter();
+    public function getCharacter() : string;
 
     /**
      * Gender
+     * @return string
      */
-    public function getGender();
+    public function getGender() : string;
 
     /**
      * Cast Id
+     * @return int
      */
-    public function getCastId();
+    public function getCastId() : int;
 
     /**
      * Name
+     * @return string
      */
-    public function getName();
+    public function getName() : string;
 
     /**
      * Image profile path
+     * @return string
      */
-    public function getProfilePath();
+    public function getProfilePath() : string;
 
     /**
      * Order
+     * @return int
      */
-    public function getOrder();
+    public function getOrder() : int;
 }

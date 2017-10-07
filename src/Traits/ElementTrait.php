@@ -25,8 +25,9 @@ trait ElementTrait
 
     /**
      * Get poster path
+     * @return string
      */
-    public function getPosterPath()
+    public function getPosterPath() : string
     {
         if (isset($this->data->poster_path)) {
             return $this->data->poster_path;
@@ -36,8 +37,9 @@ trait ElementTrait
 
     /**
      * Get backdrop
+     * @return string
      */
-    public function getBackdropPath()
+    public function getBackdropPath() : string
     {
         if (isset($this->data->backdrop_path)) {
             return $this->data->backdrop_path;

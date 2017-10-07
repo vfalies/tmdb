@@ -77,7 +77,7 @@ class TVSeason extends Results implements TVSeasonResultsInterface
      * Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -86,7 +86,7 @@ class TVSeason extends Results implements TVSeasonResultsInterface
      * Air date
      * @return string
      */
-    public function getAirDate()
+    public function getAirDate() : string
     {
         return $this->air_date;
     }
@@ -95,7 +95,7 @@ class TVSeason extends Results implements TVSeasonResultsInterface
      * Episode count
      * @return int
      */
-    public function getEpisodeCount()
+    public function getEpisodeCount() : int
     {
         return (int) $this->episode_count;
     }
@@ -104,7 +104,7 @@ class TVSeason extends Results implements TVSeasonResultsInterface
      * Season Number
      * @return int
      */
-    public function getSeasonNumber()
+    public function getSeasonNumber() : int
     {
         return (int) $this->season_number;
     }

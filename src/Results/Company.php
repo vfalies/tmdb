@@ -61,7 +61,7 @@ class Company extends Results implements CompanyResultsInterface
      * Collection id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -70,7 +70,7 @@ class Company extends Results implements CompanyResultsInterface
      * Image logo path
      * @return string
      */
-    public function getLogoPath()
+    public function getLogoPath() : string
     {
         return $this->logo_path;
     }
@@ -79,7 +79,7 @@ class Company extends Results implements CompanyResultsInterface
      * Collection name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }

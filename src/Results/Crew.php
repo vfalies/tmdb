@@ -84,7 +84,7 @@ class Crew extends Results implements CrewResultsInterface
      * Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -93,7 +93,7 @@ class Crew extends Results implements CrewResultsInterface
      * Credit Id
      * @return string
      */
-    public function getCreditId()
+    public function getCreditId() : string
     {
         return $this->credit_id;
     }
@@ -102,16 +102,16 @@ class Crew extends Results implements CrewResultsInterface
      * Department
      * @return string
      */
-    public function getDepartment()
+    public function getDepartment() : string
     {
         return $this->department;
     }
 
     /**
      * Gender
-     * @return string
+     * @return string|null
      */
-    public function getGender()
+    public function getGender() : ?string
     {
         return $this->gender;
     }
@@ -120,7 +120,7 @@ class Crew extends Results implements CrewResultsInterface
      * Job
      * @return string
      */
-    public function getJob()
+    public function getJob() : string
     {
         return $this->job;
     }
@@ -129,7 +129,7 @@ class Crew extends Results implements CrewResultsInterface
      * Name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
@@ -138,7 +138,7 @@ class Crew extends Results implements CrewResultsInterface
      * Image profile path
      * @return string
      */
-    public function getProfilePath()
+    public function getProfilePath() : string
     {
         return $this->profile_path;
     }

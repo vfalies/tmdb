@@ -64,7 +64,7 @@ abstract class Item
      * @param string $item_name
      * @throws \Exception
      */
-    public function __construct(TmdbInterface $tmdb, $item_id, array $options, $item_name)
+    public function __construct(TmdbInterface $tmdb, int $item_id, array $options, string $item_name)
     {
         try {
             $this->id     = (int) $item_id;

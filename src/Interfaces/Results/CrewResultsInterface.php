@@ -25,31 +25,37 @@ interface CrewResultsInterface
 
     /**
      * Credit Id
+     * @return string
      */
-    public function getCreditId();
+    public function getCreditId() : string;
 
     /**
      * Department
+     * @return string
      */
-    public function getDepartment();
+    public function getDepartment() : string;
 
     /**
      * Gender
+     * @return string|null
      */
-    public function getGender();
+    public function getGender() : ?string;
 
     /**
      * Job
+     * @return string
      */
-    public function getJob();
+    public function getJob() : string;
 
     /**
      * Name
+     * @return string
      */
-    public function getName();
+    public function getName() : string;
 
     /**
      * Image profile path
+     * @return string
      */
-    public function getProfilePath();
+    public function getProfilePath() : string;
 }

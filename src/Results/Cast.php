@@ -89,7 +89,7 @@ class Cast extends Results implements CastResultsInterface
      * Get Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -98,7 +98,7 @@ class Cast extends Results implements CastResultsInterface
      * Get credit Id
      * @return string
      */
-    public function getCreditId()
+    public function getCreditId() : string
     {
         return $this->credit_id;
     }
@@ -107,7 +107,7 @@ class Cast extends Results implements CastResultsInterface
      * Get character name
      * @return string
      */
-    public function getCharacter()
+    public function getCharacter() : string
     {
         return $this->character;
     }
@@ -116,7 +116,7 @@ class Cast extends Results implements CastResultsInterface
      * Get gender
      * @return string
      */
-    public function getGender()
+    public function getGender() : string
     {
         return $this->gender;
     }
@@ -125,7 +125,7 @@ class Cast extends Results implements CastResultsInterface
      * Get Cast Id
      * @return int
      */
-    public function getCastId()
+    public function getCastId() : int
     {
         return $this->cast_id;
     }
@@ -134,7 +134,7 @@ class Cast extends Results implements CastResultsInterface
      * Get name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
@@ -143,7 +143,7 @@ class Cast extends Results implements CastResultsInterface
      * Get profile path
      * @return string
      */
-    public function getProfilePath()
+    public function getProfilePath() : string
     {
         return $this->profile_path;
     }
@@ -152,7 +152,7 @@ class Cast extends Results implements CastResultsInterface
      * Get Order
      * @return int
      */
-    public function getOrder()
+    public function getOrder() : int
     {
         return $this->order;
     }

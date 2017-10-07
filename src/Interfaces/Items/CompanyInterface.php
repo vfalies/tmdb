@@ -25,30 +25,30 @@ interface CompanyInterface
     /**
      * Description
      */
-    public function getDescription();
+    public function getDescription() : string;
 
     /**
      * Head Quarters
      */
-    public function getHeadQuarters();
+    public function getHeadQuarters() : string;
 
     /**
      * Home Page
      */
-    public function getHomePage();
+    public function getHomePage() : string;
 
     /**
      * Id
      */
-    public function getId();
+    public function getId() : int;
 
     /**
      * Image logo path
      */
-    public function getLogoPath();
+    public function getLogoPath() : string;
 
     /**
      * Name
      */
-    public function getName();
+    public function getName() : string;
 }

@@ -15,8 +15,7 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Results\Crew;
-use vfalies\tmdb\Results\Cast;
+use vfalies\tmdb\Results;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
@@ -39,20 +38,20 @@ class MovieCredit extends Item
      * @param int $movie_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, $movie_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, int $movie_id, array $options = array())
     {
-        parent::__construct($tmdb, '/credits', $options, 'movie/' . $movie_id);
+        parent::__construct($tmdb, $movie_id, $options, 'movie/' . $movie_id.'/credits');
     }
 
     /**
      * Crew
      * @return \Generator|Results\Crew
      */
-    public function getCrew()
+    public function getCrew() : \Generator
     {
         if (!empty($this->data->crew)) {
             foreach ($this->data->crew as $c) {
-                $crew = new Crew($this->tmdb, $c);
+                $crew = new Results\Crew($this->tmdb, $c);
                 yield $crew;
             }
         }
@@ -62,11 +61,11 @@ class MovieCredit extends Item
      * Cast
      * @return \Generator|Results\Cast
      */
-    public function getCast()
+    public function getCast() : \Generator
     {
         if (!empty($this->data->cast)) {
             foreach ($this->data->cast as $c) {
-                $cast = new Cast($this->tmdb, $c);
+                $cast = new Results\Cast($this->tmdb, $c);
                 yield $cast;
             }
         }

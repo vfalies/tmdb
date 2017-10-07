@@ -39,7 +39,7 @@ class Catalog
 
     /**
      * Constructor
-     * @param vfalies\tmdb\Interfaces\TmdbInterface $tmdb
+     * @param TmdbInterface $tmdb
      */
     public function __construct(TmdbInterface $tmdb)
     {
@@ -52,7 +52,7 @@ class Catalog
      * @param array $options
      * @return \Generator
      */
-    public function getMovieGenres(array $options = array())
+    public function getMovieGenres(array $options = array()) : \Generator
     {
         $this->logger->debug('Starting getting movie genres');
         $catalog = new Genres($this->tmdb);
@@ -64,7 +64,7 @@ class Catalog
      * @param array $options
      * @return \Generator
      */
-    public function getTVShowGenres(array $options = array())
+    public function getTVShowGenres(array $options = array()) : \Generator
     {
         $this->logger->debug('Starting getting tv show genres');
         $catalog = new Genres($this->tmdb);
@@ -76,7 +76,7 @@ class Catalog
      * @param array $options
      * @return \Generator|\stdClass
      */
-    public function getJobsList(array $options = array())
+    public function getJobsList(array $options = array()) : \Generator
     {
         $this->logger->debug('Starting getting jobs list');
         $catalog = new Jobs($this->tmdb);

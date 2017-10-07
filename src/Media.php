@@ -59,7 +59,7 @@ class Media
      * @param string $size
      * @return string|null
      */
-    public function getBackdropUrl($path, $size = 'w780')
+    public function getBackdropUrl(string $path, string $size = 'w780') : ?string
     {
         return $this->getImage('backdrop', $size, $path);
     }
@@ -68,9 +68,9 @@ class Media
      * Get poster url
      * @param string $path
      * @param string $size
-     * @return string
+     * @return string|null
      */
-    public function getPosterUrl($path, $size = 'w185')
+    public function getPosterUrl(string $path, string $size = 'w185') : ?string
     {
         return $this->getImage('poster', $size, $path);
     }
@@ -79,9 +79,9 @@ class Media
      * Get logos url
      * @param string $path
      * @param string $size
-     * @return string
+     * @return string|null
      */
-    public function getlogoUrl($path, $size = 'w92')
+    public function getlogoUrl(string $path, string $size = 'w92') : ?string
     {
         return $this->getImage('logo', $size, $path);
     }
@@ -90,9 +90,9 @@ class Media
      * Get profile url
      * @param string $path
      * @param string $size
-     * @return string
+     * @return string|null
      */
-    public function getProfileUrl($path, $size = 'w185')
+    public function getProfileUrl(string $path, string $size = 'w185') : ?string
     {
         return $this->getImage('profile', $size, $path);
     }
@@ -103,7 +103,7 @@ class Media
      * @param string $size
      * @return string
      */
-    public function getStillUrl($path, $size = 'w185')
+    public function getStillUrl(string $path, string $size = 'w185') : ?string
     {
         return $this->getImage('still', $size, $path);
     }
@@ -117,7 +117,7 @@ class Media
      * @throws NotFoundException
      * @throws IncorrectParamException
      */
-    private function getImage($type, $size, $filepath)
+    private function getImage(string $type, string $size, string $filepath) : string
     {
         if (!isset($this->conf->images->base_url)) {
             $this->logger->error('No image base url found from configuration');

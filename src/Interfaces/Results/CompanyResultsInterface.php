@@ -27,11 +27,11 @@ interface CompanyResultsInterface extends ResultsInterface
      * Get company name
      * @return string
      */
-    public function getName();
+    public function getName() : string;
 
     /**
      * Get company logo path
      * @return string
      */
-    public function getLogoPath();
+    public function getLogoPath() : string;
 }

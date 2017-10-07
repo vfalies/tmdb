@@ -27,23 +27,23 @@ interface MovieResultsInterface extends ResultsInterface
      * Get movie overview
      * @return string
      */
-    public function getOverview();
+    public function getOverview() : string;
 
     /**
      * Get movie original title
      * @return string
      */
-    public function getOriginalTitle();
+    public function getOriginalTitle() : string;
 
     /**
      * Get movie title
      * @return string
      */
-    public function getTitle();
+    public function getTitle() : string;
 
     /**
      * Get movie release date
      * @return string
      */
-    public function getReleaseDate();
+    public function getReleaseDate() : string;
 }

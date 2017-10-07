@@ -24,22 +24,25 @@ interface TVSeasonResultsInterface extends ResultsInterface
 {
     /**
      * Episode count
+     * @return int
      */
-    public function getEpisodeCount();
+    public function getEpisodeCount() : int;
 
     /**
      * Image poster path
+     * @return string
      */
-    public function getPosterPath();
+    public function getPosterPath() : string;
 
     /**
      * Season number
+     * @return int
      */
-    public function getSeasonNumber();
+    public function getSeasonNumber() : int;
 
     /**
      * Get movie release date
      * @return string
      */
-    public function getAirDate();
+    public function getAirDate() : string;
 }

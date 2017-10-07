@@ -104,20 +104,20 @@ class WatchList extends Abstracts\Account
 
     /**
      * Add TV show in watchlist
-     * @param  [type]    $tvshow_id TV show id
+     * @param  int    $tvshow_id TV show id
      * @return WatchList
      */
-    public function addTVShow($tvshow_id) : WatchList
+    public function addTVShow(int $tvshow_id) : WatchList
     {
         return $this->setWatchlistItem('tv', $tvshow_id, true);
     }
 
     /**
      * Remove TV show from watchlist
-     * @param  [type]    $tvshow_id TV show id
+     * @param  int    $tvshow_id TV show id
      * @return WatchList
      */
-    public function removeTVShow($tvshow_id) : WatchList
+    public function removeTVShow(int $tvshow_id) : WatchList
     {
         return $this->setWatchlistItem('tv', $tvshow_id, false);
     }

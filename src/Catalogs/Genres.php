@@ -47,9 +47,9 @@ class Genres implements GenresInterface
      * Get movie genres list
      * @param array $options
      * @return \Generator
-     * @throws \Exception
+     * @throws TmdbException
      */
-    public function getMovieList(array $options = array())
+    public function getMovieList(array $options = array()) : \Generator
     {
         try {
             return $this->getList('genre/movie/list', $options);
@@ -64,7 +64,7 @@ class Genres implements GenresInterface
      * @return \Generator
      * @throws TmdbException
      */
-    public function getTVList(array $options = array())
+    public function getTVList(array $options = array()) : \Generator
     {
         try {
             return $this->getList('genre/tv/list', $options);
@@ -80,7 +80,7 @@ class Genres implements GenresInterface
      * @return \Generator
      * @throws TmdbException
      */
-    private function getList($type, array $options)
+    private function getList(string $type, array $options) : \Generator
     {
         try {
             $params   = $this->tmdb->checkOptions($options);
@@ -100,8 +100,9 @@ class Genres implements GenresInterface
     /**
      * Genre Item generator method
      * @param array $results
+     * @return \Generator
      */
-    private function genreItemGenerator(array $results)
+    private function genreItemGenerator(array $results) : \Generator
     {
         foreach ($results as $result) {
             yield $result;

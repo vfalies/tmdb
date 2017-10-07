@@ -14,9 +14,9 @@
 
 namespace vfalies\tmdb\Results;
 
-use vfalies\tmdb\Abstracts\Results;
+use vfalies\tmdb\Abstracts;
+use vfalies\tmdb\Results;
 use vfalies\tmdb\Interfaces\Results\TVEpisodeResultsInterface;
-use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Traits\ElementTrait;
 use vfalies\tmdb\Traits\TVEpisodeTrait;
 use vfalies\tmdb\Interfaces\TmdbInterface;
@@ -27,7 +27,7 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
-class TVEpisode extends Results implements TVEpisodeResultsInterface
+class TVEpisode extends Abstracts\Results implements TVEpisodeResultsInterface
 {
     use ElementTrait;
     use TVEpisodeTrait;
@@ -116,7 +116,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Air date
      * @return string
      */
-    public function getAirDate()
+    public function getAirDate() : string
     {
         return $this->air_date;
     }
@@ -125,7 +125,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Episode number
      * @return int
      */
-    public function getEpisodeNumber()
+    public function getEpisodeNumber() : int
     {
         return (int) $this->episode_number;
     }
@@ -134,14 +134,14 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Guests stars
      * @return \Generator|Results\Cast
      */
-    public function getGuestStars()
+    public function getGuestStars() : \Generator
     {
         if (isset($this->guest_stars)) {
             foreach ($this->guest_stars as $gs) {
                 $gs->gender = null;
                 $gs->cast_id = null;
 
-                $star = new Cast($this->tmdb, $gs);
+                $star = new Results\Cast($this->tmdb, $gs);
                 yield $star;
             }
         }
@@ -151,7 +151,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -160,7 +160,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
@@ -169,7 +169,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Note
      * @return float
      */
-    public function getNote()
+    public function getNote() : float
     {
         return $this->vote_average;
     }
@@ -178,7 +178,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Note count
      * @return int
      */
-    public function getNoteCount()
+    public function getNoteCount() : int
     {
         return (int) $this->vote_count;
     }
@@ -187,7 +187,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Overview
      * @return string
      */
-    public function getOverview()
+    public function getOverview() : string
     {
         return $this->overview;
     }
@@ -196,7 +196,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Production code
      * @return string
      */
-    public function getProductionCode()
+    public function getProductionCode() : string
     {
         return $this->production_code;
     }
@@ -205,7 +205,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Season number
      * @return int
      */
-    public function getSeasonNumber()
+    public function getSeasonNumber() : int
     {
         return (int) $this->season_number;
     }
@@ -214,7 +214,7 @@ class TVEpisode extends Results implements TVEpisodeResultsInterface
      * Image still path
      * @return string
      */
-    public function getStillPath()
+    public function getStillPath() : string
     {
         return $this->still_path;
     }

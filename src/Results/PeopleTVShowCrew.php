@@ -107,7 +107,7 @@ class PeopleTVShowCrew extends Results
      * Get Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -116,7 +116,7 @@ class PeopleTVShowCrew extends Results
      * Get credit Id
      * @return string
      */
-    public function getCreditId()
+    public function getCreditId() : string
     {
         return $this->credit_id;
     }
@@ -125,7 +125,7 @@ class PeopleTVShowCrew extends Results
      * Get department name
      * @return string
      */
-    public function getDepartment()
+    public function getDepartment() : string
     {
         return $this->department;
     }
@@ -134,7 +134,7 @@ class PeopleTVShowCrew extends Results
      * Get job
      * @return string
      */
-    public function getJob()
+    public function getJob() : string
     {
         return $this->job;
     }
@@ -143,16 +143,16 @@ class PeopleTVShowCrew extends Results
      * Get name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
 
     /**
-     * Get original ,name
+     * Get original name
      * @return string
      */
-    public function getOriginalName()
+    public function getOriginalName() : string
     {
         return $this->original_name;
     }
@@ -161,7 +161,7 @@ class PeopleTVShowCrew extends Results
      * Get poster path
      * @return string
      */
-    public function getPosterPath()
+    public function getPosterPath() : string
     {
         return $this->poster_path;
     }
@@ -170,7 +170,7 @@ class PeopleTVShowCrew extends Results
      * Get first air date
      * @return string
      */
-    public function getFirstAirDate()
+    public function getFirstAirDate() : string
     {
         return $this->first_air_date;
     }
@@ -179,7 +179,7 @@ class PeopleTVShowCrew extends Results
      * Episode count
      * @return int
      */
-    public function getEpisodeCount()
+    public function getEpisodeCount() : int
     {
         return $this->episode_count;
     }

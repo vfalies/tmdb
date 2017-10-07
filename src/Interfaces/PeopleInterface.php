@@ -24,66 +24,79 @@ interface PeopleInterface
 {
     /**
      * Adult
+     * @return bool
      */
-    public function getAdult();
+    public function getAdult() : bool;
 
     /**
      * People also known as
+     * @return array
      */
-    public function getAlsoKnownAs();
+    public function getAlsoKnownAs() : array;
 
     /**
      * Biography
+     * @return string
      */
-    public function getBiography();
+    public function getBiography() : string;
 
     /**
      * People birthday
+     * @return string
      */
-    public function getBirthday();
+    public function getBirthday() : string;
 
     /**
      * People deathday
+     * @return string
      */
-    public function getDeathday();
+    public function getDeathday() : string;
 
     /**
      * Gender
+     * @return int
      */
-    public function getGender();
+    public function getGender() : int;
 
     /**
      * Homepage
+     * @return string
      */
-    public function getHomepage();
+    public function getHomepage() : string;
 
     /**
      * Id
+     * @return int
      */
-    public function getId();
+    public function getId() : int;
 
     /**
      * Imdb Id
+     * @return string
      */
-    public function getImdbId();
+    public function getImdbId() : string;
 
     /**
      * People name
+     * @return string
      */
-    public function getName();
+    public function getName() : string;
 
     /**
      * People place of birth
+     * @return string
      */
-    public function getPlaceOfBirth();
+    public function getPlaceOfBirth() : string;
 
     /**
      * People popularity
+     * @return float
      */
-    public function getPopularity();
+    public function getPopularity() : float;
 
     /**
      * Image profile path
+     * @return string
      */
-    public function getProfilePath();
+    public function getProfilePath() : string;
 }

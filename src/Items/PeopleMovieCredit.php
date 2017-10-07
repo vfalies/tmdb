@@ -14,6 +14,7 @@
 
 namespace vfalies\tmdb\Items;
 
+use vfalies\tmdb\Results;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Results\PeopleMovieCast;
@@ -33,16 +34,16 @@ class PeopleMovieCredit extends Item
      * @param int $people_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, $people_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, int $people_id, array $options = array())
     {
-        parent::__construct($tmdb, '/movie_credits', $options, 'person/' . $people_id);
+        parent::__construct($tmdb, $people_id, $options, 'person/' . $people_id.'/movie_credits');
     }
 
     /**
      * Crew
-     * @return \Generator|Results\Crew
+     * @return \Generator|Results\PeopleMovieCrew
      */
-    public function getCrew()
+    public function getCrew() : \Generator
     {
         if (!empty($this->data->crew)) {
             foreach ($this->data->crew as $c) {
@@ -56,7 +57,7 @@ class PeopleMovieCredit extends Item
      * Cast
      * @return \Generator|Results\Cast
      */
-    public function getCast()
+    public function getCast() : \Generator
     {
         if (!empty($this->data->cast)) {
             foreach ($this->data->cast as $c) {

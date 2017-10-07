@@ -51,7 +51,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * @param int $episode_number
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, $tv_id, $season_number, $episode_number, array $options = array())
+    public function __construct(TmdbInterface $tmdb, int $tv_id, int $season_number, int $episode_number, array $options = array())
     {
         parent::__construct($tmdb, $episode_number, $options, 'tv/' . $tv_id . '/' . $season_number);
 
@@ -63,7 +63,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Get TV show id
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         if (isset($this->data->id)) {
             return (int) $this->data->id;
@@ -75,7 +75,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Air date
      * @return string
      */
-    public function getAirDate()
+    public function getAirDate() : string
     {
         if (isset($this->data->air_date)) {
             return $this->data->air_date;
@@ -87,7 +87,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Episode number
      * @return int
      */
-    public function getEpisodeNumber()
+    public function getEpisodeNumber() : int
     {
         if (isset($this->data->episode_number)) {
             return $this->data->episode_number;
@@ -99,7 +99,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Guests stars
      * @return \Generator|Results\Cast
      */
-    public function getGuestStars()
+    public function getGuestStars() : \Generator
     {
         if (isset($this->data->guest_stars)) {
             foreach ($this->data->guest_stars as $gs) {
@@ -116,7 +116,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         if (isset($this->data->name)) {
             return $this->data->name;
@@ -128,7 +128,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Note
      * @return float
      */
-    public function getNote()
+    public function getNote() : float
     {
         if (isset($this->data->vote_average)) {
             return $this->data->vote_average;
@@ -140,7 +140,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Note count
      * @return int
      */
-    public function getNoteCount()
+    public function getNoteCount() : int
     {
         if (isset($this->data->vote_count)) {
             return (int) $this->data->vote_count;
@@ -152,7 +152,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Overview
      * @return string
      */
-    public function getOverview()
+    public function getOverview() : string
     {
         if (isset($this->data->overview)) {
             return $this->data->overview;
@@ -164,7 +164,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Production code
      * @return string
      */
-    public function getProductionCode()
+    public function getProductionCode() : string
     {
         if (isset($this->data->production_code)) {
             return $this->data->production_code;
@@ -176,7 +176,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Season number
      * @return int
      */
-    public function getSeasonNumber()
+    public function getSeasonNumber() : int
     {
         if (isset($this->data->season_number)) {
             return (int) $this->data->season_number;
@@ -188,7 +188,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Image still path
      * @return string
      */
-    public function getStillPath()
+    public function getStillPath() : string
     {
         if (isset($this->data->still_path)) {
             return $this->data->still_path;
@@ -200,7 +200,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * Image posters
      * @return \Generator|Results\Image
      */
-    public function getPosters()
+    public function getPosters() : \Generator
     {
         $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/episode/' . $this->episode_number . '/images', $this->params);
 

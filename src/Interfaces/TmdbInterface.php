@@ -27,34 +27,34 @@ interface TmdbInterface
      * Send cUrl request to TMDB API with GET Http method
      * @param string $action API action to request
      * @param array $options Array of options of the request (optional)
-     * @return \stdClass
+     * @return \stdClass|null
      */
-    public function getRequest(string $action, array $options = array());
+    public function getRequest(string $action, array $options = array()) : ?\stdClass;
 
     /**
      * Send cUrl request to TMDB API with POST Http method
      * @param string $action API action to request
      * @param array $options Array of options of the request (optional)
-     * @return \stdClass
+     * @return \stdClass|null
      */
-    public function postRequest(string $action, array $options = array());
+    public function postRequest(string $action, array $options = array()) : ?\stdClass;
 
     /**
      * Get API Configuration
      * @return \stdClass
      */
-    public function getConfiguration();
+    public function getConfiguration() : \stdClass;
 
     /**
      * Check options rules before send request
      * @param array $options Array of options to validate
      * @return array
      */
-    public function checkOptions(array $options);
+    public function checkOptions(array $options) : array;
 
     /**
      * Get current logger
      * @return \Psr\Log\LoggerInterface
      */
-    public function getLogger();
+    public function getLogger() : \Psr\Log\LoggerInterface;
 }

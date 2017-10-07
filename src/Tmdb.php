@@ -93,11 +93,11 @@ class Tmdb implements TmdbInterface
     /**
      * Constructor
      * @param string $api_key TMDB API Key
-     * @param string $version Version of API (Not yet used)
+     * @param int $version Version of API (Not yet used)
      * @param LoggerInterface $logger Logger used in the class
      * @param HttpRequestInterface $http_request
      */
-    public function __construct($api_key, $version = 3, LoggerInterface $logger, HttpRequestInterface $http_request)
+    public function __construct(string $api_key, int $version = 3, LoggerInterface $logger, HttpRequestInterface $http_request)
     {
         $this->api_key      = $api_key;
         $this->logger       = $logger;
@@ -109,9 +109,9 @@ class Tmdb implements TmdbInterface
      * Send request to TMDB API with GET method
      * @param string $action API action to request
      * @param array $options Array of options of the request (optional)
-     * @return \stdClass
+     * @return \stdClass|null
      */
-    public function getRequest(string $action, array $options = array())
+    public function getRequest(string $action, array $options = array()) : ?\stdClass
     {
         $this->logger->debug('Start sending HTTP request with GET method');
         return $this->sendRequest('GET', $action, $options);
@@ -122,9 +122,9 @@ class Tmdb implements TmdbInterface
      * @param string $action API action to request
      * @param array $options Array of options of the request (optional)
      * @param array $form_params form_params for request options
-     * @return \stdClass
+     * @return \stdClass|null
      */
-    public function postRequest(string $action, array $options = array(), array $form_params = array())
+    public function postRequest(string $action, array $options = array(), array $form_params = array()) : ?\stdClass
     {
         $this->logger->debug('Start sending HTTP request with POST method');
         return $this->sendRequest('POST', $action, $options, $form_params);
@@ -138,7 +138,7 @@ class Tmdb implements TmdbInterface
      * @param array $form_params form params request options
      * @return \stdClass
      */
-    private function sendRequest(string $method, string $action, array $options = array(), array $form_params = array())
+    private function sendRequest(string $method, string $action, array $options = array(), array $form_params = array()) : \stdClass
     {
         $url = $this->buildHTTPUrl($action, $options);
 
@@ -168,7 +168,7 @@ class Tmdb implements TmdbInterface
      * @param array $options Array of options of the request (optional)
      * @return string
      */
-    private function buildHTTPUrl($action, $options)
+    private function buildHTTPUrl(string $action, array $options) : string
     {
         // Url construction
         $url = $this->base_api_url . $this->version . '/' . $action;
@@ -190,7 +190,7 @@ class Tmdb implements TmdbInterface
      * @return \stdClass
      * @throws TmdbException
      */
-    public function getConfiguration()
+    public function getConfiguration() : \stdClass
     {
         try {
             $this->logger->debug('Start getting configuration');
@@ -210,7 +210,7 @@ class Tmdb implements TmdbInterface
      * @return array
      * @throws IncorrectParamException
      */
-    public function checkOptions(array $options)
+    public function checkOptions(array $options) : array
     {
         $params                  = [];
         // Set default options
@@ -250,7 +250,6 @@ class Tmdb implements TmdbInterface
      * Check year format
      * @param mixed $year year to validate
      * @return int year validated
-     * @throws \Exception
      */
     private function checkYear($year) : int
     {
@@ -264,7 +263,7 @@ class Tmdb implements TmdbInterface
      * @return string Language string validated
      * @throws IncorrectParamException
      */
-    private function checkLanguage($language) : string
+    private function checkLanguage(string $language) : string
     {
         $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
         if ($check === 0 || $check === false) {

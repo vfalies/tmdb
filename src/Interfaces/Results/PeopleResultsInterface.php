@@ -24,21 +24,25 @@ interface PeopleResultsInterface extends ResultsInterface
 {
     /**
      * Profile path
+     * @return string
      */
-    public function getProfilePath();
+    public function getProfilePath() : string;
 
     /**
      * Adult
+     * @return string
      */
-    public function getAdult();
+    public function getAdult() : string;
 
     /**
      * People name
+     * @return string
      */
-    public function getName();
+    public function getName() : string;
 
     /**
      * People popularity
+     * @return string
      */
-    public function getPopularity();
+    public function getPopularity() : string;
 }

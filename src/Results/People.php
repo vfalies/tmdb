@@ -16,7 +16,6 @@ namespace vfalies\tmdb\Results;
 
 use vfalies\tmdb\Abstracts\Results;
 use vfalies\tmdb\Interfaces\Results\PeopleResultsInterface;
-use vfalies\tmdb\Exceptions\NotYetImplementedException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
 /**
@@ -81,7 +80,7 @@ class People extends Results implements PeopleResultsInterface
      * Get Id
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return (int) $this->id;
     }
@@ -90,7 +89,7 @@ class People extends Results implements PeopleResultsInterface
      * Get Adult
      * @return string
      */
-    public function getAdult()
+    public function getAdult() : string
     {
         return $this->adult;
     }
@@ -99,7 +98,7 @@ class People extends Results implements PeopleResultsInterface
      * People name
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
@@ -108,7 +107,7 @@ class People extends Results implements PeopleResultsInterface
      * People Popularity
      * @return string
      */
-    public function getPopularity()
+    public function getPopularity() : string
     {
         return $this->popularity;
     }
@@ -117,7 +116,7 @@ class People extends Results implements PeopleResultsInterface
      * Image profile path
      * @return string
      */
-    public function getProfilePath()
+    public function getProfilePath() : string
     {
         return $this->profile_path;
     }
