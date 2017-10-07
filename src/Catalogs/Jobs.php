@@ -46,13 +46,13 @@ class Jobs
      * Get job list
      * @param array $options
      * @return \Generator|\stdClass
-     * @throws \vfalies\tmdb\Catalogs\TmdbException
+     * @throws TmdbException
      */
     public function getList(array $options = array())
     {
         try {
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->getRequest('job/list', null, $params);
+            $response = $this->tmdb->getRequest('job/list', $params);
 
             $results = [];
             if (isset($response->jobs)) {

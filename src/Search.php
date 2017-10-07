@@ -68,8 +68,9 @@ class Search
                 $this->logger->error('Query param cannot be empty', array('item' => $item, 'query' => $query, 'options' => $options, 'result_class' => $result_class));
                 throw new IncorrectParamException;
             }
-            $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->getRequest('search/' . $item, $query, $params);
+            $options['query'] = $query;
+            $params           = $this->tmdb->checkOptions($options);
+            $response         = $this->tmdb->getRequest('search/' . $item, $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;

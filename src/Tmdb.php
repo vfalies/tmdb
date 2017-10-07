@@ -108,42 +108,39 @@ class Tmdb implements TmdbInterface
     /**
      * Send request to TMDB API with GET method
      * @param string $action API action to request
-     * @param string|null $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
      * @return \stdClass
      */
-    public function getRequest(string $action, ?string $query = null, array $options = array())
+    public function getRequest(string $action, array $options = array())
     {
         $this->logger->debug('Start sending HTTP request with GET method');
-        return $this->sendRequest('GET', $action, $query, $options);
+        return $this->sendRequest('GET', $action, $options);
     }
 
     /**
      * Send request to TMDB API with POST method
      * @param string $action API action to request
-     * @param string|null $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
      * @param array $form_params form_params for request options
      * @return \stdClass
      */
-    public function postRequest(string $action, ?string $query = null, array $options = array(), array $form_params = array())
+    public function postRequest(string $action, array $options = array(), array $form_params = array())
     {
         $this->logger->debug('Start sending HTTP request with POST method');
-        return $this->sendRequest('POST', $action, $query, $options, $form_params);
+        return $this->sendRequest('POST', $action, $options, $form_params);
     }
 
     /**
      * Send request to TMDB API with GET method
      * @param string $method HTTP method (GET, POST)
      * @param string $action API action to request
-     * @param string|null $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
      * @param array $form_params form params request options
      * @return \stdClass
      */
-    private function sendRequest(string $method, string $action, ?string $query = null, array $options = array(), array $form_params = array())
+    private function sendRequest(string $method, string $action, array $options = array(), array $form_params = array())
     {
-        $url = $this->buildHTTPUrl($action, $query, $options);
+        $url = $this->buildHTTPUrl($action, $options);
 
         switch ($method) {
               case 'GET':
@@ -159,7 +156,7 @@ class Tmdb implements TmdbInterface
 
         $response = json_decode($res->getBody());
         if (empty($response)) {
-            $this->logger->error('Request Body can not be decode', array('action' => $action, 'query' => $query, 'options' => $options));
+            $this->logger->error('Request Body can not be decode', array('action' => $action, 'options' => $options));
             throw new ServerErrorException();
         }
         return $response;
@@ -168,11 +165,10 @@ class Tmdb implements TmdbInterface
     /**
      * Build URL for HTTP Call
      * @param string $action API action to request
-     * @param string $query Query of the request (optional)
      * @param array $options Array of options of the request (optional)
      * @return string
      */
-    private function buildHTTPUrl($action, $query, $options)
+    private function buildHTTPUrl($action, $options)
     {
         // Url construction
         $url = $this->base_api_url . $this->version . '/' . $action;
@@ -180,9 +176,6 @@ class Tmdb implements TmdbInterface
         // Parameters
         $params            = [];
         $params['api_key'] = $this->api_key;
-        if (!is_null($query)) {
-            $params['query'] = $query;
-        }
 
         $params = array_merge($params, $options);
 
@@ -241,6 +234,9 @@ class Tmdb implements TmdbInterface
                     break;
                 case 'sort_by':
                     $params[$key] = $this->checkSort($value);
+                    break;
+                case 'query':
+                    $params[$key] = trim($value);
                     break;
                 default:
                     $this->logger->error('Unknown param options', array('options', $options));

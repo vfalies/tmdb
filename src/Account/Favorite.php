@@ -62,7 +62,7 @@ class Favorite extends Abstracts\Account
             $params['media_id']   = $media_id;
             $params['favorite']   = $favorite;
 
-            $this->tmdb->postRequest('/account/'.$this->account_id.'/favorite/', null, $this->options);
+            $this->tmdb->postRequest('/account/'.$this->account_id.'/favorite/', $this->options);
 
             return $this;
         } catch (TmdbException $e) {
@@ -118,7 +118,7 @@ class Favorite extends Abstracts\Account
      */
     private function getAccountItems(string $item, string $result_class) : \Generator
     {
-        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/favorite/'.$item, null, $this->options);
+        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/favorite/'.$item, $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;

@@ -221,7 +221,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getBackdrops()
     {
-        $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->backdrops as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
@@ -235,7 +235,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->posters as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
@@ -249,7 +249,7 @@ class Movie extends Item implements MovieInterface
      */
     public function getSimilar()
     {
-        $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/similar', null, $this->params);
+        $data = $this->tmdb->getRequest('/movie/' . (int) $this->id . '/similar', $this->params);
 
         foreach ($data->results as $s) {
             $movie = new ResultMovie($this->tmdb, $s);

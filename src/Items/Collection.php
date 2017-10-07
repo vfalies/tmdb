@@ -102,7 +102,7 @@ class Collection extends Item implements CollectionInterface
      */
     public function getBackdrops()
     {
-        $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->backdrops as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
@@ -116,7 +116,7 @@ class Collection extends Item implements CollectionInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->getRequest('/collection/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->posters as $b) {
             $image = new Image($this->tmdb, $this->id, $b);

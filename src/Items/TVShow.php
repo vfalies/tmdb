@@ -197,7 +197,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getBackdrops()
     {
-        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->backdrops as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
@@ -211,7 +211,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', null, $this->params);
+        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->posters as $b) {
             $image = new Image($this->tmdb, $this->id, $b);
@@ -225,7 +225,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getSimilar()
     {
-        $similar = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/similar', null, $this->params);
+        $similar = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/similar', $this->params);
 
         foreach ($similar->results as $t) {
             $tvshow = new ResultTVShow($this->tmdb, $t);

@@ -72,7 +72,7 @@ abstract class Item
             $this->logger = $tmdb->getLogger();
             $this->conf   = $this->tmdb->getConfiguration();
             $this->params = $this->tmdb->checkOptions($options);
-            $this->data   = $this->tmdb->getRequest($item_name . '/' . (int) $item_id, null, $this->params);
+            $this->data   = $this->tmdb->getRequest($item_name . '/' . (int) $item_id, $this->params);
         } catch (TmdbException $ex) {
             throw $ex;
         }

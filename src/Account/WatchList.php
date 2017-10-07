@@ -35,7 +35,7 @@ class WatchList extends Abstracts\Account
      */
     public function getMovies() : \Generator
     {
-        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/movies', null, $this->options);
+        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/movies', $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;
@@ -50,7 +50,7 @@ class WatchList extends Abstracts\Account
      */
     public function getTVShows() : \Generator
     {
-        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/tv', null, $this->options);
+        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/tv', $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;
@@ -74,7 +74,7 @@ class WatchList extends Abstracts\Account
             $params['media_id']   = $media_id;
             $params['favorite']   = $favorite;
 
-            $this->tmdb->postRequest('/account/'.$this->account_id.'/watchlist', null, $this->options);
+            $this->tmdb->postRequest('/account/'.$this->account_id.'/watchlist', $this->options);
 
             return $this;
         } catch (TmdbException $e) {

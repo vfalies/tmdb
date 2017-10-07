@@ -84,7 +84,7 @@ class Genres implements GenresInterface
     {
         try {
             $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->getRequest($type, null, $params);
+            $response = $this->tmdb->getRequest($type, $params);
 
             $genres = [];
             if (isset($response->genres)) {

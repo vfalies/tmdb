@@ -144,7 +144,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/images', null, $this->params);
+        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/images', $this->params);
 
         foreach ($data->posters as $b) {
             $image = new Image($this->tmdb, $this->id, $b);

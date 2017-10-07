@@ -205,7 +205,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      */
     public function getPosters()
     {
-        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/episode/' . $this->episode_number . '/images', null, $this->params);
+        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/episode/' . $this->episode_number . '/images', $this->params);
 
         foreach ($data->posters as $b) {
             $image = new Image($this->tmdb, $this->id, $b);

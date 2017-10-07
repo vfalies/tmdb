@@ -119,7 +119,7 @@ class Company extends Item implements CompanyInterface
      */
     public function getMovies()
     {
-        $data = $this->tmdb->getRequest('/company/' . (int) $this->id . '/movies', null, $this->params);
+        $data = $this->tmdb->getRequest('/company/' . (int) $this->id . '/movies', $this->params);
 
         foreach ($data->results as $m) {
             $movie = new \vfalies\tmdb\Results\Movie($this->tmdb, $m);
