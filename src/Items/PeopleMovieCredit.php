@@ -15,6 +15,7 @@
 namespace vfalies\tmdb\Items;
 
 use vfalies\tmdb\Results;
+use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Results\PeopleMovieCast;
@@ -36,7 +37,14 @@ class PeopleMovieCredit extends Item
      */
     public function __construct(TmdbInterface $tmdb, int $people_id, array $options = array())
     {
-        parent::__construct($tmdb, $people_id, $options, 'person/' . $people_id.'/movie_credits');
+        try {
+            $this->tmdb   = $tmdb;
+            $this->logger = $tmdb->getLogger();
+            $this->params = $this->tmdb->checkOptions($options);
+            $this->data   = $this->tmdb->getRequest('person/' . $people_id.'/movie_credits', $this->params);
+        } catch (TmdbException $ex) {
+            throw $ex;
+        }
     }
 
     /**

@@ -5,9 +5,6 @@ namespace vfalies\tmdb\Results;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover Crew
- */
 class CrewTest extends TestCase
 {
     protected $tmdb          = null;
@@ -54,6 +51,8 @@ class CrewTest extends TestCase
     public function testGetId()
     {
         $this->getRequestOk();
+
+        $this->assertEquals('/3/tv/'.$this->tv_id.'/season/'.$this->season_number, parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertInternalType('int', $this->crew->getId());
         $this->assertEquals(44797, $this->crew->getId());

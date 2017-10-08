@@ -5,9 +5,6 @@ namespace vfalies\tmdb\Results;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover PeopleTVShowCast
- */
 class PeopleTVShowCastTest extends TestCase
 {
     protected $tmdb          = null;
@@ -51,6 +48,8 @@ class PeopleTVShowCastTest extends TestCase
     public function testGetId()
     {
         $this->getRequestOk();
+
+        $this->assertEquals('/3/person/'.$this->people_id.'/tv_credits', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertInternalType('int', $this->moviecast->getId());
         $this->assertEquals(18347, $this->moviecast->getId());

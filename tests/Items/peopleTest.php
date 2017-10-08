@@ -5,9 +5,6 @@ namespace vfalies\tmdb\Items;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover People
- */
 class PeopleTest extends TestCase
 {
     protected $tmdb     = null;
@@ -231,7 +228,9 @@ class PeopleTest extends TestCase
         $this->setRequestOk();
 
         $people = new People($this->tmdb, $this->people_id);
-        $this->assertEquals(287, $people->getId());
+
+        $this->assertEquals('/3/person/'.$this->people_id, parse_url($this->tmdb->url, PHP_URL_PATH));
+        $this->assertEquals($this->people_id, $people->getId());
     }
 
     /**

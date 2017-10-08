@@ -42,7 +42,7 @@ class People extends Item implements PeopleInterface
      */
     public function __construct(TmdbInterface $tmdb, int $people_id, array $options = array())
     {
-        parent::__construct($tmdb, $people_id, $options, 'people');
+        parent::__construct($tmdb, $people_id, $options, 'person');
     }
 
     /**

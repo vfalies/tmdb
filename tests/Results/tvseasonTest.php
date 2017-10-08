@@ -5,9 +5,6 @@ namespace vfalies\tmdb\Results;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover TVSeason
- */
 class TVSeasonTest extends TestCase
 {
     protected $tmdb   = null;
@@ -50,6 +47,8 @@ class TVSeasonTest extends TestCase
     public function testGetId()
     {
         $this->getRequestOk();
+
+        $this->assertEquals('/3/tv/'.$this->tv_id, parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertInternalType('int', $this->season->getId());
         $this->assertEquals(816, $this->season->getId());

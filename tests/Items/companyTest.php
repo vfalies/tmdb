@@ -5,14 +5,11 @@ namespace vfalies\tmdb\Items;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover Company
- */
 class CompanyTest extends TestCase
 {
     protected $tmdb     = null;
     protected $company    = null;
-    protected $company_id = 11;
+    protected $company_id = 1;
 
     public function setUp()
     {
@@ -174,7 +171,8 @@ class CompanyTest extends TestCase
 
         $company = new Company($this->tmdb, $this->company_id);
 
-        $this->assertEquals(1, $company->getId());
+        $this->assertEquals('/3/company/'.$this->company_id, parse_url($this->tmdb->url, PHP_URL_PATH));
+        $this->assertEquals($this->company_id, $company->getId());
     }
 
     /**

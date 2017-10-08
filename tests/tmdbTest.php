@@ -55,6 +55,8 @@ class TmdbTest extends \PHPUnit_Framework_TestCase
 
         $conf = $tmdb->getConfiguration();
 
+        $this->assertEquals('/3/configuration', parse_url($tmdb->url, PHP_URL_PATH));
+
         $this->assertInstanceOf(\stdClass::class, $conf);
     }
 

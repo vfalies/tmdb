@@ -91,6 +91,12 @@ class Tmdb implements TmdbInterface
     protected $http_request = null;
 
     /**
+     * Last request url
+     * @var string
+     */
+    protected $url = null;
+
+    /**
      * Constructor
      * @param string $api_key TMDB API Key
      * @param int $version Version of API (Not yet used)
@@ -103,6 +109,7 @@ class Tmdb implements TmdbInterface
         $this->logger       = $logger;
         $this->version      = $version;
         $this->http_request = $http_request;
+        $this->request      = new \stdClass;
     }
 
     /**
@@ -114,7 +121,8 @@ class Tmdb implements TmdbInterface
     public function getRequest(string $action, array $options = array()) : ?\stdClass
     {
         $this->logger->debug('Start sending HTTP request with GET method');
-        return $this->sendRequest('GET', $action, $options);
+        $this->url = $this->buildHTTPUrl($action, $options);
+        return $this->sendRequest('GET', $this->url);
     }
 
     /**
@@ -127,21 +135,19 @@ class Tmdb implements TmdbInterface
     public function postRequest(string $action, array $options = array(), array $form_params = array()) : ?\stdClass
     {
         $this->logger->debug('Start sending HTTP request with POST method');
-        return $this->sendRequest('POST', $action, $options, $form_params);
+        $this->url = $this->buildHTTPUrl($action, $options);
+        return $this->sendRequest('POST', $this->url, $form_params);
     }
 
     /**
      * Send request to TMDB API with GET method
      * @param string $method HTTP method (GET, POST)
-     * @param string $action API action to request
-     * @param array $options Array of options of the request (optional)
+     * @param string $url API url to request
      * @param array $form_params form params request options
      * @return \stdClass|null
      */
-    protected function sendRequest(string $method, string $action, array $options = array(), array $form_params = array()) : ?\stdClass
+    protected function sendRequest(string $method, string $url, array $form_params = array()) : ?\stdClass
     {
-        $url = $this->buildHTTPUrl($action, $options);
-
         switch ($method) {
               case 'GET':
                   $res = $this->http_request->getResponse($url);
@@ -156,7 +162,7 @@ class Tmdb implements TmdbInterface
 
         $response = json_decode($res->getBody());
         if (empty($response)) {
-            $this->logger->error('Request Body can not be decode', array('action' => $action, 'options' => $options));
+            $this->logger->error('Request Body can not be decode', array('url' => $url));
             throw new ServerErrorException();
         }
         return $response;
@@ -298,5 +304,20 @@ class Tmdb implements TmdbInterface
     public function getLogger() : LoggerInterface
     {
         return $this->logger;
+    }
+
+    /**
+     * Magical property getter
+     * @param  string $name Name of the property
+     * @return string       Value of the property
+     */
+    public function __get(string $name) : string
+    {
+        switch ($name) {
+            case 'url':
+                return $this->$name;
+            default:
+                throw new IncorrectParamException;
+        }
     }
 }

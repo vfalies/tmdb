@@ -90,7 +90,7 @@ class Auth implements AuthInterface
      */
     private function getRequestToken() : void
     {
-        $data = $this->tmdb->getRequest('/authentification/token/new', []);
+        $data = $this->tmdb->getRequest('authentification/token/new', []);
 
         if (!isset($data->success) || $data->success != 'true' || !isset($data->request_token)) {
             throw new InvalidResponseException("Getting request token failed");
@@ -105,7 +105,7 @@ class Auth implements AuthInterface
      */
     public function createSession() : void
     {
-        $data = $this->tmdb->getRequest('/authentification/session/new', ['request_token' => $this->request_token]);
+        $data = $this->tmdb->getRequest('authentification/session/new', ['request_token' => $this->request_token]);
 
         if (!isset($data->success) || $data->success != 'true' || !isset($data->session_id)) {
             throw new InvalidResponseException("Creating session failed");

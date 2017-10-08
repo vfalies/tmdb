@@ -53,7 +53,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      */
     public function __construct(TmdbInterface $tmdb, int $tv_id, int $season_number, int $episode_number, array $options = array())
     {
-        parent::__construct($tmdb, $episode_number, $options, 'tv/' . $tv_id . '/' . $season_number);
+        parent::__construct($tmdb, $episode_number, $options, 'tv/' . $tv_id . '/season/' . $season_number.'/episode');
 
         $this->season_number = $season_number;
         $this->episode_number = $episode_number;

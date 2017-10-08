@@ -57,6 +57,8 @@ class AuthTest extends TestCase
         $Auth = new Auth($this->tmdb);
         $Auth->connect($redirect_url);
 
+        $this->assertEquals('/3/authentification/token/new', parse_url($this->tmdb->url, PHP_URL_PATH));
+
         if (!function_exists('xdebug_get_headers')) {
             $this->markTestSkipped('XDebug not available on the system');
         }
@@ -103,6 +105,8 @@ class AuthTest extends TestCase
 
         $Auth = new Auth($this->tmdb);
         $Auth->createSession();
+
+        $this->assertEquals('/3/authentification/session/new', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertNotEmpty($Auth->session_id);
     }

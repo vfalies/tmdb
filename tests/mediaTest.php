@@ -5,9 +5,6 @@ namespace vfalies\tmdb;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover Media
- */
 class MediaTest extends TestCase
 {
     protected $tmdb = null;
@@ -40,8 +37,8 @@ class MediaTest extends TestCase
         $path = "/yVaQ34IvVDAZAWxScNdeIkaepDq.jpg";
 
         $media = new Media($this->tmdb);
-
         $url = $media->getBackdropUrl($path);
+
         $this->assertNotFalse(filter_var($url, FILTER_VALIDATE_URL));
 
         $url = $media->getPosterUrl($path);

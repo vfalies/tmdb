@@ -48,7 +48,7 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function __construct(TmdbInterface $tmdb, int $tv_id, int $season_number, array $options = array())
     {
-        parent::__construct($tmdb, $season_number, $options, 'tv/' . $tv_id);
+        parent::__construct($tmdb, $season_number, $options, 'tv/' . $tv_id . '/season');
 
         $this->season_number = $season_number;
     }

@@ -5,9 +5,6 @@ namespace vfalies\tmdb;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover Search
- */
 class SearchTest extends TestCase
 {
     protected $tmdb = null;
@@ -39,6 +36,8 @@ class SearchTest extends TestCase
 
         $search    = new Search($this->tmdb);
         $responses = $search->movie('star wars', array('language' => 'fr-FR'));
+
+        $this->assertEquals('/3/search/movie', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\Movie::class, $responses->current());
@@ -94,6 +93,8 @@ class SearchTest extends TestCase
         $search    = new Search($this->tmdb);
         $responses = $search->tvshow('star trek', array('language' => 'fr-FR'));
 
+        $this->assertEquals('/3/search/tv', parse_url($this->tmdb->url, PHP_URL_PATH));
+
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\TVShow::class, $responses->current());
 
@@ -133,6 +134,8 @@ class SearchTest extends TestCase
         $search    = new Search($this->tmdb);
         $responses = $search->collection('star wars', array('language' => 'fr-FR'));
 
+        $this->assertEquals('/3/search/collection', parse_url($this->tmdb->url, PHP_URL_PATH));
+
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\Collection::class, $responses->current());
 
@@ -163,6 +166,7 @@ class SearchTest extends TestCase
 
     /**
      * @test
+     * @param string $search
      * @depends testSearchMovieValid
      */
     public function testGetPage($search)
@@ -172,6 +176,7 @@ class SearchTest extends TestCase
 
     /**
      * @test
+     * @param string $search
      * @depends testSearchMovieValid
      */
     public function testTotalPages($search)
@@ -181,6 +186,7 @@ class SearchTest extends TestCase
 
     /**
      * @test
+     * @param string $search
      * @depends testSearchMovieValid
      */
     public function testTotalResults($search)
@@ -198,6 +204,8 @@ class SearchTest extends TestCase
 
         $search    = new Search($this->tmdb);
         $responses = $search->people('Bradley Cooper', array('language' => 'fr-FR'));
+
+        $this->assertEquals('/3/search/people', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\People::class, $responses->current());
@@ -251,6 +259,8 @@ class SearchTest extends TestCase
 
         $search    = new Search($this->tmdb);
         $responses = $search->company('lucasfilm', array('language' => 'fr-FR'));
+
+        $this->assertEquals('/3/search/company', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\Company::class, $responses->current());

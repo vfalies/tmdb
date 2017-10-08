@@ -5,9 +5,6 @@ namespace vfalies\tmdb\Items;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover Movie
- */
 class CollectionTest extends TestCase
 {
     protected $tmdb          = null;
@@ -78,6 +75,7 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
 
+        $this->assertEquals('/3/collection/'.$this->collection_id, parse_url($this->tmdb->url, PHP_URL_PATH));
         $this->assertEquals('Star Wars - Saga', $collection->getName());
     }
 

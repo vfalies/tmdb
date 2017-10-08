@@ -14,7 +14,6 @@
 
 namespace vfalies\tmdb\Items;
 
-use vfalies\tmdb\Abstracts\Item;
 use vfalies\tmdb\Results;
 use vfalies\tmdb\Interfaces\TmdbInterface;
 
@@ -24,7 +23,7 @@ use vfalies\tmdb\Interfaces\TmdbInterface;
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
-class MovieCredit extends Item
+class MovieCredit
 {
     /**
      * Crew
@@ -40,7 +39,10 @@ class MovieCredit extends Item
      */
     public function __construct(TmdbInterface $tmdb, int $movie_id, array $options = array())
     {
-        parent::__construct($tmdb, $movie_id, $options, 'movie/' . $movie_id.'/credits');
+        $this->tmdb   = $tmdb;
+        $this->logger = $tmdb->getLogger();
+        $this->params = $this->tmdb->checkOptions($options);
+        $this->data   = $this->tmdb->getRequest('movie/' . $movie_id . '/credits', $this->params);
     }
 
     /**

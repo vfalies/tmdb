@@ -41,6 +41,8 @@ class ItemTest extends TestCase
         $get       = new Item($this->tmdb);
         $responses = $get->getMovie(11); // Id: 11 => Star Wars
 
+        $this->assertEquals('/3/movie/11', parse_url($this->tmdb->url, PHP_URL_PATH));
+
         $this->assertInstanceOf(Items\Movie::class, $responses);
         $this->assertEquals(11, $responses->getId());
     }
@@ -55,6 +57,8 @@ class ItemTest extends TestCase
 
         $get       = new Item($this->tmdb);
         $responses = $get->getTVShow(253); // Id: 253 => Star Trek
+
+        $this->assertEquals('/3/tv/253', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertInstanceOf(Items\TVShow::class, $responses);
         $this->assertEquals(253, $responses->getId());
@@ -71,6 +75,8 @@ class ItemTest extends TestCase
         $get       = new Item($this->tmdb);
         $responses = $get->getCollection(10); // Id: 10 => Star Wars saga
 
+        $this->assertEquals('/3/collection/10', parse_url($this->tmdb->url, PHP_URL_PATH));
+
         $this->assertInstanceOf(Items\Collection::class, $responses);
         $this->assertEquals(10, $responses->getId());
     }
@@ -86,6 +92,8 @@ class ItemTest extends TestCase
         $get       = new Item($this->tmdb);
         $responses = $get->getPeople(287);
 
+        $this->assertEquals('/3/person/287', parse_url($this->tmdb->url, PHP_URL_PATH));
+
         $this->assertInstanceOf(Items\People::class, $responses);
         $this->assertEquals(287, $responses->getId());
     }
@@ -100,6 +108,8 @@ class ItemTest extends TestCase
 
         $get       = new Item($this->tmdb);
         $responses = $get->getCompany(1);
+
+        $this->assertEquals('/3/company/1', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertInstanceOf(Items\Company::class, $responses);
         $this->assertEquals(1, $responses->getId());

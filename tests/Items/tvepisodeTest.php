@@ -5,9 +5,6 @@ namespace vfalies\tmdb\Items;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover TVEpisode
- */
 class TVEpisodeTest extends TestCase
 {
     protected $tmdb           = null;
@@ -69,6 +66,7 @@ class TVEpisodeTest extends TestCase
 
         $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
 
+        $this->assertEquals('/3/tv/'.$this->tv_id.'/season/'.$this->season_number.'/episode/'.$this->episode_number, parse_url($this->tmdb->url, PHP_URL_PATH));
         $this->assertEquals('Winter Is Coming', $TVEpisode->getName());
     }
 

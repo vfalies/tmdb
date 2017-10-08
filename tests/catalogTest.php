@@ -6,9 +6,6 @@ use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover Catalog
- */
 class CatalogTest extends TestCase
 {
     protected $tmdb = null;
@@ -42,6 +39,8 @@ class CatalogTest extends TestCase
         $list   = $genres->getMovieGenres(array('language' => 'fr-FR'));
 
         $genre = $list->current();
+
+        $this->assertEquals('/3/genre/movie/list', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertEquals(28, $genre->id);
         $this->assertEquals('Action', $genre->name);
@@ -112,6 +111,8 @@ class CatalogTest extends TestCase
 
         $genre = $list->current();
 
+        $this->assertEquals('/3/genre/tv/list', parse_url($this->tmdb->url, PHP_URL_PATH));
+
         $this->assertEquals(10759, $genre->id);
         $this->assertEquals('Action & Adventure', $genre->name);
     }
@@ -126,6 +127,8 @@ class CatalogTest extends TestCase
 
         $jobs = new Catalog($this->tmdb);
         $list = $jobs->getJobsList(array('language' => 'fr-FR'));
+
+        $this->assertEquals('/3/job/list', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         foreach ($list as $job) {
             $this->assertEquals('Writing', $job->department);

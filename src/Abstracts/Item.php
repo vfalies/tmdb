@@ -67,7 +67,7 @@ abstract class Item
     public function __construct(TmdbInterface $tmdb, int $item_id, array $options, string $item_name)
     {
         try {
-            $this->id     = (int) $item_id;
+            $this->id     = $item_id;
             $this->tmdb   = $tmdb;
             $this->logger = $tmdb->getLogger();
             $this->conf   = $this->tmdb->getConfiguration();

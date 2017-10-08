@@ -5,9 +5,6 @@ namespace vfalies\tmdb\Items;
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover Movie
- */
 class MovieTest extends TestCase
 {
     protected $tmdb     = null;
@@ -78,6 +75,7 @@ class MovieTest extends TestCase
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
+        $this->assertEquals('/3/movie/'.$this->movie_id, parse_url($this->tmdb->url, PHP_URL_PATH));
         $this->assertEquals('La Guerre des étoiles', $movie->getTitle());
     }
 
@@ -423,7 +421,7 @@ class MovieTest extends TestCase
 
     public function testGetPosters()
     {
-        $movie = new movie($this->tmdb, $this->movie_id);
+        $movie = new Movie($this->tmdb, $this->movie_id);
 
         $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
@@ -439,7 +437,7 @@ class MovieTest extends TestCase
 
     public function testGetSimilar()
     {
-        $movie = new movie($this->tmdb, $this->movie_id);
+        $movie = new Movie($this->tmdb, $this->movie_id);
 
         $json_object = json_decode(file_get_contents('tests/json/movieSimilarOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);

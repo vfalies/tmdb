@@ -176,7 +176,7 @@ class Search
     {
         try {
             $this->logger->debug('Starting search company');
-            return $this->searchItem('people', $query, $options, Results\Company::class);
+            return $this->searchItem('company', $query, $options, Results\Company::class);
         } catch (TmdbException $ex) {
             throw $ex;
         }
