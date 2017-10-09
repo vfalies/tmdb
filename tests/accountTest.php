@@ -32,7 +32,7 @@ class AccountTest extends TestCase
         $this->tmdb = null;
     }
 
-    private function createSession()
+    public function createSession()
     {
         $json_object = json_decode(file_get_contents('tests/json/sessionOk.json'));
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn($json_object);
@@ -43,8 +43,7 @@ class AccountTest extends TestCase
 
     public function testGetId()
     {
-        $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(file_get_contents('tests/json/accountOk.json'));
-        $this->markTestIncomplete();
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
         $account = new Account($this->tmdb, $this->auth);
 
         $this->assertEquals('/3/account', parse_url($this->tmdb->url, PHP_URL_PATH));
