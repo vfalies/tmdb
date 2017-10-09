@@ -60,13 +60,14 @@ class Account
     {
         $this->tmdb   = $tmdb;
         $this->logger = $tmdb->getLogger();
-        if (empty($auth->session_id)) {
+
+        if (trim($auth->session_id) == '') {
             throw new ServerErrorException('No account session found');
         }
         $this->auth         = $auth;
 
         // Get details account
-        $this->data   = $this->tmdb->getRequest('/account', array('session_id' => $this->auth->session_id));
+        $this->data   = $this->tmdb->getRequest('account', array('session_id' => $this->auth->session_id));
     }
 
     /**
