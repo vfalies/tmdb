@@ -54,7 +54,7 @@ class Catalog
      */
     public function getMovieGenres(array $options = array()) : \Generator
     {
-        $this->logger->debug('Starting getting movie genres');
+        $this->logger->debug('Starting getting movie genres', array('options' => $options));
         $catalog = new Genres($this->tmdb);
         return $catalog->getMovieList($options);
     }
@@ -66,7 +66,7 @@ class Catalog
      */
     public function getTVShowGenres(array $options = array()) : \Generator
     {
-        $this->logger->debug('Starting getting tv show genres');
+        $this->logger->debug('Starting getting tv show genres', array('options' => $options));
         $catalog = new Genres($this->tmdb);
         return $catalog->getTVList($options);
     }
@@ -78,7 +78,7 @@ class Catalog
      */
     public function getJobsList(array $options = array()) : \Generator
     {
-        $this->logger->debug('Starting getting jobs list');
+        $this->logger->debug('Starting getting jobs list', array('options' => $options));
         $catalog = new Jobs($this->tmdb);
         return $catalog->getList($options);
     }

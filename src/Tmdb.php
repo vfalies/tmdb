@@ -120,7 +120,7 @@ class Tmdb implements TmdbInterface
      */
     public function getRequest(string $action, array $options = array()) : ?\stdClass
     {
-        $this->logger->debug('Start sending HTTP request with GET method');
+        $this->logger->debug('Start sending HTTP request with GET method', array('action' => $action, 'options' => $options));
         $this->url = $this->buildHTTPUrl($action, $options);
         return $this->sendRequest('GET', $this->url);
     }
@@ -134,7 +134,7 @@ class Tmdb implements TmdbInterface
      */
     public function postRequest(string $action, array $options = array(), array $form_params = array()) : ?\stdClass
     {
-        $this->logger->debug('Start sending HTTP request with POST method');
+        $this->logger->debug('Start sending HTTP request with POST method', array('action' => $action, 'options' => $options));
         $this->url = $this->buildHTTPUrl($action, $options);
         return $this->sendRequest('POST', $this->url, $form_params);
     }

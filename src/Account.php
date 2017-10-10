@@ -77,7 +77,7 @@ class Account
      */
     public function getFavorite(array $options = array()) : Favorite
     {
-        $this->logger->debug('Starting getting account favorite elements');
+        $this->logger->debug('Starting getting account favorite elements', array('options' => $options));
         $favorite = new Favorite($this->tmdb, $this->auth, $options);
 
         return $favorite;
@@ -90,7 +90,7 @@ class Account
      */
     public function getRated(array $options = array()) : Rated
     {
-        $this->logger->debug('Starting getting account rated elements');
+        $this->logger->debug('Starting getting account rated elements', array('options' => $options));
         $rated = new Rated($this->tmdb, $this->auth, $options);
 
         return $rated;
@@ -103,7 +103,7 @@ class Account
      */
     public function getWatchList(array $options = array()) : WatchList
     {
-        $this->logger->debug('Starting getting account watch list elements');
+        $this->logger->debug('Starting getting account watch list elements', array('options' => $options));
         $watchlist = new WatchList($this->tmdb, $this->auth, $options);
 
         return $watchlist;

@@ -134,7 +134,7 @@ class Favorite extends Account
      */
     private function searchItemGenerator(array $results, string $class) : \Generator
     {
-        $this->logger->debug('Starting search item generator');
+        $this->logger->debug('Starting search item generator', array('results' => $results, 'class' => $class));
         foreach ($results as $result) {
             $element = new $class($this->tmdb, $result);
 

@@ -55,7 +55,7 @@ class Item
      */
     public function getMovie(int $movie_id, array $options = array()) : Items\Movie
     {
-        $this->logger->debug('Starting getting movie');
+        $this->logger->debug('Starting getting movie', array('movie_id' => $movie_id, 'options' => $options));
         $movie = new Items\Movie($this->tmdb, $movie_id, $options);
 
         return $movie;
@@ -69,7 +69,7 @@ class Item
      */
     public function getCollection(int $collection_id, array $options = array()) : Items\Collection
     {
-        $this->logger->debug('Starting getting collection');
+        $this->logger->debug('Starting getting collection', array('collection_id' => $collection_id, 'options' => $options));
         $collection = new Items\Collection($this->tmdb, $collection_id, $options);
 
         return $collection;
@@ -83,7 +83,7 @@ class Item
      */
     public function getTVShow(int $tv_id, array $options = array()) : Items\TVShow
     {
-        $this->logger->debug('Starting getting tvshow');
+        $this->logger->debug('Starting getting tvshow', array('tv_id' => $tv_id, 'options' => $options));
         $tv = new Items\TVShow($this->tmdb, $tv_id, $options);
 
         return $tv;
@@ -97,7 +97,7 @@ class Item
      */
     public function getPeople(int $people_id, array $options = array()) : Items\People
     {
-        $this->logger->debug('Starting getting people');
+        $this->logger->debug('Starting getting people', array('people_id' => $people_id, 'options' => $options));
         $people = new Items\People($this->tmdb, $people_id, $options);
 
         return $people;
@@ -111,7 +111,7 @@ class Item
      */
     public function getCompany(int $company_id, array $options = array()) : Items\Company
     {
-        $this->logger->debug('Starting getting company');
+        $this->logger->debug('Starting getting company', array('company_id' => $company_id, 'options' => $options));
         $company = new Items\Company($this->tmdb, $company_id, $options);
 
         return $company;
