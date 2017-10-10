@@ -17,7 +17,7 @@ namespace vfalies\tmdb\Account;
 use vfalies\tmdb\Results;
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Traits\ListItems;
-use vfalies\tmdb\Abstracts;
+use vfalies\tmdb\Abstracts\Account;
 
 /**
  * Class to manipulate account watchlist
@@ -25,7 +25,7 @@ use vfalies\tmdb\Abstracts;
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
-class WatchList extends Abstracts\Account
+class WatchList extends Account
 {
     use ListItems;
 

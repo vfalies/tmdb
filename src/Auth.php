@@ -116,9 +116,9 @@ class Auth implements AuthInterface
     /**
      * Magical getter
      * @param  string $name Name of the variable to get
-     * @return string       Value of the variable getted
+     * @return mixed       Value of the variable getted
      */
-    public function __get(string $name) : string
+    public function __get(string $name)
     {
         switch ($name) {
           case 'request_token':

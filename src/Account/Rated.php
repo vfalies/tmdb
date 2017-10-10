@@ -15,12 +15,8 @@
 namespace vfalies\tmdb\Account;
 
 use vfalies\tmdb\Results;
-use vfalies\tmdb\Abstracts\Results;
-use vfalies\tmdb\Exceptions\ServerErrorException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Interfaces\AuthInterface;
 use vfalies\tmdb\Traits\ListItems;
-use vfalies\tmdb\Abstracts;
+use vfalies\tmdb\Abstracts\Account;
 
 /**
  * Class to manipulate account rated
@@ -28,7 +24,7 @@ use vfalies\tmdb\Abstracts;
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
-class Rated extends Abstracts\Account
+class Rated extends Account
 {
     use ListItems;
 

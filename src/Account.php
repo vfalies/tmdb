@@ -111,78 +111,85 @@ class Account
 
     /**
      * Get account id
-     * @return int account id
+     * @return int|null account id
      */
-    public function getId() : int
+    public function getId() : ?int
     {
         if (isset($this->data->id)) {
             return $this->data->id;
         }
+        return null;
     }
 
     /**
      * Get account language
-     * @return string language code in standard ISO 639_1
+     * @return string|null language code in standard ISO 639_1
      */
-    public function getLanguage() : string
+    public function getLanguage() : ?string
     {
         if (isset($this->data->iso_639_1)) {
             return $this->data->iso_639_1;
         }
+        return null;
     }
 
     /**
      * Get country code
-     * @return string country code in standard ISO 3166_1
+     * @return string|null country code in standard ISO 3166_1
      */
-    public function getCountry() : string
+    public function getCountry() : ?string
     {
         if (isset($this->data->iso_3166_1)) {
             return $this->data->iso_3166_1;
         }
+        return null;
     }
 
     /**
      * Get account name
-     * @return string account name
+     * @return string|null account name
      */
-    public function getName() : string
+    public function getName() : ?string
     {
         if (isset($this->data->name)) {
             return $this->data->name;
         }
+        return null;
     }
 
     /**
      * Get account username
-     * @return string account username
+     * @return string|null account username
      */
-    public function getUsername() : string
+    public function getUsername() : ?string
     {
         if (isset($this->data->username)) {
             return $this->data->username;
         }
+        return null;
     }
 
     /**
      * Get Gravatar hash
-     * @return string gravatar hash
+     * @return string|null gravatar hash
      */
-    public function getGravatarHash() : string
+    public function getGravatarHash() : ?string
     {
         if (isset($this->data->avatar->gravatar->hash)) {
             return $this->data->avatar->gravatar->hash;
         }
+        return null;
     }
 
     /**
      * Get if account include adult content
-     * @return bool
+     * @return bool|null
      */
-    public function getIncludeAdult() : bool
+    public function getIncludeAdult() : ?bool
     {
         if (isset($this->data->include_adult)) {
             return $this->data->include_adult;
         }
+        return null;
     }
 }

@@ -16,7 +16,7 @@ namespace vfalies\tmdb\Account;
 
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Results;
-use vfalies\tmdb\Abstracts;
+use vfalies\tmdb\Abstracts\Account;
 use vfalies\tmdb\Traits\ListItems;
 
 /**
@@ -25,7 +25,7 @@ use vfalies\tmdb\Traits\ListItems;
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
-class Favorite extends Abstracts\Account
+class Favorite extends Account
 {
     use ListItems;
 
