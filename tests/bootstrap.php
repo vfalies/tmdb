@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * This file is part of the TMDB package.
  *
@@ -9,3 +9,5 @@
  */
 date_default_timezone_set('UTC');
 require __DIR__.'/../vendor/autoload.php';
+
+unlink('logs/unittest.log');
