@@ -220,6 +220,6 @@ class AccountTest extends TestCase
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
         $account = new Account($this->tmdb, $this->auth);
 
-        $this->assertInstanceOf(WatchList::class, $account->getWatchList());        
+        $this->assertInstanceOf(WatchList::class, $account->getWatchList());
     }
 }

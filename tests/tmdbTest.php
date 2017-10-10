@@ -2,10 +2,11 @@
 
 namespace vfalies\tmdb;
 
+use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-class TmdbTest extends \PHPUnit_Framework_TestCase
+class TmdbTest extends TestCase
 {
 
     /**
