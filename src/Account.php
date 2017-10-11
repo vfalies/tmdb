@@ -14,6 +14,7 @@
 
 namespace vfalies\tmdb;
 
+use PHPUnit\Util\Configuration;
 use vfalies\tmdb\Account\Rated;
 use vfalies\tmdb\Account\WatchList;
 use vfalies\tmdb\Exceptions\ServerErrorException;
@@ -50,6 +51,11 @@ class Account
      * @var \stdClass
      */
     private $data = null;
+    /**
+     * Configuration
+     * @var \stdClass
+     */
+    protected $conf;
 
     /**
      * Constructor
@@ -64,10 +70,16 @@ class Account
         if (trim($auth->session_id) == '') {
             throw new ServerErrorException('No account session found');
         }
-        $this->auth         = $auth;
+        $this->auth = $auth;
+        $this->conf = $this->tmdb->getConfiguration();
 
         // Get details account
-        $this->data   = $this->tmdb->getRequest('account', array('session_id' => $this->auth->session_id));
+        $this->data       = $this->tmdb->getRequest('account', array('session_id' => $this->auth->session_id));
+        if (!isset($this->data->id))
+        {
+            throw new ServerErrorException('Invalid response for details account');
+        }
+        $this->account_id = $this->data->id;
     }
 
     /**
@@ -78,7 +90,7 @@ class Account
     public function getFavorite(array $options = array()) : Favorite
     {
         $this->logger->debug('Starting getting account favorite elements', array('options' => $options));
-        $favorite = new Favorite($this->tmdb, $this->auth, $options);
+        $favorite = new Favorite($this->tmdb, $this->auth, $this->account_id, $options);
 
         return $favorite;
     }
@@ -91,7 +103,7 @@ class Account
     public function getRated(array $options = array()) : Rated
     {
         $this->logger->debug('Starting getting account rated elements', array('options' => $options));
-        $rated = new Rated($this->tmdb, $this->auth, $options);
+        $rated = new Rated($this->tmdb, $this->auth, $this->account_id, $options);
 
         return $rated;
     }
@@ -104,92 +116,71 @@ class Account
     public function getWatchList(array $options = array()) : WatchList
     {
         $this->logger->debug('Starting getting account watch list elements', array('options' => $options));
-        $watchlist = new WatchList($this->tmdb, $this->auth, $options);
+        $watchlist = new WatchList($this->tmdb, $this->auth, $this->account_id, $options);
 
         return $watchlist;
     }
 
     /**
      * Get account id
-     * @return int|null account id
+     * @return int account id
      */
-    public function getId() : ?int
+    public function getId() : int
     {
-        if (isset($this->data->id)) {
-            return $this->data->id;
-        }
-        return null;
+        return $this->data->id;
     }
 
     /**
      * Get account language
-     * @return string|null language code in standard ISO 639_1
+     * @return string language code in standard ISO 639_1
      */
-    public function getLanguage() : ?string
+    public function getLanguage() : string
     {
-        if (isset($this->data->iso_639_1)) {
-            return $this->data->iso_639_1;
-        }
-        return null;
+        return $this->data->iso_639_1;
     }
 
     /**
      * Get country code
-     * @return string|null country code in standard ISO 3166_1
+     * @return string country code in standard ISO 3166_1
      */
-    public function getCountry() : ?string
+    public function getCountry() : string
     {
-        if (isset($this->data->iso_3166_1)) {
-            return $this->data->iso_3166_1;
-        }
-        return null;
+        return $this->data->iso_3166_1;
     }
 
     /**
      * Get account name
-     * @return string|null account name
+     * @return string account name
      */
-    public function getName() : ?string
+    public function getName() : string
     {
-        if (isset($this->data->name)) {
-            return $this->data->name;
-        }
-        return null;
+        return $this->data->name;
     }
 
     /**
      * Get account username
-     * @return string|null account username
+     * @return string account username
      */
-    public function getUsername() : ?string
+    public function getUsername() : string
     {
-        if (isset($this->data->username)) {
-            return $this->data->username;
-        }
-        return null;
+        return $this->data->username;
     }
 
     /**
      * Get Gravatar hash
-     * @return string|null gravatar hash
+     * @return string gravatar hash
      */
-    public function getGravatarHash() : ?string
+    public function getGravatarHash() : string
     {
-        if (isset($this->data->avatar->gravatar->hash)) {
-            return $this->data->avatar->gravatar->hash;
-        }
-        return null;
+        return $this->data->avatar->gravatar->hash;
     }
 
     /**
      * Get if account include adult content
-     * @return bool|null
+     * @return bool
      */
-    public function getIncludeAdult() : ?bool
+    public function getIncludeAdult() : bool
     {
-        if (isset($this->data->include_adult)) {
-            return $this->data->include_adult;
-        }
-        return null;
+        return $this->data->include_adult;
     }
 }

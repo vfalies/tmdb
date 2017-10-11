@@ -118,7 +118,7 @@ class Favorite extends Account
      */
     private function getAccountItems(string $item, string $result_class) : \Generator
     {
-        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/favorite/'.$item, $this->options);
+        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/favorite/'.$item, $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;
