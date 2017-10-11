@@ -17,6 +17,8 @@ namespace vfalies\tmdb\Account;
 use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\Results;
 use vfalies\tmdb\Abstracts\Account;
+use vfalies\tmdb\Exceptions\ServerErrorException;
+use vfalies\tmdb\Exceptions\InvalidResponseException;
 use vfalies\tmdb\Traits\ListItems;
 
 /**
@@ -62,7 +64,7 @@ class Favorite extends Account
             $params['media_id']   = $media_id;
             $params['favorite']   = $favorite;
 
-            $this->tmdb->postRequest('/account/'.$this->account_id.'/favorite/', $this->options);
+            $this->tmdb->postRequest('account/'.$this->account_id.'/favorite', $this->options);
 
             return $this;
         } catch (TmdbException $e) {

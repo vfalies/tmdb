@@ -75,8 +75,7 @@ class Account
 
         // Get details account
         $this->data       = $this->tmdb->getRequest('account', array('session_id' => $this->auth->session_id));
-        if (!isset($this->data->id))
-        {
+        if (!isset($this->data->id)) {
             throw new ServerErrorException('Invalid response for details account');
         }
         $this->account_id = $this->data->id;

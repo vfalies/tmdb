@@ -74,6 +74,6 @@ abstract class Account
         $this->options    = $this->tmdb->checkOptions($options);
         $this->account_id = $account_id;
         // Configuration
-        $this->conf       = $tmdb->getConfiguration();        
+        $this->conf       = $tmdb->getConfiguration();
     }
 }
