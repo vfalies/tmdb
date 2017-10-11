@@ -58,7 +58,7 @@ class AccountTest extends TestCase
     /**
      * @expectedException \vfalies\tmdb\Exceptions\ServerErrorException
      */
-    public function testConstructorFailed()
+    public function testConstructorFailedNoSessionId()
     {
         $account = new Account($this->tmdb, new Auth($this->tmdb));
     }

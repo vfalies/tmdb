@@ -78,4 +78,54 @@ class ClientTest extends TestCase
         $client   = new Client($guzzleClient);
         $client->getResponse('http://httpstat.us/500');
     }
+
+
+    /**
+     * @test
+     */
+    public function testPostResponseOk()
+    {
+        $guzzleClient = new \GuzzleHttp\Client();
+
+        $client   = new Client($guzzleClient);
+        $response = $client->postResponse('http://httpbin.org/post');
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     * @expectedException vfalies\tmdb\Exceptions\HttpErrorException
+     */
+    public function testPostResponseNOk()
+    {
+        $guzzleClient = new \GuzzleHttp\Client();
+
+        $client   = new Client($guzzleClient);
+        $client->postResponse('badurl_totally_fake');
+    }
+
+    /**
+     * @test
+     * @expectedException vfalies\tmdb\Exceptions\NotFoundException
+     */
+    public function testPostResponseNok404()
+    {
+        $guzzleClient = new \GuzzleHttp\Client();
+
+        $client   = new Client($guzzleClient);
+        $client->postResponse('http://httpstat.us/404');
+    }
+
+    /**
+     * @test
+     * @expectedException vfalies\tmdb\Exceptions\ServerErrorException
+     */
+    public function testPostResponseNok500()
+    {
+        $guzzleClient = new \GuzzleHttp\Client();
+
+        $client   = new Client($guzzleClient);
+        $client->postResponse('http://httpstat.us/500');
+    }
 }
