@@ -7,8 +7,6 @@ use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\Auth;
 use vfalies\tmdb\Results;
 use vfalies\tmdb\Account;
-use vfalies\tmdb\Account\Favorite;
-use vfalies\tmdb\Exceptions\ServerErrorException;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 class RatedTest extends TestCase

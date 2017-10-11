@@ -35,7 +35,7 @@ class WatchList extends Account
      */
     public function getMovies() : \Generator
     {
-        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/movies', $this->options);
+        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/watchlist/movies', $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;
@@ -50,7 +50,7 @@ class WatchList extends Account
      */
     public function getTVShows() : \Generator
     {
-        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/watchlist/tv', $this->options);
+        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/watchlist/tv', $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;
@@ -62,19 +62,19 @@ class WatchList extends Account
     /**
      * Add / remove in watchlist items
      * @param  string    $media_type Media type (movie / tv)
-     * @param  int       $item_id    item id
+     * @param  int       $media_id    item id
      * @param  bool      $watchlist
      * @return WatchList
      */
-    private function setWatchlistItem(string $media_type, int $item_id, bool $watchlist) : WatchList
+    private function setWatchlistItem(string $media_type, int $media_id, bool $watchlist) : WatchList
     {
         try {
             $params               = [];
             $params['media_type'] = $media_type;
             $params['media_id']   = $media_id;
-            $params['favorite']   = $favorite;
+            $params['watchlist']  = $watchlist;
 
-            $this->tmdb->postRequest('/account/'.$this->account_id.'/watchlist', $this->options);
+            $this->tmdb->postRequest('account/'.$this->account_id.'/watchlist', $this->options);
 
             return $this;
         } catch (TmdbException $e) {
