@@ -96,6 +96,16 @@ class TVEpisode extends Abstracts\Results implements TVEpisodeResultsInterface
      */
     public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
+        if (!isset($result->overview)) {
+            $result->overview = null;
+        }
+        if (!isset($result->production_code)) {
+            $result->production_code = null;
+        }
+        if (!isset($result->guest_stars)) {
+            $result->guest_stars = null;
+        }
+
         parent::__construct($tmdb, $result);
 
         // Populate data

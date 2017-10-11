@@ -128,19 +128,4 @@ class Favorite extends Account
 
         return $this->searchItemGenerator($response->results, $result_class);
     }
-
-    /**
-     * Search Item generator method
-     * @param array $results
-     * @param string $class
-     */
-    private function searchItemGenerator(array $results, string $class) : \Generator
-    {
-        $this->logger->debug('Starting search item generator', array('results' => $results, 'class' => $class));
-        foreach ($results as $result) {
-            $element = new $class($this->tmdb, $result);
-
-            yield $element;
-        }
-    }
 }

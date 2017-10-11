@@ -34,7 +34,7 @@ class Rated extends Account
      */
     public function getMovies() : \Generator
     {
-        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/movies', $this->options);
+        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/rated/movies', $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;
@@ -49,7 +49,7 @@ class Rated extends Account
      */
     public function getTVShows() : \Generator
     {
-        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/tv', $this->options);
+        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/rated/tv', $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;
@@ -64,7 +64,7 @@ class Rated extends Account
      */
     public function getTVEpisodes() : \Generator
     {
-        $response = $this->tmdb->getRequest('/account/'.$this->account_id.'/rated/tv/episodes', $this->options);
+        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/rated/tv/episodes', $this->options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;

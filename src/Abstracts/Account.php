@@ -76,4 +76,19 @@ abstract class Account
         // Configuration
         $this->conf       = $tmdb->getConfiguration();
     }
+
+    /**
+     * Search Item generator method
+     * @param array $results
+     * @param string $class
+     */
+    protected function searchItemGenerator(array $results, string $class) : \Generator
+    {
+        $this->logger->debug('Starting search item generator', array('results' => $results, 'class' => $class));
+        foreach ($results as $result) {
+            $element = new $class($this->tmdb, $result);
+
+            yield $element;
+        }
+    }
 }
