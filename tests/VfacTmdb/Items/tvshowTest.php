@@ -375,6 +375,7 @@ class TVShowTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $backdrops);
 
         foreach ($backdrops as $b) {
+            $this->assertEquals('/3/tv/'.$this->tv_id.'/images', parse_url($this->tmdb->url, PHP_URL_PATH));
             $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $b);
         }
     }
@@ -391,6 +392,7 @@ class TVShowTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $posters);
 
         foreach ($posters as $p) {
+            $this->assertEquals('/3/tv/'.$this->tv_id.'/images', parse_url($this->tmdb->url, PHP_URL_PATH));
             $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $p);
         }
     }
@@ -422,6 +424,7 @@ class TVShowTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $similar);
 
         foreach ($similar as $s) {
+            $this->assertEquals('/3/tv/'.$this->tv_id.'/similar', parse_url($this->tmdb->url, PHP_URL_PATH));
             $this->assertInstanceOf(\VfacTmdb\Results\TVShow::class, $s);
         }
     }

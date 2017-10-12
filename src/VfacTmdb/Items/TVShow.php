@@ -195,7 +195,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getBackdrops() : \Generator
     {
-        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', $this->params);
+        $data = $this->tmdb->getRequest('tv/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->backdrops as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);
@@ -209,7 +209,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getPosters() : \Generator
     {
-        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/images', $this->params);
+        $data = $this->tmdb->getRequest('tv/' . (int) $this->id . '/images', $this->params);
 
         foreach ($data->posters as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);
@@ -223,7 +223,7 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getSimilar() : \Generator
     {
-        $similar = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/similar', $this->params);
+        $similar = $this->tmdb->getRequest('tv/' . (int) $this->id . '/similar', $this->params);
 
         foreach ($similar->results as $t) {
             $tvshow = new Results\TVShow($this->tmdb, $t);

@@ -327,6 +327,7 @@ class TVEpisodeTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $posters);
 
         foreach ($posters as $p) {
+            $this->assertEquals('/3/tv/'.$this->tv_id.'/season/'.$this->season_number.'/episode/'.$this->episode_number.'/images', parse_url($this->tmdb->url, PHP_URL_PATH));
             $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $p);
         }
     }

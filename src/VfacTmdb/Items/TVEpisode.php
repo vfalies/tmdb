@@ -42,6 +42,11 @@ class TVEpisode extends Item implements TVEpisodeInterface
      * @var int
      */
     protected $episode_number;
+    /**
+     * TVShow Id
+     * @var  int
+     */
+    protected $tv_id;
 
     /**
      * Constructor
@@ -55,8 +60,9 @@ class TVEpisode extends Item implements TVEpisodeInterface
     {
         parent::__construct($tmdb, $episode_number, $options, 'tv/' . $tv_id . '/season/' . $season_number.'/episode');
 
-        $this->season_number = $season_number;
+        $this->season_number  = $season_number;
         $this->episode_number = $episode_number;
+        $this->tv_id          = $tv_id;
     }
 
     /**
@@ -202,7 +208,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
      */
     public function getPosters() : \Generator
     {
-        $data = $this->tmdb->getRequest('/tv/' . (int) $this->id . '/seasons/' . $this->season_number . '/episode/' . $this->episode_number . '/images', $this->params);
+        $data = $this->tmdb->getRequest('tv/' . $this->tv_id . '/season/' . $this->season_number . '/episode/' . $this->episode_number . '/images', $this->params);
 
         foreach ($data->posters as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);

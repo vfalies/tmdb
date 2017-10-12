@@ -174,6 +174,7 @@ class CollectionTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $backdrops);
 
         foreach ($backdrops as $b) {
+            $this->assertEquals('/3/collection/'.$this->collection_id.'/images', parse_url($this->tmdb->url, PHP_URL_PATH));
             $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $b);
         }
     }
@@ -190,6 +191,7 @@ class CollectionTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $posters);
 
         foreach ($posters as $p) {
+            $this->assertEquals('/3/collection/'.$this->collection_id.'/images', parse_url($this->tmdb->url, PHP_URL_PATH));
             $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $p);
         }
     }

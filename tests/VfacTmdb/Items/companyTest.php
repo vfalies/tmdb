@@ -223,6 +223,7 @@ class CompanyTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $movies);
         foreach ($movies as $m) {
+            $this->assertEquals('/3/company/'.$this->company_id.'/movies', parse_url($this->tmdb->url, PHP_URL_PATH));
             $this->assertInstanceOf(\VfacTmdb\Results\Movie::class, $m);
         }
     }

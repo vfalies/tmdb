@@ -369,6 +369,7 @@ class PeopleTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $profiles);
 
         foreach ($profiles as $p) {
+            $this->assertEquals('/3/person/'.$this->people_id.'/images', parse_url($this->tmdb->url, PHP_URL_PATH));
             $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $p);
         }
     }
