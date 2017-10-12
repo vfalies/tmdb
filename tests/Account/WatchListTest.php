@@ -1,15 +1,15 @@
 <?php
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\Auth;
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Account;
-use vfalies\tmdb\Account\WatchList;
-use vfalies\tmdb\Exceptions\ServerErrorException;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\Tmdb;
+use VfacTmdb\Auth;
+use VfacTmdb\Results;
+use VfacTmdb\Account;
+use VfacTmdb\Account\WatchList;
+use VfacTmdb\Exceptions\ServerErrorException;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class WatchListTest extends TestCase
 {
@@ -23,7 +23,7 @@ class WatchListTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getStatusCode'])
                 ->getMock();
@@ -143,7 +143,7 @@ class WatchListTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\ServerErrorException
+     * @expectedException \VfacTmdb\Exceptions\ServerErrorException
      */
     public function testAddMovieFailed()
     {

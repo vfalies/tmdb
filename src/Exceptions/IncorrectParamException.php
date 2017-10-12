@@ -12,9 +12,9 @@
  */
 
 
-namespace vfalies\tmdb\Exceptions;
+namespace VfacTmdb\Exceptions;
 
-use vfalies\tmdb\Exceptions\TmdbException;
+use VfacTmdb\Exceptions\TmdbException;
 
 /**
  * Incorrect param Exception class

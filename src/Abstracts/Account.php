@@ -12,11 +12,11 @@
  */
 
 
-namespace vfalies\tmdb\Abstracts;
+namespace VfacTmdb\Abstracts;
 
-use vfalies\tmdb\Exceptions\ServerErrorException;
-use vfalies\tmdb\Interfaces\AuthInterface;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Exceptions\ServerErrorException;
+use VfacTmdb\Interfaces\AuthInterface;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * abstract account class

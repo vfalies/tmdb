@@ -12,15 +12,15 @@
  */
 
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Interfaces\Items\TVSeasonInterface;
-use vfalies\tmdb\Traits\ElementTrait;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Interfaces\Items\TVSeasonInterface;
+use VfacTmdb\Traits\ElementTrait;
 
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Results;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * TVSeason class

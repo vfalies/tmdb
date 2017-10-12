@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class TVShowTest extends TestCase
 {
@@ -14,7 +14,7 @@ class TVShowTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -345,7 +345,7 @@ class TVShowTest extends TestCase
         $seasons = $TVShow->getSeasons();
         $this->assertInstanceOf(\Generator::class, $seasons);
         foreach ($seasons as $season) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\TVSeason::class, $season);
+            $this->assertInstanceOf(\VfacTmdb\Results\TVSeason::class, $season);
         }
     }
 
@@ -375,7 +375,7 @@ class TVShowTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $backdrops);
 
         foreach ($backdrops as $b) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
+            $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $b);
         }
     }
 
@@ -391,7 +391,7 @@ class TVShowTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $posters);
 
         foreach ($posters as $p) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+            $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $p);
         }
     }
 
@@ -422,7 +422,7 @@ class TVShowTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $similar);
 
         foreach ($similar as $s) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\TVShow::class, $s);
+            $this->assertInstanceOf(\VfacTmdb\Results\TVShow::class, $s);
         }
     }
 }

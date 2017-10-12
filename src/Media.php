@@ -12,11 +12,11 @@
  */
 
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
-use vfalies\tmdb\Exceptions\NotFoundException;
-use vfalies\tmdb\Exceptions\IncorrectParamException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Exceptions\NotFoundException;
+use VfacTmdb\Exceptions\IncorrectParamException;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Media class

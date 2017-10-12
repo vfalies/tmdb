@@ -12,11 +12,11 @@
  * @copyright Copyright (c) 2017
  */
 
-namespace vfalies\tmdb\Catalogs;
+namespace VfacTmdb\Catalogs;
 
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Interfaces\TmdbInterface;
 
-use vfalies\tmdb\Exceptions\TmdbException;
+use VfacTmdb\Exceptions\TmdbException;
 
 /**
  * Class to get jobs list with department

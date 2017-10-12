@@ -12,11 +12,11 @@
  */
 
 
-namespace vfalies\tmdb\Results;
+namespace VfacTmdb\Results;
 
-use vfalies\tmdb\Abstracts\Results;
-use vfalies\tmdb\Interfaces\Results\CompanyResultsInterface;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Abstracts\Results;
+use VfacTmdb\Interfaces\Results\CompanyResultsInterface;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to manipulate a company result

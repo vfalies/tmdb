@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb\Results;
+namespace VfacTmdb\Results;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class TVSeasonTest extends TestCase
 {
@@ -16,7 +16,7 @@ class TVSeasonTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -37,7 +37,7 @@ class TVSeasonTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/TVShowOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $TVShow       = new \vfalies\tmdb\Items\TVShow($this->tmdb, $this->tv_id);
+        $TVShow       = new \VfacTmdb\Items\TVShow($this->tmdb, $this->tv_id);
         $this->season = $TVShow->getSeasons()->current();
     }
 

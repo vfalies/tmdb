@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class MediaTest extends TestCase
 {
@@ -56,7 +56,7 @@ class MediaTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\NotFoundException
+     * @expectedException VfacTmdb\Exceptions\NotFoundException
      */
     public function testUrlNotFound()
     {
@@ -71,7 +71,7 @@ class MediaTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\IncorrectParamException
+     * @expectedException VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testUrlIncorrectParam()
     {

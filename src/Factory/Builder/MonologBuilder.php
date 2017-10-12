@@ -12,10 +12,10 @@
  */
 
 
-namespace vfalies\tmdb\Factory\Builder;
+namespace VfacTmdb\Factory\Builder;
 
 use Monolog\Logger;
-use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
+use VfacTmdb\Interfaces\Factory\LoggerBuilderInterface;
 
 /**
  * Builder for Monolog logger

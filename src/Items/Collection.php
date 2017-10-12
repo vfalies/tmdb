@@ -12,15 +12,15 @@
  */
 
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\Items\CollectionInterface;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Interfaces\Items\CollectionInterface;
 
-use vfalies\tmdb\Exceptions\NotFoundException;
-use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Exceptions\NotFoundException;
+use VfacTmdb\Traits\ElementTrait;
+use VfacTmdb\Results;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to manipulate a collection

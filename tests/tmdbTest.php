@@ -1,11 +1,11 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Exceptions\IncorrectParamException;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Exceptions\IncorrectParamException;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class TmdbTest extends TestCase
 {
@@ -52,7 +52,7 @@ class TmdbTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\IncorrectParamException
+     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testCheckOptionsSortNok()
     {
@@ -61,7 +61,7 @@ class TmdbTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\IncorrectParamException
+     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testMagicalGetterNok()
     {
@@ -74,7 +74,7 @@ class TmdbTest extends TestCase
      */
     public function testGetConfigurationOK()
     {
-        $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest'])
                 ->getMock();
@@ -91,11 +91,11 @@ class TmdbTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException VfacTmdb\Exceptions\TmdbException
      */
     public function testGetConfigurationNOK()
     {
-        $tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest'])
                 ->getMock();
@@ -115,7 +115,7 @@ class TmdbTest extends TestCase
                 ->setMethods(['getBody'])
                 ->getMock();
 
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
         ->setMethods(['getResponse', 'postResponse'])
         ->getMock();
 
@@ -135,7 +135,7 @@ class TmdbTest extends TestCase
                 ->setMethods(['getBody'])
                 ->getMock();
 
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
         ->setMethods(['getResponse', 'postResponse'])
         ->getMock();
 
@@ -158,7 +158,7 @@ class TmdbTest extends TestCase
 
         $guzzleclient->method('getBody')->willReturn('Not JSON');
 
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
         ->setMethods(['getResponse', 'postResponse'])
         ->getMock();
 
@@ -177,7 +177,7 @@ class TmdbTest extends TestCase
                 ->setMethods(['getBody'])
                 ->getMock();
 
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
         ->setMethods(['getResponse', 'postResponse'])
         ->getMock();
 
@@ -200,7 +200,7 @@ class TmdbTest extends TestCase
                 ->setMethods(['getBody'])
                 ->getMock();
 
-        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
         ->setMethods(['postResponse', 'getResponse'])
         ->getMock();
 

@@ -12,14 +12,14 @@
  * @copyright Copyright (c) 2017
  */
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Interfaces\HttpRequestInterface;
+use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Interfaces\HttpRequestInterface;
 use Psr\Log\LoggerInterface;
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Exceptions\IncorrectParamException;
-use vfalies\tmdb\Exceptions\ServerErrorException;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Exceptions\IncorrectParamException;
+use VfacTmdb\Exceptions\ServerErrorException;
 
 /**
  * Tmdb wrapper core class

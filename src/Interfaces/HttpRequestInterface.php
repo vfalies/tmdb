@@ -12,7 +12,7 @@
  */
 
 
-namespace vfalies\tmdb\Interfaces;
+namespace VfacTmdb\Interfaces;
 
 /**
  * HTTP Request inferface

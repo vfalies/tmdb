@@ -12,13 +12,13 @@
  */
 
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\Items\TVShowInterface;
-use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Results;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Interfaces\Items\TVShowInterface;
+use VfacTmdb\Traits\ElementTrait;
+use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Results;
 
 /**
  * TVShow class

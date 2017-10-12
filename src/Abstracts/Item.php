@@ -12,10 +12,10 @@
  */
 
 
-namespace vfalies\tmdb\Abstracts;
+namespace VfacTmdb\Abstracts;
 
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * abstract item class

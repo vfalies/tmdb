@@ -1,10 +1,10 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class CatalogTest extends TestCase
 {
@@ -137,7 +137,7 @@ class CatalogTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException VfacTmdb\Exceptions\TmdbException
      */
     public function tetsGetJobsNok()
     {

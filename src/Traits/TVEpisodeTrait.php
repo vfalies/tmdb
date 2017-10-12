@@ -12,9 +12,9 @@
  */
 
 
-namespace vfalies\tmdb\Traits;
+namespace VfacTmdb\Traits;
 
-use vfalies\tmdb\Results;
+use VfacTmdb\Results;
 
 /**
  * TV Episode trait

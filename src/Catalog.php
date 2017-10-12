@@ -12,11 +12,11 @@
  */
 
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
-use vfalies\tmdb\Catalogs\Genres;
-use vfalies\tmdb\Catalogs\Jobs;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Catalogs\Genres;
+use VfacTmdb\Catalogs\Jobs;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Catalog class

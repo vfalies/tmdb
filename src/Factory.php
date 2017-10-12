@@ -12,12 +12,12 @@
  */
 
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
-use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
-use vfalies\tmdb\Interfaces\Factory\BuilderInterface;
-use vfalies\tmdb\Exceptions\MissingDependencyException;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\Interfaces\Factory\LoggerBuilderInterface;
+use VfacTmdb\Interfaces\Factory\BuilderInterface;
+use VfacTmdb\Exceptions\MissingDependencyException;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 /**
  * Factory class
@@ -65,7 +65,7 @@ class Factory
      */
     public function getBuilder(string $builder, array $args = []) : LoggerBuilderInterface
     {
-        $class = "\\vfalies\\tmdb\\Factory\\Builder\\{$builder}builder";
+        $class = "\\VfacTmdb\\Factory\\Builder\\{$builder}builder";
 
         $reflection = new \ReflectionClass($class);
 

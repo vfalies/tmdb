@@ -12,9 +12,9 @@
  */
 
 
-namespace vfalies\tmdb\Factory\Builder;
+namespace VfacTmdb\Factory\Builder;
 
-use vfalies\tmdb\Interfaces\Factory\LoggerBuilderInterface;
+use VfacTmdb\Interfaces\Factory\LoggerBuilderInterface;
 
 /**
  * Builder to implement Logger with Null object

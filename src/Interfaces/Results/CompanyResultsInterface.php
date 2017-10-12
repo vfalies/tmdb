@@ -12,7 +12,7 @@
  */
 
 
-namespace vfalies\tmdb\Interfaces\Results;
+namespace VfacTmdb\Interfaces\Results;
 
 /**
  * Interface for Company results type object

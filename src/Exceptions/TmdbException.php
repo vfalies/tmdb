@@ -12,7 +12,7 @@
  */
 
 
-namespace vfalies\tmdb\Exceptions;
+namespace VfacTmdb\Exceptions;
 
 /**
  * Tmdb exception class

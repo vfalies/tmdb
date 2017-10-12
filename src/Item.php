@@ -12,10 +12,10 @@
  */
 
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
-use vfalies\tmdb\Items;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Items;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Item class

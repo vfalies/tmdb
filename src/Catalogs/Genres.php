@@ -12,12 +12,12 @@
  */
 
 
-namespace vfalies\tmdb\Catalogs;
+namespace VfacTmdb\Catalogs;
 
-use vfalies\tmdb\Interfaces\GenresInterface;
+use VfacTmdb\Interfaces\GenresInterface;
 
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to get movie and tv show genres

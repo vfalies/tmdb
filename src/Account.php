@@ -12,16 +12,16 @@
  */
 
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Util\Configuration;
-use vfalies\tmdb\Account\Rated;
-use vfalies\tmdb\Account\WatchList;
-use vfalies\tmdb\Exceptions\ServerErrorException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Account\Favorite;
+use VfacTmdb\Account\Rated;
+use VfacTmdb\Account\WatchList;
+use VfacTmdb\Exceptions\ServerErrorException;
+use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Account\Favorite;
 
-use vfalies\tmdb\Interfaces\AuthInterface;
+use VfacTmdb\Interfaces\AuthInterface;
 
 /**
  * Account class
@@ -43,7 +43,7 @@ class Account
     private $logger = null;
     /**
      * Auth object
-     * @var \vfalies\tmdb\Interfaces\AuthInterface
+     * @var \VfacTmdb\Interfaces\AuthInterface
      */
     private $auth = null;
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ class NullLoggerBuilderTest extends TestCase
      */
     public function testGetMainClasseName()
     {
-        $nullLoggerBuilder = new \vfalies\tmdb\Factory\Builder\NullLoggerBuilder();
+        $nullLoggerBuilder = new \VfacTmdb\Factory\Builder\NullLoggerBuilder();
 
         $this->assertEquals('\Psr\Log\NullLogger', $nullLoggerBuilder->getMainCLassName());
     }
@@ -25,7 +25,7 @@ class NullLoggerBuilderTest extends TestCase
      */
     public function testGetLogger()
     {
-        $nullLoggerBuilder = new \vfalies\tmdb\Factory\Builder\NullLoggerBuilder();
+        $nullLoggerBuilder = new \VfacTmdb\Factory\Builder\NullLoggerBuilder();
 
         $this->assertInstanceOf(\Psr\Log\NullLogger::class, $nullLoggerBuilder->getLogger());
     }
@@ -35,7 +35,7 @@ class NullLoggerBuilderTest extends TestCase
       */
     public function testGetPackageName()
     {
-        $nullLoggerBuilder = new \vfalies\tmdb\Factory\Builder\NullLoggerBuilder();
+        $nullLoggerBuilder = new \VfacTmdb\Factory\Builder\NullLoggerBuilder();
 
         $this->assertEquals('psr/log', $nullLoggerBuilder->getPackageName());
     }

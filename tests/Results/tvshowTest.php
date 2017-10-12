@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb\Results;
+namespace VfacTmdb\Results;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class TVShowTest extends TestCase
 {
@@ -14,7 +14,7 @@ class TVShowTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -35,7 +35,7 @@ class TVShowTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/searchTVShowOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $search       = new \vfalies\tmdb\Search($this->tmdb);
+        $search       = new \VfacTmdb\Search($this->tmdb);
         $this->result = $search->tvshow('star trek', array('language' => 'fr-FR'))->current();
     }
 
@@ -47,7 +47,7 @@ class TVShowTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/searchTVShowOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $search       = new \vfalies\tmdb\Search($this->tmdb);
+        $search       = new \VfacTmdb\Search($this->tmdb);
         $this->result = $search->tvshow('star trek', array('language' => 'fr-FR'))->current();
     }
 

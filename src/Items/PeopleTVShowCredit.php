@@ -12,14 +12,14 @@
  */
 
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Results\PeopleTVShowCast;
-use vfalies\tmdb\Results\PeopleTVShowCrew;
+use VfacTmdb\Results;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Results\PeopleTVShowCast;
+use VfacTmdb\Results\PeopleTVShowCrew;
 
 /**
  * People TVShow Credit class

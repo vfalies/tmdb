@@ -1,11 +1,11 @@
 <?php
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\Items;
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\Items;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class PeopleTest extends TestCase
 {
@@ -17,7 +17,7 @@ class PeopleTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -368,7 +368,7 @@ class PeopleTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $profiles);
 
         foreach ($profiles as $p) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+            $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $p);
         }
     }
 
@@ -384,7 +384,7 @@ class PeopleTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $moviecast);
 
         foreach ($moviecast as $mc) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleMovieCast::class, $mc);
+            $this->assertInstanceOf(\VfacTmdb\Results\PeopleMovieCast::class, $mc);
         }
     }
 
@@ -400,12 +400,12 @@ class PeopleTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $moviecrew);
 
         foreach ($moviecrew as $mc) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleMovieCrew::class, $mc);
+            $this->assertInstanceOf(\VfacTmdb\Results\PeopleMovieCrew::class, $mc);
         }
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      */
     public function testPeopleMovieCreditConstructorFailed()
     {
@@ -414,7 +414,7 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      */
     public function testPeopleTVShowCreditConstructorFailed()
     {
@@ -434,7 +434,7 @@ class PeopleTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $tvshowcast);
 
         foreach ($tvshowcast as $tvc) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleTVShowCast::class, $tvc);
+            $this->assertInstanceOf(\VfacTmdb\Results\PeopleTVShowCast::class, $tvc);
         }
     }
 
@@ -450,7 +450,7 @@ class PeopleTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $tvshowcrew);
 
         foreach ($tvshowcrew as $tvc) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleTVShowCrew::class, $tvc);
+            $this->assertInstanceOf(\VfacTmdb\Results\PeopleTVShowCrew::class, $tvc);
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
 
@@ -38,7 +38,7 @@ class FactoryTest extends TestCase
         ));
     }
     /**
-     * @expectedException vfalies\tmdb\Exceptions\MissingDependencyException
+     * @expectedException VfacTmdb\Exceptions\MissingDependencyException
      */
     public function testCheckMissingDependency()
     {
@@ -55,7 +55,7 @@ class FactoryTest extends TestCase
      */
     protected function getBuilder($className, $package)
     {
-        $builder = $this->getMockForAbstractClass('\vfalies\tmdb\Interfaces\Factory\BuilderInterface');
+        $builder = $this->getMockForAbstractClass('\VfacTmdb\Interfaces\Factory\BuilderInterface');
         $builder->expects($this->any())->method('getMainClassName')->will($this->returnValue($className));
 
         $builder->expects($this->any())->method('getPackageName')->will($this->returnValue($package));

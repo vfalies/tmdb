@@ -12,14 +12,14 @@
  */
 
 
-namespace vfalies\tmdb\Account;
+namespace VfacTmdb\Account;
 
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Abstracts\Account;
-use vfalies\tmdb\Exceptions\ServerErrorException;
-use vfalies\tmdb\Exceptions\InvalidResponseException;
-use vfalies\tmdb\Traits\ListItems;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Results;
+use VfacTmdb\Abstracts\Account;
+use VfacTmdb\Exceptions\ServerErrorException;
+use VfacTmdb\Exceptions\InvalidResponseException;
+use VfacTmdb\Traits\ListItems;
 
 /**
  * Class to manipulate account favorite

@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class CompanyTest extends TestCase
 {
@@ -15,7 +15,7 @@ class CompanyTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -223,7 +223,7 @@ class CompanyTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $movies);
         foreach ($movies as $m) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $m);
+            $this->assertInstanceOf(\VfacTmdb\Results\Movie::class, $m);
         }
     }
 }

@@ -11,11 +11,11 @@
  * @copyright Copyright (c) 2017
  */
 
-namespace vfalies\tmdb\Results;
+namespace VfacTmdb\Results;
 
-use vfalies\tmdb\Abstracts\Results;
-use vfalies\tmdb\Interfaces\Results\CastResultsInterface;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Abstracts\Results;
+use VfacTmdb\Interfaces\Results\CastResultsInterface;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to manipulate a movie or tv show cast result

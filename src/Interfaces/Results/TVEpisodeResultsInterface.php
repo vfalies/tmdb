@@ -12,9 +12,9 @@
  */
 
 
-namespace vfalies\tmdb\Interfaces\Results;
+namespace VfacTmdb\Interfaces\Results;
 
-use vfalies\tmdb\Interfaces\Items\TVEpisodeInterface;
+use VfacTmdb\Interfaces\Items\TVEpisodeInterface;
 
 /**
  * Interface for TVEpisode Results type object

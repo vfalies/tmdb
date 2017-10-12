@@ -12,7 +12,7 @@
  */
 
 
-namespace vfalies\tmdb\Traits\Results;
+namespace VfacTmdb\Traits\Results;
 
 /**
  * Trait with methods for Show (Movie & TVShow)

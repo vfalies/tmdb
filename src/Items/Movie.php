@@ -12,14 +12,14 @@
  */
 
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\Items\MovieInterface;
-use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Items\MovieCredit;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Results;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Interfaces\Items\MovieInterface;
+use VfacTmdb\Traits\ElementTrait;
+use VfacTmdb\Items\MovieCredit;
+use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Results;
 
 /**
  * Movie class

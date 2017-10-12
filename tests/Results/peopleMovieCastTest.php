@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb\Results;
+namespace VfacTmdb\Results;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class PeopleMovieCastTest extends TestCase
 {
@@ -16,7 +16,7 @@ class PeopleMovieCastTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -34,7 +34,7 @@ class PeopleMovieCastTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
         $this->tmdb->method('getConfiguration')->willReturn($json_object);
 
-        $People      = new \vfalies\tmdb\Items\People($this->tmdb, $this->people_id);
+        $People      = new \VfacTmdb\Items\People($this->tmdb, $this->people_id);
 
         $json_object = json_decode(file_get_contents('tests/json/PeopleMovieCreditOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);

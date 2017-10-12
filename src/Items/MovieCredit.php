@@ -12,10 +12,10 @@
  */
 
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Results;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Movie Credit class

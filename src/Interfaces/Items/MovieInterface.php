@@ -12,7 +12,7 @@
  */
 
 
-namespace vfalies\tmdb\Interfaces\Items;
+namespace VfacTmdb\Interfaces\Items;
 
 /**
  * Interface for Movie type object

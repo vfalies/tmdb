@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class TVEpisodeTest extends TestCase
 {
@@ -17,7 +17,7 @@ class TVEpisodeTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -311,7 +311,7 @@ class TVEpisodeTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $Crew);
         foreach ($Crew as $c) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $c);
+            $this->assertInstanceOf(\VfacTmdb\Results\Crew::class, $c);
         }
     }
 
@@ -327,7 +327,7 @@ class TVEpisodeTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $posters);
 
         foreach ($posters as $p) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+            $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $p);
         }
     }
 

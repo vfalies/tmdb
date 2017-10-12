@@ -12,13 +12,13 @@
  */
 
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\Items\CompanyInterface;
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Interfaces\Items\CompanyInterface;
+use VfacTmdb\Results;
+use VfacTmdb\Traits\ElementTrait;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Company class

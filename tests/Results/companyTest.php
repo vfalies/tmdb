@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb\Results;
+namespace VfacTmdb\Results;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class CompanyTest extends TestCase
 {
@@ -14,7 +14,7 @@ class CompanyTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -35,7 +35,7 @@ class CompanyTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/searchCompanyOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $search       = new \vfalies\tmdb\Search($this->tmdb);
+        $search       = new \VfacTmdb\Search($this->tmdb);
         $this->result = $search->company('lucasfilm', array('language' => 'fr-FR'))->current();
     }
 
@@ -47,7 +47,7 @@ class CompanyTest extends TestCase
         $json_object = json_decode(file_get_contents('tests/json/searchCompanyOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
-        $search       = new \vfalies\tmdb\Search($this->tmdb);
+        $search       = new \VfacTmdb\Search($this->tmdb);
         $this->result = $search->company('lucasfilm', array('language' => 'fr-FR'))->current();
     }
 
@@ -66,14 +66,14 @@ class CompanyTest extends TestCase
 
     /**
      * @test
-     * @expectedException \vfalies\tmdb\Exceptions\NotFoundException
+     * @expectedException \VfacTmdb\Exceptions\NotFoundException
      */
     public function testContructFailed()
     {
         $result = new \stdClass();
         $result->not_property = 'test';
 
-        new \vfalies\tmdb\Results\Movie($this->tmdb, $result);
+        new \VfacTmdb\Results\Movie($this->tmdb, $result);
     }
 
     /**

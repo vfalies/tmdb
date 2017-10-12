@@ -12,13 +12,13 @@
  */
 
 
-namespace vfalies\tmdb\lib\Guzzle;
+namespace VfacTmdb\lib\Guzzle;
 
-use vfalies\tmdb\Interfaces\HttpRequestInterface;
+use VfacTmdb\Interfaces\HttpRequestInterface;
 use GuzzleHttp\Exception\RequestException;
-use vfalies\tmdb\Exceptions\NotFoundException;
-use vfalies\tmdb\Exceptions\ServerErrorException;
-use vfalies\tmdb\Exceptions\HttpErrorException;
+use VfacTmdb\Exceptions\NotFoundException;
+use VfacTmdb\Exceptions\ServerErrorException;
+use VfacTmdb\Exceptions\HttpErrorException;
 
 /**
  * HTTP Client class for all HTTP request

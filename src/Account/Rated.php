@@ -12,11 +12,11 @@
  */
 
 
-namespace vfalies\tmdb\Account;
+namespace VfacTmdb\Account;
 
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Traits\ListItems;
-use vfalies\tmdb\Abstracts\Account;
+use VfacTmdb\Results;
+use VfacTmdb\Traits\ListItems;
+use VfacTmdb\Abstracts\Account;
 
 /**
  * Class to manipulate account rated

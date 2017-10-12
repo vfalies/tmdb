@@ -12,14 +12,14 @@
  */
 
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Results\PeopleMovieCast;
-use vfalies\tmdb\Results\PeopleMovieCrew;
+use VfacTmdb\Results;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Results\PeopleMovieCast;
+use VfacTmdb\Results\PeopleMovieCrew;
 
 /**
  * People Movie Credit class

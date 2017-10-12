@@ -12,14 +12,14 @@
  */
 
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\Items\TVEpisodeInterface;
-use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Results;
-use vfalies\tmdb\Traits\TVEpisodeTrait;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Interfaces\Items\TVEpisodeInterface;
+use VfacTmdb\Traits\ElementTrait;
+use VfacTmdb\Results;
+use VfacTmdb\Traits\TVEpisodeTrait;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * TVEpisode class

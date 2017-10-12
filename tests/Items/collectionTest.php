@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class CollectionTest extends TestCase
 {
@@ -15,7 +15,7 @@ class CollectionTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -57,11 +57,11 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      */
     public function testContructFailure()
     {
-        $this->tmdb->method('sendRequest')->will($this->throwException(new \vfalies\tmdb\Exceptions\TmdbException()));
+        $this->tmdb->method('sendRequest')->will($this->throwException(new \VfacTmdb\Exceptions\TmdbException()));
 
         new Collection($this->tmdb, $this->collection_id);
     }
@@ -141,10 +141,10 @@ class CollectionTest extends TestCase
         $parts      = $collection->getParts();
 
         $this->assertInstanceOf(\Generator::class, $parts);
-        //$this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $parts->current());
+        //$this->assertInstanceOf(\VfacTmdb\Results\Movie::class, $parts->current());
 
         foreach ($parts as $part) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $part);
+            $this->assertInstanceOf(\VfacTmdb\Results\Movie::class, $part);
         }
     }
 
@@ -174,7 +174,7 @@ class CollectionTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $backdrops);
 
         foreach ($backdrops as $b) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
+            $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $b);
         }
     }
 
@@ -190,7 +190,7 @@ class CollectionTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $posters);
 
         foreach ($posters as $p) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+            $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $p);
         }
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class SearchTest extends TestCase
 {
@@ -62,7 +62,7 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      */
     public function testSearchMovieInvalidOption()
     {
@@ -73,7 +73,7 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\IncorrectParamException
+     * @expectedException VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testSearchMovieEmptyQuery()
     {
@@ -102,7 +102,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
     public function testSearchTVShowInvalidOption()
@@ -113,7 +113,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
     public function testSearchTVShowEmptyQuery()
@@ -143,7 +143,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
     public function testSearchCollectionInvalidOption()
@@ -154,7 +154,7 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
     public function testSearchCollectionEmptyQuery()
@@ -230,7 +230,7 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      */
     public function testSearchPeopleInvalidOption()
     {
@@ -241,7 +241,7 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\IncorrectParamException
+     * @expectedException VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testSearchPeopleEmptyQuery()
     {
@@ -285,7 +285,7 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
      */
     public function testSearchCompanyInvalidOption()
     {
@@ -296,7 +296,7 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\IncorrectParamException
+     * @expectedException VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testSearchCompanyEmptyQuery()
     {

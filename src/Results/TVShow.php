@@ -12,13 +12,13 @@
  */
 
 
-namespace vfalies\tmdb\Results;
+namespace VfacTmdb\Results;
 
-use vfalies\tmdb\Abstracts\Results;
-use vfalies\tmdb\Interfaces\Results\TVShowResultsInterface;
-use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Traits\Results\ShowTrait;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Abstracts\Results;
+use VfacTmdb\Interfaces\Results\TVShowResultsInterface;
+use VfacTmdb\Traits\ElementTrait;
+use VfacTmdb\Traits\Results\ShowTrait;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to manipulate a TV Season result

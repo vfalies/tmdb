@@ -12,7 +12,7 @@
  */
 
 
-namespace vfalies\tmdb\Interfaces\Factory;
+namespace VfacTmdb\Interfaces\Factory;
 
 /**
  * Logger Builder interface

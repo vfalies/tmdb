@@ -12,16 +12,16 @@
  * @copyright Copyright (c) 2017
  */
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
-use vfalies\tmdb\Abstracts\Item;
-use vfalies\tmdb\Interfaces\PeopleInterface;
-use vfalies\tmdb\Traits\ElementTrait;
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Items\PeopleMovieCredit;
-use vfalies\tmdb\Items\PeopleTVShowCredit;
-use vfalies\tmdb\Results;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Interfaces\PeopleInterface;
+use VfacTmdb\Traits\ElementTrait;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Items\PeopleMovieCredit;
+use VfacTmdb\Items\PeopleTVShowCredit;
+use VfacTmdb\Results;
 
 /**
  * People class

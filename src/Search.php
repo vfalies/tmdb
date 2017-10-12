@@ -12,12 +12,12 @@
  */
 
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
-use vfalies\tmdb\Exceptions\IncorrectParamException;
-use vfalies\tmdb\Exceptions\TmdbException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Traits\ListItems;
+use VfacTmdb\Exceptions\IncorrectParamException;
+use VfacTmdb\Exceptions\TmdbException;
+use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Traits\ListItems;
 
 /**
  * Search class

@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class AuthTest extends TestCase
 {
@@ -70,7 +70,7 @@ class AuthTest extends TestCase
 
     /**
      * @test
-     * @expectedException \vfalies\tmdb\Exceptions\IncorrectParamException
+     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testConnectInvalidRedirection()
     {
@@ -84,7 +84,7 @@ class AuthTest extends TestCase
 
     /**
      * @test
-     * @expectedException \vfalies\tmdb\Exceptions\InvalidResponseException
+     * @expectedException \VfacTmdb\Exceptions\InvalidResponseException
      */
     public function testConnectInvalidRequestToken()
     {
@@ -126,7 +126,7 @@ class AuthTest extends TestCase
 
     /**
      * @test
-     * @expectedException \vfalies\tmdb\Exceptions\NotFoundException
+     * @expectedException \VfacTmdb\Exceptions\NotFoundException
      */
     public function testMagicalGet()
     {

@@ -12,11 +12,11 @@
  */
 
 
-namespace vfalies\tmdb\Abstracts;
+namespace VfacTmdb\Abstracts;
 
-use vfalies\tmdb\Exceptions\NotFoundException;
-use vfalies\tmdb\Interfaces\Results\ResultsInterface;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Exceptions\NotFoundException;
+use VfacTmdb\Interfaces\Results\ResultsInterface;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Abstract results class

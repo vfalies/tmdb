@@ -11,7 +11,7 @@
  * @copyright Copyright (c) 2017
  */
 
-namespace vfalies\tmdb\Traits;
+namespace VfacTmdb\Traits;
 
 /**
  * listItems trait

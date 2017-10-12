@@ -1,10 +1,10 @@
 <?php
 
-namespace vfalies\tmdb\lib\Guzzle;
+namespace VfacTmdb\lib\Guzzle;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\Tmdb;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\Tmdb;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class ClientTest extends TestCase
 {
@@ -42,7 +42,7 @@ class ClientTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\HttpErrorException
+     * @expectedException VfacTmdb\Exceptions\HttpErrorException
      */
     public function testGetResponseNOk()
     {
@@ -54,7 +54,7 @@ class ClientTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\NotFoundException
+     * @expectedException VfacTmdb\Exceptions\NotFoundException
      */
     public function testGetResponseNok404()
     {
@@ -66,7 +66,7 @@ class ClientTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\ServerErrorException
+     * @expectedException VfacTmdb\Exceptions\ServerErrorException
      */
     public function testGetResponseNok500()
     {
@@ -92,7 +92,7 @@ class ClientTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\HttpErrorException
+     * @expectedException VfacTmdb\Exceptions\HttpErrorException
      */
     public function testPostResponseNOk()
     {
@@ -104,7 +104,7 @@ class ClientTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\NotFoundException
+     * @expectedException VfacTmdb\Exceptions\NotFoundException
      */
     public function testPostResponseNok404()
     {
@@ -116,7 +116,7 @@ class ClientTest extends TestCase
 
     /**
      * @test
-     * @expectedException vfalies\tmdb\Exceptions\ServerErrorException
+     * @expectedException VfacTmdb\Exceptions\ServerErrorException
      */
     public function testPostResponseNok500()
     {

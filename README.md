@@ -35,7 +35,7 @@ $ composer require vfalies/tmdb
 ```php
 <?php
 
-use vfalies\tmdb;
+use VfacTmdb;
 
 // Initialize Wrapper
 $tmdb = Factory::create()->getTmdb('your_api_key');
@@ -52,7 +52,7 @@ foreach ($responses as $response)
 
 // Get movie information
 $item  = new Item($tmdb);
-$infos = $item->getMovie(11, array('language' => 'fr-FR');
+$infos = $item->getMovie(11, array('language' => 'fr-FR'));
 
 echo $infos->getTitle();
 ```

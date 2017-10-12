@@ -12,7 +12,7 @@
  */
 
 
-namespace vfalies\tmdb\Traits;
+namespace VfacTmdb\Traits;
 
 /**
  * Common element methods trait

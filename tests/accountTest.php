@@ -1,13 +1,13 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\Account\Rated;
-use vfalies\tmdb\Account\Favorite;
-use vfalies\tmdb\Account\WatchList;
-use vfalies\tmdb\Exceptions\ServerErrorException;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\Account\Rated;
+use VfacTmdb\Account\Favorite;
+use VfacTmdb\Account\WatchList;
+use VfacTmdb\Exceptions\ServerErrorException;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class AccountTest extends TestCase
 {
@@ -56,7 +56,7 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\ServerErrorException
+     * @expectedException \VfacTmdb\Exceptions\ServerErrorException
      */
     public function testConstructorFailedNoSessionId()
     {
@@ -64,7 +64,7 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @expectedException \vfalies\tmdb\Exceptions\ServerErrorException
+     * @expectedException \VfacTmdb\Exceptions\ServerErrorException
      */
     public function testConstructorFailedAccountDetails()
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace vfalies\tmdb\Items;
+namespace VfacTmdb\Items;
 
 use PHPUnit\Framework\TestCase;
-use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class MovieTest extends TestCase
 {
@@ -15,7 +15,7 @@ class MovieTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\vfalies\tmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
@@ -349,7 +349,7 @@ class MovieTest extends TestCase
         $crew = $movie->getCrew();
 
         foreach ($crew as $c) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Crew::class, $c);
+            $this->assertInstanceOf(\VfacTmdb\Results\Crew::class, $c);
         }
     }
 
@@ -366,7 +366,7 @@ class MovieTest extends TestCase
         $cast = $movie->getCast();
 
         foreach ($cast as $c) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Cast::class, $c);
+            $this->assertInstanceOf(\VfacTmdb\Results\Cast::class, $c);
         }
     }
     public function testGetProductionCompanies()
@@ -415,7 +415,7 @@ class MovieTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $backdrops);
 
         foreach ($backdrops as $b) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $b);
+            $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $b);
         }
     }
 
@@ -431,7 +431,7 @@ class MovieTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $posters);
 
         foreach ($posters as $p) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Image::class, $p);
+            $this->assertInstanceOf(\VfacTmdb\Results\Image::class, $p);
         }
     }
 
@@ -447,7 +447,7 @@ class MovieTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $similar);
 
         foreach ($similar as $s) {
-            $this->assertInstanceOf(\vfalies\tmdb\Results\Movie::class, $s);
+            $this->assertInstanceOf(\VfacTmdb\Results\Movie::class, $s);
             $this->assertEquals(106912, $s->getId());
             $this->assertEquals("Darna: The Return", $s->getTitle());
         }

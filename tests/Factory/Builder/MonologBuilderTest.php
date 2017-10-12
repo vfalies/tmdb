@@ -1,6 +1,6 @@
 <?php
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
 
@@ -16,7 +16,7 @@ class MonologBuilderTest extends TestCase
     {
         parent::setUp();
 
-        $this->monologBuilder = new \vfalies\tmdb\Factory\Builder\MonologBuilder();
+        $this->monologBuilder = new \VfacTmdb\Factory\Builder\MonologBuilder();
     }
 
     /**
@@ -49,6 +49,6 @@ class MonologBuilderTest extends TestCase
      */
     public function testNewHandler()
     {
-        $this->monologBuilder->newHandler(\vfalies\tmdb\Media::class);
+        $this->monologBuilder->newHandler(\VfacTmdb\Media::class);
     }
 }

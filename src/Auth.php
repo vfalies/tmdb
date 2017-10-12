@@ -12,14 +12,14 @@
  */
 
 
-namespace vfalies\tmdb;
+namespace VfacTmdb;
 
-use vfalies\tmdb\Exceptions\NotFoundException;
-use vfalies\tmdb\Exceptions\IncorrectParamException;
-use vfalies\tmdb\Interfaces\TmdbInterface;
-use vfalies\tmdb\Interfaces\AuthInterface;
+use VfacTmdb\Exceptions\NotFoundException;
+use VfacTmdb\Exceptions\IncorrectParamException;
+use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Interfaces\AuthInterface;
 
-use vfalies\tmdb\Exceptions\InvalidResponseException;
+use VfacTmdb\Exceptions\InvalidResponseException;
 
 /**
 * Auth class

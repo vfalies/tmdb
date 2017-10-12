@@ -12,10 +12,10 @@
  * @copyright Copyright (c) 2017
  */
 
-namespace vfalies\tmdb\Results;
+namespace VfacTmdb\Results;
 
-use vfalies\tmdb\Abstracts\Results;
-use vfalies\tmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Abstracts\Results;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * Class to manipulate a people tvshow crew result
