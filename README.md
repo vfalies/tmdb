@@ -35,7 +35,11 @@ $ composer require vfalies/tmdb
 ```php
 <?php
 
-use VfacTmdb;
+require 'vendor/autoload.php';
+
+use VfacTmdb\Factory;
+use VfacTmdb\Search;
+use VfacTmdb\Item;
 
 // Initialize Wrapper
 $tmdb = Factory::create()->getTmdb('your_api_key');
@@ -47,7 +51,7 @@ $responses = $search->movie('star wars');
 // Get all results
 foreach ($responses as $response)
 {
-    echo $search->getMovie($response->id)->getTitle();
+    echo $response->getTitle();
 }
 
 // Get movie information
