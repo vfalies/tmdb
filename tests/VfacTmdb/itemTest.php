@@ -4,6 +4,7 @@ namespace VfacTmdb;
 
 use PHPUnit\Framework\TestCase;
 use VfacTmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\Items;
 
 class ItemTest extends TestCase
 {
@@ -62,6 +63,40 @@ class ItemTest extends TestCase
 
         $this->assertInstanceOf(Items\TVShow::class, $responses);
         $this->assertEquals(253, $responses->getId());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetTVSeason()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/TVSeasonOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $get       = new Item($this->tmdb);
+        $responses = $get->getTVSeason(253, 1); // Id: 253 => Star Trek
+
+        $this->assertEquals('/3/tv/253/season/1', parse_url($this->tmdb->url, PHP_URL_PATH));
+
+        $this->assertInstanceOf(Items\TVSeason::class, $responses);
+        $this->assertEquals(3624, $responses->getId());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetTVEpisode()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/TVEpisodeOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $get       = new Item($this->tmdb);
+        $responses = $get->getTVEpisode(253, 1, 1); // Id: 253 => Star Trek
+
+        $this->assertEquals('/3/tv/253/season/1/episode/1', parse_url($this->tmdb->url, PHP_URL_PATH));
+
+        $this->assertInstanceOf(Items\TVEpisode::class, $responses);
+        $this->assertEquals(63056, $responses->getId());
     }
 
     /**

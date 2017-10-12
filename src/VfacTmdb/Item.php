@@ -90,6 +90,37 @@ class Item
     }
 
     /**
+     * Get TV Show episode details
+     * @param  int    $tv_id
+     * @param  int    $season_number
+     * @param  array  $options
+     * @return Items\TVEpisode
+     */
+    public function getTVSeason(int $tv_id, int $season_number, array $options = array()) : Items\TVSeason
+    {
+        $this->logger->debug('Starting getting tvseason', array('tv_id' => $tv_id, 'season_number' => $season_number, 'options' => $options));
+        $tvseason = new Items\TVSeason($this->tmdb, $tv_id, $season_number, $options);
+
+        return $tvseason;
+    }
+
+    /**
+     * Get TV Show episode details
+     * @param  int    $tv_id
+     * @param  int    $season_number
+     * @param  int    $episode_number
+     * @param  array  $options
+     * @return Items\TVEpisode
+     */
+    public function getTVEpisode(int $tv_id, int $season_number, int $episode_number, array $options = array()) : Items\TVEpisode
+    {
+        $this->logger->debug('Starting getting tvepisode', array('tv_id' => $tv_id, 'season_number' => $season_number, 'episode_number' => $episode_number, 'options' => $options));
+        $tvepisode = new Items\TVEpisode($this->tmdb, $tv_id, $season_number, $episode_number, $options);
+
+        return $tvepisode;
+    }
+
+    /**
      * Get People details
      * @param int $people_id
      * @param array $options
