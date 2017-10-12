@@ -3,6 +3,8 @@
 namespace vfalies\tmdb\Items;
 
 use PHPUnit\Framework\TestCase;
+use vfalies\tmdb\Items;
+use vfalies\tmdb\Exceptions\TmdbException;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 class PeopleTest extends TestCase
@@ -400,6 +402,24 @@ class PeopleTest extends TestCase
         foreach ($moviecrew as $mc) {
             $this->assertInstanceOf(\vfalies\tmdb\Results\PeopleMovieCrew::class, $mc);
         }
+    }
+
+    /**
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     */
+    public function testPeopleMovieCreditConstructorFailed()
+    {
+        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException));
+        $peopleMovieCredit = new Items\PeopleMovieCredit($this->tmdb, 12);
+    }
+
+    /**
+     * @expectedException \vfalies\tmdb\Exceptions\TmdbException
+     */
+    public function testPeopleTVShowCreditConstructorFailed()
+    {
+        $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException));
+        $peopleMovieCredit = new Items\PeopleTVShowCredit($this->tmdb, 12);
     }
 
     public function testGetTVShowCast()

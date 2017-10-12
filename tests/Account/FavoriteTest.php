@@ -156,4 +156,12 @@ class FavoriteTest extends TestCase
         $this->assertEquals('/3/account/'.$account->getId().'/favorite', parse_url($this->tmdb->url, PHP_URL_PATH));
         $this->assertInstanceOf(Favorite::class, $fav);
     }
+
+    /**
+     * @expectedException \vfalies\tmdb\Exceptions\ServerErrorException
+     */
+    public function testConstructorFailure()
+    {
+        $favorite = new Account\Favorite($this->tmdb, new Auth($this->tmdb), 1);
+    }
 }
