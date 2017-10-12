@@ -6,9 +6,6 @@ use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\Tmdb;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
-/**
- * @cover Client
- */
 class ClientTest extends TestCase
 {
     protected $tmdb = null;

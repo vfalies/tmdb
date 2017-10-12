@@ -27,4 +27,13 @@ interface HttpRequestInterface
      * @param string $url
      */
     public function getResponse(string $url);
+
+    /**
+     * Post response method
+     * @param  string $url
+     * @param  array  $options
+     * @param  array $form_params
+     * @return mixed
+     */
+    public function postResponse(string $url, array $options = [], array $form_params = array());
 }

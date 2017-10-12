@@ -4,6 +4,7 @@ namespace vfalies\tmdb;
 
 use PHPUnit\Framework\TestCase;
 use vfalies\tmdb\Exceptions\TmdbException;
+use vfalies\tmdb\Exceptions\IncorrectParamException;
 use vfalies\tmdb\lib\Guzzle\Client as HttpClient;
 
 class TmdbTest extends TestCase
@@ -39,6 +40,33 @@ class TmdbTest extends TestCase
     {
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
         $tmdb->checkOptions(array('language' => 'fr'));
+    }
+
+    public function testCheckOptionsSortOk()
+    {
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
+        $options = $tmdb->checkOptions(array('sort_by' => 'asc'));
+
+        $this->assertArrayHasKey('sort_by', $options);
+        $this->assertEquals('created_at.asc', $options['sort_by']);
+    }
+
+    /**
+     * @expectedException \vfalies\tmdb\Exceptions\IncorrectParamException
+     */
+    public function testCheckOptionsSortNok()
+    {
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
+        $options = $tmdb->checkOptions(array('sort_by' => 'incorrect_value'));
+    }
+
+    /**
+     * @expectedException \vfalies\tmdb\Exceptions\IncorrectParamException
+     */
+    public function testMagicalGetterNok()
+    {
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
+        $tmdb->test;
     }
 
     /**
@@ -88,7 +116,7 @@ class TmdbTest extends TestCase
                 ->getMock();
 
         $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
-        ->setMethods(['getResponse'])
+        ->setMethods(['getResponse', 'postResponse'])
         ->getMock();
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
@@ -108,7 +136,7 @@ class TmdbTest extends TestCase
                 ->getMock();
 
         $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
-        ->setMethods(['getResponse'])
+        ->setMethods(['getResponse', 'postResponse'])
         ->getMock();
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
@@ -131,7 +159,7 @@ class TmdbTest extends TestCase
         $guzzleclient->method('getBody')->willReturn('Not JSON');
 
         $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
-        ->setMethods(['getResponse'])
+        ->setMethods(['getResponse', 'postResponse'])
         ->getMock();
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
@@ -143,14 +171,14 @@ class TmdbTest extends TestCase
     /**
      * @test
      */
-    public function testgetRequestOk()
+    public function testGetRequestOk()
     {
         $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
                 ->setMethods(['getBody'])
                 ->getMock();
 
         $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
-        ->setMethods(['getResponse'])
+        ->setMethods(['getResponse', 'postResponse'])
         ->getMock();
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
@@ -159,6 +187,29 @@ class TmdbTest extends TestCase
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
         $result = $tmdb->getRequest('/test', ['param=1']);
+
+        $this->assertInstanceOf(\stdClass::class, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function testPostRequestOk()
+    {
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
+
+        $http_request = $this->getMockBuilder(\vfalies\tmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['postResponse', 'getResponse'])
+        ->getMock();
+
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
+
+        $guzzleclient->method('getBody')->willReturn(file_get_contents('tests/json/configurationOk.json'));
+        $http_request->method('postResponse')->willReturn($guzzleclient);
+
+        $result = $tmdb->postRequest('/test', ['param=1']);
 
         $this->assertInstanceOf(\stdClass::class, $result);
     }

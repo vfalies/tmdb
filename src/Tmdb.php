@@ -134,7 +134,7 @@ class Tmdb implements TmdbInterface
      */
     public function postRequest(string $action, array $options = array(), array $form_params = array()) : ?\stdClass
     {
-        $this->logger->debug('Start sending HTTP request with POST method', array('action' => $action, 'options' => $options));
+        $this->logger->debug('Start sending HTTP request with POST method', array('action' => $action, 'options' => $options, 'form_params' => $form_params));
         $this->url = $this->buildHTTPUrl($action, $options);
         return $this->sendRequest('POST', $this->url, $form_params);
     }
@@ -153,11 +153,8 @@ class Tmdb implements TmdbInterface
                   $res = $this->http_request->getResponse($url);
                   break;
               case 'POST':
-                  $res = $this->http_request->postResponse($url, $options, $form_params);
+                  $res = $this->http_request->postResponse($url, [], $form_params);
                   break;
-            default:
-                throw new IncorrectParamException("$method is a unknown method");
-                break;
         }
 
         $response = json_decode($res->getBody());
