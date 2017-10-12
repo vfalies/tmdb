@@ -205,7 +205,7 @@ class SearchTest extends TestCase
         $search    = new Search($this->tmdb);
         $responses = $search->people('Bradley Cooper', array('language' => 'fr-FR'));
 
-        $this->assertEquals('/3/search/people', parse_url($this->tmdb->url, PHP_URL_PATH));
+        $this->assertEquals('/3/search/person', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertInstanceOf(Results\People::class, $responses->current());
