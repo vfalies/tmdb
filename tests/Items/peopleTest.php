@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use VfacTmdb\Items;
 use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\lib\Guzzle\Client as HttpClient;
+use VfacTmdb\Tmdb;
 
 class PeopleTest extends TestCase
 {
@@ -17,7 +18,7 @@ class PeopleTest extends TestCase
     {
         parent::setUp();
 
-        $this->tmdb = $this->getMockBuilder(\VfacTmdb\Tmdb::class)
+        $this->tmdb = $this->getMockBuilder(Tmdb::class)
                 ->setConstructorArgs(array('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client())))
                 ->setMethods(['sendRequest', 'getConfiguration'])
                 ->getMock();
