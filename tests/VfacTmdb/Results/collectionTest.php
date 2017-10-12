@@ -67,11 +67,11 @@ class CollectionTest extends TestCase
     /**
      * @test
      */
-    public function testGetTitle()
+    public function testGetName()
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getTitle());
-        $this->assertEquals('Star Wars: Clone Wars Collection', $this->result->getTitle());
+        $this->assertInternalType('string', $this->result->getName());
+        $this->assertEquals('Star Wars: Clone Wars Collection', $this->result->getName());
     }
 }

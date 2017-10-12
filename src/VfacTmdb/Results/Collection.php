@@ -79,7 +79,7 @@ class Collection extends Results implements CollectionResultsInterface
      * Get collection name
      * @return string
      */
-    public function getTitle() : string
+    public function getName() : string
     {
         return $this->name;
     }

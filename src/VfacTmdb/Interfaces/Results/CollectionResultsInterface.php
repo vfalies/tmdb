@@ -23,8 +23,8 @@ namespace VfacTmdb\Interfaces\Results;
 interface CollectionResultsInterface extends ResultsInterface
 {
     /**
-     * Get movie title
+     * Get collection name
      * @return string
      */
-    public function getTitle() : string;
+    public function getName() : string;
 }
