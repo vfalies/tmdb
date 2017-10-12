@@ -319,7 +319,7 @@ class TVEpisodeTest extends TestCase
     {
         $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
 
-        $json_object = json_decode(file_get_contents('tests/json/imagesOk.json'));
+        $json_object = json_decode(file_get_contents('tests/json/stillsOk.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $posters = $TVEpisode->getPosters();

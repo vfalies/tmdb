@@ -210,7 +210,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
     {
         $data = $this->tmdb->getRequest('tv/' . $this->tv_id . '/season/' . $this->season_number . '/episode/' . $this->episode_number . '/images', $this->params);
 
-        foreach ($data->posters as $b) {
+        foreach ($data->stills as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);
             yield $image;
         }
