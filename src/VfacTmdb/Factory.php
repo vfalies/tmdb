@@ -65,7 +65,7 @@ class Factory
      */
     public function getBuilder(string $builder, array $args = []) : LoggerBuilderInterface
     {
-        $class = "\\VfacTmdb\\Factory\\Builder\\{$builder}builder";
+        $class = "\\VfacTmdb\\Factory\\Builder\\{$builder}Builder";
 
         $reflection = new \ReflectionClass($class);
 
