@@ -3,6 +3,7 @@
 namespace VfacTmdb\Items;
 
 use PHPUnit\Framework\TestCase;
+use VfacTmdb\Results;
 use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class MovieTest extends TestCase
@@ -379,8 +380,8 @@ class MovieTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $companies);
 
         foreach ($companies as $c) {
-            $this->assertInstanceOf(\stdClass::class, $c);
-            $this->assertNotEmpty($c->name);
+            $this->assertInstanceOf(Results\Company::class, $c);
+            $this->assertNotEmpty($c->getName());
         }
     }
 
