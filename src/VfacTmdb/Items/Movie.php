@@ -188,11 +188,6 @@ class Movie extends Item implements MovieInterface
     {
         if (!empty($this->data->production_companies)) {
             foreach ($this->data->production_companies as $p) {
-                // $res       = new \stdClass();
-                // $res->id   = $p->id;
-                // $res->name = $p->name;
-                //
-                // yield $res;
                 $res            = new \stdClass();
                 $res->id        = $p->id;
                 $res->name      = $p->name;
