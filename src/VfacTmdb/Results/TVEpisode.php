@@ -122,6 +122,7 @@ class TVEpisode extends Abstracts\Results implements TVEpisodeResultsInterface
         $this->guest_stars     = $this->data->guest_stars;
 
         $this->setElementTrait($this->data);
+        $this->setTVEpisodeTrait($tmdb, $this->data);
     }
 
     /**

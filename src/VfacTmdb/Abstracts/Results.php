@@ -30,7 +30,7 @@ abstract class Results implements ResultsInterface
      * Properties to ignore in object control validation in constructor
      * @var array
      */
-    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger', 'tmdb', 'params', 'element_trait'];
+    protected $property_blacklist = ['property_blacklist', 'conf', 'data', 'logger', 'tmdb', 'params', 'element_trait', 'tvepisode_trait'];
     /**
      * Logger object
      * @var \Psr\Log\LoggerInterface

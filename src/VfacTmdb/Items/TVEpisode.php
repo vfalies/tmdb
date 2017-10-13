@@ -65,6 +65,7 @@ class TVEpisode extends Item implements TVEpisodeInterface
         $this->tv_id          = $tv_id;
 
         $this->setElementTrait($this->data);
+        $this->setTVEpisodeTrait($tmdb, $this->data);
     }
 
     /**

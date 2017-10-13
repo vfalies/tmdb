@@ -15,6 +15,7 @@
 namespace VfacTmdb\Traits;
 
 use VfacTmdb\Results;
+use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
  * TV Episode trait
@@ -25,16 +26,35 @@ use VfacTmdb\Results;
 trait TVEpisodeTrait
 {
     /**
+     * TVEpisodeTrait object variable
+     * @var \stdClass
+     */
+    protected $tvepisode_trait;
+
+    /**
+     * Set TVEpisodeTrait variable
+     * @param TmdbInterface $tmdb
+     * @param \stdClass|null $data
+     * @return void
+     */
+    protected function setTVEpisodeTrait(TmdbInterface $tmdb, ?\stdClass $data) : void
+    {
+        $this->tvepisode_trait       = new \stdClass();
+        $this->tvepisode_trait->tmdb = $tmdb;
+        $this->tvepisode_trait->data = $data;
+    }
+
+    /**
      * Get crew of TV Episode
      * @return \Generator|Results\Crew
      */
     public function getCrew() : \Generator
     {
-        if (!empty($this->data->crew)) {
-            foreach ($this->data->crew as $crew) {
+        if (!empty($this->tvepisode_trait->data->crew)) {
+            foreach ($this->tvepisode_trait->data->crew as $crew) {
                 $crew->gender = null;
 
-                $return = new Results\Crew($this->tmdb, $crew);
+                $return = new Results\Crew($this->tvepisode_trait->tmdb, $crew);
                 yield $return;
             }
         }
