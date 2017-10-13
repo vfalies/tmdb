@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * This file is part of the Tmdb package.
@@ -158,9 +158,9 @@ class PeopleTVShowCast extends Results
 
     /**
      * Episode count
-     * @return bool
+     * @return int
      */
-    public function getEpisodeCount() : bool
+    public function getEpisodeCount() : int
     {
         return $this->episode_count;
     }

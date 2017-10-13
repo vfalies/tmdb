@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -114,9 +114,9 @@ class Cast extends Results implements CastResultsInterface
 
     /**
      * Get gender
-     * @return string
+     * @return int
      */
-    public function getGender() : string
+    public function getGender() : int
     {
         return $this->gender;
     }

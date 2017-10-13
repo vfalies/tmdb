@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * This file is part of the Tmdb package.
@@ -173,9 +173,14 @@ class Tmdb implements TmdbInterface
                   break;
         }
 
+        if (empty($res->getBody()))
+        {
+            $this->logger->error('Request Body empty', array('method' => $method, 'url' => $url, 'form_params' => $form_params));
+            throw new ServerErrorException();
+        }
         $response = json_decode($res->getBody());
         if (empty($response)) {
-            $this->logger->error('Request Body can not be decode', array('url' => $url));
+            $this->logger->error('Request Body can not be decode', array('method' => $method, 'url' => $url, 'form_params' => $form_params));
             throw new ServerErrorException();
         }
         return $response;

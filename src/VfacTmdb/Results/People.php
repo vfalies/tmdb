@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -87,9 +87,9 @@ class People extends Results implements PeopleResultsInterface
 
     /**
      * Get Adult
-     * @return string
+     * @return bool
      */
-    public function getAdult() : string
+    public function getAdult() : bool
     {
         return $this->adult;
     }
@@ -105,9 +105,9 @@ class People extends Results implements PeopleResultsInterface
 
     /**
      * People Popularity
-     * @return string
+     * @return float
      */
-    public function getPopularity() : string
+    public function getPopularity() : float
     {
         return $this->popularity;
     }
