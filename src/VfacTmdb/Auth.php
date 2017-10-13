@@ -18,7 +18,6 @@ use VfacTmdb\Exceptions\NotFoundException;
 use VfacTmdb\Exceptions\IncorrectParamException;
 use VfacTmdb\Interfaces\TmdbInterface;
 use VfacTmdb\Interfaces\AuthInterface;
-
 use VfacTmdb\Exceptions\InvalidResponseException;
 
 /**
@@ -96,7 +95,9 @@ class Auth implements AuthInterface
             throw new InvalidResponseException("Getting request token failed");
         }
         $this->request_token            = $data->request_token;
-        $this->request_token_expiration = \DateTime::createFromFormat('Y-m-d H:i:s e', $data->expires_at);
+
+        $expiration                     = \DateTime::createFromFormat('Y-m-d H:i:s e', $data->expires_at);
+        $this->request_token_expiration = ($expiration !== false) ? $expiration : null;
 
         return $this->request_token;
     }

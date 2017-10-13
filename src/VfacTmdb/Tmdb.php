@@ -89,7 +89,11 @@ class Tmdb implements TmdbInterface
      * @var HttpRequestInterface
      */
     protected $http_request = null;
-
+    /**
+     * Request object
+     * @var \stdClass
+     */
+    protected $request;
     /**
      * Last request url
      * @var string
@@ -161,6 +165,7 @@ class Tmdb implements TmdbInterface
      */
     protected function sendRequest(string $method, string $url, array $form_params = array()) : ?\stdClass
     {
+        $res = new \stdClass();
         switch ($method) {
               case 'GET':
                   $res = $this->http_request->getResponse($url);
@@ -236,10 +241,6 @@ class Tmdb implements TmdbInterface
     public function checkOptions(array $options) : array
     {
         $params                  = [];
-        // Set default options
-        // $params['language']      = $this->language;
-        // $params['include_adult'] = $this->include_adult;
-        // $params['page']          = $this->page;
         // Check options
         foreach ($options as $key => $value) {
             switch ($key) {

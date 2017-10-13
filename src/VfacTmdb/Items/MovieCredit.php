@@ -26,6 +26,26 @@ use VfacTmdb\Interfaces\TmdbInterface;
 class MovieCredit
 {
     /**
+     * Tmdb object
+     * @var TmdbInterface
+     */
+    private $tmdb = null;
+    /**
+     * Logger object
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger = null;
+    /**
+     * Params
+     * @var array
+     */
+    protected $params = null;
+    /**
+     * Data
+     * @var \stdClass
+     */
+    protected $data = null;
+    /**
      * Crew
      * @var \stdClass
      */

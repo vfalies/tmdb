@@ -15,6 +15,7 @@
 namespace VfacTmdb\Abstracts;
 
 use VfacTmdb\Interfaces\TmdbInterface;
+use VfacTmdb\Traits\GeneratorTrait;
 
 /**
  * abstract account class
@@ -24,6 +25,8 @@ use VfacTmdb\Interfaces\TmdbInterface;
  */
 abstract class Account
 {
+    use GeneratorTrait;
+
     /**
      * Tmdb object
      * @var TmdbInterface
@@ -70,20 +73,5 @@ abstract class Account
         $this->account_id      = $account_id;
         // Configuration
         $this->conf            = $tmdb->getConfiguration();
-    }
-
-    /**
-     * Search Item generator method
-     * @param array $results
-     * @param string $class
-     */
-    protected function searchItemGenerator(array $results, string $class) : \Generator
-    {
-        $this->logger->debug('Starting search item generator', array('results' => $results, 'class' => $class));
-        foreach ($results as $result) {
-            $element = new $class($this->tmdb, $result);
-
-            yield $element;
-        }
     }
 }

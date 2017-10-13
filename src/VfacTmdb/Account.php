@@ -42,7 +42,7 @@ class Account
      * Session id string
      * @var string
      */
-    private $auth = null;
+    private $session_id = null;
     /**
      * Data
      * @var \stdClass
@@ -53,6 +53,11 @@ class Account
      * @var \stdClass
      */
     protected $conf;
+    /**
+     * Account Id
+     * @var int
+     */
+    protected $account_id;
 
     /**
      * Constructor

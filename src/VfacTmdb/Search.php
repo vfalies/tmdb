@@ -18,6 +18,7 @@ use VfacTmdb\Exceptions\IncorrectParamException;
 use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\Interfaces\TmdbInterface;
 use VfacTmdb\Traits\ListItems;
+use VfacTmdb\Traits\GeneratorTrait;
 
 /**
  * Search class
@@ -28,6 +29,7 @@ use VfacTmdb\Traits\ListItems;
 class Search
 {
     use ListItems;
+    use GeneratorTrait;
 
     /**
      * Tmdb object
@@ -79,21 +81,6 @@ class Search
             return $this->searchItemGenerator($response->results, $result_class);
         } catch (TmdbException $ex) {
             throw $ex;
-        }
-    }
-
-    /**
-     * Search Item generator method
-     * @param array $results
-     * @param string $class
-     */
-    private function searchItemGenerator(array $results, string $class)
-    {
-        $this->logger->debug('Starting search item generator', array('results' => $results, 'class' => $class));
-        foreach ($results as $result) {
-            $element = new $class($this->tmdb, $result);
-
-            yield $element;
         }
     }
 

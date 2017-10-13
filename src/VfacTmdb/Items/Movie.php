@@ -16,7 +16,6 @@ namespace VfacTmdb\Items;
 
 use VfacTmdb\Abstracts\Item;
 use VfacTmdb\Interfaces\Items\MovieInterface;
-use VfacTmdb\Results\Company;
 use VfacTmdb\Traits\ElementTrait;
 use VfacTmdb\Items\MovieCredit;
 use VfacTmdb\Interfaces\TmdbInterface;
@@ -182,7 +181,7 @@ class Movie extends Item implements MovieInterface
 
     /**
      * Get production compagnies
-     * @return \Generator|Company
+     * @return \Generator|Results\Company
      */
     public function getProductionCompanies() : \Generator
     {
@@ -193,7 +192,7 @@ class Movie extends Item implements MovieInterface
                 $res->name      = $p->name;
                 $res->logo_path = null;
 
-                $company        = new Company($this->tmdb, $res);
+                $company        = new Results\Company($this->tmdb, $res);
                 yield $company;
             }
         }

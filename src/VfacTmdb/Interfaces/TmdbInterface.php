@@ -35,9 +35,10 @@ interface TmdbInterface
      * Send cUrl request to TMDB API with POST Http method
      * @param string $action API action to request
      * @param array $options Array of options of the request (optional)
+     * @param array $form_params form_params for request options
      * @return \stdClass|null
      */
-    public function postRequest(string $action, array $options = array()) : ?\stdClass;
+    public function postRequest(string $action, array $options = array(), array $form_params = array()) : ?\stdClass;
 
     /**
      * Send request to TMDB API with DELETE method
