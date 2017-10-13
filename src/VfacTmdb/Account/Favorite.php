@@ -64,7 +64,7 @@ class Favorite extends Account
             $params['media_id']   = $media_id;
             $params['favorite']   = $favorite;
 
-            $this->tmdb->postRequest('account/'.$this->account_id.'/favorite', $this->options);
+            $this->tmdb->postRequest('account/'.$this->account_id.'/favorite', $this->options, $params);
 
             return $this;
         } catch (TmdbException $e) {

@@ -74,7 +74,7 @@ class WatchList extends Account
             $params['media_id']   = $media_id;
             $params['watchlist']  = $watchlist;
 
-            $this->tmdb->postRequest('account/'.$this->account_id.'/watchlist', $this->options);
+            $this->tmdb->postRequest('account/'.$this->account_id.'/watchlist', $this->options, $params);
 
             return $this;
         } catch (TmdbException $e) {
