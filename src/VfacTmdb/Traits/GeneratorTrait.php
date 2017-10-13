@@ -13,7 +13,6 @@
 
 namespace VfacTmdb\Traits;
 
-use Psr\Log\LoggerInterface;
 use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
