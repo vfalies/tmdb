@@ -173,8 +173,7 @@ class Tmdb implements TmdbInterface
                   break;
         }
 
-        if (empty($res->getBody()))
-        {
+        if (empty($res->getBody())) {
             $this->logger->error('Request Body empty', array('method' => $method, 'url' => $url, 'form_params' => $form_params));
             throw new ServerErrorException();
         }
