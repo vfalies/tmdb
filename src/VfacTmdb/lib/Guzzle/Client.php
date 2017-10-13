@@ -90,6 +90,6 @@ class Client implements HttpRequestInterface
      */
     public function postResponse(string $url, array $options = [], array $form_params = array())
     {
-        return $this->sendResponse('POST', $url);
+        return $this->sendResponse('POST', $url, $options, $form_params);
     }
 }
