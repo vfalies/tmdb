@@ -46,7 +46,7 @@ class Client implements HttpRequestInterface
 
     /**
      * Send response method from specific http method
-     * @param  string $method  Http method (GET, POST)
+     * @param  string $method  Http method (GET, POST, DELETE)
      * @param  string $url
      * @param  array  $options
      * @param array $form_params
@@ -94,5 +94,15 @@ class Client implements HttpRequestInterface
     public function postResponse(string $url, array $options = [], array $form_params = array())
     {
         return $this->sendResponse('POST', $url, $options, $form_params);
+    }
+
+    /**
+     * Delete response method
+     * @param string $url
+     * @return mixed
+     */
+    public function deleteResponse(string $url)
+    {
+        return $this->sendResponse('DELETE', $url);
     }
 }

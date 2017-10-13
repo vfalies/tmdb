@@ -116,7 +116,7 @@ class TmdbTest extends TestCase
                 ->getMock();
 
         $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
-        ->setMethods(['getResponse', 'postResponse'])
+        ->setMethods(['getResponse', 'postResponse', 'deleteResponse'])
         ->getMock();
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
@@ -136,7 +136,7 @@ class TmdbTest extends TestCase
                 ->getMock();
 
         $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
-        ->setMethods(['getResponse', 'postResponse'])
+        ->setMethods(['getResponse', 'postResponse', 'deleteResponse'])
         ->getMock();
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
@@ -159,7 +159,7 @@ class TmdbTest extends TestCase
         $guzzleclient->method('getBody')->willReturn('Not JSON');
 
         $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
-        ->setMethods(['getResponse', 'postResponse'])
+        ->setMethods(['getResponse', 'postResponse', 'deleteResponse'])
         ->getMock();
 
         $http_request->method('getResponse')->willReturn($guzzleclient);
@@ -178,7 +178,7 @@ class TmdbTest extends TestCase
                 ->getMock();
 
         $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
-        ->setMethods(['getResponse', 'postResponse'])
+        ->setMethods(['getResponse', 'postResponse', 'deleteResponse'])
         ->getMock();
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
@@ -201,7 +201,7 @@ class TmdbTest extends TestCase
                 ->getMock();
 
         $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
-        ->setMethods(['postResponse', 'getResponse'])
+        ->setMethods(['getResponse', 'postResponse', 'deleteResponse'])
         ->getMock();
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
@@ -210,6 +210,29 @@ class TmdbTest extends TestCase
         $http_request->method('postResponse')->willReturn($guzzleclient);
 
         $result = $tmdb->postRequest('/test', ['param=1']);
+
+        $this->assertInstanceOf(\stdClass::class, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function testDeleteRequestOk()
+    {
+        $guzzleclient = $this->getMockBuilder(\GuzzleHttp\Client::class)
+                ->setMethods(['getBody'])
+                ->getMock();
+
+        $http_request = $this->getMockBuilder(\VfacTmdb\Interfaces\HttpRequestInterface::class)
+        ->setMethods(['getResponse', 'postResponse', 'deleteResponse'])
+        ->getMock();
+
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
+
+        $guzzleclient->method('getBody')->willReturn(file_get_contents('tests/json/configurationOk.json'));
+        $http_request->method('deleteResponse')->willReturn($guzzleclient);
+
+        $result = $tmdb->deleteRequest('/test', ['param=1']);
 
         $this->assertInstanceOf(\stdClass::class, $result);
     }

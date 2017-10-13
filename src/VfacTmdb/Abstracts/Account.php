@@ -14,8 +14,6 @@
 
 namespace VfacTmdb\Abstracts;
 
-use VfacTmdb\Exceptions\ServerErrorException;
-use VfacTmdb\Interfaces\AuthInterface;
 use VfacTmdb\Interfaces\TmdbInterface;
 
 /**

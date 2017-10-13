@@ -40,6 +40,14 @@ interface TmdbInterface
     public function postRequest(string $action, array $options = array()) : ?\stdClass;
 
     /**
+     * Send request to TMDB API with DELETE method
+     * @param  string $action  API action to request
+     * @param  array  $options Array of options of the request (optional)
+     * @return \stdClass|null
+     */
+    public function deleteRequest(string $action, array $options = array()) : ?\stdClass;
+
+    /**
      * Get API Configuration
      * @return \stdClass
      */

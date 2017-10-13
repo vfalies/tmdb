@@ -7,6 +7,8 @@ use VfacTmdb\Tmdb;
 use VfacTmdb\Auth;
 use VfacTmdb\Results;
 use VfacTmdb\Account;
+use VfacTmdb\Account\Rated;
+use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
 class RatedTest extends TestCase
@@ -96,5 +98,131 @@ class RatedTest extends TestCase
         foreach ($tvs as $tv) {
             $this->assertInstanceOf(Results\TVEpisode::class, $tv);
         }
+    }
+
+    public function testAddMovieRate()
+    {
+        $session_id = $this->createSession();
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
+        $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
+        $account = new Account($this->tmdb, $session_id);
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/movieratingOk.json')));
+        $res = $account->getRated()->addMovieRate(11, 8);
+
+        $this->assertEquals('/3/movie/11/rating', parse_url($this->tmdb->url, PHP_URL_PATH));
+
+        $this->assertInstanceOf(Rated::class, $res);
+    }
+
+    public function testAddTVShowRate()
+    {
+        $session_id = $this->createSession();
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
+        $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
+        $account = new Account($this->tmdb, $session_id);
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/movieratingOk.json')));
+        $res = $account->getRated()->addTVShowRate(1399, 8);
+
+        $this->assertEquals('/3/tv/1399/rating', parse_url($this->tmdb->url, PHP_URL_PATH));
+
+        $this->assertInstanceOf(Rated::class, $res);
+    }
+
+    public function testAddTVShowEpisodeRate()
+    {
+        $session_id = $this->createSession();
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
+        $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
+        $account = new Account($this->tmdb, $session_id);
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/movieratingOk.json')));
+        $res = $account->getRated()->addTVShowEpisodeRate(1399, 1, 3, 8);
+
+        $this->assertEquals('/3/tv/1399/season/1/episode/3/rating', parse_url($this->tmdb->url, PHP_URL_PATH));
+
+        $this->assertInstanceOf(Rated::class, $res);
+    }
+
+    public function testRemoveMovieRate()
+    {
+        $session_id = $this->createSession();
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
+        $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
+        $account = new Account($this->tmdb, $session_id);
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/movieratingOk.json')));
+        $res = $account->getRated()->removeMovieRate(11);
+
+        $this->assertEquals('/3/movie/11/rating', parse_url($this->tmdb->url, PHP_URL_PATH));
+
+        $this->assertInstanceOf(Rated::class, $res);
+    }
+
+    public function testRemoveTVShowRate()
+    {
+        $session_id = $this->createSession();
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
+        $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
+        $account = new Account($this->tmdb, $session_id);
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/movieratingOk.json')));
+        $res = $account->getRated()->removeTVShowRate(1399);
+
+        $this->assertEquals('/3/tv/1399/rating', parse_url($this->tmdb->url, PHP_URL_PATH));
+
+        $this->assertInstanceOf(Rated::class, $res);
+    }
+
+    public function testRemoveTVShowEpisodeRate()
+    {
+        $session_id = $this->createSession();
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
+        $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
+        $account = new Account($this->tmdb, $session_id);
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/movieratingOk.json')));
+        $res = $account->getRated()->RemoveTVShowEpisodeRate(1399, 1, 3);
+
+        $this->assertEquals('/3/tv/1399/season/1/episode/3/rating', parse_url($this->tmdb->url, PHP_URL_PATH));
+
+        $this->assertInstanceOf(Rated::class, $res);
+    }
+
+    /**
+     * @expectedException VfacTmdb\Exceptions\TmdbException
+     */
+    public function testAddMovieRateFailed()
+    {
+        $session_id = $this->createSession();
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
+        $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
+        $account = new Account($this->tmdb, $session_id);
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->will($this->throwException(new TmdbException));
+        $res = $account->getRated()->addMovieRate(11, 8);
+    }
+
+    /**
+     * @expectedException VfacTmdb\Exceptions\TmdbException
+     */
+    public function testRemoveMovieRateFailed()
+    {
+        $session_id = $this->createSession();
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
+        $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
+        $account = new Account($this->tmdb, $session_id);
+
+        $this->tmdb->expects($this->at(0))->method('sendRequest')->will($this->throwException(new TmdbException));
+        $res = $account->getRated()->removeMovieRate(11);
     }
 }

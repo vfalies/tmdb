@@ -140,6 +140,19 @@ class Tmdb implements TmdbInterface
     }
 
     /**
+     * Send request to TMDB API with DELETE method
+     * @param  string $action  API action to request
+     * @param  array  $options Array of options of the request (optional)
+     * @return \stdClass|null
+     */
+    public function deleteRequest(string $action, array $options = array()) : ?\stdClass
+    {
+        $this->logger->debug('Start sending HTTP request with DELETE method', array('action' => $action, 'options' => $options));
+        $this->url = $this->buildHTTPUrl($action, $options);
+        return $this->sendRequest('DELETE', $this->url);
+    }
+
+    /**
      * Send request to TMDB API with GET method
      * @param string $method HTTP method (GET, POST)
      * @param string $url API url to request
@@ -154,6 +167,9 @@ class Tmdb implements TmdbInterface
                   break;
               case 'POST':
                   $res = $this->http_request->postResponse($url, [], $form_params);
+                  break;
+              case 'DELETE':
+                  $res = $this->http_request->deleteResponse($url);
                   break;
         }
 

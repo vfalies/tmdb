@@ -17,8 +17,6 @@ namespace VfacTmdb\Account;
 use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\Results;
 use VfacTmdb\Abstracts\Account;
-use VfacTmdb\Exceptions\ServerErrorException;
-use VfacTmdb\Exceptions\InvalidResponseException;
 use VfacTmdb\Traits\ListItems;
 
 /**

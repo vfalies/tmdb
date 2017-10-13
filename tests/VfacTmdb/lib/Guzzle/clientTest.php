@@ -125,4 +125,53 @@ class ClientTest extends TestCase
         $client   = new Client($guzzleClient);
         $client->postResponse('http://httpstat.us/500');
     }
+
+    /**
+     * @test
+     */
+    public function testDeleteResponseOk()
+    {
+        $guzzleClient = new \GuzzleHttp\Client();
+
+        $client   = new Client($guzzleClient);
+        $response = $client->deleteResponse('http://httpbin.org/delete');
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     * @expectedException VfacTmdb\Exceptions\HttpErrorException
+     */
+    public function testDeleteResponseNOk()
+    {
+        $guzzleClient = new \GuzzleHttp\Client();
+
+        $client   = new Client($guzzleClient);
+        $client->deleteResponse('badurl_totally_fake');
+    }
+
+    /**
+     * @test
+     * @expectedException VfacTmdb\Exceptions\NotFoundException
+     */
+    public function testDeleteResponseNok404()
+    {
+        $guzzleClient = new \GuzzleHttp\Client();
+
+        $client   = new Client($guzzleClient);
+        $client->deleteResponse('http://httpstat.us/404');
+    }
+
+    /**
+     * @test
+     * @expectedException VfacTmdb\Exceptions\ServerErrorException
+     */
+    public function testDeleteResponseNok500()
+    {
+        $guzzleClient = new \GuzzleHttp\Client();
+
+        $client   = new Client($guzzleClient);
+        $client->deleteResponse('http://httpstat.us/500');
+    }
 }

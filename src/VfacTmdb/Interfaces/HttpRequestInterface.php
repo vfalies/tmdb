@@ -36,4 +36,11 @@ interface HttpRequestInterface
      * @return mixed
      */
     public function postResponse(string $url, array $options = [], array $form_params = array());
+
+    /**
+     * Delete response method
+     * @param string $url
+     * @return mixed
+     */
+    public function deleteResponse(string $url);
 }
