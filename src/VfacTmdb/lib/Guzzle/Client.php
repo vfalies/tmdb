@@ -55,7 +55,10 @@ class Client implements HttpRequestInterface
     private function sendResponse(string $method, string $url, array $options = [], array $form_params = array())
     {
         try {
-            $params = array_merge($options, array('form_params' => $form_params));
+            $params = array_merge($options, [
+                'headers' => ['Content-Type' => 'application/json;charset=utf-8'],
+                'body' => json_encode($form_params)
+            ]);
 
             return $this->guzzleClient->request($method, $url, $params);
         } catch (RequestException $e) {
