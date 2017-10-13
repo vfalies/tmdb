@@ -51,21 +51,29 @@ class AuthTest extends TestCase
     public function testConnect()
     {
         $redirect_url  = 'https://vfac.fr';
-
-        $this->tmdb->method('sendRequest')->willReturn($this->createRequestTokenValid());
+        $request_token = '991c25974a2fcf3d923ae722f46e9c44788ff3ea';
 
         $Auth = new Auth($this->tmdb);
-        $Auth->connect($redirect_url);
-
-        $this->assertEquals('/3/authentification/token/new', parse_url($this->tmdb->url, PHP_URL_PATH));
+        $Auth->connect($request_token, $redirect_url);
 
         if (!function_exists('xdebug_get_headers')) {
             $this->markTestSkipped('XDebug not available on the system');
         }
         $this->assertContains(
-            'Location: https://www.themoviedb.org/authenticate/'.$Auth->request_token.'?redirect_to='.$redirect_url,
+            'Location: https://www.themoviedb.org/authenticate/'.$request_token.'?redirect_to='.$redirect_url,
             xdebug_get_headers()
         );
+    }
+
+    public function testGetRequestToken()
+    {
+        $this->tmdb->method('sendRequest')->willReturn($this->createRequestTokenValid());
+
+        $Auth = new Auth($this->tmdb);
+        $request_token = $Auth->getRequestToken();
+
+        $this->assertEquals('/3/authentification/token/new', parse_url($this->tmdb->url, PHP_URL_PATH));
+        $this->assertEquals('991c25974a2fcf3d923ae722f46e9c44788ff3ea', $request_token);
     }
 
     /**
@@ -74,12 +82,12 @@ class AuthTest extends TestCase
      */
     public function testConnectInvalidRedirection()
     {
-        $redirect_url  = 'vfac.fr';
+        $redirect_url  = 'invalid_url';
 
         $this->tmdb->method('sendRequest')->willReturn($this->createRequestTokenValid());
 
         $Auth = new Auth($this->tmdb);
-        $Auth->connect($redirect_url);
+        $Auth->connect('991c25974a2fcf3d923ae722f46e9c44788ff3ea', $redirect_url);
     }
 
     /**
@@ -92,7 +100,7 @@ class AuthTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $Auth = new Auth($this->tmdb);
-        $Auth->connect();
+        $Auth->getRequestToken();
     }
 
     /**

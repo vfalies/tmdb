@@ -24,10 +24,17 @@ interface AuthInterface
 {
     /**
      * Connect and valid request token
+     * @param string $request_token
      * @param  string|null $redirect_url Redirection url after connection (optional)
      * @return bool
      */
-    public function connect(?string $redirect_url = null) : bool;
+    public function connect(string $request_token, ?string $redirect_url = null) : bool;
+
+    /**
+     * Get a new request token
+     * @return string
+     */
+    public function getRequestToken() : string;
 
     /**
      * Create a new session Auth

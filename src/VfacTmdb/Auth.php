@@ -67,13 +67,13 @@ class Auth implements AuthInterface
 
     /**
      * Connect and valid request token
+     * @param string $request_token
      * @param  string|null $redirect_url Redirection url after connection (optional)
      * @return bool
      */
-    public function connect(?string $redirect_url = null) : bool
+    public function connect(string $request_token, ?string $redirect_url = null) : bool
     {
-        $this->getRequestToken();
-        $url = "https://www.themoviedb.org/authenticate/$this->request_token";
+        $url = "https://www.themoviedb.org/authenticate/$request_token";
         if (!is_null($redirect_url)) {
             if (!filter_var($redirect_url, FILTER_VALIDATE_URL)) {
                 throw new IncorrectParamException('Invalid redirect Url');
@@ -86,9 +86,9 @@ class Auth implements AuthInterface
 
     /**
      * Get a new request token
-     * @return void
+     * @return string
      */
-    private function getRequestToken() : void
+    public function getRequestToken() : string
     {
         $data = $this->tmdb->getRequest('authentification/token/new', []);
 
@@ -97,6 +97,8 @@ class Auth implements AuthInterface
         }
         $this->request_token            = $data->request_token;
         $this->request_token_expiration = \DateTime::createFromFormat('Y-m-d H:i:s e', $data->expires_at);
+
+        return $this->request_token;
     }
 
     /**
