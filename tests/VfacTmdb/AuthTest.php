@@ -114,7 +114,7 @@ class AuthTest extends TestCase
         $Auth = new Auth($this->tmdb);
         $Auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
 
-        $this->assertEquals('/3/authentification/session/new', parse_url($this->tmdb->url, PHP_URL_PATH));
+        $this->assertEquals('/3/authentication/session/new', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         $this->assertNotEmpty($Auth->session_id);
     }
