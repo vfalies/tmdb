@@ -90,7 +90,7 @@ class Auth implements AuthInterface
      */
     public function getRequestToken() : string
     {
-        $data = $this->tmdb->getRequest('authentification/token/new', []);
+        $data = $this->tmdb->getRequest('authentication/token/new', []);
 
         if (!isset($data->success) || $data->success != 'true' || !isset($data->request_token)) {
             throw new InvalidResponseException("Getting request token failed");

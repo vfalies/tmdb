@@ -72,7 +72,7 @@ class AuthTest extends TestCase
         $Auth = new Auth($this->tmdb);
         $request_token = $Auth->getRequestToken();
 
-        $this->assertEquals('/3/authentification/token/new', parse_url($this->tmdb->url, PHP_URL_PATH));
+        $this->assertEquals('/3/authentication/token/new', parse_url($this->tmdb->url, PHP_URL_PATH));
         $this->assertEquals('991c25974a2fcf3d923ae722f46e9c44788ff3ea', $request_token);
     }
 
