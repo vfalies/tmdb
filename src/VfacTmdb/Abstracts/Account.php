@@ -73,5 +73,6 @@ abstract class Account
         $this->account_id      = $account_id;
         // Configuration
         $this->conf            = $tmdb->getConfiguration();
+        $this->setGeneratorTrait($tmdb);
     }
 }

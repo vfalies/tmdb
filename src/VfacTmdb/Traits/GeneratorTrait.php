@@ -13,6 +13,9 @@
 
 namespace VfacTmdb\Traits;
 
+use Psr\Log\LoggerInterface;
+use VfacTmdb\Interfaces\TmdbInterface;
+
 /**
  * Generator trait
  * @package Tmdb
@@ -22,15 +25,33 @@ namespace VfacTmdb\Traits;
 trait GeneratorTrait
 {
     /**
+     * GeneratorTrait object variable
+     * @var \stdClass
+     */
+    protected $generator_trait;
+
+    /**
+     * Set GeneratorTrait variable
+     * @param TmdbInterface $tmdb
+     * @return void
+     */
+    protected function setGeneratorTrait(TmdbInterface $tmdb) : void
+    {
+        $this->generator_trait         = new \stdClass();
+        $this->generator_trait->tmdb   = $tmdb;
+        $this->generator_trait->logger = $tmdb->getLogger();
+    }
+
+    /**
      * Item generator method
      * @param array $results
      * @param string $class
      */
     protected function searchItemGenerator(array $results, string $class)
     {
-        $this->logger->debug('Starting search item generator', array('results' => $results, 'class' => $class));
+        $this->generator_trait->logger->debug('Starting search item generator', array('results' => $results, 'class' => $class));
         foreach ($results as $result) {
-            $element = new $class($this->tmdb, $result);
+            $element = new $class($this->generator_trait->tmdb, $result);
 
             yield $element;
         }

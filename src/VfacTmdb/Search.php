@@ -50,6 +50,7 @@ class Search
     {
         $this->tmdb   = $tmdb;
         $this->logger = $tmdb->getLogger();
+        $this->setGeneratorTrait($tmdb);
     }
 
     /**
