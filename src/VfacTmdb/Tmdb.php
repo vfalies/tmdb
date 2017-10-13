@@ -217,9 +217,9 @@ class Tmdb implements TmdbInterface
     {
         $params                  = [];
         // Set default options
-        $params['language']      = $this->language;
-        $params['include_adult'] = $this->include_adult;
-        $params['page']          = $this->page;
+        // $params['language']      = $this->language;
+        // $params['include_adult'] = $this->include_adult;
+        // $params['page']          = $this->page;
         // Check options
         foreach ($options as $key => $value) {
             switch ($key) {
