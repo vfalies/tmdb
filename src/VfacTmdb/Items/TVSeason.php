@@ -57,6 +57,8 @@ class TVSeason extends Item implements TVSeasonInterface
 
         $this->season_number = $season_number;
         $this->tv_id         = $tv_id;
+
+        $this->setElementTrait($this->data);
     }
 
     /**

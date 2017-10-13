@@ -22,6 +22,21 @@ namespace VfacTmdb\Traits;
  */
 trait ElementTrait
 {
+    /**
+     * ElementTrait object variable
+     * @var \stdClass
+     */
+    protected $element_trait;
+
+    /**
+     * Set ElementTrait variable
+     * @param \stdClass|null $data
+     * @return void
+     */
+    protected function setElementTrait(?\stdClass $data) : void
+    {
+        $this->element_trait = $data;
+    }
 
     /**
      * Get poster path
@@ -29,8 +44,8 @@ trait ElementTrait
      */
     public function getPosterPath() : string
     {
-        if (isset($this->data->poster_path)) {
-            return $this->data->poster_path;
+        if (isset($this->element_trait->poster_path)) {
+            return $this->element_trait->poster_path;
         }
         return '';
     }
@@ -41,8 +56,8 @@ trait ElementTrait
      */
     public function getBackdropPath() : string
     {
-        if (isset($this->data->backdrop_path)) {
-            return $this->data->backdrop_path;
+        if (isset($this->element_trait->backdrop_path)) {
+            return $this->element_trait->backdrop_path;
         }
         return '';
     }

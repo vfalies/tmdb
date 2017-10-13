@@ -59,5 +59,7 @@ class Movie extends Results implements MovieResultsInterface
         $this->title          = $this->data->title;
         $this->poster_path    = $this->data->poster_path;
         $this->backdrop_path  = $this->data->backdrop_path;
+
+        $this->setElementTrait($this->data);
     }
 }

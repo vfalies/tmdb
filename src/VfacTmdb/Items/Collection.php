@@ -57,6 +57,8 @@ class Collection extends Item implements CollectionInterface
     public function __construct(TmdbInterface $tmdb, int $collection_id, array $options = array())
     {
         parent::__construct($tmdb, $collection_id, $options, 'collection');
+
+        $this->setElementTrait($this->data);
     }
 
     /**

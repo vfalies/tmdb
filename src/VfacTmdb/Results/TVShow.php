@@ -63,5 +63,7 @@ class TVShow extends Results implements TVShowResultsInterface
         $this->title          = $this->data->name;
         $this->poster_path    = $this->data->poster_path;
         $this->backdrop_path  = $this->data->backdrop_path;
+
+        $this->setElementTrait($this->data);
     }
 }

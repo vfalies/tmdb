@@ -120,6 +120,8 @@ class TVEpisode extends Abstracts\Results implements TVEpisodeResultsInterface
         $this->production_code = $this->data->production_code;
         $this->still_path      = $this->data->still_path;
         $this->guest_stars     = $this->data->guest_stars;
+
+        $this->setElementTrait($this->data);
     }
 
     /**

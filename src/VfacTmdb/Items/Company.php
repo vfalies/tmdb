@@ -39,6 +39,8 @@ class Company extends Item implements CompanyInterface
     public function __construct(TmdbInterface $tmdb, int $company_id, array $options = array())
     {
         parent::__construct($tmdb, $company_id, $options, 'company');
+
+        $this->setElementTrait($this->data);
     }
 
     /**

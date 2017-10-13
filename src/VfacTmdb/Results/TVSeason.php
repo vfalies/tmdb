@@ -71,6 +71,8 @@ class TVSeason extends Results implements TVSeasonResultsInterface
         $this->episode_count = $this->data->episode_count;
         $this->poster_path   = $this->data->poster_path;
         $this->season_number = $this->data->season_number;
+
+        $this->setElementTrait($this->data);
     }
 
     /**

@@ -40,6 +40,8 @@ class Movie extends Item implements MovieInterface
     public function __construct(TmdbInterface $tmdb, int $movie_id, array $options = array())
     {
         parent::__construct($tmdb, $movie_id, $options, 'movie');
+
+        $this->setElementTrait($this->data);
     }
 
     /**

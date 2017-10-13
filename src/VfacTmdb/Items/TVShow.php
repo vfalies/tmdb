@@ -39,6 +39,8 @@ class TVShow extends Item implements TVShowInterface
     public function __construct(TmdbInterface $tmdb, int $tv_id, array $options = array())
     {
         parent::__construct($tmdb, $tv_id, $options, 'tv');
+
+        $this->setElementTrait($this->data);
     }
 
     /**
