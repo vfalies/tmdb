@@ -41,16 +41,16 @@ class RatedTest extends TestCase
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn($json_object);
 
         $this->auth = new Auth($this->tmdb);
-        $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
+        return $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
     }
 
     public function testGetMovies()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountRatedMoviesOk.json')));
         $movies = $account->getRated()->getMovies();
@@ -64,11 +64,11 @@ class RatedTest extends TestCase
 
     public function testGetTVShows()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountRatedTVShowsOk.json')));
         $tvs = $account->getRated()->getTVShows();
@@ -82,11 +82,11 @@ class RatedTest extends TestCase
 
     public function testGetTVEpisodes()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountRatedTVEpisodesOk.json')));
         $tvs = $account->getRated()->getTVEpisodes();

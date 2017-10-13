@@ -239,6 +239,7 @@ class Tmdb implements TmdbInterface
                     $params[$key] = $this->checkSort($value);
                     break;
                 case 'query':
+                case 'session_id':
                     $params[$key] = trim($value);
                     break;
                 default:

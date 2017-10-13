@@ -37,8 +37,8 @@ abstract class Account
      */
     protected $logger = null;
     /**
-     * Auth object
-     * @var AuthInterface
+     * Session_id string
+     * @var string
      */
     protected $auth = null;
     /**
@@ -59,22 +59,19 @@ abstract class Account
     /**
      * Constructor
      * @param TmdbInterface $tmdb
-     * @param AuthInterface $auth
+     * @param string $session_id
      * @param int $account_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, AuthInterface $auth, int $account_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, string $session_id, int $account_id, array $options = array())
     {
-        if (trim($auth->session_id) == '') {
-            throw new ServerErrorException('No account session found');
-        }
-        $this->tmdb       = $tmdb;
-        $this->auth       = $auth;
-        $this->logger     = $tmdb->getLogger();
-        $this->options    = $this->tmdb->checkOptions($options);
-        $this->account_id = $account_id;
+        $this->tmdb            = $tmdb;
+        $options['session_id'] = $session_id;
+        $this->logger          = $tmdb->getLogger();
+        $this->options         = $this->tmdb->checkOptions($options);
+        $this->account_id      = $account_id;
         // Configuration
-        $this->conf       = $tmdb->getConfiguration();
+        $this->conf            = $tmdb->getConfiguration();
     }
 
     /**

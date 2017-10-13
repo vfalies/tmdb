@@ -43,16 +43,16 @@ class FavoriteTest extends TestCase
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn($json_object);
 
         $this->auth = new Auth($this->tmdb);
-        $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
+        return $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
     }
 
     public function testGetMovies()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountFavoriteMoviesOk.json')));
         $movies = $account->getFavorite()->getMovies();
@@ -66,11 +66,11 @@ class FavoriteTest extends TestCase
 
     public function testGetTVShows()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountFavoriteTVShowsOk.json')));
         $tvs = $account->getFavorite()->getTVShows();
@@ -87,11 +87,11 @@ class FavoriteTest extends TestCase
      */
     public function testMarkMovieAsFavoriteFailed()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->will($this->throwException(new ServerErrorException));
         $fav = $account->getFavorite()->markMovieAsFavorite(11);
@@ -99,11 +99,11 @@ class FavoriteTest extends TestCase
 
     public function testMarkMovieAsFavorite()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountMarkFavoriteOk.json')));
         $fav = $account->getFavorite()->markMovieAsFavorite(11);
@@ -114,11 +114,11 @@ class FavoriteTest extends TestCase
 
     public function testUnMarkMovieAsFavorite()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountMarkFavoriteOk.json')));
         $fav = $account->getFavorite()->unmarkMovieAsFavorite(11);
@@ -129,11 +129,11 @@ class FavoriteTest extends TestCase
 
     public function testMarkTVShowAsFavorite()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountMarkFavoriteOk.json')));
         $fav = $account->getFavorite()->markTVShowAsFavorite(11);
@@ -144,24 +144,16 @@ class FavoriteTest extends TestCase
 
     public function testUnMarkTVShowAsFavorite()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountMarkFavoriteOk.json')));
         $fav = $account->getFavorite()->unmarkTVShowAsFavorite(11);
 
         $this->assertEquals('/3/account/'.$account->getId().'/favorite', parse_url($this->tmdb->url, PHP_URL_PATH));
         $this->assertInstanceOf(Favorite::class, $fav);
-    }
-
-    /**
-     * @expectedException \VfacTmdb\Exceptions\ServerErrorException
-     */
-    public function testConstructorFailure()
-    {
-        $favorite = new Account\Favorite($this->tmdb, new Auth($this->tmdb), 1);
     }
 }

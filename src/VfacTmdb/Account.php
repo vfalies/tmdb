@@ -14,14 +14,11 @@
 
 namespace VfacTmdb;
 
-use PHPUnit\Util\Configuration;
 use VfacTmdb\Account\Rated;
 use VfacTmdb\Account\WatchList;
 use VfacTmdb\Exceptions\ServerErrorException;
 use VfacTmdb\Interfaces\TmdbInterface;
 use VfacTmdb\Account\Favorite;
-
-use VfacTmdb\Interfaces\AuthInterface;
 
 /**
  * Account class
@@ -42,8 +39,8 @@ class Account
      */
     private $logger = null;
     /**
-     * Auth object
-     * @var \VfacTmdb\Interfaces\AuthInterface
+     * Session id string
+     * @var string
      */
     private $auth = null;
     /**
@@ -60,21 +57,17 @@ class Account
     /**
      * Constructor
      * @param TmdbInterface $tmdb
-     * @param AuthInterface $auth
+     * @param string $session_id
      */
-    public function __construct(TmdbInterface $tmdb, AuthInterface $auth)
+    public function __construct(TmdbInterface $tmdb, string $session_id)
     {
-        $this->tmdb   = $tmdb;
-        $this->logger = $tmdb->getLogger();
-
-        if (trim($auth->session_id) == '') {
-            throw new ServerErrorException('No account session found');
-        }
-        $this->auth = $auth;
-        $this->conf = $this->tmdb->getConfiguration();
+        $this->tmdb       = $tmdb;
+        $this->logger     = $tmdb->getLogger();
+        $this->conf       = $this->tmdb->getConfiguration();
+        $this->session_id = $session_id;
 
         // Get details account
-        $this->data       = $this->tmdb->getRequest('account', array('session_id' => $this->auth->session_id));
+        $this->data       = $this->tmdb->getRequest('account', array('session_id' => $this->session_id));
         if (!isset($this->data->id)) {
             throw new ServerErrorException('Invalid response for details account');
         }
@@ -89,7 +82,7 @@ class Account
     public function getFavorite(array $options = array()) : Favorite
     {
         $this->logger->debug('Starting getting account favorite elements', array('options' => $options));
-        $favorite = new Favorite($this->tmdb, $this->auth, $this->account_id, $options);
+        $favorite = new Favorite($this->tmdb, $this->session_id, $this->account_id, $options);
 
         return $favorite;
     }
@@ -102,7 +95,7 @@ class Account
     public function getRated(array $options = array()) : Rated
     {
         $this->logger->debug('Starting getting account rated elements', array('options' => $options));
-        $rated = new Rated($this->tmdb, $this->auth, $this->account_id, $options);
+        $rated = new Rated($this->tmdb, $this->session_id, $this->account_id, $options);
 
         return $rated;
     }
@@ -115,7 +108,7 @@ class Account
     public function getWatchList(array $options = array()) : WatchList
     {
         $this->logger->debug('Starting getting account watch list elements', array('options' => $options));
-        $watchlist = new WatchList($this->tmdb, $this->auth, $this->account_id, $options);
+        $watchlist = new WatchList($this->tmdb, $this->session_id, $this->account_id, $options);
 
         return $watchlist;
     }

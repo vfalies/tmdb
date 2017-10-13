@@ -43,16 +43,16 @@ class WatchListTest extends TestCase
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn($json_object);
 
         $this->auth = new Auth($this->tmdb);
-        $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
+        return $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
     }
 
     public function testGetMovies()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountWatchListMoviesOk.json')));
         $movies = $account->getWatchList()->getMovies();
@@ -66,11 +66,11 @@ class WatchListTest extends TestCase
 
     public function testGetTVShows()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountWatchListTVShowsOk.json')));
         $tvs = $account->getWatchList()->getTVShows();
@@ -84,11 +84,11 @@ class WatchListTest extends TestCase
 
     public function testAddMovie()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountAddToWatchList.json')));
         $watchlist = $account->getWatchList()->addMovie(11);
@@ -99,11 +99,11 @@ class WatchListTest extends TestCase
 
     public function testRemoveMovie()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountAddToWatchList.json')));
         $watchlist = $account->getWatchList()->removeMovie(11);
@@ -114,11 +114,11 @@ class WatchListTest extends TestCase
 
     public function testAddTVShow()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountAddToWatchList.json')));
         $watchlist = $account->getWatchList()->addTVShow(11);
@@ -129,11 +129,11 @@ class WatchListTest extends TestCase
 
     public function testRemoveTVShow()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountAddToWatchList.json')));
         $watchlist = $account->getWatchList()->removeTVShow(11);
@@ -147,11 +147,11 @@ class WatchListTest extends TestCase
      */
     public function testAddMovieFailed()
     {
-        $this->createSession();
+        $session_id = $this->createSession();
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/configurationOk.json')));
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
-        $account = new Account($this->tmdb, $this->auth);
+        $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->will($this->throwException(new ServerErrorException));
         $fav = $account->getWatchList()->addMovie(11);
