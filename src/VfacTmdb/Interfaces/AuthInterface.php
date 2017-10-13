@@ -38,7 +38,8 @@ interface AuthInterface
 
     /**
      * Create a new session Auth
-     * @return void
+     * @param string $request_token
+     * @return string
      */
-    public function createSession() : void;
+    public function createSession(string $request_token) : string;
 }

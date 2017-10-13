@@ -103,16 +103,18 @@ class Auth implements AuthInterface
 
     /**
      * Create a new session Auth
-     * @return void
+     * @param string $request_token
+     * @return string
      */
-    public function createSession() : void
+    public function createSession(string $request_token) : string
     {
-        $data = $this->tmdb->getRequest('authentification/session/new', ['request_token' => $this->request_token]);
+        $data = $this->tmdb->getRequest('authentification/session/new', ['request_token' => $request_token]);
 
         if (!isset($data->success) || $data->success != 'true' || !isset($data->session_id)) {
             throw new InvalidResponseException("Creating session failed");
         }
         $this->session_id = $data->session_id;
+        return $this->session_id;
     }
 
     /**

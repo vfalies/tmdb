@@ -40,7 +40,7 @@ class AccountTest extends TestCase
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn($json_object);
 
         $this->auth = new Auth($this->tmdb);
-        $this->auth->createSession();
+        $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
     }
 
     public function testGetId()

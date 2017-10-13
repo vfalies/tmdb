@@ -112,7 +112,7 @@ class AuthTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $Auth = new Auth($this->tmdb);
-        $Auth->createSession();
+        $Auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
 
         $this->assertEquals('/3/authentification/session/new', parse_url($this->tmdb->url, PHP_URL_PATH));
 
@@ -129,7 +129,7 @@ class AuthTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $Auth = new Auth($this->tmdb);
-        $Auth->createSession();
+        $Auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
     }
 
     /**
