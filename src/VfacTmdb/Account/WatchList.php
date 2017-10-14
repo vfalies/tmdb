@@ -15,7 +15,6 @@
 namespace VfacTmdb\Account;
 
 use VfacTmdb\Results;
-use VfacTmdb\Traits\ListItems;
 use VfacTmdb\Abstracts\Account;
 
 /**
@@ -26,7 +25,6 @@ use VfacTmdb\Abstracts\Account;
  */
 class WatchList extends Account
 {
-    use ListItems;
 
     /**
      * Get movies watchlist

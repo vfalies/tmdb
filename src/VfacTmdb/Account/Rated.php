@@ -16,7 +16,6 @@ namespace VfacTmdb\Account;
 
 use VfacTmdb\Results;
 use VfacTmdb\Exceptions\TmdbException;
-use VfacTmdb\Traits\ListItems;
 use VfacTmdb\Abstracts\Account;
 
 /**
@@ -27,7 +26,6 @@ use VfacTmdb\Abstracts\Account;
  */
 class Rated extends Account
 {
-    use ListItems;
 
     /**
      * Get movies rated

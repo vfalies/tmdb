@@ -58,6 +58,23 @@ abstract class Account
      * @var array
      */
     protected $options = [];
+
+    /**
+     * Page number
+     * @var int
+     */
+    public $page = 1;
+    /**
+     * Total pages
+     * @var int
+     */
+    public $total_pages = 1;
+    /**
+     * Total results
+     * @var int
+     */
+    public $total_results = 0;
+
     /**
      * Constructor
      * @param TmdbInterface $tmdb
@@ -116,5 +133,32 @@ abstract class Account
         $this->total_results = (int) $response->total_results;
 
         return $this->searchItemGenerator($response->results, $result_class);
+    }
+
+    /**
+     * Get page from result search
+     * @return int
+     */
+    public function getPage() : int
+    {
+        return $this->page;
+    }
+
+    /**
+     * Get total page from result search
+     * @return int
+     */
+    public function getTotalPages() : int
+    {
+        return $this->total_pages;
+    }
+
+    /**
+     * Get total results from search
+     * @return int
+     */
+    public function getTotalResults() : int
+    {
+        return $this->total_results;
     }
 }

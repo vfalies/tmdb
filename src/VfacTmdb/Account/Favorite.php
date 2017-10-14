@@ -16,7 +16,6 @@ namespace VfacTmdb\Account;
 
 use VfacTmdb\Results;
 use VfacTmdb\Abstracts\Account;
-use VfacTmdb\Traits\ListItems;
 
 /**
  * Class to manipulate account favorite
@@ -26,7 +25,6 @@ use VfacTmdb\Traits\ListItems;
  */
 class Favorite extends Account
 {
-    use ListItems;
 
     /**
      * Get account favorite movies
