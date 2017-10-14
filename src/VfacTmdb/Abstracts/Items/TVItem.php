@@ -29,14 +29,35 @@ abstract class TVItem extends Item
     use ElementTrait;
 
     /**
+     * Get posters params configuration from child object
+     * @return \stdClass
+     */
+    protected function getPostersParams() : \stdClass
+    {
+        $url = 'tv/' . $this->tv_id . '/season/' . $this->season_number;
+        $key = 'posters';
+        if (isset($this->episode_number)) {
+            $url .= '/episode/' . $this->episode_number;
+            $key = 'stills';
+        }
+        $url .= '/images';
+
+        $params = new \stdClass;
+        $params->url = $url;
+        $params->key = $key;
+
+        return $params;
+    }
+
+    /**
      * Image posters
-     * @param string $url api url
-     * @param string $key json key
      * @return \Generator|Results\Image
      */
-    public function getPostersGeneric(string $url, string $key) : \Generator
+    public function getPosters() : \Generator
     {
-        $data = $this->tmdb->getRequest($url, $this->params);
+        $params = $this->getPostersParams();
+        $key    = $params->key;
+        $data   = $this->tmdb->getRequest($params->url, $this->params);
 
         foreach ($data->$key as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);

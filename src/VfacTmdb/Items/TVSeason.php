@@ -143,13 +143,4 @@ class TVSeason extends TVItem implements TVSeasonInterface
         }
         return '';
     }
-
-    /**
-     * Posters list
-     * @return \Generator|Results\Image
-     */
-    public function getPosters() : \Generator
-    {
-        return parent::getPostersGeneric('tv/' . (int) $this->tv_id . '/season/' . $this->season_number . '/images', 'posters');
-    }
 }

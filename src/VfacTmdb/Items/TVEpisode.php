@@ -202,13 +202,4 @@ class TVEpisode extends TVItem implements TVEpisodeInterface
         }
         return '';
     }
-
-    /**
-     * Image posters
-     * @return \Generator|Results\Image
-     */
-    public function getPosters() : \Generator
-    {
-        return parent::getPostersGeneric('tv/' . $this->tv_id . '/season/' . $this->season_number . '/episode/' . $this->episode_number . '/images', 'stills');
-    }
 }
