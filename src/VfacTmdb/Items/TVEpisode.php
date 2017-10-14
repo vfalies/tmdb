@@ -31,22 +31,6 @@ class TVEpisode extends TVItem implements TVEpisodeInterface
     use TVEpisodeTrait;
 
     /**
-     * Season number
-     * @var int
-     */
-    protected $season_number;
-    /**
-     * Episode number
-     * @var int
-     */
-    protected $episode_number;
-    /**
-     * TVShow Id
-     * @var  int
-     */
-    protected $tv_id;
-
-    /**
      * Constructor
      * @param TmdbInterface $tmdb
      * @param int $tv_id

@@ -30,17 +30,6 @@ class TVSeason extends TVItem implements TVSeasonInterface
 {
 
     /**
-     * Season number
-     * @var int
-     */
-    protected $season_number;
-    /**
-     * TVShow Id
-     * @var int
-     */
-    protected $tv_id;
-
-    /**
      * Constructor
      * @param TmdbInterface $tmdb
      * @param int $tv_id

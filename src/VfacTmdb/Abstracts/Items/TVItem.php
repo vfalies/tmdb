@@ -29,6 +29,22 @@ abstract class TVItem extends Item
     use ElementTrait;
 
     /**
+     * Season number
+     * @var int
+     */
+    protected $season_number;
+    /**
+     * Episode number
+     * @var int
+     */
+    protected $episode_number;
+    /**
+     * TVShow Id
+     * @var  int
+     */
+    protected $tv_id;
+    
+    /**
      * Get posters params configuration from child object
      * @return \stdClass
      */
