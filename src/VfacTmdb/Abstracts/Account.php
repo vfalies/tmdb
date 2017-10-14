@@ -79,24 +79,42 @@ abstract class Account
 
     /**
      * Add or remove item in list
-     * @param string $item_type  Type of list (possible value : favorite / watchlist)
+     * @param string $list_type  Type of list (possible value : favorite / watchlist)
      * @param string $media_type type of media (movie / tv)
      * @param int    $media_id   media_id
      * @param bool   $add        add or remove item in list
      */
-    protected function setListItem(string $item_type, string $media_type, int $media_id, bool $add)
+    protected function setListItem(string $list_type, string $media_type, int $media_id, bool $add)
     {
         try {
             $params               = [];
             $params['media_type'] = $media_type;
             $params['media_id']   = $media_id;
-            $params[$item_type]   = $add;
+            $params[$list_type]   = $add;
 
-            $this->tmdb->postRequest('account/'.$this->account_id.'/'.$item_type, $this->options, $params);
+            $this->tmdb->postRequest('account/'.$this->account_id.'/'.$list_type, $this->options, $params);
 
             return $this;
         } catch (TmdbException $e) {
             throw $e;
         }
+    }
+
+    /**
+     * Get account favorite items
+     * @param  string $list_type    type of list (possible value : favorite, rated, watchlist)
+     * @param  string $item         item name, possible value : movies , tv , tv/episodes
+     * @param  string $result_class class for the results
+     * @return \Generator
+     */
+    protected function getAccountListItems(string $list_type, string $item, string $result_class) : \Generator
+    {
+        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/'.$list_type.'/'.$item, $this->options);
+
+        $this->page          = (int) $response->page;
+        $this->total_pages   = (int) $response->total_pages;
+        $this->total_results = (int) $response->total_results;
+
+        return $this->searchItemGenerator($response->results, $result_class);
     }
 }

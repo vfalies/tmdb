@@ -34,7 +34,7 @@ class Favorite extends Account
      */
     public function getMovies() : \Generator
     {
-        return $this->getAccountItems('movies', Results\Movie::class);
+        return $this->getAccountListItems('favorite', 'movies', Results\Movie::class);
     }
 
     /**
@@ -43,7 +43,7 @@ class Favorite extends Account
      */
     public function getTVShows() : \Generator
     {
-        return $this->getAccountItems('tv', Results\TVShow::class);
+        return $this->getAccountListItems('favorite', 'tv', Results\TVShow::class);
     }
 
     /**
@@ -84,22 +84,5 @@ class Favorite extends Account
     public function unmarkTVShowAsFavorite(int $tvshow_id) : Favorite
     {
         return $this->setListItem('favorite', 'tv', $tvshow_id, false);
-    }
-
-    /**
-     * Get account favorite items
-     * @param  string $item         item name, possible value : movies / tv
-     * @param  string $result_class class for the results
-     * @return \Generator
-     */
-    private function getAccountItems(string $item, string $result_class) : \Generator
-    {
-        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/favorite/'.$item, $this->options);
-
-        $this->page          = (int) $response->page;
-        $this->total_pages   = (int) $response->total_pages;
-        $this->total_results = (int) $response->total_results;
-
-        return $this->searchItemGenerator($response->results, $result_class);
     }
 }

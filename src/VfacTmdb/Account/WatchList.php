@@ -34,13 +34,7 @@ class WatchList extends Account
      */
     public function getMovies() : \Generator
     {
-        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/watchlist/movies', $this->options);
-
-        $this->page          = (int) $response->page;
-        $this->total_pages   = (int) $response->total_pages;
-        $this->total_results = (int) $response->total_results;
-
-        return $this->searchItemGenerator($response->results, Results\Movie::class);
+        return $this->getAccountListItems('watchlist', 'movies', Results\Movie::class);
     }
 
     /**
@@ -49,13 +43,7 @@ class WatchList extends Account
      */
     public function getTVShows() : \Generator
     {
-        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/watchlist/tv', $this->options);
-
-        $this->page          = (int) $response->page;
-        $this->total_pages   = (int) $response->total_pages;
-        $this->total_results = (int) $response->total_results;
-
-        return $this->searchItemGenerator($response->results, Results\TVShow::class);
+        return $this->getAccountListItems('watchlist', 'tv', Results\TVShow::class);
     }
 
     /**
