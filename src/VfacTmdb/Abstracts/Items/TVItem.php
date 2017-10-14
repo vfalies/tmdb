@@ -1,0 +1,46 @@
+<?php declare(strict_types=1);
+/**
+ * This file is part of the Tmdb package.
+ *
+ * (c) Vincent Faliès <vincent@vfac.fr>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Vincent Faliès <vincent@vfac.fr>
+ * @copyright Copyright (c) 2017
+ */
+
+
+namespace VfacTmdb\Abstracts\Items;
+
+use VfacTmdb\Results;
+use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Traits\ElementTrait;
+
+/**
+ * abstract TV item class
+ * @package Tmdb
+ * @author Vincent Faliès <vincent@vfac.fr>
+ * @copyright Copyright (c) 2017
+ */
+abstract class TVItem extends Item
+{
+    use ElementTrait;
+
+    /**
+     * Image posters
+     * @param string $url api url
+     * @param string $key json key
+     * @return \Generator|Results\Image
+     */
+    public function getPostersGeneric(string $url, string $key) : \Generator
+    {
+        $data = $this->tmdb->getRequest($url, $this->params);
+
+        foreach ($data->$key as $b) {
+            $image = new Results\Image($this->tmdb, $this->id, $b);
+            yield $image;
+        }
+    }
+}

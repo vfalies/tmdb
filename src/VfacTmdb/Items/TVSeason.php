@@ -14,11 +14,9 @@
 
 namespace VfacTmdb\Items;
 
-use VfacTmdb\Abstracts\Item;
+use VfacTmdb\Abstracts\Items\TVItem;
 use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\Interfaces\Items\TVSeasonInterface;
-use VfacTmdb\Traits\ElementTrait;
-
 use VfacTmdb\Results;
 use VfacTmdb\Interfaces\TmdbInterface;
 
@@ -28,9 +26,8 @@ use VfacTmdb\Interfaces\TmdbInterface;
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
-class TVSeason extends Item implements TVSeasonInterface
+class TVSeason extends TVItem implements TVSeasonInterface
 {
-    use ElementTrait;
 
     /**
      * Season number
@@ -153,11 +150,6 @@ class TVSeason extends Item implements TVSeasonInterface
      */
     public function getPosters() : \Generator
     {
-        $data = $this->tmdb->getRequest('tv/' . (int) $this->tv_id . '/season/' . $this->season_number . '/images', $this->params);
-
-        foreach ($data->posters as $b) {
-            $image = new Results\Image($this->tmdb, $this->id, $b);
-            yield $image;
-        }
+        return parent::getPostersGeneric('tv/' . (int) $this->tv_id . '/season/' . $this->season_number . '/images', 'posters');
     }
 }
