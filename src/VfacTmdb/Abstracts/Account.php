@@ -14,6 +14,7 @@
 
 namespace VfacTmdb\Abstracts;
 
+use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\Interfaces\TmdbInterface;
 use VfacTmdb\Traits\GeneratorTrait;
 
@@ -74,5 +75,28 @@ abstract class Account
         // Configuration
         $this->conf            = $tmdb->getConfiguration();
         $this->setGeneratorTrait($tmdb);
+    }
+
+    /**
+     * Add or remove item in list
+     * @param string $item_type  Type of list (possible value : favorite / watchlist)
+     * @param string $media_type type of media (movie / tv)
+     * @param int    $media_id   media_id
+     * @param bool   $add        add or remove item in list
+     */
+    protected function setListItem(string $item_type, string $media_type, int $media_id, bool $add)
+    {
+        try {
+            $params               = [];
+            $params['media_type'] = $media_type;
+            $params['media_id']   = $media_id;
+            $params[$item_type]   = $add;
+
+            $this->tmdb->postRequest('account/'.$this->account_id.'/'.$item_type, $this->options, $params);
+
+            return $this;
+        } catch (TmdbException $e) {
+            throw $e;
+        }
     }
 }

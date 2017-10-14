@@ -15,7 +15,6 @@
 namespace VfacTmdb\Account;
 
 use VfacTmdb\Results;
-use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\Traits\ListItems;
 use VfacTmdb\Abstracts\Account;
 
@@ -60,36 +59,13 @@ class WatchList extends Account
     }
 
     /**
-     * Add / remove in watchlist items
-     * @param  string    $media_type Media type (movie / tv)
-     * @param  int       $media_id    item id
-     * @param  bool      $watchlist
-     * @return WatchList
-     */
-    private function setWatchlistItem(string $media_type, int $media_id, bool $watchlist) : WatchList
-    {
-        try {
-            $params               = [];
-            $params['media_type'] = $media_type;
-            $params['media_id']   = $media_id;
-            $params['watchlist']  = $watchlist;
-
-            $this->tmdb->postRequest('account/'.$this->account_id.'/watchlist', $this->options, $params);
-
-            return $this;
-        } catch (TmdbException $e) {
-            throw $e;
-        }
-    }
-
-    /**
      * Add movie in watchlist
      * @param  int       $movie_id movie id
      * @return WatchList
      */
     public function addMovie(int $movie_id) : WatchList
     {
-        return $this->setWatchlistItem('movie', $movie_id, true);
+        return $this->setListItem('watchlist', 'movie', $movie_id, true);
     }
 
     /**
@@ -99,7 +75,7 @@ class WatchList extends Account
      */
     public function removeMovie(int $movie_id) : WatchList
     {
-        return $this->setWatchlistItem('movie', $movie_id, false);
+        return $this->setListItem('watchlist', 'movie', $movie_id, false);
     }
 
     /**
@@ -109,7 +85,7 @@ class WatchList extends Account
      */
     public function addTVShow(int $tvshow_id) : WatchList
     {
-        return $this->setWatchlistItem('tv', $tvshow_id, true);
+        return $this->setListItem('watchlist', 'tv', $tvshow_id, true);
     }
 
     /**
@@ -119,6 +95,6 @@ class WatchList extends Account
      */
     public function removeTVShow(int $tvshow_id) : WatchList
     {
-        return $this->setWatchlistItem('tv', $tvshow_id, false);
+        return $this->setListItem('watchlist', 'tv', $tvshow_id, false);
     }
 }

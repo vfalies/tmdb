@@ -14,7 +14,6 @@
 
 namespace VfacTmdb\Account;
 
-use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\Results;
 use VfacTmdb\Abstracts\Account;
 use VfacTmdb\Traits\ListItems;
@@ -48,36 +47,13 @@ class Favorite extends Account
     }
 
     /**
-     * Mark / unmark favorite items
-     * @param  string $media_type type of media (movie / tv)
-     * @param  int    $media_id   media id
-     * @param  bool   $favorite
-     * @return Favorite
-     */
-    private function markAsFavorite(string  $media_type, int $media_id, bool $favorite) : Favorite
-    {
-        try {
-            $params               = [];
-            $params['media_type'] = $media_type;
-            $params['media_id']   = $media_id;
-            $params['favorite']   = $favorite;
-
-            $this->tmdb->postRequest('account/'.$this->account_id.'/favorite', $this->options, $params);
-
-            return $this;
-        } catch (TmdbException $e) {
-            throw $e;
-        }
-    }
-
-    /**
      * Marl a movie as favorite
      * @param  int    $movie_id Movie id
      * @return Favorite
      */
     public function markMovieAsFavorite(int $movie_id) : Favorite
     {
-        return $this->markAsFavorite('movie', $movie_id, true);
+        return $this->setListItem('favorite', 'movie', $movie_id, true);
     }
     /**
 
@@ -87,7 +63,7 @@ class Favorite extends Account
      */
     public function unmarkMovieAsFavorite(int $movie_id) : Favorite
     {
-        return $this->markAsFavorite('movie', $movie_id, false);
+        return $this->setListItem('favorite', 'movie', $movie_id, false);
     }
 
     /**
@@ -97,7 +73,7 @@ class Favorite extends Account
      */
     public function markTVShowAsFavorite(int $tvshow_id) : Favorite
     {
-        return $this->markAsFavorite('tv', $tvshow_id, true);
+        return $this->setListItem('favorite', 'tv', $tvshow_id, true);
     }
 
     /**
@@ -107,7 +83,7 @@ class Favorite extends Account
      */
     public function unmarkTVShowAsFavorite(int $tvshow_id) : Favorite
     {
-        return $this->markAsFavorite('tv', $tvshow_id, false);
+        return $this->setListItem('favorite', 'tv', $tvshow_id, false);
     }
 
     /**
