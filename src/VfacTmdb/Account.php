@@ -80,16 +80,27 @@ class Account
     }
 
     /**
+     * Get an account list
+     * @param  string $type    class name of the type of list (possible value : Favorite, Rated, WatchList)
+     * @param  array  $options
+     * @return mixed
+     */
+    private function getList(string $type, array $options = array())
+    {
+        $this->logger->debug("Starting getting account $type elements", array('options' => $options));
+        $list = new $type($this->tmdb, $this->session_id, $this->account_id, $options);
+
+        return $list;
+    }
+
+    /**
      * Get account favorite elements
      * @param array $options
      * @return Favorite
      */
     public function getFavorite(array $options = array()) : Favorite
     {
-        $this->logger->debug('Starting getting account favorite elements', array('options' => $options));
-        $favorite = new Favorite($this->tmdb, $this->session_id, $this->account_id, $options);
-
-        return $favorite;
+        return $this->getList(Favorite::class, $options);
     }
 
     /**
@@ -99,10 +110,7 @@ class Account
      */
     public function getRated(array $options = array()) : Rated
     {
-        $this->logger->debug('Starting getting account rated elements', array('options' => $options));
-        $rated = new Rated($this->tmdb, $this->session_id, $this->account_id, $options);
-
-        return $rated;
+        return $this->getList(Rated::class, $options);
     }
 
     /**
@@ -112,10 +120,7 @@ class Account
      */
     public function getWatchList(array $options = array()) : WatchList
     {
-        $this->logger->debug('Starting getting account watch list elements', array('options' => $options));
-        $watchlist = new WatchList($this->tmdb, $this->session_id, $this->account_id, $options);
-
-        return $watchlist;
+        return $this->getList(WatchList::class, $options);
     }
 
     /**
