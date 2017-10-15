@@ -167,17 +167,30 @@ class Tmdb implements TmdbInterface
     {
         $res = new \stdClass();
         switch ($method) {
-              case 'GET':
+              case "GET":
                   $res = $this->http_request->getResponse($url);
                   break;
-              case 'POST':
+              case "POST":
                   $res = $this->http_request->postResponse($url, [], $form_params);
                   break;
-              case 'DELETE':
+              case "DELETE":
                   $res = $this->http_request->deleteResponse($url);
                   break;
         }
+        $response = $this->decodeRequest($res, $method, $url, $form_params);
+        return $response;
+    }
 
+    /**
+     * Decode request response
+     * @param  mixed $res
+     * @param  string $method
+     * @param  string $url
+     * @param  array $form_params
+     * @return string
+     */
+    private function decodeRequest($res, $method, $url, $form_params)
+    {
         if (empty($res->getBody())) {
             $this->logger->error('Request Body empty', array('method' => $method, 'url' => $url, 'form_params' => $form_params));
             throw new ServerErrorException();

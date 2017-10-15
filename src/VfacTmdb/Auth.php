@@ -47,7 +47,7 @@ class Auth implements AuthInterface
      * Expiration date of request token
      * @var \DateTime
      */
-    private $request_token_expiration = null;
+    private $request_token_expiration;
     /**
      * Session Id
      * @var string
@@ -95,9 +95,7 @@ class Auth implements AuthInterface
             throw new InvalidResponseException("Getting request token failed");
         }
         $this->request_token            = $data->request_token;
-
-        $expiration                     = \DateTime::createFromFormat('Y-m-d H:i:s e', $data->expires_at);
-        $this->request_token_expiration = ($expiration !== false) ? $expiration : null;
+        $this->request_token_expiration = \DateTime::createFromFormat('Y-m-d H:i:s e', $data->expires_at);
 
         return $this->request_token;
     }

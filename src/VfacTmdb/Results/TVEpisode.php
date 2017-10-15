@@ -96,15 +96,7 @@ class TVEpisode extends Abstracts\Results implements TVEpisodeResultsInterface
      */
     public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
-        if (!isset($result->overview)) {
-            $result->overview = null;
-        }
-        if (!isset($result->production_code)) {
-            $result->production_code = null;
-        }
-        if (!isset($result->guest_stars)) {
-            $result->guest_stars = null;
-        }
+        $result = $this->initResultObject($result);
 
         parent::__construct($tmdb, $result);
 
@@ -123,6 +115,25 @@ class TVEpisode extends Abstracts\Results implements TVEpisodeResultsInterface
 
         $this->setElementTrait($this->data);
         $this->setTVEpisodeTrait($tmdb, $this->data);
+    }
+
+    /**
+     * initResultObject
+     * @param  \stdClass  $result
+     * @return \stdClass
+     */
+    private function initResultObject(\stdClass $result) : \stdClass
+    {
+        if (!isset($result->overview)) {
+            $result->overview = null;
+        }
+        if (!isset($result->production_code)) {
+            $result->production_code = null;
+        }
+        if (!isset($result->guest_stars)) {
+            $result->guest_stars = null;
+        }
+        return $result;
     }
 
     /**
