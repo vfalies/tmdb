@@ -72,15 +72,10 @@ class Search
                 throw new IncorrectParamException;
             }
             $options['query'] = $query;
-            $params           = [];
-            $this->tmdb->checkOptionQuery($options, $params);
-            $this->tmdb->checkOptionPage($options, $params);
-            $this->tmdb->checkOptionLanguage($options, $params);
-            $this->tmdb->checkOptionIncludeAdult($options, $params);
-            $this->tmdb->checkOptionYear($options, $params);
+            $params           = $this->checkSearchItemOption($options);
 
             $response         = $this->tmdb->getRequest('search/' . $item, $params);
-            
+
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
             $this->total_results = (int) $response->total_results;
@@ -89,6 +84,23 @@ class Search
         } catch (TmdbException $ex) {
             throw $ex;
         }
+    }
+
+    /**
+     * Check search item api option
+     * @param array $options
+     * @return array
+     */
+    private function checkSearchItemOption(array $options) : array
+    {
+        $params           = [];
+        $this->tmdb->checkOptionQuery($options, $params);
+        $this->tmdb->checkOptionPage($options, $params);
+        $this->tmdb->checkOptionLanguage($options, $params);
+        $this->tmdb->checkOptionIncludeAdult($options, $params);
+        $this->tmdb->checkOptionYear($options, $params);
+
+        return $params;
     }
 
     /**

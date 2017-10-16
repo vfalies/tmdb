@@ -167,17 +167,8 @@ class Tmdb implements TmdbInterface
     {
         try {
             $res = new \stdClass();
-            switch ($method) {
-                  case "GET":
-                      $res = $this->http_request->getResponse($url);
-                      break;
-                  case "POST":
-                      $res = $this->http_request->postResponse($url, [], $form_params);
-                      break;
-                  case "DELETE":
-                      $res = $this->http_request->deleteResponse($url);
-                      break;
-            }
+            $method_name = $method.'Response';
+            $res = $this->http_request->$method_name($url, [], $form_params);
             $response = $this->decodeRequest($res, $method, $url, $form_params);
             return $response;
         } catch (TmdbException $e) {
