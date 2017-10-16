@@ -183,9 +183,9 @@ class Tmdb implements TmdbInterface
      * @param  string $method
      * @param  string $url
      * @param  array $form_params
-     * @return string
+     * @return \stdClass
      */
-    private function decodeRequest($res, $method, $url, $form_params)
+    private function decodeRequest($res, $method, $url, $form_params) : \stdClass
     {
         if (empty($res->getBody())) {
             $this->logger->error('Request Body empty', array('method' => $method, 'url' => $url, 'form_params' => $form_params));
