@@ -49,7 +49,9 @@ abstract class PeopleItemCredit extends Item
         try {
             $this->tmdb   = $tmdb;
             $this->logger = $tmdb->getLogger();
-            $this->params = $this->tmdb->checkOptions($options);
+
+            $this->tmdb->checkOptionLanguage($options, $this->params);
+
             $this->data   = $this->tmdb->getRequest('person/' . $item_id . '/' . $item_type . '_credits', $this->params);
         } catch (TmdbException $ex) {
             throw $ex;

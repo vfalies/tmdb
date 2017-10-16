@@ -61,8 +61,7 @@ class MovieCredit
     {
         $this->tmdb   = $tmdb;
         $this->logger = $tmdb->getLogger();
-        $this->params = $this->tmdb->checkOptions($options);
-        $this->data   = $this->tmdb->getRequest('movie/' . $movie_id . '/credits', $this->params);
+        $this->data   = $this->tmdb->getRequest('movie/' . $movie_id . '/credits');
     }
 
     /**

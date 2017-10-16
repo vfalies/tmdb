@@ -43,7 +43,7 @@ abstract class TVItem extends Item
      * @var  int
      */
     protected $tv_id;
-    
+
     /**
      * Get posters params configuration from child object
      * @return \stdClass
@@ -73,7 +73,11 @@ abstract class TVItem extends Item
     {
         $params = $this->getPostersParams();
         $key    = $params->key;
-        $data   = $this->tmdb->getRequest($params->url, $this->params);
+
+        $options = [];
+        $this->tmdb->checkOptionLanguage($this->params, $options);
+
+        $data   = $this->tmdb->getRequest($params->url, $options);
 
         foreach ($data->$key as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);

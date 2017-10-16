@@ -83,7 +83,8 @@ class Genres implements GenresInterface
     private function getList(string $type, array $options) : \Generator
     {
         try {
-            $params   = $this->tmdb->checkOptions($options);
+            $params = [];
+            $this->tmdb->checkOptionLanguage($options, $params);
             $response = $this->tmdb->getRequest($type, $params);
 
             $genres = [];

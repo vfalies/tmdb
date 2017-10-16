@@ -55,13 +55,18 @@ class FavoriteTest extends TestCase
         $account = new Account($this->tmdb, $session_id);
 
         $this->tmdb->expects($this->at(0))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountFavoriteMoviesOk.json')));
-        $movies = $account->getFavorite()->getMovies();
+        $favorite = $account->getFavorite();
+        $movies   = $favorite->getMovies();
 
         $this->assertEquals('/3/account/'.$account->getId().'/favorite/movies', parse_url($this->tmdb->url, PHP_URL_PATH));
 
         foreach ($movies as $movie) {
             $this->assertInstanceOf(Results\Movie::class, $movie);
         }
+
+        $this->assertEquals(1, $favorite->getPage());
+        $this->assertEquals(4, $favorite->getTotalPages());
+        $this->assertEquals(77, $favorite->getTotalResults());
     }
 
     public function testGetTVShows()

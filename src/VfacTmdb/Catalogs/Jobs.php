@@ -51,8 +51,7 @@ class Jobs
     public function getList(array $options = array()) : \Generator
     {
         try {
-            $params   = $this->tmdb->checkOptions($options);
-            $response = $this->tmdb->getRequest('job/list', $params);
+            $response = $this->tmdb->getRequest('job/list');
 
             $results = [];
             if (isset($response->jobs)) {

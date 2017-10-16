@@ -165,20 +165,25 @@ class Tmdb implements TmdbInterface
      */
     protected function sendRequest(string $method, string $url, array $form_params = array()) : ?\stdClass
     {
-        $res = new \stdClass();
-        switch ($method) {
-              case "GET":
-                  $res = $this->http_request->getResponse($url);
-                  break;
-              case "POST":
-                  $res = $this->http_request->postResponse($url, [], $form_params);
-                  break;
-              case "DELETE":
-                  $res = $this->http_request->deleteResponse($url);
-                  break;
+        try {
+            $res = new \stdClass();
+            switch ($method) {
+                  case "GET":
+                      $res = $this->http_request->getResponse($url);
+                      break;
+                  case "POST":
+                      $res = $this->http_request->postResponse($url, [], $form_params);
+                      break;
+                  case "DELETE":
+                      $res = $this->http_request->deleteResponse($url);
+                      break;
+            }
+            $response = $this->decodeRequest($res, $method, $url, $form_params);
+            return $response;
+        } catch (TmdbException $e) {
+            $this->logger->error('sendRequest failed : '.$e->getMessage(), array('method' => $method, 'url' => $url, 'form_params' => $form_params));
+            throw $e;
         }
-        $response = $this->decodeRequest($res, $method, $url, $form_params);
-        return $response;
     }
 
     /**
@@ -246,90 +251,6 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Check options rules before send request
-     * @param array $options Array of options to validate
-     * @return array
-     * @throws IncorrectParamException
-     */
-    public function checkOptions(array $options) : array
-    {
-        $params                  = [];
-        // Check options
-        foreach ($options as $key => $value) {
-            switch ($key) {
-                case 'year':
-                    $params[$key] = $this->checkYear($value);
-                    break;
-                case 'language':
-                    $params[$key] = $this->checkLanguage($value);
-                    break;
-                case 'include_adult':
-                    $params[$key] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-                    break;
-                case 'page':
-                    $params[$key] = (int) $value;
-                    break;
-                case 'sort_by':
-                    $params[$key] = $this->checkSort($value);
-                    break;
-                case 'query':
-                case 'session_id':
-                    $params[$key] = trim($value);
-                    break;
-                default:
-                    $this->logger->error('Unknown param options', array('options', $options));
-                    throw new IncorrectParamException;
-            }
-        }
-        return $params;
-    }
-
-    /**
-     * Check year format
-     * @param mixed $year year to validate
-     * @return int year validated
-     */
-    private function checkYear($year) : int
-    {
-        $year = (int) $year;
-        return $year;
-    }
-
-    /**
-     * Check language
-     * @param string $language Language string with format ISO 639-1
-     * @return string Language string validated
-     * @throws IncorrectParamException
-     */
-    private function checkLanguage(string $language) : string
-    {
-        $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $language);
-        if ($check === 0 || $check === false) {
-            $this->logger->error('Incorrect language param option', array('language' => $language));
-            throw new IncorrectParamException;
-        }
-        return $language;
-    }
-
-    /**
-     * Check sort direction
-     * @param  string $direction direction of sorting
-     * @return string            Sort string validated
-     * @throws IncorrectParamException
-     */
-    private function checkSort(string $direction) : string
-    {
-        switch ($direction) {
-            case 'asc':
-            case 'desc':
-                break;
-            default:
-                throw new IncorrectParamException;
-        }
-        return 'created_at.'.$direction;
-    }
-
-    /**
      * Get logger
      * @return LoggerInterface
      */
@@ -350,6 +271,109 @@ class Tmdb implements TmdbInterface
                 return $this->$name;
             default:
                 throw new IncorrectParamException;
+        }
+    }
+
+    /**
+     * Check year option and return correct value
+     * @param array $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionYear(array $options, array &$return) : void
+    {
+        if (isset($options['year'])) {
+            $return['year'] = (int) $options['year'];
+        }
+    }
+
+    /**
+     * Check Language string with format ISO 639-1
+     * @param array $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionLanguage(array $options, array &$return) : void
+    {
+        if (isset($options['language'])) {
+            $check = preg_match("#([a-z]{2})-([A-Z]{2})#", $options['language']);
+            if ($check === 0 || $check === false) {
+                $this->logger->error('Incorrect language param option', array('language' => $options['language']));
+                throw new IncorrectParamException;
+            }
+            $return['language'] = $options['language'];
+        }
+    }
+
+    /**
+     * Check include adult option
+     * @param  array $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionIncludeAdult(array $options, array &$return) : void
+    {
+        if (isset($options['include_adult'])) {
+            $return['include_adult'] = filter_var($options['include_adult'], FILTER_VALIDATE_BOOLEAN);
+        }
+    }
+
+    /**
+     * Check page option
+     * @param  array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionPage(array $options, array &$return) : void
+    {
+        if (isset($options['page'])) {
+            $return['page'] = (int) $options['page'];
+        }
+    }
+
+    /**
+     * Check sort by option
+     * @param  array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionSortBy(array $options, array &$return) : void
+    {
+        if (isset($options['sort_by'])) {
+            switch ($options['sort_by']) {
+                case 'asc':
+                case 'desc':
+                    break;
+                default:
+                    throw new IncorrectParamException;
+            }
+            $return['sort_by'] = 'created_at.'.$options['sort_by'];
+        }
+    }
+
+    /**
+     * Check query option
+     * @param  array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionQuery(array $options, array &$return) : void
+    {
+        if (isset($options['query'])) {
+            $return['query'] = trim($options['query']);
+        }
+    }
+
+    /**
+     * Check session_id option
+     * @param array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionSessionId(array $options, array &$return) : void
+    {
+        if (isset($options['session_id'])) {
+            $return['session_id'] = trim($options['session_id']);
         }
     }
 }

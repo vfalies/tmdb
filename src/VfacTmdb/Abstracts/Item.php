@@ -49,7 +49,7 @@ abstract class Item
      * Params
      * @var array
      */
-    protected $params = null;
+    protected $params = [];
     /**
      * Data
      * @var \stdClass
@@ -71,7 +71,8 @@ abstract class Item
             $this->tmdb   = $tmdb;
             $this->logger = $tmdb->getLogger();
             $this->conf   = $this->tmdb->getConfiguration();
-            $this->params = $this->tmdb->checkOptions($options);
+            $this->tmdb->checkOptionLanguage($options, $this->params);
+
             $this->data   = $this->tmdb->getRequest($item_name . '/' . (int) $item_id, $this->params);
         } catch (TmdbException $ex) {
             throw $ex;

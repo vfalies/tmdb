@@ -62,17 +62,6 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
-     */
-    public function testSearchMovieInvalidOption()
-    {
-        $search = new Search($this->tmdb);
-
-        $search->movie('star wars', array('fake_option' => 'test'));
-    }
-
-    /**
-     * @test
      * @expectedException VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testSearchMovieEmptyQuery()
@@ -105,17 +94,6 @@ class SearchTest extends TestCase
      * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
-    public function testSearchTVShowInvalidOption()
-    {
-        $search = new Search($this->tmdb);
-
-        $search->tvshow('star trek', array('fake_option' => 'test'));
-    }
-
-    /**
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
-     * @test
-     */
     public function testSearchTVShowEmptyQuery()
     {
         $search = new Search($this->tmdb);
@@ -140,17 +118,6 @@ class SearchTest extends TestCase
         $this->assertInstanceOf(Results\Collection::class, $responses->current());
 
         return $search;
-    }
-
-    /**
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
-     * @test
-     */
-    public function testSearchCollectionInvalidOption()
-    {
-        $search = new Search($this->tmdb);
-
-        $search->collection('star wars', array('fake_option' => 'test'));
     }
 
     /**
@@ -230,17 +197,6 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
-     */
-    public function testSearchPeopleInvalidOption()
-    {
-        $search = new Search($this->tmdb);
-
-        $search->people('Bradley Cooper', array('fake_option' => 'test'));
-    }
-
-    /**
-     * @test
      * @expectedException VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testSearchPeopleEmptyQuery()
@@ -281,17 +237,6 @@ class SearchTest extends TestCase
 
         $this->assertInstanceOf(\Generator::class, $responses);
         $this->assertNull($responses->current());
-    }
-
-    /**
-     * @test
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
-     */
-    public function testSearchCompanyInvalidOption()
-    {
-        $search = new Search($this->tmdb);
-
-        $search->company('lucasfilm', array('fake_option' => 'test'));
     }
 
     /**

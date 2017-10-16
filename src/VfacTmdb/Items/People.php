@@ -209,7 +209,9 @@ class People extends Item implements PeopleInterface
      */
     public function getProfiles() : \Generator
     {
-        $data = $this->tmdb->getRequest('person/' . (int) $this->id . '/images', $this->params);
+        $params = [];
+        $this->tmdb->checkOptionLanguage($this->params, $params);
+        $data = $this->tmdb->getRequest('person/' . (int) $this->id . '/images', $params);
 
         foreach ($data->profiles as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);

@@ -197,7 +197,9 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getBackdrops() : \Generator
     {
-        $data = $this->tmdb->getRequest('tv/' . (int) $this->id . '/images', $this->params);
+        $params = [];
+        $this->tmdb->checkOptionLanguage($this->params, $params);
+        $data = $this->tmdb->getRequest('tv/' . (int) $this->id . '/images', $params);
 
         foreach ($data->backdrops as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);
@@ -211,7 +213,9 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getPosters() : \Generator
     {
-        $data = $this->tmdb->getRequest('tv/' . (int) $this->id . '/images', $this->params);
+        $params = [];
+        $this->tmdb->checkOptionLanguage($this->params, $params);
+        $data = $this->tmdb->getRequest('tv/' . (int) $this->id . '/images', $params);
 
         foreach ($data->posters as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);
@@ -225,7 +229,10 @@ class TVShow extends Item implements TVShowInterface
      */
     public function getSimilar() : \Generator
     {
-        $similar = $this->tmdb->getRequest('tv/' . (int) $this->id . '/similar', $this->params);
+        $params = [];
+        $this->tmdb->checkOptionLanguage($this->params, $params);
+        $this->tmdb->checkOptionPage($this->params, $params);
+        $similar = $this->tmdb->getRequest('tv/' . (int) $this->id . '/similar', $params);
 
         foreach ($similar->results as $t) {
             $tvshow = new Results\TVShow($this->tmdb, $t);

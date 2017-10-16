@@ -87,7 +87,7 @@ abstract class Account
         $this->tmdb            = $tmdb;
         $options['session_id'] = $session_id;
         $this->logger          = $tmdb->getLogger();
-        $this->options         = $this->tmdb->checkOptions($options);
+        $this->options         = $options;
         $this->account_id      = $account_id;
         // Configuration
         $this->conf            = $tmdb->getConfiguration();
@@ -118,7 +118,7 @@ abstract class Account
     }
 
     /**
-     * Get account favorite items
+     * Get account list items
      * @param  string $list_type    type of list (possible value : favorite, rated, watchlist)
      * @param  string $item         item name, possible value : movies , tv , tv/episodes
      * @param  string $result_class class for the results
@@ -126,7 +126,13 @@ abstract class Account
      */
     protected function getAccountListItems(string $list_type, string $item, string $result_class) : \Generator
     {
-        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/'.$list_type.'/'.$item, $this->options);
+        $options = [];
+        $this->tmdb->checkOptionSessionId($this->options, $options);
+        $this->tmdb->checkOptionLanguage($this->options, $options);
+        $this->tmdb->checkOptionSortBy($this->options, $options);
+        $this->tmdb->checkOptionPage($this->options, $options);
+
+        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/'.$list_type.'/'.$item, $options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;

@@ -55,15 +55,64 @@ interface TmdbInterface
     public function getConfiguration() : \stdClass;
 
     /**
-     * Check options rules before send request
-     * @param array $options Array of options to validate
-     * @return array
-     */
-    public function checkOptions(array $options) : array;
-
-    /**
      * Get current logger
      * @return \Psr\Log\LoggerInterface
      */
     public function getLogger() : \Psr\Log\LoggerInterface;
+
+    /**
+     * Check year option and return correct value
+     * @param array $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionYear(array $options, array &$return) : void;
+
+    /**
+     * Check Language string with format ISO 639-1
+     * @param array $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionLanguage(array $options, array &$return) : void;
+
+    /**
+     * Check include adult option
+     * @param  array $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionIncludeAdult(array $options, array &$return) : void;
+
+    /**
+     * Check page option
+     * @param  array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionPage(array $options, array &$return) : void;
+
+    /**
+     * Check sort by option
+     * @param  array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionSortBy(array $options, array &$return) : void;
+
+    /**
+     * Check query option
+     * @param  array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionQuery(array $options, array &$return) : void;
+
+    /**
+     * Check session_id option
+     * @param array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionSessionId(array $options, array &$return) : void;
 }

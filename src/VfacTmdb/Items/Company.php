@@ -121,7 +121,9 @@ class Company extends Item implements CompanyInterface
      */
     public function getMovies() : \Generator
     {
-        $data = $this->tmdb->getRequest('company/' . (int) $this->id . '/movies', $this->params);
+        $params = [];
+        $this->tmdb->checkOptionLanguage($this->params, $params);
+        $data = $this->tmdb->getRequest('company/' . (int) $this->id . '/movies', $params);
 
         foreach ($data->results as $m) {
             $movie = new Results\Movie($this->tmdb, $m);
