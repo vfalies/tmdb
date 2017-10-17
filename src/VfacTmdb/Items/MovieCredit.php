@@ -34,7 +34,7 @@ class MovieCredit
      * Logger object
      * @var \Psr\Log\LoggerInterface
      */
-    private $logger = null;
+    protected $logger = null;
     /**
      * Params
      * @var array
@@ -50,6 +50,11 @@ class MovieCredit
      * @var \stdClass
      */
     protected $crew;
+    /**
+     * Options array
+     * @var array
+     */
+    protected $options;
 
     /**
      * Constructor
@@ -59,9 +64,10 @@ class MovieCredit
      */
     public function __construct(TmdbInterface $tmdb, int $movie_id, array $options = array())
     {
-        $this->tmdb   = $tmdb;
-        $this->logger = $tmdb->getLogger();
-        $this->data   = $this->tmdb->getRequest('movie/' . $movie_id . '/credits');
+        $this->tmdb    = $tmdb;
+        $this->logger  = $tmdb->getLogger();
+        $this->data    = $this->tmdb->getRequest('movie/' . $movie_id . '/credits');
+        $this->options = $options;
     }
 
     /**

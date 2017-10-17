@@ -80,6 +80,6 @@ class Catalog
     {
         $this->logger->debug('Starting getting jobs list', array('options' => $options));
         $catalog = new Jobs($this->tmdb);
-        return $catalog->getList($options);
+        return $catalog->getList();
     }
 }

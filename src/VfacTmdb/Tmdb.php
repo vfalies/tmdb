@@ -37,24 +37,6 @@ class Tmdb implements TmdbInterface
     private $api_key = null;
 
     /**
-     * Default language for API response
-     * @var string
-     */
-    private $language = 'fr-FR';
-
-    /**
-     * Include adult content in search result
-     * @var bool
-     */
-    private $include_adult = false;
-
-    /**
-     * API Page result
-     * @var int
-     */
-    private $page = 1;
-
-    /**
      * API configuration
      * @var \stdClass
      */

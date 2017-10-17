@@ -37,7 +37,7 @@ class Auth implements AuthInterface
      * Logger object
      * @var \Psr\Log\LoggerInterface
      */
-    private $logger = null;
+    protected $logger = null;
     /**
      * Request token
      * @var string

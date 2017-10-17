@@ -44,11 +44,10 @@ class Jobs
 
     /**
      * Get job list
-     * @param array $options
      * @return \Generator|\stdClass
      * @throws TmdbException
      */
-    public function getList(array $options = array()) : \Generator
+    public function getList() : \Generator
     {
         try {
             $response = $this->tmdb->getRequest('job/list');
