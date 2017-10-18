@@ -14,9 +14,5 @@ before_script:
 
 script : $PHPUNIT_BIN -c $PHPUNIT_CONFIG $PHPUNIT_FLAGS
 
-addons:
-  code_climate:
-    repo_token: 62b27466fcf178ab2bd97abacf491634849ddae5eb420ce0bd28f2f4aab6f142
-
 after_success:
   - vendor/bin/test-reporter
