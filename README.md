@@ -19,7 +19,14 @@ Features actualy supported :
   - Collection
   - Company
   - Genres
-
+- Account
+  - Authentification
+  - Movies / TV Shows rating
+  - Movies / TV Shows favorites
+  - Movies / TV Shows watchlist
+- Media
+- Genres
+- Jobs
 
 
 ## Installation
@@ -75,7 +82,7 @@ $ make test
 
 ### Requirements
 
-- Tmdb works with PHP 5.6 and higher
+- Tmdb works with PHP 7.1 and higher
 - TheMovieDatabase API key
 
 ### Submitting bugs and feature requests
