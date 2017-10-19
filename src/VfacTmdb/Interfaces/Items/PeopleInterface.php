@@ -12,7 +12,7 @@
  */
 
 
-namespace VfacTmdb\Interfaces;
+namespace VfacTmdb\Interfaces\Items;
 
 /**
  * Interface for People type object

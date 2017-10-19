@@ -15,7 +15,7 @@
 namespace VfacTmdb\Items;
 
 use VfacTmdb\Abstracts\Item;
-use VfacTmdb\Interfaces\PeopleInterface;
+use VfacTmdb\Interfaces\Items\PeopleInterface;
 use VfacTmdb\Traits\ElementTrait;
 use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\Interfaces\TmdbInterface;
