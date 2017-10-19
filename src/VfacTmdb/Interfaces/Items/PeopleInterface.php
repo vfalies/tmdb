@@ -11,7 +11,6 @@
  * @copyright Copyright (c) 2017
  */
 
-
 namespace VfacTmdb\Interfaces\Items;
 
 /**
