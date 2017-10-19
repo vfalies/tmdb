@@ -68,8 +68,6 @@ $infos = $item->getMovie(11, array('language' => 'fr-FR'));
 echo $infos->getTitle();
 ```
 
-The destination of the generation is `docs/` repository.
-
 ## Unit Testing
 
 You can run the unit test suites using the following command in the library's source directory:
