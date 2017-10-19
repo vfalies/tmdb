@@ -14,14 +14,12 @@
 
 namespace VfacTmdb\Interfaces\Results;
 
-use VfacTmdb\Interfaces\Items\TVEpisodeInterface;
-
 /**
  * Interface for TVEpisode Results type object
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
  */
-interface TVEpisodeResultsInterface extends TVEpisodeInterface
+interface TVEpisodeResultsInterface extends ResultsInterface
 {
 }
