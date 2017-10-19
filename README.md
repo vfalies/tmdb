@@ -19,7 +19,14 @@ Features actualy supported :
   - Collection
   - Company
   - Genres
-
+- Account
+  - Authentification
+  - Movies / TV Shows rating
+  - Movies / TV Shows favorites
+  - Movies / TV Shows watchlist
+- Media
+- Genres
+- Jobs
 
 
 ## Installation
@@ -35,7 +42,11 @@ $ composer require vfalies/tmdb
 ```php
 <?php
 
-use vfalies\tmdb;
+require 'vendor/autoload.php';
+
+use VfacTmdb\Factory;
+use VfacTmdb\Search;
+use VfacTmdb\Item;
 
 // Initialize Wrapper
 $tmdb = Factory::create()->getTmdb('your_api_key');
@@ -47,17 +58,15 @@ $responses = $search->movie('star wars');
 // Get all results
 foreach ($responses as $response)
 {
-    echo $search->getMovie($response->id)->getTitle();
+    echo $response->getTitle();
 }
 
 // Get movie information
 $item  = new Item($tmdb);
-$infos = $item->getMovie(11, array('language' => 'fr-FR');
+$infos = $item->getMovie(11, array('language' => 'fr-FR'));
 
 echo $infos->getTitle();
 ```
-
-The destination of the generation is `docs/` repository.
 
 ## Unit Testing
 
@@ -71,7 +80,7 @@ $ make test
 
 ### Requirements
 
-- Tmdb works with PHP 5.6 and higher
+- Tmdb works with PHP 7.1 and higher
 - TheMovieDatabase API key
 
 ### Submitting bugs and feature requests
