@@ -170,8 +170,7 @@ class Tmdb implements TmdbInterface
     private function decodeRequest($res, $method, $url, $form_params) : \stdClass
     {
         $content = $res->getBody();
-        if (is_object($content))
-        {
+        if (is_object($content)) {
             $content = $content->getContents();
         }
 
