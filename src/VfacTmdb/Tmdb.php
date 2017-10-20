@@ -149,7 +149,7 @@ class Tmdb implements TmdbInterface
     {
         try {
             $res = new \stdClass();
-            $method_name = $method.'Response';
+            $method_name = strtolower($method).'Response';
             $res = $this->http_request->$method_name($url, [], $form_params);
             $response = $this->decodeRequest($res, $method, $url, $form_params);
             return $response;
@@ -169,11 +169,17 @@ class Tmdb implements TmdbInterface
      */
     private function decodeRequest($res, $method, $url, $form_params) : \stdClass
     {
-        if (empty($res->getBody())) {
+        $content = $res->getBody();
+        if (is_object($content))
+        {
+            $content = $content->getContents();
+        }
+
+        if (empty($content)) {
             $this->logger->error('Request Body empty', array('method' => $method, 'url' => $url, 'form_params' => $form_params));
             throw new ServerErrorException();
         }
-        $response = json_decode($res->getBody());
+        $response = json_decode($content);
         if (empty($response)) {
             $this->logger->error('Request Body can not be decode', array('method' => $method, 'url' => $url, 'form_params' => $form_params));
             throw new ServerErrorException();
