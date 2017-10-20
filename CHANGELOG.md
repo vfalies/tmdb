@@ -6,11 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.6.2] - 2017-10-20
+### Changed
+- Upgrade PHPUnit to version 6.4.x
+- Fix Guzzle call
+
 ## [1.6.1] - 2017-10-19
 ### Changed
 - Fix PHP Version in composer.json
-- Upgrade PHPUnit to version 6.4.x
-- Fix Guzzle call
 
 ## [1.6.0] - 2017-10-16
 ### Added
