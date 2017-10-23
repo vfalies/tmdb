@@ -68,9 +68,9 @@ class Company extends Results implements CompanyResultsInterface
 
     /**
      * Image logo path
-     * @return string
+     * @return string|null
      */
-    public function getLogoPath() : string
+    public function getLogoPath() : ?string
     {
         return $this->logo_path;
     }

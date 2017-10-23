@@ -31,7 +31,7 @@ interface CompanyResultsInterface extends ResultsInterface
 
     /**
      * Get company logo path
-     * @return string
+     * @return string|null
      */
-    public function getLogoPath() : string;
+    public function getLogoPath() : ?string;
 }
