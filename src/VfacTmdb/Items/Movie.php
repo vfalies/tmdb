@@ -173,7 +173,7 @@ class Movie extends Item implements MovieInterface
 
     /**
      * Get movie cast
-     * @return \Generator|MovieCredit
+     * @return \Generator|Results\Cast
      */
     public function getCast() : \Generator
     {
