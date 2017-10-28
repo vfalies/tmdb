@@ -1,9 +1,9 @@
 {
     "name": "vfalies/tmdb",
-    "description": "A PHP Wrapper for The Internet Movie Database API 3",
+    "description": "A PHP Wrapper for The Internet Movie Database API",
     "type": "library",
     "license": "MIT",
-    "homepage": "https://vfac.fr/tmdb",
+    "homepage": "https://vfac.fr/projects/tmdb",
     "authors": [
         {
             "name": "Vincent Faliès",
