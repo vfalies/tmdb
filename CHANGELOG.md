@@ -4,8 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.6.3] - 2017-12-11
+### Changed
 - Fix return type if null in result company
+- Add PHP 7.2 support in Travis & Scrutinizer configuration
 
 ## [1.6.2] - 2017-10-20
 ### Changed
