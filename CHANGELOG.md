@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 ### Changed
+- Update guzzlehttp/guzzle from 6.3.2 to 6.3.3
 - Update guzzlehttp/guzzle from 6.3.1 to 6.3.2
 - Update PHPUnit version to 7.0+
 
