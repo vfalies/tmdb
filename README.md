@@ -1,6 +1,6 @@
 # Tmdb - PHP Wrapper for The Movie Database API V3
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/6bf2cf4c-4b74-4a06-a5ca-afcc259df86e/big.png)](https://insight.sensiolabs.com/projects/6bf2cf4c-4b74-4a06-a5ca-afcc259df86e)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/6bf2cf4c-4b74-4a06-a5ca-afcc259df86e/mini.png)](https://insight.sensiolabs.com/projects/6bf2cf4c-4b74-4a06-a5ca-afcc259df86e)
 
 [![Latest Stable Version](https://poser.pugx.org/vfalies/tmdb/version)](https://packagist.org/packages/vfalies/tmdb) [![Build Status](https://scrutinizer-ci.com/g/vfalies/tmdb/badges/build.png?b=master)](https://scrutinizer-ci.com/g/vfalies/tmdb/build-status/master) [![Code Coverage](https://scrutinizer-ci.com/g/vfalies/tmdb/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/vfalies/tmdb/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vfalies/tmdb/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vfalies/tmdb/?branch=master) [![PHP Tested](https://php-eye.com/badge/vfalies/tmdb/tested.svg)](https://php-eye.com/package/vfalies/tmdb) [![Dependency Status](https://www.versioneye.com/user/projects/59315b3680def100433e5fc4/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/59315b3680def100433e5fc4) [![License](https://poser.pugx.org/vfalies/tmdb/license)](https://packagist.org/packages/vfalies/tmdb)
 
