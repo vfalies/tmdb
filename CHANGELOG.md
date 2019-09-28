@@ -4,13 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.6.5] - 2019-09-28
+## [1.6.5] - 2019-09-28
 ### Changed
 
 Updates for PHP 7.3 compatibility
 
 - Update Monolog to 2.0
 - Update PHP-CS to 2.15.3
+- Add PHP 7.3 support in Travis & Scrutinizer configuration
 
 ## Unreleased
 ### Changed
