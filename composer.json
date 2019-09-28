@@ -18,8 +18,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0",
-        "monolog/monolog": "~1.22",
-        "friendsofphp/php-cs-fixer": "~2.7"
+        "monolog/monolog": "~2.0",
+        "friendsofphp/php-cs-fixer": "~2.15.3"
     },
     "suggest": {
         "monolog/monolog": "Allows more advanced logging of the application flow"

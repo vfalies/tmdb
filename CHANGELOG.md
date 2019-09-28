@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.6.5] - 2019-09-28
+### Changed
+
+Updates for PHP 7.3 compatibility
+
+- Update Monolog to 2.0
+- Update PHP-CS to 2.15.3
+
 ## Unreleased
 ### Changed
 - Update guzzlehttp/guzzle from 6.3.2 to 6.3.3
@@ -40,7 +48,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Refactoring code for simplification
-- Correct docblocks params
+- Correct docblo7cks params
 - Fix API version
 - Refactoring sendRequest method
 - Fix all code in PSR-2 standard
