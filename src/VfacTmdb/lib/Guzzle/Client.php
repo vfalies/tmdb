@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -8,7 +10,7 @@
  * file that was distributed with this source code.
  *
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2020
  */
 
 
@@ -55,10 +57,19 @@ class Client implements HttpRequestInterface
     private function sendResponse(string $method, string $url, array $options = [], array $form_params = array())
     {
         try {
-            $params = array_merge($options, [
-                'headers' => ['Content-Type' => 'application/json;charset=utf-8'],
-                'body' => json_encode($form_params)
-            ]);
+            switch ($method) {
+                case 'GET':
+                    $params = array_merge($options, [
+                        'headers' => ['Content-Type' => 'application/json;charset=utf-8']
+                    ]);
+                    break;
+                default:
+                    $params = array_merge($options, [
+                        'headers' => ['Content-Type' => 'application/json;charset=utf-8'],
+                        'body' => json_encode($form_params)
+                    ]);
+                    break;
+            }
 
             return $this->guzzleClient->request($method, $url, $params);
         } catch (RequestException $e) {
