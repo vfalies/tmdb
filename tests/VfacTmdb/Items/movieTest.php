@@ -357,6 +357,23 @@ class MovieTest extends TestCase
     /**
      * @test
      */
+    public function testGetVideosOk()
+    {
+        $movie = new Movie($this->tmdb, $this->movie_id);
+
+        $json_object = json_decode(file_get_contents('tests/json/videosOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $videos = $movie->getVideos();
+
+        foreach ($videos as $v) {
+            $this->assertInstanceOf(\VfacTmdb\Results\Videos::class, $v);
+        }
+    }
+
+    /**
+     * @test
+     */
     public function testGetCastOk()
     {
         $movie = new Movie($this->tmdb, $this->movie_id);
