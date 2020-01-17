@@ -182,6 +182,17 @@ class Movie extends Item implements MovieInterface
     }
 
     /**
+     * Get movie videos
+     *
+     * @return \Generator|Results\Videos
+     */
+    public function getVideos() :\Generator
+    {
+        $videos = new MovieVideos($this->tmdb, $this->id);
+        return $videos->getVideos();
+    }
+
+    /**
      * Get production compagnies
      * @return \Generator|Results\Company
      */
