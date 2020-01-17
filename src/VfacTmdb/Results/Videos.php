@@ -19,7 +19,7 @@ use VfacTmdb\Interfaces\Results\VideosResultsInterface;
 use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
- * Class to manipulate a crew result
+ * Class to manipulate a videos result
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017-2020
