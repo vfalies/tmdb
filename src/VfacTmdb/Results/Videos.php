@@ -91,7 +91,7 @@ class Videos extends Results implements VideosResultsInterface
      * Get iso_639_1
      *
      * @return  string
-     */ 
+     */
     public function getIso_639_1() : string
     {
         return $this->iso_639_1;
@@ -101,7 +101,7 @@ class Videos extends Results implements VideosResultsInterface
      * Get iso_3166_1
      *
      * @return  string
-     */ 
+     */
     public function getIso_3166_1() : string
     {
         return $this->iso_3166_1;
@@ -111,7 +111,7 @@ class Videos extends Results implements VideosResultsInterface
      * Get key
      *
      * @return  string
-     */ 
+     */
     public function getKey() : string
     {
         return $this->key;
@@ -121,7 +121,7 @@ class Videos extends Results implements VideosResultsInterface
      * Get name
      *
      * @return  string
-     */ 
+     */
     public function getName() : string
     {
         return $this->name;
@@ -131,7 +131,7 @@ class Videos extends Results implements VideosResultsInterface
      * Get site
      *
      * @return  string
-     */ 
+     */
     public function getSite() : string
     {
         return $this->site;
@@ -141,7 +141,7 @@ class Videos extends Results implements VideosResultsInterface
      * Get id
      *
      * @return string
-     */ 
+     */
     public function getVideoId() : string
     {
         return $this->video_id;
@@ -151,7 +151,7 @@ class Videos extends Results implements VideosResultsInterface
      * Get size
      *
      * @return  int
-     */ 
+     */
     public function getSize() : int
     {
         return $this->size;
@@ -161,7 +161,7 @@ class Videos extends Results implements VideosResultsInterface
      * Get type
      *
      * @return  string
-     */ 
+     */
     public function getType() : string
     {
         return $this->type;
@@ -171,8 +171,8 @@ class Videos extends Results implements VideosResultsInterface
      * Get id
      *
      * @return int
-     */ 
-    public function getId() : int
+     */
+    public function getId() : ?int
     {
         return null;
     }

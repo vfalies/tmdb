@@ -59,4 +59,28 @@ interface TmdbInterface
      * @return \Psr\Log\LoggerInterface
      */
     public function getLogger() : \Psr\Log\LoggerInterface;
+
+    /**
+     * Check Language string with format ISO 639-1
+     * @param array $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionLanguage(array $options, array &$return) : void;
+
+    /**
+     * Check year option and return correct value
+     * @param array $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionYear(array $options, array &$return) : void;
+
+    /**
+     * Check page option
+     * @param  array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionPage(array $options, array &$return) : void;
 }
