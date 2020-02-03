@@ -61,7 +61,7 @@ class ClientTest extends TestCase
         $guzzleClient = new \GuzzleHttp\Client();
 
         $client   = new Client($guzzleClient);
-        $client->getResponse('http://httpstat.us/404');
+        $client->getResponse('http://httpbin.org/status/404');
     }
 
     /**
@@ -73,7 +73,7 @@ class ClientTest extends TestCase
         $guzzleClient = new \GuzzleHttp\Client();
 
         $client   = new Client($guzzleClient);
-        $client->getResponse('http://httpstat.us/500');
+        $client->getResponse('http://httpbin.org/status/500');
     }
 
 
@@ -111,7 +111,7 @@ class ClientTest extends TestCase
         $guzzleClient = new \GuzzleHttp\Client();
 
         $client   = new Client($guzzleClient);
-        $client->postResponse('http://httpstat.us/404');
+        $client->postResponse('http://httpbin.org/status/404');
     }
 
     /**
@@ -123,7 +123,7 @@ class ClientTest extends TestCase
         $guzzleClient = new \GuzzleHttp\Client();
 
         $client   = new Client($guzzleClient);
-        $client->postResponse('http://httpstat.us/500');
+        $client->postResponse('http://httpbin.org/status/500');
     }
 
     /**
@@ -160,7 +160,7 @@ class ClientTest extends TestCase
         $guzzleClient = new \GuzzleHttp\Client();
 
         $client   = new Client($guzzleClient);
-        $client->deleteResponse('http://httpstat.us/404');
+        $client->deleteResponse('http://httpbin.org/status/404');
     }
 
     /**
@@ -172,6 +172,6 @@ class ClientTest extends TestCase
         $guzzleClient = new \GuzzleHttp\Client();
 
         $client   = new Client($guzzleClient);
-        $client->deleteResponse('http://httpstat.us/500');
+        $client->deleteResponse('http://httpbin.org/status/500');
     }
 }
