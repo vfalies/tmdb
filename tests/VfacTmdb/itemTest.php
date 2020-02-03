@@ -149,4 +149,21 @@ class ItemTest extends TestCase
         $this->assertInstanceOf(Items\Company::class, $responses);
         $this->assertEquals(1, $responses->getId());
     }
+
+    /**
+     * @test
+     */
+    public function testGetTVNetwork()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/TVNetworkOk.json'));
+        $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $get       = new Item($this->tmdb);
+        $responses = $get->getTVNetwork(1);
+
+        $this->assertEquals('/3/network/1', parse_url($this->tmdb->url, PHP_URL_PATH));
+
+        $this->assertInstanceOf(Items\TVNetwork::class, $responses);
+        $this->assertEquals(1, $responses->getId());
+    }
 }
