@@ -116,8 +116,12 @@ class Logo extends Results
      * Logo file path
      * @return string
      */
-    public function getFilePath() : string
+    public function getFilePath($svg = true) : string
     {
+        if ($svg === true && $this->file_type === '.svg') {
+            return substr($this->file_path, 0, -3) . 'svg';
+        }
+
         return $this->file_path;
     }
 
@@ -173,14 +177,5 @@ class Logo extends Results
     public function getWidth() : int
     {
         return $this->width;
-    }
-
-    /**
-     * Best logo file path
-     * @return string
-     */
-    public function getBestFilePath() : string
-    {
-        return $this->file_type === ".svg" ? substr($this->file_path, 0, -3) . 'svg' : $this->file_path;
     }
 }

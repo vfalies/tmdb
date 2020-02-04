@@ -86,7 +86,27 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertEquals('/8UNCAmEJGuwKhgEPfqwymVF3xRn.png', $this->result->getFilePath());
+        $this->assertEquals('/8UNCAmEJGuwKhgEPfqwymVF3xRn.svg', $this->result->getFilePath());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetFilePathPng()
+    {
+        $this->getRequestOk();
+
+        $this->assertEquals('/8UNCAmEJGuwKhgEPfqwymVF3xRn.png', $this->result->getFilePath(false));
+    }
+
+    /**
+     * @test
+     */
+    public function testGetFilePathSvg()
+    {
+        $this->getRequestOk();
+
+        $this->assertEquals('/8UNCAmEJGuwKhgEPfqwymVF3xRn.svg', $this->result->getFilePath(true));
     }
 
     /**
@@ -153,15 +173,5 @@ class LogoTest extends TestCase
 
         $this->assertInternalType('int', $this->result->getWidth());
         $this->assertEquals(195, $this->result->getWidth());
-    }
-
-    /**
-     * @test
-     */
-    public function testGetBestFilePath()
-    {
-        $this->getRequestOk();
-
-        $this->assertEquals('/8UNCAmEJGuwKhgEPfqwymVF3xRn.svg', $this->result->getBestFilePath());
     }
 }
