@@ -159,7 +159,7 @@ class TvNetworkTest extends TestCase
 
         $network = new TVNetwork($this->tmdb, $this->network_id);
 
-        $this->assertEmpty($network->getHomePage());
+        $this->assertEmpty($network->getOriginCountry());
     }
 
     /**
