@@ -199,12 +199,12 @@ class TvNetworkTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
         $network = new TVNetwork($this->tmdb, $this->network_id);
-        $logos = $network->getAlternativeNames();
+        $alternative_names = $network->getAlternativeNames();
 
-        $this->assertInstanceOf(\Generator::class, $logos);
-        foreach ($logos as $l) {
+        $this->assertInstanceOf(\Generator::class, $alternative_names);
+        foreach ($alternative_names as $name) {
             $this->assertEquals('/3/network/'.$this->network_id.'/alternative_names', parse_url($this->tmdb->url, PHP_URL_PATH));
-            $this->assertInstanceOf(\VfacTmdb\Results\Name::class, $l);
+            $this->assertInstanceOf(\VfacTmdb\Results\AlternativeName::class, $name);
         }
     }
 

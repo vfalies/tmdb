@@ -111,7 +111,7 @@ class TVNetwork extends Item implements TVNetworkInterface
         $data = $this->tmdb->getRequest('network/' . (int) $this->id . '/alternative_names', $params);
 
         foreach ($data->results as $n) {
-            $name = new Results\Name($this->tmdb, $this->id, $n);
+            $name = new Results\AlternativeName($this->tmdb, $this->id, $n);
             yield $name;
         }
     }

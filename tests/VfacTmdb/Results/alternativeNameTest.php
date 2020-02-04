@@ -5,7 +5,7 @@ namespace VfacTmdb\Results;
 use PHPUnit\Framework\TestCase;
 use VfacTmdb\lib\Guzzle\Client as HttpClient;
 
-class NameTest extends TestCase
+class AlternativeNameTest extends TestCase
 {
     protected $tmdb              = null;
     protected $result            = null;
@@ -63,7 +63,7 @@ class NameTest extends TestCase
         $result               = new \stdClass();
         $result->not_property = 'test';
 
-        new \VfacTmdb\Results\Name($this->tmdb, 13, $result);
+        new \VfacTmdb\Results\AlternativeName($this->tmdb, 13, $result);
     }
 
     /**

@@ -23,7 +23,7 @@ use VfacTmdb\Interfaces\TmdbInterface;
  * @author Steve Richter <steve@nerdbra.in>
  * @copyright Copyright (c) 2017-2020
  */
-class Name extends Results
+class AlternativeName extends Results
 {
     /**
      * Id
