@@ -55,13 +55,13 @@ interface TVNetworkInterface
 
     /**
      * Logos list
-     * @return \Generator|Results\Logo
+     * @return \Generator
      */
     public function getLogos() : \Generator;
 
     /**
      * Alternative names list
-     * @return \Generator|Results\Name
+     * @return \Generator
      */
     public function getAlternativeNames() : \Generator;
 }

@@ -102,7 +102,7 @@ class TVNetwork extends Item implements TVNetworkInterface
 
     /**
      * Alternative names list
-     * @return \Generator|Results\Name
+     * @return \Generator|Results\AlternativeName
      */
     public function getAlternativeNames() : \Generator
     {
