@@ -28,8 +28,6 @@ use VfacTmdb\Results;
  */
 class TVNetwork extends Item implements TVNetworkInterface
 {
-    use ElementTrait;
-
     /**
      * Constructor
      * @param TmdbInterface $tmdb
@@ -39,8 +37,6 @@ class TVNetwork extends Item implements TVNetworkInterface
     public function __construct(TmdbInterface $tmdb, int $network_id, array $options = array())
     {
         parent::__construct($tmdb, $network_id, $options, 'network');
-
-        $this->setElementTrait($this->data);
     }
 
     /**
