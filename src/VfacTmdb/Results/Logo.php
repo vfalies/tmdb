@@ -116,7 +116,7 @@ class Logo extends Results
      * Logo file path
      * @return string
      */
-    public function getFilePath($svg = true) : string
+    public function getFilePath(bool $svg = true) : string
     {
         if ($svg === true && $this->file_type === '.svg') {
             return substr($this->file_path, 0, -3) . 'svg';
