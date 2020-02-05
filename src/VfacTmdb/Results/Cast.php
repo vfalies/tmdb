@@ -32,7 +32,7 @@ class Cast extends Results implements CastResultsInterface
     protected $character = null;
     /**
      * Gender
-     * @var string
+     * @var int
      */
     protected $gender = null;
     /**
