@@ -27,6 +27,11 @@ use VfacTmdb\Interfaces\TmdbInterface;
 class Videos extends Results implements VideosResultsInterface
 {
     /**
+     * Video Id
+     * @var string
+     */
+    protected $video_id = null;
+    /**
      * Iso_639_1
      * @var string
      */
