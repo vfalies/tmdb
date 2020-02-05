@@ -16,7 +16,6 @@ namespace VfacTmdb\Items;
 
 use VfacTmdb\Abstracts\Item;
 use VfacTmdb\Interfaces\Items\TVNetworkInterface;
-use VfacTmdb\Traits\ElementTrait;
 use VfacTmdb\Interfaces\TmdbInterface;
 use VfacTmdb\Results;
 
