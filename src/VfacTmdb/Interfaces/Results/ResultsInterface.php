@@ -25,7 +25,7 @@ interface ResultsInterface
 
     /**
      * Get  ID
-     * @return int|null
+     * @return int|string|null
      */
-    public function getId() : ?int;
+    public function getId();
 }

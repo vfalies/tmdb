@@ -51,7 +51,7 @@ class VideosTest extends TestCase
 
         $this->assertEquals('/3/movie/'.$this->movie_id.'/videos', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertEquals(null, $this->videos->getId());
+        $this->assertEquals('533ec654c3a36854480003eb', $this->videos->getId());
     }
 
      /**
@@ -122,16 +122,6 @@ class VideosTest extends TestCase
         $this->getRequestOk();
 
         $this->assertEquals('Trailer', $this->videos->getType());
-    }
-
-    /**
-     * @test
-     */
-    public function testgetVideoId()
-    {
-        $this->getRequestOk();
-
-        $this->assertEquals('533ec654c3a36854480003eb', $this->videos->getVideoId());
     }
 
 }
