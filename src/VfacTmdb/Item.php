@@ -94,7 +94,7 @@ class Item
      * @param  int    $tv_id
      * @param  int    $season_number
      * @param  array  $options
-     * @return Items\TVEpisode
+     * @return Items\TVSeason
      */
     public function getTVSeason(int $tv_id, int $season_number, array $options = array()) : Items\TVSeason
     {

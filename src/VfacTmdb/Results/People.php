@@ -28,7 +28,7 @@ class People extends Results implements PeopleResultsInterface
 {
     /**
      * Adult
-     * @var string
+     * @var bool
      */
     protected $adult = null;
     /**
