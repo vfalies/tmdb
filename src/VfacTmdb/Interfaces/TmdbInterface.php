@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  *
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2020
  */
 
 
@@ -18,7 +18,7 @@ namespace VfacTmdb\Interfaces;
  * Tmdb interface
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2020
  */
 interface TmdbInterface
 {
@@ -83,4 +83,36 @@ interface TmdbInterface
      * @return void
      */
     public function checkOptionPage(array $options, array &$return) : void;
+
+    /**
+     * Check session_id option
+     * @param array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionSessionId(array $options, array &$return) : void;
+
+    /**
+     * Check sort by option
+     * @param  array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionSortBy(array $options, array &$return) : void;
+
+    /**
+     * Check query option
+     * @param  array  $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionQuery(array $options, array &$return) : void;
+
+    /**
+     * Check include adult option
+     * @param  array $options
+     * @param array &$return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionIncludeAdult(array $options, array &$return) : void;
 }
