@@ -114,6 +114,7 @@ class Logo extends Results
 
     /**
      * Logo file path
+     * @param bool $svg
      * @return string
      */
     public function getFilePath(bool $svg = true) : string
