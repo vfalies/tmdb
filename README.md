@@ -17,6 +17,7 @@ Features actualy supported :
   - Collection
   - Company
   - Genres
+  - TV Network
 - Account
   - Authentification
   - Movies / TV Shows rating

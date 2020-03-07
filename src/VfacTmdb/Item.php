@@ -147,4 +147,19 @@ class Item
 
         return $company;
     }
+
+    /**
+     * Get TV Network details
+     * @param  int    $network_id
+     * @param  array  $options
+     * @return Items\TVNetwork
+     * @author Steve Richter <steve@nerdbra.in>
+     */
+    public function getTVNetwork(int $network_id, array $options = array()) : Items\TVNetwork
+    {
+        $this->logger->debug('Starting getting tvnetwork', array('network_id' => $network_id, 'options' => $options));
+        $tvnetwork = new Items\TVNetwork($this->tmdb, $network_id, $options);
+
+        return $tvnetwork;
+    }
 }

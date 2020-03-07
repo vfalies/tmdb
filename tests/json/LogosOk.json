@@ -1,0 +1,45 @@
+{
+  "id": 4,
+  "logos": [
+    {
+      "aspect_ratio": 1.373239436619718,
+      "file_path": "/8UNCAmEJGuwKhgEPfqwymVF3xRn.png",
+      "height": 142,
+      "id": "5a7b16c1c3a3687b63008706",
+      "file_type": ".svg",
+      "vote_average": 5.246,
+      "vote_count": 2,
+      "width": 195
+    },
+    {
+      "aspect_ratio": 2.718266253869969,
+      "file_path": "/qTj9SiOJITGUm240kM6e0ZFSJGz.png",
+      "height": 323,
+      "id": "5a7b16c10e0a260213009bd7",
+      "file_type": ".svg",
+      "vote_average": 5.172,
+      "vote_count": 1,
+      "width": 878
+    },
+    {
+      "aspect_ratio": 2.597260273972603,
+      "file_path": "/3gh7rwlfcEw4cHS6ZWbPAzhHSj3.png",
+      "height": 365,
+      "id": "5a7b17249251411c5d00953a",
+      "file_type": ".svg",
+      "vote_average": 5.172,
+      "vote_count": 1,
+      "width": 948
+    },
+    {
+      "aspect_ratio": 4.975124378109452,
+      "file_path": "/mVn7xESaTNmjBUyUtGNvDQd3CT1.png",
+      "height": 201,
+      "id": "5a7b7ba40e0a2632ff002f46",
+      "file_type": ".svg",
+      "vote_average": 5.312,
+      "vote_count": 1,
+      "width": 1000
+    }
+  ]
+}
