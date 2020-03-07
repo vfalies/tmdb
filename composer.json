@@ -4,6 +4,13 @@
     "type": "library",
     "license": "MIT",
     "homepage": "https://vfac.fr/projects/tmdb",
+    "support":
+    {
+        "source": "https://github.com/vfalies/tmdb",
+        "email": "vincent@vfac.fr",
+        "issues": "https://github.com/vfalies/tmdb/issues"
+    },
+    "readme": "./README.md",
     "authors": [
         {
             "name": "Vincent Faliès",

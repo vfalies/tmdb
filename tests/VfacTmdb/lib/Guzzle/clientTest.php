@@ -5,6 +5,9 @@ namespace VfacTmdb\lib\Guzzle;
 use PHPUnit\Framework\TestCase;
 use VfacTmdb\Tmdb;
 use VfacTmdb\lib\Guzzle\Client as HttpClient;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 
 class ClientTest extends TestCase
 {
@@ -27,15 +30,27 @@ class ClientTest extends TestCase
         $this->tmdb = null;
     }
 
+    private function mockResponseStatus($status)
+    {
+        $mock = new MockHandler([
+            new Response($status, ['X-Foo' => 'Bar'], 'Hello, World')
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $guzzleClient = new \GuzzleHttp\Client(['handler' => $handlerStack]);
+
+        return $guzzleClient;
+    }
+
     /**
      * @test
      */
     public function testGetResponseOk()
     {
-        $guzzleClient = new \GuzzleHttp\Client();
+        $guzzleClient = $this->mockResponseStatus(200);
 
         $client   = new Client($guzzleClient);
-        $response = $client->getResponse('http://httpbin.org/get');
+        $response = $client->getResponse('/');
 
         $this->assertEquals(200, $response->getStatusCode());
     }
@@ -58,10 +73,10 @@ class ClientTest extends TestCase
      */
     public function testGetResponseNok404()
     {
-        $guzzleClient = new \GuzzleHttp\Client();
+        $guzzleClient = $this->mockResponseStatus(404);
 
         $client   = new Client($guzzleClient);
-        $client->getResponse('http://httpstat.us/404');
+        $client->getResponse('/');
     }
 
     /**
@@ -70,10 +85,10 @@ class ClientTest extends TestCase
      */
     public function testGetResponseNok500()
     {
-        $guzzleClient = new \GuzzleHttp\Client();
+        $guzzleClient = $this->mockResponseStatus(500);
 
         $client   = new Client($guzzleClient);
-        $client->getResponse('http://httpstat.us/500');
+        $client->getResponse('/');
     }
 
 
@@ -82,10 +97,10 @@ class ClientTest extends TestCase
      */
     public function testPostResponseOk()
     {
-        $guzzleClient = new \GuzzleHttp\Client();
+        $guzzleClient = $this->mockResponseStatus(200);
 
         $client   = new Client($guzzleClient);
-        $response = $client->postResponse('http://httpbin.org/post');
+        $response = $client->postResponse('/');
 
         $this->assertEquals(200, $response->getStatusCode());
     }
@@ -108,10 +123,10 @@ class ClientTest extends TestCase
      */
     public function testPostResponseNok404()
     {
-        $guzzleClient = new \GuzzleHttp\Client();
+        $guzzleClient = $this->mockResponseStatus(404);
 
         $client   = new Client($guzzleClient);
-        $client->postResponse('http://httpstat.us/404');
+        $client->postResponse('/');
     }
 
     /**
@@ -120,10 +135,10 @@ class ClientTest extends TestCase
      */
     public function testPostResponseNok500()
     {
-        $guzzleClient = new \GuzzleHttp\Client();
+        $guzzleClient = $this->mockResponseStatus(500);
 
         $client   = new Client($guzzleClient);
-        $client->postResponse('http://httpstat.us/500');
+        $client->postResponse('/');
     }
 
     /**
@@ -131,11 +146,10 @@ class ClientTest extends TestCase
      */
     public function testDeleteResponseOk()
     {
-        $guzzleClient = new \GuzzleHttp\Client();
+        $guzzleClient = $this->mockResponseStatus(200);
 
         $client   = new Client($guzzleClient);
-        $response = $client->deleteResponse('http://httpbin.org/delete');
-
+        $response = $client->postResponse('/');
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -157,10 +171,10 @@ class ClientTest extends TestCase
      */
     public function testDeleteResponseNok404()
     {
-        $guzzleClient = new \GuzzleHttp\Client();
+        $guzzleClient = $this->mockResponseStatus(404);
 
         $client   = new Client($guzzleClient);
-        $client->deleteResponse('http://httpstat.us/404');
+        $client->deleteResponse('/');
     }
 
     /**
@@ -169,9 +183,9 @@ class ClientTest extends TestCase
      */
     public function testDeleteResponseNok500()
     {
-        $guzzleClient = new \GuzzleHttp\Client();
+        $guzzleClient = $this->mockResponseStatus(500);
 
         $client   = new Client($guzzleClient);
-        $client->deleteResponse('http://httpstat.us/500');
+        $client->deleteResponse('/');
     }
 }

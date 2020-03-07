@@ -27,55 +27,48 @@ interface VideosResultsInterface
      * Get iso_639_1
      *
      * @return  string
-     */ 
+     */
     public function getIso_639_1() : string;
 
     /**
      * Get iso_3166_1
      *
      * @return  string
-     */ 
+     */
     public function getIso_3166_1() : string;
 
     /**
      * Get key
      *
      * @return  string
-     */ 
+     */
     public function getKey() : string;
 
     /**
      * Get name
      *
      * @return  string
-     */ 
+     */
     public function getName() : string;
 
     /**
      * Get site
      *
      * @return  string
-     */ 
+     */
     public function getSite() : string;
 
     /**
      * Get size
      *
      * @return  int
-     */ 
+     */
     public function getSize() : int;
 
     /**
      * Get type
      *
      * @return  string
-     */ 
+     */
     public function getType() : string;
-
-    /**
-     * Get id
-     *
-     * @return string
-     */ 
-    public function getVideoId() : string;
 }
