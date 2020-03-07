@@ -71,11 +71,4 @@ interface VideosResultsInterface
      * @return  string
      */
     public function getType() : string;
-
-    /**
-     * Get id
-     *
-     * @return string
-     */
-    public function getVideoId() : string;
 }
