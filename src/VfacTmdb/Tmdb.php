@@ -148,7 +148,6 @@ class Tmdb implements TmdbInterface
     protected function sendRequest(string $method, string $url, array $form_params = array()) : ?\stdClass
     {
         try {
-            $res = new \stdClass();
             $method_name = strtolower($method).'Response';
             $res = $this->http_request->$method_name($url, [], $form_params);
             $response = $this->decodeRequest($res, $method, $url, $form_params);
@@ -170,9 +169,6 @@ class Tmdb implements TmdbInterface
     private function decodeRequest($res, $method, $url, $form_params) : \stdClass
     {
         $content = $res->getBody();
-        if (is_object($content)) {
-            $content = $content->getContents();
-        }
 
         if (empty($content)) {
             $this->logger->error('Request Body empty', array('method' => $method, 'url' => $url, 'form_params' => $form_params));

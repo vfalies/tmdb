@@ -77,7 +77,7 @@ class Videos extends Results implements VideosResultsInterface
     {
         parent::__construct($tmdb, $result);
 
-        $this->video_id   = $this->data->id;
+        $this->id         = $this->data->id;
         $this->iso_639_1  = $this->data->iso_639_1;
         $this->iso_3166_1 = $this->data->iso_3166_1;
         $this->key        = $this->data->key;
@@ -138,16 +138,6 @@ class Videos extends Results implements VideosResultsInterface
     }
 
     /**
-     * Get id
-     *
-     * @return string
-     */
-    public function getVideoId() : string
-    {
-        return $this->video_id;
-    }
-
-    /**
      * Get size
      *
      * @return  int
@@ -170,10 +160,10 @@ class Videos extends Results implements VideosResultsInterface
     /**
      * Get id
      *
-     * @return int
+     * @return string
      */
-    public function getId() : ?int
+    public function getId() : string
     {
-        return null;
+        return $this->id;
     }
 }
