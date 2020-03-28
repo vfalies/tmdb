@@ -168,7 +168,7 @@ class Tmdb implements TmdbInterface
      */
     private function decodeRequest($res, $method, $url, $form_params) : \stdClass
     {
-        $content = $res->getBody();
+        $content = $res->getBody()->getContents();
 
         if (empty($content)) {
             $this->logger->error('Request Body empty', array('method' => $method, 'url' => $url, 'form_params' => $form_params));
