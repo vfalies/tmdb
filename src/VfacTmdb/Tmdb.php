@@ -170,7 +170,7 @@ class Tmdb implements TmdbInterface
     {
         $content = $res->getBody();
 
-        if ( ! is_string($content)) {
+        if ( is_object($content)) {
             $content = $content->getContents();
         }
         if (empty($content)) {
