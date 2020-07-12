@@ -13,6 +13,7 @@
 
 namespace VfacTmdb\Traits;
 
+use VfacTmdb\Results\Change;
 use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
@@ -51,6 +52,22 @@ trait GeneratorTrait
         $this->generator_trait->logger->debug('Starting search item generator', array('results' => $results, 'class' => $class));
         foreach ($results as $result) {
             $element = new $class($this->generator_trait->tmdb, $result);
+
+            yield $element;
+        }
+    }
+
+    /**
+     * Item change generator method
+     * @param array $results
+     * @param string $class
+     * @author Steve Richter <steve@nerdbra.in>
+     */
+    protected function itemChangeGenerator(array $results)
+    {
+        $this->generator_trait->logger->debug('Starting item change generator', array('results' => $results));
+        foreach ($results as $result) {
+            $element = new Change($this->generator_trait->tmdb, $result);
 
             yield $element;
         }
