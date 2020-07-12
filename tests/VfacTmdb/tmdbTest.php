@@ -96,6 +96,48 @@ class TmdbTest extends TestCase
         $tmdb->checkOptionSortBy($options, $result);
     }
 
+    public function testCheckOptionDateRange()
+    {
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
+
+        $options['start_date'] = '2020-01-01';
+        $options['end_date']   = '2020-01-02';
+        $result = [];
+
+        $tmdb->checkOptionDateRange($options, $result);
+
+        $this->assertEquals('2020-01-01', $result['start_date']);
+        $this->assertEquals('2020-01-02', $result['end_date']);
+    }
+
+    /**
+     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
+     */
+    public function testCheckOptionDateRangeStartDateIncorrect()
+    {
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
+
+        $options['start_date'] = 'bad_value';
+        $options['end_date']   = '2020-01-01';
+        $result = [];
+
+        $tmdb->checkOptionDateRange($options, $result);
+    }
+
+    /**
+     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
+     */
+    public function testCheckOptionDateRangeEndDateIncorrect()
+    {
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
+
+        $options['start_date'] = '2020-01-01';
+        $options['end_date']   = 'bad_value';
+        $result = [];
+
+        $tmdb->checkOptionDateRange($options, $result);
+    }
+
     /**
      * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
      */

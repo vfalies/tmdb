@@ -355,4 +355,49 @@ class Tmdb implements TmdbInterface
             }
         }
     }
+
+    /*
+     * Check date option
+     * @param  string $option
+     * @return bool
+     * @author Steve Richter <steve@nerdbra.in>
+     */
+    public function checkOptionDate(string $option) : bool
+    {
+        $check = preg_match('/^([0-9]{4})-([0-9]{2}-[0-9]{2})$/', $option);
+        if ($check === 0 || $check === false) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Check date range options
+     * @param  array $options
+     * @param  array &$return Return array to save valid options
+     * @return void
+     * @throws IncorrectParamException
+     * @author Steve Richter <steve@nerdbra.in>
+     */
+    public function checkOptionDateRange(array $options, array &$return) : void
+    {
+        if (isset($options['start_date'])) {
+            if ($this->checkOptionDate($options['start_date'])) {
+                $return['start_date'] = $options['start_date'];
+            } else {
+                $this->logger->error('Incorrect start date param option', array('start_date' => $options['start_date']));
+                throw new IncorrectParamException;
+            }
+        }
+
+        if (isset($options['end_date'])) {
+            if ($this->checkOptionDate($options['end_date'])) {
+                $return['end_date'] = $options['end_date'];
+            } else {
+                $this->logger->error('Incorrect end date param option', array('end_date' => $options['end_date']));
+                throw new IncorrectParamException;
+            }
+        }
+    }
 }
