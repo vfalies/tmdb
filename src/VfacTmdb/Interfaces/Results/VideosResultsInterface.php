@@ -15,7 +15,7 @@
 namespace VfacTmdb\Interfaces\Results;
 
 /**
- * Interface for Crew results type object
+ * Interface for Videos results type object
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017-2020

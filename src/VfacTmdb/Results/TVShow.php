@@ -21,7 +21,7 @@ use VfacTmdb\Traits\Results\ShowTrait;
 use VfacTmdb\Interfaces\TmdbInterface;
 
 /**
- * Class to manipulate a TV Season result
+ * Class to manipulate a TV Show result
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
