@@ -129,6 +129,39 @@ class ChangeTest extends TestCase
     }
 
     /**
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
+     * @test
+     */
+    public function testChangesMovieInvalidDate()
+    {
+        $change = new Change($this->tmdb);
+
+        $change->movie(array('start_date' => '2020-02-30', 'end_date' => '2020-02-31'));
+    }
+
+    /**
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
+     * @test
+     */
+    public function testChangesTVShowInvalidDate()
+    {
+        $change = new Change($this->tmdb);
+
+        $change->tvshow(array('start_date' => '2020-02-30', 'end_date' => '2020-02-31'));
+    }
+
+    /**
+     * @expectedException \VfacTmdb\Exceptions\TmdbException
+     * @test
+     */
+    public function testChangesPersonInvalidDate()
+    {
+        $change = new Change($this->tmdb);
+
+        $change->person(array('start_date' => '2020-02-30', 'end_date' => '2020-02-31'));
+    }
+
+    /**
      * @test
      * @param string $change
      * @depends testChangesMovieValid
