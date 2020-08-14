@@ -359,17 +359,15 @@ class Tmdb implements TmdbInterface
     /*
      * Check date option
      * @param  string $option
+     * @param  string $format
      * @return bool
      * @author Steve Richter <steve@nerdbra.in>
      */
-    public function checkOptionDate(string $option) : bool
+    public function checkOptionDate(string $option, string $format = 'Y-m-d') : bool
     {
-        $check = preg_match('/^([0-9]{4})-([0-9]{2}-[0-9]{2})$/', $option);
-        if ($check === 0 || $check === false) {
-            return false;
-        }
+        $date = \DateTime::createFromFormat($format, $option);
 
-        return true;
+        return $date && $date->format($format) === $option;
     }
 
     /**
@@ -382,21 +380,14 @@ class Tmdb implements TmdbInterface
      */
     public function checkOptionDateRange(array $options, array &$return) : void
     {
-        if (isset($options['start_date'])) {
-            if ($this->checkOptionDate($options['start_date'])) {
-                $return['start_date'] = $options['start_date'];
-            } else {
-                $this->logger->error('Incorrect start date param option', array('start_date' => $options['start_date']));
-                throw new IncorrectParamException;
-            }
-        }
-
-        if (isset($options['end_date'])) {
-            if ($this->checkOptionDate($options['end_date'])) {
-                $return['end_date'] = $options['end_date'];
-            } else {
-                $this->logger->error('Incorrect end date param option', array('end_date' => $options['end_date']));
-                throw new IncorrectParamException;
+        foreach (['start_date', 'end_date'] as $optionName) {
+            if (isset($options[$optionName])) {
+                if ($this->checkOptionDate($options[$optionName])) {
+                    $return[$optionName] = $options[$optionName];
+                } else {
+                    $this->logger->error('Incorrect date param option', array($optionName => $options[$optionName]));
+                    throw new IncorrectParamException;
+                }
             }
         }
     }
