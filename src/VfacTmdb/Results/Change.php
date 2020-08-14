@@ -65,9 +65,6 @@ class Change extends Results implements ChangeResultsInterface
      */
     public function getAdult() : bool
     {
-        if (isset($this->data->adult)) {
-            return $this->data->adult;
-        }
-        return false;
+        return $this->adult;
     }
 }
