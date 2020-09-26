@@ -170,7 +170,7 @@ class Tmdb implements TmdbInterface
     {
         $content = $res->getBody();
 
-        if ( is_object($content)) {
+        if (is_object($content)) {
             $content = $content->getContents();
         }
         if (empty($content)) {
@@ -351,6 +351,32 @@ class Tmdb implements TmdbInterface
     {
         if (isset($options['session_id'])) {
             $return['session_id'] = trim($options['session_id']);
+        }
+    }
+
+    /**
+     * Check external_source option
+     * @param array $options
+     * @param array $return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionExternalSource(array $options, array &$return) : void
+    {
+        if (isset($options['external_source'])) {
+            switch ($options['external_source']) {
+                case 'imdb_id':
+                case 'freebase_mid':
+                case 'freebase_id':
+                case 'tvdb_id':
+                case 'tvrage_id':
+                case 'facebook_id':
+                case 'twitter_id':
+                case 'instagram_id':
+                    $return['external_source'] = trim($options['external_source']);
+                    break;
+                default:
+                    throw new IncorrectParamException;
+            }
         }
     }
 }

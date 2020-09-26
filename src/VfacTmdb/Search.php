@@ -187,21 +187,4 @@ class Search
             throw $ex;
         }
     }
-
-    /**
-     * Find by external id
-     * @param string $external_id Query string to search like a movie
-     * @param array $options Array of options for the search
-     * @return \Generator|Results\Movie
-     * @throws TmdbException
-     */
-    public function external(string $external_id, array $options = array()) : \Generator
-    {
-        try {
-            $this->logger->debug('Starting find by external id', array('external_id' => $external_id, 'options' => $options));
-            return $this->searchItem('find', $external_id, $options, Results\Movie::class);
-        } catch (TmdbException $ex) {
-            throw $ex;
-        }
-    }
 }
