@@ -109,6 +109,7 @@ class Find
     {
         try {
             $this->logger->debug('Starting find by external id', array('external_id' => $external_id, 'options' => $options));
+            $options['external_source'] = $external_source;
             return $this->searchItem($external_id, '', $options, Results\Movie::class);
         } catch (TmdbException $ex) {
             throw $ex;
