@@ -211,7 +211,7 @@ class TVEpisodeTest extends TestCase
 
         $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
 
-        $this->assertInternalType('double', $TVEpisode->getNote());
+        $this->assertIsFloat( $TVEpisode->getNote());
         $this->assertEquals('7.11904761904762', $TVEpisode->getNote());
     }
 

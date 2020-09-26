@@ -50,7 +50,7 @@ class AlternativeNameTest extends TestCase
 
         $this->assertEquals('/3/network/'.$this->network_id.'/alternative_names', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->alternative_name->getId());
+        $this->assertIsInt($this->alternative_name->getId());
         $this->assertEquals(13, $this->alternative_name->getId());
     }
 

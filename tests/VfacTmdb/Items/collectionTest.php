@@ -100,7 +100,7 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
 
-        $this->assertInternalType('int', $collection->getId());
+        $this->assertIsInt($collection->getId());
         $this->assertEquals($this->collection_id, $collection->getId());
     }
 
@@ -113,7 +113,7 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
 
-        $this->assertInternalType('string', $collection->getPosterPath());
+        $this->assertIsString( $collection->getPosterPath());
         $this->assertNotEmpty($collection->getPosterPath());
     }
 
@@ -126,7 +126,7 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
 
-        $this->assertInternalType('string', $collection->getPosterPath());
+        $this->assertIsString( $collection->getPosterPath());
         $this->assertEmpty($collection->getPosterPath());
     }
 

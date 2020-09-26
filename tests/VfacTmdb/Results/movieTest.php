@@ -60,7 +60,7 @@ class MovieTest extends TestCase
 
         $this->assertEquals('/3/search/movie', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->result->getId());
+        $this->assertIsInt($this->result->getId());
         $this->assertEquals(11, $this->result->getId());
     }
 
@@ -83,7 +83,7 @@ class MovieTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getOverview());
+        $this->assertIsString( $this->result->getOverview());
         $this->assertStringStartsWith('Il y a bien longtemps, dans une galaxie très lointaine...', $this->result->getOverview());
     }
 
@@ -94,7 +94,7 @@ class MovieTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getReleaseDate());
+        $this->assertIsString( $this->result->getReleaseDate());
         $this->assertEquals('1977-05-25', $this->result->getReleaseDate());
     }
 
@@ -105,7 +105,7 @@ class MovieTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getOriginalTitle());
+        $this->assertIsString( $this->result->getOriginalTitle());
         $this->assertEquals('Star Wars', $this->result->getOriginalTitle());
     }
 
@@ -116,7 +116,7 @@ class MovieTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getTitle());
+        $this->assertIsString( $this->result->getTitle());
         $this->assertEquals('La Guerre des étoiles', $this->result->getTitle());
     }
 }

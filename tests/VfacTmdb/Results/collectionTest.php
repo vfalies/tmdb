@@ -60,7 +60,7 @@ class CollectionTest extends TestCase
 
         $this->assertEquals('/3/search/collection', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->result->getId());
+        $this->assertIsInt($this->result->getId());
         $this->assertEquals(425281, $this->result->getId());
     }
 
@@ -71,7 +71,7 @@ class CollectionTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getName());
+        $this->assertIsString( $this->result->getName());
         $this->assertEquals('Star Wars: Clone Wars Collection', $this->result->getName());
     }
 }

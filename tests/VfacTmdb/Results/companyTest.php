@@ -60,7 +60,7 @@ class CompanyTest extends TestCase
 
         $this->assertEquals('/3/search/company', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->result->getId());
+        $this->assertIsInt($this->result->getId());
         $this->assertEquals(1, $this->result->getId());
     }
 
@@ -83,7 +83,7 @@ class CompanyTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getName());
+        $this->assertIsString( $this->result->getName());
         $this->assertEquals('Lucasfilm', $this->result->getName());
     }
 
@@ -94,7 +94,7 @@ class CompanyTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getLogoPath());
+        $this->assertIsString( $this->result->getLogoPath());
         $this->assertEquals('/8rUnVMVZjlmQsJ45UGotD0Uznxj.png', $this->result->getlogoPath());
     }
 }

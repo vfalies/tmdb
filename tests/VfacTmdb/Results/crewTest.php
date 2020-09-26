@@ -54,7 +54,7 @@ class CrewTest extends TestCase
 
         $this->assertEquals('/3/tv/'.$this->tv_id.'/season/'.$this->season_number, parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->crew->getId());
+        $this->assertIsInt($this->crew->getId());
         $this->assertEquals(44797, $this->crew->getId());
     }
 

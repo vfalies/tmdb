@@ -50,7 +50,7 @@ class TVSeasonTest extends TestCase
 
         $this->assertEquals('/3/tv/'.$this->tv_id, parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->season->getId());
+        $this->assertIsInt($this->season->getId());
         $this->assertEquals(816, $this->season->getId());
     }
 
@@ -61,7 +61,7 @@ class TVSeasonTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->season->getAirDate());
+        $this->assertIsString( $this->season->getAirDate());
         $this->assertEquals('1988-10-15', $this->season->getAirDate());
     }
 

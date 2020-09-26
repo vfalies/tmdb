@@ -51,7 +51,7 @@ class PeopleTVShowCrewTest extends TestCase
 
         $this->assertEquals('/3/person/'.$this->people_id.'/tv_credits', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->moviecrew->getId());
+        $this->assertIsInt($this->moviecrew->getId());
         $this->assertEquals(1396, $this->moviecrew->getId());
     }
 
