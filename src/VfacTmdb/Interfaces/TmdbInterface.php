@@ -115,4 +115,12 @@ interface TmdbInterface
      * @return void
      */
     public function checkOptionIncludeAdult(array $options, array &$return) : void;
+
+    /**
+     * Check external_source option
+     * @param array $options
+     * @param array $return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionExternalSource(array $options, array &$return) : void;
 }

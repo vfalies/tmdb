@@ -19,6 +19,7 @@ use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\Interfaces\TmdbInterface;
 use VfacTmdb\Traits\ListItems;
 use VfacTmdb\Traits\GeneratorTrait;
+use VfacTmdb\Results;
 
 /**
  * Find class
@@ -59,10 +60,10 @@ class Find
      * @param string $query Query string to search like a $item
      * @param array $options Array of options for the request
      * @param string $result_class class name of the wanted result
-     * @return \Generator
+     * @return Results\Find
      * @throws TmdbException
      */
-    private function searchItem(string $item, string $query, array $options, string $result_class) : \Generator
+    private function findItem(string $item, string $query, array $options, string $result_class) : Results\Find
     {
         try {
             $this->logger->debug('Starting find item', array('item' => $item, 'query' => $query, 'options' => $options, 'result_class' => $result_class));
@@ -72,11 +73,7 @@ class Find
 
             $response         = $this->tmdb->getRequest('find/' . $item, $params);
 
-            $this->page          = (int) $response->page;
-            $this->total_pages   = (int) $response->total_pages;
-            $this->total_results = (int) $response->total_results;
-
-            return $this->searchItemGenerator($response->results, $result_class);
+            return new Results\Find($this->tmdb, $response);
         } catch (TmdbException $ex) {
             throw $ex;
         }
@@ -102,17 +99,102 @@ class Find
      * @param string $external_source Source of the external_id
      *               allowed values: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_id, facebook_id, twitter_id, instagram_id
      * @param array $options Array of options for the search
-     * @return \Generator|Results\Movie
+     * @return Results\Find
      * @throws TmdbException
      */
-    public function external(string $external_id, string $external_source, array $options = array()) : \Generator
+    private function external(string $external_id, string $external_source, array $options = array()) : Results\Find
     {
         try {
             $this->logger->debug('Starting find by external id', array('external_id' => $external_id, 'options' => $options));
             $options['external_source'] = $external_source;
-            return $this->searchItem($external_id, '', $options, Results\Movie::class);
+            return $this->findItem($external_id, '', $options, Results\Movie::class);
         } catch (TmdbException $ex) {
             throw $ex;
         }
     }
+
+    /**
+     * Find by external id on IMDB
+     *
+     * @param string $external_id
+     * @param array $options
+     * @return Results\Find
+     */
+    public function imdb(string $external_id, array $options = array()) : Results\Find
+    {
+        return $this->external($external_id, 'imdb_id', $options);
+    }
+
+    /**
+     * Find by external id on Freebase
+     *
+     * @param string $external_id
+     * @param array $options
+     * @return Results\Find
+     */
+    public function freebase(string $external_id, array $options = array()) : Results\Find
+    {
+        return $this->external($external_id, 'freebase_id', $options);
+    }
+
+    /**
+     * Find by external id on TVdb
+     *
+     * @param string $external_id
+     * @param array $options
+     * @return Results\Find
+     */
+    public function tvdb(string $external_id, array $options = array()) : Results\Find
+    {
+        return $this->external($external_id, 'tvdb_id', $options);
+    }
+
+    /**
+     * Find by external id on TVRage
+     *
+     * @param string $external_id
+     * @param array $options
+     * @return Results\Find
+     */
+    public function tvrage(string $external_id, array $options = array()) : Results\Find
+    {
+        return $this->external($external_id, 'tvrage_id', $options);
+    }
+
+    /**
+     * Find by external id on Facebook
+     *
+     * @param string $external_id
+     * @param array $options
+     * @return Results\Find
+     */
+    public function facebook(string $external_id, array $options = array()) : Results\Find
+    {
+        return $this->external($external_id, 'facebook_id', $options);
+    }
+
+    /**
+     * Find by external id on Twitter
+     *
+     * @param string $external_id
+     * @param array $options
+     * @return Results\Find
+     */
+    public function twitter(string $external_id, array $options = array()) : Results\Find
+    {
+        return $this->external($external_id, 'twitter_id', $options);
+    }
+
+    /**
+     * Instagram
+     *
+     * @param string $external_id
+     * @param array $options
+     * @return Results\Find
+     */
+    public function instagram(string $external_id, array $options = array()) : Results\Find
+    {
+        return $this->external($external_id, 'instagram_id', $options);
+    }
+
 }
