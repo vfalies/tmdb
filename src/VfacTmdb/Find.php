@@ -21,7 +21,7 @@ use VfacTmdb\Traits\ListItems;
 use VfacTmdb\Traits\GeneratorTrait;
 
 /**
- * Search class
+ * Find class
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2020
@@ -67,10 +67,6 @@ class Find
         try {
             $this->logger->debug('Starting find item', array('item' => $item, 'query' => $query, 'options' => $options, 'result_class' => $result_class));
             $query = trim($query);
-            if (empty($query)) {
-                $this->logger->error('Query param cannot be empty', array('item' => $item, 'query' => $query, 'options' => $options, 'result_class' => $result_class));
-                throw new IncorrectParamException;
-            }
             $options['query'] = $query;
             $params           = $this->checkSearchItemOption($options);
 
