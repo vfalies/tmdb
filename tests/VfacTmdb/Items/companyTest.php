@@ -195,7 +195,7 @@ class CompanyTest extends TestCase
         $this->setRequestOk();
 
         $company = new Company($this->tmdb, $this->company_id);
-        $this->assertIsString( $company->getLogoPath());
+        $this->assertIsString($company->getLogoPath());
         $this->assertNotEmpty($company->getLogoPath());
     }
 
@@ -206,7 +206,7 @@ class CompanyTest extends TestCase
     {
         $this->setRequestCompanyEmpty();
         $company = new Company($this->tmdb, $this->company_id);
-        $this->assertIsString( $company->getLogoPath());
+        $this->assertIsString($company->getLogoPath());
         $this->assertEmpty($company->getLogoPath());
     }
 

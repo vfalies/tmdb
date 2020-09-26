@@ -75,7 +75,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsFloat( $this->result->getAspectRatio());
+        $this->assertIsFloat($this->result->getAspectRatio());
         $this->assertEquals(1.373239436619718, $this->result->getAspectRatio());
     }
 
@@ -116,7 +116,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->result->getFileType());
+        $this->assertIsString($this->result->getFileType());
         $this->assertEquals('.svg', $this->result->getFileType());
     }
 
@@ -138,7 +138,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->result->getLogoId());
+        $this->assertIsString($this->result->getLogoId());
         $this->assertEquals('5a7b16c1c3a3687b63008706', $this->result->getLogoId());
     }
 
@@ -149,7 +149,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsFloat( $this->result->getVoteAverage());
+        $this->assertIsFloat($this->result->getVoteAverage());
         $this->assertEquals(5.246, $this->result->getVoteAverage());
     }
 

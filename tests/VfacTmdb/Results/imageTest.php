@@ -74,7 +74,7 @@ class ImageTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsFloat( $this->result->getAspectRatio());
+        $this->assertIsFloat($this->result->getAspectRatio());
         $this->assertEquals(1.77777777777778, $this->result->getAspectRatio());
     }
 
@@ -116,7 +116,7 @@ class ImageTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsFloat( $this->result->getVoteAverage());
+        $this->assertIsFloat($this->result->getVoteAverage());
         $this->assertEquals(5.3125, $this->result->getVoteAverage());
     }
 

@@ -71,7 +71,7 @@ class CollectionTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->result->getName());
+        $this->assertIsString($this->result->getName());
         $this->assertEquals('Star Wars: Clone Wars Collection', $this->result->getName());
     }
 }

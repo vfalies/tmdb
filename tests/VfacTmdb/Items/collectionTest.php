@@ -113,7 +113,7 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
 
-        $this->assertIsString( $collection->getPosterPath());
+        $this->assertIsString($collection->getPosterPath());
         $this->assertNotEmpty($collection->getPosterPath());
     }
 
@@ -126,7 +126,7 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
 
-        $this->assertIsString( $collection->getPosterPath());
+        $this->assertIsString($collection->getPosterPath());
         $this->assertEmpty($collection->getPosterPath());
     }
 

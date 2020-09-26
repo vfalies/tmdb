@@ -71,7 +71,7 @@ class TVShowTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->result->getOverview());
+        $this->assertIsString($this->result->getOverview());
         $this->assertStringStartsWith('Star Trek, ou Patrouille du cosmos au Québec et au Nouveau-Brunswick', $this->result->getOverview());
     }
 
@@ -82,7 +82,7 @@ class TVShowTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->result->getReleaseDate());
+        $this->assertIsString($this->result->getReleaseDate());
         $this->assertEquals('1966-09-08', $this->result->getReleaseDate());
     }
 
@@ -93,7 +93,7 @@ class TVShowTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->result->getOriginalTitle());
+        $this->assertIsString($this->result->getOriginalTitle());
         $this->assertEquals('Star Trek', $this->result->getOriginalTitle());
     }
 
@@ -104,7 +104,7 @@ class TVShowTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->result->getTitle());
+        $this->assertIsString($this->result->getTitle());
         $this->assertEquals('Star Trek', $this->result->getTitle());
     }
 }

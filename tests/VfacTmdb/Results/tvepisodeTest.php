@@ -102,7 +102,7 @@ class TVEpisodeTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsFloat( $this->episode->getNote());
+        $this->assertIsFloat($this->episode->getNote());
         $this->assertEquals('7.11904761904762', $this->episode->getNote());
     }
 
@@ -124,7 +124,7 @@ class TVEpisodeTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->episode->getProductionCode());
+        $this->assertIsString($this->episode->getProductionCode());
         $this->assertEquals('101', $this->episode->getProductionCode());
     }
 
@@ -135,7 +135,7 @@ class TVEpisodeTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->episode->getStillPath());
+        $this->assertIsString($this->episode->getStillPath());
         $this->assertEquals('/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg', $this->episode->getStillPath());
     }
 

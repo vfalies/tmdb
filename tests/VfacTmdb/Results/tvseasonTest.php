@@ -61,7 +61,7 @@ class TVSeasonTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->season->getAirDate());
+        $this->assertIsString($this->season->getAirDate());
         $this->assertEquals('1988-10-15', $this->season->getAirDate());
     }
 

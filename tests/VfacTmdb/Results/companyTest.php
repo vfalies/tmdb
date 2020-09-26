@@ -83,7 +83,7 @@ class CompanyTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->result->getName());
+        $this->assertIsString($this->result->getName());
         $this->assertEquals('Lucasfilm', $this->result->getName());
     }
 
@@ -94,7 +94,7 @@ class CompanyTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertIsString( $this->result->getLogoPath());
+        $this->assertIsString($this->result->getLogoPath());
         $this->assertEquals('/8rUnVMVZjlmQsJ45UGotD0Uznxj.png', $this->result->getlogoPath());
     }
 }

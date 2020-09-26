@@ -125,7 +125,7 @@ class MovieTest extends TestCase
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
-        $this->assertIsString( $movie->getOverview());
+        $this->assertIsString($movie->getOverview());
         $this->assertStringStartsWith('Il y a bien longtemps, dans une galaxie très lointaine...', $movie->getOverview());
     }
 
@@ -222,7 +222,7 @@ class MovieTest extends TestCase
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
-        $this->assertIsString( $movie->getIMDBId());
+        $this->assertIsString($movie->getIMDBId());
         $this->assertEquals('tt0076759', $movie->getIMDBId());
     }
 
@@ -247,7 +247,7 @@ class MovieTest extends TestCase
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
-        $this->assertIsString( $movie->getTagLine());
+        $this->assertIsString($movie->getTagLine());
         $this->assertEquals('Il y a bien longtemps dans une galaxie très lointaine...', $movie->getTagLine());
     }
 
@@ -297,7 +297,7 @@ class MovieTest extends TestCase
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
-        $this->assertIsString( $movie->getPosterPath());
+        $this->assertIsString($movie->getPosterPath());
         $this->assertNotEmpty($movie->getPosterPath());
     }
 
@@ -310,7 +310,7 @@ class MovieTest extends TestCase
 
         $movie = new Movie($this->tmdb, $this->movie_id);
 
-        $this->assertIsString( $movie->getPosterPath());
+        $this->assertIsString($movie->getPosterPath());
         $this->assertEmpty($movie->getPosterPath());
     }
 
@@ -322,7 +322,7 @@ class MovieTest extends TestCase
         $this->setRequestOk();
 
         $movie = new Movie($this->tmdb, $this->movie_id);
-        $this->assertIsString( $movie->getBackdropPath());
+        $this->assertIsString($movie->getBackdropPath());
         $this->assertNotEmpty($movie->getBackdropPath());
     }
 
@@ -333,7 +333,7 @@ class MovieTest extends TestCase
     {
         $this->setRequestMovieEmpty();
         $movie = new Movie($this->tmdb, $this->movie_id);
-        $this->assertIsString( $movie->getBackdropPath());
+        $this->assertIsString($movie->getBackdropPath());
         $this->assertEmpty($movie->getBackdropPath());
     }
 
