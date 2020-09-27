@@ -196,7 +196,6 @@ class FindTest extends TestCase
         $this->getRequestTVEpisodesOk();
 
         $this->assertEquals('Winterfell', $this->result_tvepisodes->getTVEpisodes()->current()->getName());
-
     }
 
     /**

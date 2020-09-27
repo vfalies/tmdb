@@ -146,5 +146,4 @@ class FindTest extends TestCase
 
         return $find;
     }
-
 }
