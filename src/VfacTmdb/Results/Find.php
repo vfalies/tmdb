@@ -68,11 +68,11 @@ class Find extends Abstracts\Results
      */
     public function __construct(TmdbInterface $tmdb, \stdClass $result)
     {
-        $result->id = null;
+        $result->id = 0;
 
         parent::__construct($tmdb, $result);
 
-        $this->id                 = null;
+        $this->id                 = $result->id;
         $this->movie_results      = $result->movie_results;
         $this->person_results     = $result->person_results;
         $this->tv_results         = $result->tv_results;

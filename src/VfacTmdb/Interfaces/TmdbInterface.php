@@ -51,6 +51,7 @@ interface TmdbInterface
     /**
      * Get API Configuration
      * @return \stdClass
+     * @throws TmdbException
      */
     public function getConfiguration() : \stdClass;
 

@@ -72,6 +72,9 @@ class Find
             $params           = $this->checkSearchItemOption($options);
 
             $response         = $this->tmdb->getRequest('find/' . $item, $params);
+            if (! $response instanceof \stdClass) {
+                throw new TmdbException('Incorrect find response');
+            }
 
             return new Results\Find($this->tmdb, $response);
         } catch (TmdbException $ex) {
@@ -130,12 +133,13 @@ class Find
      *
      * @param string $external_id
      * @param array $options
+     * @deprecated
      * @return Results\Find
      */
-    public function freebase(string $external_id, array $options = array()) : Results\Find
-    {
-        return $this->external($external_id, 'freebase_id', $options);
-    }
+    // public function freebase(string $external_id, array $options = array()) : Results\Find
+    // {
+    //     return $this->external($external_id, 'freebase_id', $options);
+    // }
 
     /**
      * Find by external id on TVdb

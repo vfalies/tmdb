@@ -133,7 +133,6 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @param string $search
      * @depends testSearchMovieValid
      */
     public function testGetPage($search)
@@ -143,7 +142,6 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @param string $search
      * @depends testSearchMovieValid
      */
     public function testTotalPages($search)
@@ -153,7 +151,6 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @param string $search
      * @depends testSearchMovieValid
      */
     public function testTotalResults($search)
