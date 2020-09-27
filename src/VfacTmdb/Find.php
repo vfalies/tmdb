@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -72,7 +72,7 @@ class Find
             $params           = $this->checkSearchItemOption($options);
 
             $response         = $this->tmdb->getRequest('find/' . $item, $params);
-            if (! $response instanceof \stdClass) {
+            if (!$response instanceof \stdClass) {
                 throw new TmdbException('Incorrect find response');
             }
 
@@ -89,7 +89,7 @@ class Find
      */
     private function checkSearchItemOption(array $options) : array
     {
-        $params           = [];
+        $params = [];
         $this->tmdb->checkOptionLanguage($options, $params);
         $this->tmdb->checkOptionExternalSource($options, $params);
 

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -54,7 +54,6 @@ class Favorite extends Account
         return $this->setListItem('favorite', 'movie', $movie_id, true);
     }
     /**
-
      * Unmark a movie as favorite
      * @param int $movie_id Movie id
      * @return Favorite

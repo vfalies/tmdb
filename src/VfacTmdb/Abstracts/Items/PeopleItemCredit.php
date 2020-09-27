@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -52,7 +52,7 @@ abstract class PeopleItemCredit extends Item
 
             $this->tmdb->checkOptionLanguage($options, $this->params);
 
-            $this->data   = $this->tmdb->getRequest('person/' . $item_id . '/' . $item_type . '_credits', $this->params);
+            $this->data = $this->tmdb->getRequest('person/' . $item_id . '/' . $item_type . '_credits', $this->params);
         } catch (TmdbException $ex) {
             throw $ex;
         }
