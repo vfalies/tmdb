@@ -74,14 +74,6 @@ class FindTest extends TestCase
     /**
      * @test
      */
-    public function testFreebase()
-    {
-        $this->markTestSkipped('Freebase is shutting down, no test necessary');
-    }
-
-    /**
-     * @test
-     */
     public function testFindFacebookMovieValid()
     {
         $json_object = json_decode(file_get_contents('tests/json/findFacebookMoviesOk.json'));
