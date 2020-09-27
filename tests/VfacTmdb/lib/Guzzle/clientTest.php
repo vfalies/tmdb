@@ -57,7 +57,7 @@ class ClientTest extends TestCase
 
     /**
      * @test
-     * @expectedException VfacTmdb\Exceptions\HttpErrorException
+     * @expectedException \Exception
      */
     public function testGetResponseNOk()
     {
@@ -107,7 +107,7 @@ class ClientTest extends TestCase
 
     /**
      * @test
-     * @expectedException VfacTmdb\Exceptions\HttpErrorException
+     * @expectedException \Exception
      */
     public function testPostResponseNOk()
     {
@@ -155,7 +155,7 @@ class ClientTest extends TestCase
 
     /**
      * @test
-     * @expectedException VfacTmdb\Exceptions\HttpErrorException
+     * @expectedException \Exception
      */
     public function testDeleteResponseNOk()
     {
