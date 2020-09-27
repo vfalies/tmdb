@@ -12,7 +12,7 @@ class VideosTest extends TestCase
     protected $movie_id      = 550;
     protected $videos        = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -22,7 +22,7 @@ class VideosTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -54,9 +54,9 @@ class VideosTest extends TestCase
         $this->assertEquals('533ec654c3a36854480003eb', $this->videos->getId());
     }
 
-     /**
-     * @test
-     */
+    /**
+    * @test
+    */
     public function testgetIso_639_1()
     {
         $this->getRequestOk();
@@ -123,5 +123,4 @@ class VideosTest extends TestCase
 
         $this->assertEquals('Trailer', $this->videos->getType());
     }
-
 }

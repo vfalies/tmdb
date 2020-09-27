@@ -12,7 +12,7 @@ class CastTest extends TestCase
     protected $movie_id      = 550;
     protected $cast          = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -22,7 +22,7 @@ class CastTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -51,7 +51,7 @@ class CastTest extends TestCase
 
         $this->assertEquals('/3/movie/'.$this->movie_id.'/credits', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->cast->getId());
+        $this->assertIsInt($this->cast->getId());
         $this->assertEquals(819, $this->cast->getId());
     }
 
@@ -62,7 +62,7 @@ class CastTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->cast->getCastId());
+        $this->assertIsInt($this->cast->getCastId());
         $this->assertEquals(4, $this->cast->getCastId());
     }
 

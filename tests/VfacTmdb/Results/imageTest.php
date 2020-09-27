@@ -14,7 +14,7 @@ class ImageTest extends TestCase
     protected $result        = null;
     protected $collection_id = 10;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -24,7 +24,7 @@ class ImageTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -51,7 +51,7 @@ class ImageTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->result->getId());
+        $this->assertIsInt($this->result->getId());
         $this->assertEquals(10, $this->result->getId());
     }
 
@@ -74,7 +74,7 @@ class ImageTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('double', $this->result->getAspectRatio());
+        $this->assertIsFloat($this->result->getAspectRatio());
         $this->assertEquals(1.77777777777778, $this->result->getAspectRatio());
     }
 
@@ -95,7 +95,7 @@ class ImageTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->result->getHeight());
+        $this->assertIsInt($this->result->getHeight());
         $this->assertEquals(1080, $this->result->getHeight());
     }
 
@@ -116,7 +116,7 @@ class ImageTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('double', $this->result->getVoteAverage());
+        $this->assertIsFloat($this->result->getVoteAverage());
         $this->assertEquals(5.3125, $this->result->getVoteAverage());
     }
 
@@ -127,7 +127,7 @@ class ImageTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->result->getVoteCount());
+        $this->assertIsInt($this->result->getVoteCount());
         $this->assertEquals(1, $this->result->getVoteCount());
     }
 
@@ -138,7 +138,7 @@ class ImageTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->result->getWidth());
+        $this->assertIsInt($this->result->getWidth());
         $this->assertEquals(1920, $this->result->getWidth());
     }
 }

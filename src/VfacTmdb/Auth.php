@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -47,7 +47,7 @@ class Auth implements AuthInterface
      * Session Id
      * @var string
      */
-    private $session_id  = null;
+    private $session_id = null;
 
     /**
      * Constructor
@@ -89,7 +89,7 @@ class Auth implements AuthInterface
         if (!isset($data->success) || $data->success != 'true' || !isset($data->request_token)) {
             throw new InvalidResponseException("Getting request token failed");
         }
-        $this->request_token            = $data->request_token;
+        $this->request_token = $data->request_token;
 
         return $this->request_token;
     }
@@ -118,11 +118,11 @@ class Auth implements AuthInterface
     public function __get(string $name)
     {
         switch ($name) {
-          case 'request_token':
+            case 'request_token':
           case 'session_id':
               return $this->$name;
-          default:
+            default:
               throw new NotFoundException();
-      }
+        }
     }
 }

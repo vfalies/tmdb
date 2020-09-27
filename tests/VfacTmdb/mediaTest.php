@@ -9,7 +9,7 @@ class MediaTest extends TestCase
 {
     protected $tmdb = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -19,7 +19,7 @@ class MediaTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

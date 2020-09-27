@@ -56,6 +56,21 @@ class TmdbTest extends TestCase
         $this->assertEquals(3, $result['page']);
     }
 
+    public function testCheckOptionExternalSource()
+    {
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
+
+        $external_sources = ['imdb_id', 'freebase_mid', 'freebase_id','tvdb_id', 'tvrage_id', 'facebook_id', 'twitter_id', 'instagram_id'];
+        foreach ($external_sources as $ext) {
+            $options['external_source'] = $ext;
+            $result = [];
+
+            $tmdb->checkOptionExternalSource($options, $result);
+
+            $this->assertEquals($ext, $result['external_source']);
+        }
+    }
+
     public function testCheckOptionSortBy()
     {
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
@@ -79,6 +94,19 @@ class TmdbTest extends TestCase
         $result = [];
 
         $tmdb->checkOptionSortBy($options, $result);
+    }
+
+    /**
+     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
+     */
+    public function testCheckOptionExternalSourceIncorrect()
+    {
+        $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
+
+        $options['external_source'] = 'bad_value';
+        $result = [];
+
+        $tmdb->checkOptionExternalSource($options, $result);
     }
 
     /**

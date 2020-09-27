@@ -9,7 +9,7 @@ class SearchTest extends TestCase
 {
     protected $tmdb = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -19,7 +19,7 @@ class SearchTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -133,7 +133,6 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @param string $search
      * @depends testSearchMovieValid
      */
     public function testGetPage($search)
@@ -143,7 +142,6 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @param string $search
      * @depends testSearchMovieValid
      */
     public function testTotalPages($search)
@@ -153,7 +151,6 @@ class SearchTest extends TestCase
 
     /**
      * @test
-     * @param string $search
      * @depends testSearchMovieValid
      */
     public function testTotalResults($search)

@@ -12,7 +12,7 @@ class AlternativeNameTest extends TestCase
     protected $network_id        = 13;
     protected $alternative_name = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -22,7 +22,7 @@ class AlternativeNameTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -50,7 +50,7 @@ class AlternativeNameTest extends TestCase
 
         $this->assertEquals('/3/network/'.$this->network_id.'/alternative_names', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->alternative_name->getId());
+        $this->assertIsInt($this->alternative_name->getId());
         $this->assertEquals(13, $this->alternative_name->getId());
     }
 

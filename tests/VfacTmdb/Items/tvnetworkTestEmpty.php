@@ -11,7 +11,7 @@ class TvNetworkTest extends TestCase
     protected $network    = null;
     protected $network_id = 1;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -21,7 +21,7 @@ class TvNetworkTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

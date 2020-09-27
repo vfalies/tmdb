@@ -12,7 +12,7 @@ class PeopleMovieCrewTest extends TestCase
     protected $people_id = 66633;
     protected $moviecrew = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -22,7 +22,7 @@ class PeopleMovieCrewTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -51,7 +51,7 @@ class PeopleMovieCrewTest extends TestCase
 
         $this->assertEquals('/3/person/'.$this->people_id.'/movie_credits', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->moviecrew->getId());
+        $this->assertIsInt($this->moviecrew->getId());
         $this->assertEquals(8960, $this->moviecrew->getId());
     }
 

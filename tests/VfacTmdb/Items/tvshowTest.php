@@ -10,7 +10,7 @@ class TVShowTest extends TestCase
     protected $tmdb  = null;
     protected $tv_id = 253;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -20,7 +20,7 @@ class TVShowTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -74,7 +74,7 @@ class TVShowTest extends TestCase
 
         $tvshow = new TVShow($this->tmdb, $this->tv_id);
 
-        $this->assertInternalType('string', $tvshow->getPosterPath());
+        $this->assertIsString($tvshow->getPosterPath());
         $this->assertNotEmpty($tvshow->getPosterPath());
     }
 
@@ -87,7 +87,7 @@ class TVShowTest extends TestCase
 
         $tvshow = new TVShow($this->tmdb, $this->tv_id);
 
-        $this->assertInternalType('string', $tvshow->getPosterPath());
+        $this->assertIsString($tvshow->getPosterPath());
         $this->assertEmpty($tvshow->getPosterPath());
     }
 
@@ -99,7 +99,7 @@ class TVShowTest extends TestCase
         $this->setRequestOk();
 
         $tvshow = new TVShow($this->tmdb, $this->tv_id);
-        $this->assertInternalType('string', $tvshow->getBackdropPath());
+        $this->assertIsString($tvshow->getBackdropPath());
         $this->assertNotEmpty($tvshow->getBackdropPath());
     }
 
@@ -110,7 +110,7 @@ class TVShowTest extends TestCase
     {
         $this->setRequestTVShowEmpty();
         $tvshow = new TVShow($this->tmdb, $this->tv_id);
-        $this->assertInternalType('string', $tvshow->getBackdropPath());
+        $this->assertIsString($tvshow->getBackdropPath());
         $this->assertEmpty($tvshow->getBackdropPath());
     }
 
@@ -123,7 +123,7 @@ class TVShowTest extends TestCase
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
 
         $genres = $TVShow->getGenres();
-        $this->assertInternalType('array', $genres);
+        $this->assertIsArray($genres);
     }
 
     /**
@@ -135,7 +135,7 @@ class TVShowTest extends TestCase
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
 
         $genres = $TVShow->getGenres();
-        $this->assertInternalType('array', $genres);
+        $this->assertIsArray($genres);
         $this->assertEmpty($genres);
     }
 
@@ -148,7 +148,7 @@ class TVShowTest extends TestCase
 
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
 
-        $this->assertInternalType('double', $TVShow->getNote());
+        $this->assertIsFloat($TVShow->getNote());
         $this->assertEquals('7.9', $TVShow->getNote());
     }
 
@@ -245,7 +245,7 @@ class TVShowTest extends TestCase
 
         $TVShow = new TVShow($this->tmdb, $this->tv_id);
 
-        $this->assertInternalType('string', $TVShow->getOverview());
+        $this->assertIsString($TVShow->getOverview());
         $this->assertStringStartsWith('Star Trek, ou Patrouille du cosmos au Québec et au Nouveau-Brunswick', $TVShow->getOverview());
     }
 

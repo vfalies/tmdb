@@ -11,7 +11,7 @@ class CollectionTest extends TestCase
     protected $collection    = null;
     protected $collection_id = 10;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -21,7 +21,7 @@ class CollectionTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -100,7 +100,7 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
 
-        $this->assertInternalType('int', $collection->getId());
+        $this->assertIsInt($collection->getId());
         $this->assertEquals($this->collection_id, $collection->getId());
     }
 
@@ -113,7 +113,7 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
 
-        $this->assertInternalType('string', $collection->getPosterPath());
+        $this->assertIsString($collection->getPosterPath());
         $this->assertNotEmpty($collection->getPosterPath());
     }
 
@@ -126,7 +126,7 @@ class CollectionTest extends TestCase
 
         $collection = new Collection($this->tmdb, $this->collection_id);
 
-        $this->assertInternalType('string', $collection->getPosterPath());
+        $this->assertIsString($collection->getPosterPath());
         $this->assertEmpty($collection->getPosterPath());
     }
 

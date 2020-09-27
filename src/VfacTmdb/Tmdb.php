@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 /**
  * This file is part of the Tmdb package.
@@ -148,12 +148,12 @@ class Tmdb implements TmdbInterface
     protected function sendRequest(string $method, string $url, array $form_params = array()) : ?\stdClass
     {
         try {
-            $method_name = strtolower($method).'Response';
+            $method_name = strtolower($method) . 'Response';
             $res = $this->http_request->$method_name($url, [], $form_params);
             $response = $this->decodeRequest($res, $method, $url, $form_params);
             return $response;
         } catch (TmdbException $e) {
-            $this->logger->error('sendRequest failed : '.$e->getMessage(), array('method' => $method, 'url' => $url, 'form_params' => $form_params));
+            $this->logger->error('sendRequest failed : ' . $e->getMessage(), array('method' => $method, 'url' => $url, 'form_params' => $form_params));
             throw $e;
         }
     }
@@ -170,7 +170,7 @@ class Tmdb implements TmdbInterface
     {
         $content = $res->getBody();
 
-        if ( is_object($content)) {
+        if (is_object($content)) {
             $content = $content->getContents();
         }
         if (empty($content)) {
@@ -252,10 +252,7 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Check year option and return correct value
-     * @param array $options
-     * @param array &$return Return array to save valid option
-     * @return void
+     * @inheritDoc
      */
     public function checkOptionYear(array $options, array &$return) : void
     {
@@ -265,10 +262,7 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Check Language string with format ISO 639-1
-     * @param array $options
-     * @param array &$return Return array to save valid option
-     * @return void
+     * @inheritDoc
      */
     public function checkOptionLanguage(array $options, array &$return) : void
     {
@@ -283,10 +277,7 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Check include adult option
-     * @param  array $options
-     * @param array &$return Return array to save valid option
-     * @return void
+     * @inheritDoc
      */
     public function checkOptionIncludeAdult(array $options, array &$return) : void
     {
@@ -296,10 +287,7 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Check page option
-     * @param  array  $options
-     * @param array &$return Return array to save valid option
-     * @return void
+     * @inheritDoc
      */
     public function checkOptionPage(array $options, array &$return) : void
     {
@@ -309,10 +297,7 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Check sort by option
-     * @param  array  $options
-     * @param array &$return Return array to save valid option
-     * @return void
+     * @inheritDoc
      */
     public function checkOptionSortBy(array $options, array &$return) : void
     {
@@ -324,15 +309,12 @@ class Tmdb implements TmdbInterface
                 default:
                     throw new IncorrectParamException;
             }
-            $return['sort_by'] = 'created_at.'.$options['sort_by'];
+            $return['sort_by'] = 'created_at.' . $options['sort_by'];
         }
     }
 
     /**
-     * Check query option
-     * @param  array  $options
-     * @param array &$return Return array to save valid option
-     * @return void
+     * @inheritDoc
      */
     public function checkOptionQuery(array $options, array &$return) : void
     {
@@ -342,15 +324,35 @@ class Tmdb implements TmdbInterface
     }
 
     /**
-     * Check session_id option
-     * @param array  $options
-     * @param array &$return Return array to save valid option
-     * @return void
+     * @inheritDoc
      */
     public function checkOptionSessionId(array $options, array &$return) : void
     {
         if (isset($options['session_id'])) {
             $return['session_id'] = trim($options['session_id']);
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function checkOptionExternalSource(array $options, array &$return) : void
+    {
+        if (isset($options['external_source'])) {
+            switch ($options['external_source']) {
+                case 'imdb_id':
+                case 'freebase_mid':
+                case 'freebase_id':
+                case 'tvdb_id':
+                case 'tvrage_id':
+                case 'facebook_id':
+                case 'twitter_id':
+                case 'instagram_id':
+                    $return['external_source'] = trim($options['external_source']);
+                    break;
+                default:
+                    throw new IncorrectParamException;
+            }
         }
     }
 }

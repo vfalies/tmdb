@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -51,6 +51,7 @@ interface TmdbInterface
     /**
      * Get API Configuration
      * @return \stdClass
+     * @throws TmdbException
      */
     public function getConfiguration() : \stdClass;
 
@@ -115,4 +116,12 @@ interface TmdbInterface
      * @return void
      */
     public function checkOptionIncludeAdult(array $options, array &$return) : void;
+
+    /**
+     * Check external_source option
+     * @param array $options
+     * @param array $return Return array to save valid option
+     * @return void
+     */
+    public function checkOptionExternalSource(array $options, array &$return) : void;
 }

@@ -14,7 +14,7 @@ class LogoTest extends TestCase
     protected $result        = null;
     protected $network_id    = 4;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -24,7 +24,7 @@ class LogoTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -51,7 +51,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->result->getId());
+        $this->assertIsInt($this->result->getId());
         $this->assertEquals(4, $this->result->getId());
     }
 
@@ -75,7 +75,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('double', $this->result->getAspectRatio());
+        $this->assertIsFloat($this->result->getAspectRatio());
         $this->assertEquals(1.373239436619718, $this->result->getAspectRatio());
     }
 
@@ -116,7 +116,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getFileType());
+        $this->assertIsString($this->result->getFileType());
         $this->assertEquals('.svg', $this->result->getFileType());
     }
 
@@ -127,7 +127,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->result->getHeight());
+        $this->assertIsInt($this->result->getHeight());
         $this->assertEquals(142, $this->result->getHeight());
     }
 
@@ -138,7 +138,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->result->getLogoId());
+        $this->assertIsString($this->result->getLogoId());
         $this->assertEquals('5a7b16c1c3a3687b63008706', $this->result->getLogoId());
     }
 
@@ -149,7 +149,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('double', $this->result->getVoteAverage());
+        $this->assertIsFloat($this->result->getVoteAverage());
         $this->assertEquals(5.246, $this->result->getVoteAverage());
     }
 
@@ -160,7 +160,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->result->getVoteCount());
+        $this->assertIsInt($this->result->getVoteCount());
         $this->assertEquals(2, $this->result->getVoteCount());
     }
 
@@ -171,7 +171,7 @@ class LogoTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->result->getWidth());
+        $this->assertIsInt($this->result->getWidth());
         $this->assertEquals(195, $this->result->getWidth());
     }
 }

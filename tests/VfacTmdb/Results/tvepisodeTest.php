@@ -13,7 +13,7 @@ class TVEpisodeTest extends TestCase
     protected $season_number = 1;
     protected $episode       = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -23,7 +23,7 @@ class TVEpisodeTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -51,7 +51,7 @@ class TVEpisodeTest extends TestCase
 
         $this->assertEquals('/3/tv/'.$this->tv_id.'/season/'.$this->season_number, parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->episode->getId());
+        $this->assertIsInt($this->episode->getId());
         $this->assertEquals(63056, $this->episode->getId());
     }
 
@@ -102,7 +102,7 @@ class TVEpisodeTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('double', $this->episode->getNote());
+        $this->assertIsFloat($this->episode->getNote());
         $this->assertEquals('7.11904761904762', $this->episode->getNote());
     }
 
@@ -113,7 +113,7 @@ class TVEpisodeTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->episode->getNoteCount());
+        $this->assertIsInt($this->episode->getNoteCount());
         $this->assertEquals(21, $this->episode->getNoteCount());
     }
 
@@ -124,7 +124,7 @@ class TVEpisodeTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->episode->getProductionCode());
+        $this->assertIsString($this->episode->getProductionCode());
         $this->assertEquals('101', $this->episode->getProductionCode());
     }
 
@@ -135,7 +135,7 @@ class TVEpisodeTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('string', $this->episode->getStillPath());
+        $this->assertIsString($this->episode->getStillPath());
         $this->assertEquals('/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg', $this->episode->getStillPath());
     }
 

@@ -10,7 +10,7 @@ class PeopleTest extends TestCase
     protected $tmdb   = null;
     protected $result = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -20,7 +20,7 @@ class PeopleTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -60,7 +60,7 @@ class PeopleTest extends TestCase
 
         $this->assertEquals('/3/search/person', parse_url($this->tmdb->url, PHP_URL_PATH));
 
-        $this->assertInternalType('int', $this->result->getId());
+        $this->assertIsInt($this->result->getId());
         $this->assertEquals(51329, $this->result->getId());
     }
 

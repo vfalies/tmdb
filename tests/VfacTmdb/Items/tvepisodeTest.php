@@ -13,7 +13,7 @@ class TVEpisodeTest extends TestCase
     protected $season_number  = 1;
     protected $episode_number = 1;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -23,7 +23,7 @@ class TVEpisodeTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -211,7 +211,7 @@ class TVEpisodeTest extends TestCase
 
         $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
 
-        $this->assertInternalType('double', $TVEpisode->getNote());
+        $this->assertIsFloat($TVEpisode->getNote());
         $this->assertEquals('7.11904761904762', $TVEpisode->getNote());
     }
 
