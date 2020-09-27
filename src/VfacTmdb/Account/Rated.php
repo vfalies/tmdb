@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -62,7 +62,7 @@ class Rated extends Account
      */
     public function addMovieRate(int $movie_id, float $rate) : Rated
     {
-        return $this->addRate('movie/'.$movie_id.'/rating', $rate);
+        return $this->addRate('movie/' . $movie_id . '/rating', $rate);
     }
 
     /**
@@ -72,7 +72,7 @@ class Rated extends Account
      */
     public function removeMovieRate(int $movie_id) : Rated
     {
-        return $this->removeRate('movie/'.$movie_id.'/rating');
+        return $this->removeRate('movie/' . $movie_id . '/rating');
     }
 
     /**
@@ -83,7 +83,7 @@ class Rated extends Account
      */
     public function addTVShowRate(int $tv_id, float $rate) : Rated
     {
-        return $this->addRate('tv/'.$tv_id.'/rating', $rate);
+        return $this->addRate('tv/' . $tv_id . '/rating', $rate);
     }
 
     /**
@@ -93,7 +93,7 @@ class Rated extends Account
      */
     public function removeTVShowRate(int $tv_id) : Rated
     {
-        return $this->removeRate('tv/'.$tv_id.'/rating');
+        return $this->removeRate('tv/' . $tv_id . '/rating');
     }
 
     /**
@@ -106,7 +106,7 @@ class Rated extends Account
      */
     public function addTVShowEpisodeRate(int $tv_id, int $season_number, int $episode_number, float $rate) : Rated
     {
-        return $this->addRate('tv/'.$tv_id.'/season/'.$season_number.'/episode/'.$episode_number.'/rating', $rate);
+        return $this->addRate('tv/' . $tv_id . '/season/' . $season_number . '/episode/' . $episode_number . '/rating', $rate);
     }
 
     /**
@@ -118,7 +118,7 @@ class Rated extends Account
      */
     public function removeTVShowEpisodeRate(int $tv_id, int $season_number, int $episode_number) : Rated
     {
-        return $this->removeRate('tv/'.$tv_id.'/season/'.$season_number.'/episode/'.$episode_number.'/rating');
+        return $this->removeRate('tv/' . $tv_id . '/season/' . $season_number . '/episode/' . $episode_number . '/rating');
     }
 
     /**

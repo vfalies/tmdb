@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 /**
  * This file is part of the Tmdb package.
@@ -148,12 +148,12 @@ class Tmdb implements TmdbInterface
     protected function sendRequest(string $method, string $url, array $form_params = array()) : ?\stdClass
     {
         try {
-            $method_name = strtolower($method).'Response';
+            $method_name = strtolower($method) . 'Response';
             $res = $this->http_request->$method_name($url, [], $form_params);
             $response = $this->decodeRequest($res, $method, $url, $form_params);
             return $response;
         } catch (TmdbException $e) {
-            $this->logger->error('sendRequest failed : '.$e->getMessage(), array('method' => $method, 'url' => $url, 'form_params' => $form_params));
+            $this->logger->error('sendRequest failed : ' . $e->getMessage(), array('method' => $method, 'url' => $url, 'form_params' => $form_params));
             throw $e;
         }
     }
@@ -309,7 +309,7 @@ class Tmdb implements TmdbInterface
                 default:
                     throw new IncorrectParamException;
             }
-            $return['sort_by'] = 'created_at.'.$options['sort_by'];
+            $return['sort_by'] = 'created_at.' . $options['sort_by'];
         }
     }
 

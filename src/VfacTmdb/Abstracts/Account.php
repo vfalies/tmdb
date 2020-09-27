@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -109,7 +109,7 @@ abstract class Account
             $params['media_id']   = $media_id;
             $params[$list_type]   = $add;
 
-            $this->tmdb->postRequest('account/'.$this->account_id.'/'.$list_type, $this->options, $params);
+            $this->tmdb->postRequest('account/' . $this->account_id . '/' . $list_type, $this->options, $params);
 
             return $this;
         } catch (TmdbException $e) {
@@ -132,7 +132,7 @@ abstract class Account
         $this->tmdb->checkOptionSortBy($this->options, $options);
         $this->tmdb->checkOptionPage($this->options, $options);
 
-        $response = $this->tmdb->getRequest('account/'.$this->account_id.'/'.$list_type.'/'.$item, $options);
+        $response = $this->tmdb->getRequest('account/' . $this->account_id . '/' . $list_type . '/' . $item, $options);
 
         $this->page          = (int) $response->page;
         $this->total_pages   = (int) $response->total_pages;

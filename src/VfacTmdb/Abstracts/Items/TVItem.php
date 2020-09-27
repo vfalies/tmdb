@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -77,7 +77,7 @@ abstract class TVItem extends Item
         $options = [];
         $this->tmdb->checkOptionLanguage($this->params, $options);
 
-        $data   = $this->tmdb->getRequest($params->url, $options);
+        $data = $this->tmdb->getRequest($params->url, $options);
 
         foreach ($data->$key as $b) {
             $image = new Results\Image($this->tmdb, $this->id, $b);
