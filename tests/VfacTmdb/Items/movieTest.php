@@ -12,7 +12,7 @@ class MovieTest extends TestCase
     protected $movie    = null;
     protected $movie_id = 11;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -22,7 +22,7 @@ class MovieTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

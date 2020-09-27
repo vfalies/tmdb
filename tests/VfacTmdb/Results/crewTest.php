@@ -14,7 +14,7 @@ class CrewTest extends TestCase
     protected $episode       = null;
     protected $crew          = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -24,7 +24,7 @@ class CrewTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

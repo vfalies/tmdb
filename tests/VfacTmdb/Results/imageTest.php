@@ -14,7 +14,7 @@ class ImageTest extends TestCase
     protected $result        = null;
     protected $collection_id = 10;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -24,7 +24,7 @@ class ImageTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

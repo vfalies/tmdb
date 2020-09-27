@@ -13,7 +13,7 @@ class TVEpisodeTest extends TestCase
     protected $season_number  = 1;
     protected $episode_number = 1;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -23,7 +23,7 @@ class TVEpisodeTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

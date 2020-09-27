@@ -10,7 +10,7 @@ class TVShowTest extends TestCase
     protected $tmdb  = null;
     protected $tv_id = 253;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -20,7 +20,7 @@ class TVShowTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

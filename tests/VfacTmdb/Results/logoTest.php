@@ -14,7 +14,7 @@ class LogoTest extends TestCase
     protected $result        = null;
     protected $network_id    = 4;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -24,7 +24,7 @@ class LogoTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

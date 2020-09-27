@@ -16,7 +16,7 @@ class FindTest extends TestCase
     protected $network_id        = 13;
     protected $alternative_name  = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -26,7 +26,7 @@ class FindTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

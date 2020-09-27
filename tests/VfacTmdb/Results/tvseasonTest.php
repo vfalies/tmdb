@@ -12,7 +12,7 @@ class TVSeasonTest extends TestCase
     protected $tv_id  = 253;
     protected $season = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -22,7 +22,7 @@ class TVSeasonTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

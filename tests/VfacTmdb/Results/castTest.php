@@ -12,7 +12,7 @@ class CastTest extends TestCase
     protected $movie_id      = 550;
     protected $cast          = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -22,7 +22,7 @@ class CastTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

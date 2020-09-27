@@ -11,7 +11,7 @@ class CompanyTest extends TestCase
     protected $company    = null;
     protected $company_id = 1;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -21,7 +21,7 @@ class CompanyTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

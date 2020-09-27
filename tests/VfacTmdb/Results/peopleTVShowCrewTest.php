@@ -12,7 +12,7 @@ class PeopleTVShowCrewTest extends TestCase
     protected $people_id = 66633;
     protected $moviecrew = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -22,7 +22,7 @@ class PeopleTVShowCrewTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

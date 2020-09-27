@@ -14,7 +14,7 @@ class PeopleTest extends TestCase
     protected $people    = null;
     protected $people_id = 287;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -24,7 +24,7 @@ class PeopleTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
