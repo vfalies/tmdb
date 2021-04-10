@@ -13,7 +13,6 @@
 
 namespace VfacTmdb;
 
-use VfacTmdb\Exceptions\IncorrectParamException;
 use VfacTmdb\Exceptions\TmdbException;
 use VfacTmdb\Interfaces\TmdbInterface;
 use VfacTmdb\Traits\ListItems;
@@ -53,37 +52,37 @@ class Change
     }
 
     /**
-     * Get changes for item
-     * @param string $item Item to get changes for: movie / tv / person
+     * Get changes for type
+     * @param string $type Type to get changes for: movie / tv / person
      * @param array $options Array of options for the request
      * @return \Generator
      * @throws TmdbException
      */
-    private function itemChanges(string $item, array $options) : \Generator
+    private function typeChanges(string $type, array $options) : \Generator
     {
         try {
-            $this->logger->debug('Starting changes for item', array('item' => $item, 'options' => $options));
+            $this->logger->debug('Starting changes for type', array('type' => $type, 'options' => $options));
 
-            $params           = $this->checkItemChangesOptions($options);
+            $params           = $this->checkTypeChangesOptions($options);
 
-            $response         = $this->tmdb->getRequest($item . '/changes', $params);
+            $response         = $this->tmdb->getRequest($type . '/changes', $params);
 
             $this->page          = (int) $response->page;
             $this->total_pages   = (int) $response->total_pages;
             $this->total_results = (int) $response->total_results;
 
-            return $this->itemChangeGenerator($response->results);
+            return $this->typeChangeGenerator($response->results);
         } catch (TmdbException $ex) {
             throw $ex;
         }
     }
 
     /**
-     * Check search item api option
+     * Check the type changes API options
      * @param array $options
      * @return array
      */
-    private function checkItemChangesOptions(array $options) : array
+    private function checkTypeChangesOptions(array $options) : array
     {
         $params           = [];
         $this->tmdb->checkOptionPage($options, $params);
@@ -102,7 +101,7 @@ class Change
     {
         try {
             $this->logger->debug('Starting movie changes', array('options' => $options));
-            return $this->itemChanges('movie', $options);
+            return $this->typeChanges('movie', $options);
         } catch (TmdbException $ex) {
             throw $ex;
         }
@@ -118,7 +117,7 @@ class Change
     {
         try {
             $this->logger->debug('Starting TVShow changes', array('options' => $options));
-            return $this->itemChanges('tv', $options);
+            return $this->typeChanges('tv', $options);
         } catch (TmdbException $ex) {
             throw $ex;
         }
@@ -134,7 +133,7 @@ class Change
     {
         try {
             $this->logger->debug('Starting person changes', array('options' => $options));
-            return $this->itemChanges('person', $options);
+            return $this->typeChanges('person', $options);
         } catch (TmdbException $ex) {
             throw $ex;
         }

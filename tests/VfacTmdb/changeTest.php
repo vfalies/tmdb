@@ -163,7 +163,6 @@ class ChangeTest extends TestCase
 
     /**
      * @test
-     * @param string $change
      * @depends testChangesMovieValid
      */
     public function testGetPage($change)
@@ -173,7 +172,6 @@ class ChangeTest extends TestCase
 
     /**
      * @test
-     * @param string $change
      * @depends testChangesMovieValid
      */
     public function testTotalPages($change)
@@ -183,7 +181,6 @@ class ChangeTest extends TestCase
 
     /**
      * @test
-     * @param string $change
      * @depends testChangesMovieValid
      */
     public function testTotalResults($change)

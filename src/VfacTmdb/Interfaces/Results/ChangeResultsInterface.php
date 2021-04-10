@@ -21,7 +21,6 @@ namespace VfacTmdb\Interfaces\Results;
  */
 interface ChangeResultsInterface extends ResultsInterface
 {
-
     /**
      * Get item adult status
      * @return string

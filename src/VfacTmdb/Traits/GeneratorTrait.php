@@ -58,14 +58,14 @@ trait GeneratorTrait
     }
 
     /**
-     * Item change generator method
+     * Type change generator method
      * @param array $results
      * @param string $class
      * @author Steve Richter <steve@nerdbra.in>
      */
-    protected function itemChangeGenerator(array $results)
+    protected function typeChangeGenerator(array $results)
     {
-        $this->generator_trait->logger->debug('Starting item change generator', array('results' => $results));
+        $this->generator_trait->logger->debug('Starting type change generator', array('results' => $results));
         foreach ($results as $result) {
             $element = new Change($this->generator_trait->tmdb, $result);
 
