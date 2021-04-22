@@ -1,0 +1,53 @@
+{
+    "changes": [
+        {
+            "key": "episode",
+            "items": [
+                {
+                    "id": "607ef3727776f000298d842d",
+                    "action": "updated",
+                    "time": "2021-04-20 15:29:54 UTC",
+                    "iso_639_1": "",
+                    "iso_3166_1": "",
+                    "value": {
+                        "episode_id": 1844460,
+                        "episode_number": 2
+                    }
+                },
+                {
+                    "id": "607ef3a643d9b1006eae93d3",
+                    "action": "updated",
+                    "time": "2021-04-20 15:30:46 UTC",
+                    "iso_639_1": "",
+                    "iso_3166_1": "",
+                    "value": {
+                        "episode_id": 1844461,
+                        "episode_number": 3
+                    }
+                },
+                {
+                    "id": "607ef3fb01b1ca0058682fd8",
+                    "action": "updated",
+                    "time": "2021-04-20 15:32:11 UTC",
+                    "iso_639_1": "",
+                    "iso_3166_1": "",
+                    "value": {
+                        "episode_id": 1844462,
+                        "episode_number": 4
+                    }
+                },
+                {
+                    "id": "607ef4482b8a430057f1915d",
+                    "action": "updated",
+                    "time": "2021-04-20 15:33:28 UTC",
+                    "iso_639_1": "",
+                    "iso_3166_1": "",
+                    "value": {
+                        "episode_id": 1844464,
+                        "episode_number": 6
+                    }
+                }
+            ]
+        }
+    ]
+}
