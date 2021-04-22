@@ -276,4 +276,25 @@ class Movie extends Item implements MovieInterface
             yield $movie;
         }
     }
+
+    /**
+     * Get the underlying ItemChanges object for this Item
+     * @param array $options Array of options for the request
+     * @return MovieItemChanges
+     */
+    public function getItemChanges(array $options = array()) : MovieItemChanges
+    {
+        return new MovieItemChanges($this->tmdb, $this->id, $options);
+    }
+
+    /**
+     * Get this Item's Changes
+     * @param array $options Array of options for the request
+     * @return \Generator
+     */
+    public function getChanges(array $options = array()) : \Generator
+    {
+        $changes = $this->getItemChanges($options);
+        return $changes->getChanges();
+    }
 }
