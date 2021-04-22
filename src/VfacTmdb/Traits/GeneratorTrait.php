@@ -60,7 +60,6 @@ trait GeneratorTrait
     /**
      * Type change generator method
      * @param array $results
-     * @param string $class
      * @author Steve Richter <steve@nerdbra.in>
      */
     protected function typeChangeGenerator(array $results)

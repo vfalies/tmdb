@@ -384,10 +384,11 @@ class Tmdb implements TmdbInterface
             if (isset($options[$optionName])) {
                 if ($this->checkOptionDate($options[$optionName])) {
                     $return[$optionName] = $options[$optionName];
-                } else {
-                    $this->logger->error('Incorrect date param option', array($optionName => $options[$optionName]));
-                    throw new IncorrectParamException;
+                    continue;
                 }
+
+                $this->logger->error('Incorrect date param option', array($optionName => $options[$optionName]));
+                throw new IncorrectParamException;
             }
         }
     }

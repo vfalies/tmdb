@@ -43,15 +43,16 @@ class TVShowItemChanges extends ItemChanges
 
     /**
      * Get TV Season Item Changes for this TV Show
-     * @return \AppendIterator|VfacTmdb\Results\ItemChange
+     * @return \AppendIterator|\VfacTmdb\Results\ItemChange
      */
     public function getSeasonChanges() : \AppendIterator
     {
         $seasonChanges = new \AppendIterator();
         foreach ($this->getChangesByKey('season') as $change) {
-            if (null !== $change->getValueByKey('season_id')) {
+            $seasonId = $change->getValueByKey('season_id');
+            if (null !== $seasonId) {
                 $seasonChanges->append(
-                    (new TVSeasonItemChanges($this->tmdb, $change->getValueByKey('season_id'), $this->params))
+                    (new TVSeasonItemChanges($this->tmdb, $seasonId, $this->params))
                         ->getChanges()
                 );
             }
@@ -62,7 +63,7 @@ class TVShowItemChanges extends ItemChanges
 
     /**
      * Get TV Episode Item Changes for this TV Show
-     * @return \AppendIterator|VfacTmdb\Results\ItemChange
+     * @return \AppendIterator|\VfacTmdb\Results\ItemChange
      */
     public function getEpisodeChanges() : \AppendIterator
     {

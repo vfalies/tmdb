@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  * This file is part of the Tmdb package.
  *
@@ -84,7 +84,7 @@ class Change
      */
     private function checkTypeChangesOptions(array $options) : array
     {
-        $params           = [];
+        $params = [];
         $this->tmdb->checkOptionPage($options, $params);
         $this->tmdb->checkOptionDateRange($options, $params);
 
