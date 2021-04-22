@@ -60,7 +60,6 @@ abstract class ItemChanges
             $this->tmdb   = $tmdb;
             $this->logger = $tmdb->getLogger();
 
-            $this->tmdb->checkOptionPage($options, $this->params);
             $this->tmdb->checkOptionDateRange($options, $this->params);
 
             $this->data = $this->tmdb->getRequest($item_type . '/' . $item_id . '/changes', $this->params);
@@ -70,7 +69,7 @@ abstract class ItemChanges
     }
 
     /**
-     * Get Changes
+     * Get ItemChanges
      * @return \Generator|Results\ItemChange
      */
     public function getChanges() : \Generator
@@ -87,7 +86,7 @@ abstract class ItemChanges
     }
 
     /**
-     * Get Changes by key
+     * Get ItemChanges by key
      * @param string $key
      * @return \Generator|Results\ItemChange
      */
@@ -99,5 +98,20 @@ abstract class ItemChanges
                 yield $change;
             }
         }
+    }
+
+    /**
+     * Get all ItemChange keys
+     * @return array
+     */
+    public function getChangeKeys() : array
+    {
+        $changeKeys = [];
+        $itemChanges = $this->getChanges();
+        foreach ($itemChanges as $change) {
+            $changeKeys[] = $change->getKey();
+        }
+
+        return $changeKeys;
     }
 }
