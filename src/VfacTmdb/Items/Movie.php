@@ -193,7 +193,7 @@ class Movie extends Item implements MovieInterface
     }
 
     /**
-     * Get production compagnies
+     * Get production companies
      * @return \Generator|Results\Company
      */
     public function getProductionCompanies() : \Generator

@@ -24,7 +24,7 @@ use VfacTmdb\Interfaces\TmdbInterface;
  * @author Steve Richter <steve@nerdbra.in>
  * @copyright Copyright (c) 2021
  */
-class TVItemChanges extends ItemChanges
+class TVShowItemChanges extends ItemChanges
 {
     /**
      * Constructor
@@ -42,9 +42,10 @@ class TVItemChanges extends ItemChanges
     }
 
     /**
-     * @return \AppendIterator|Results\ItemChange
+     * Get TV Season Item Changes for this TV Show
+     * @return \AppendIterator|VfacTmdb\Results\ItemChange
      */
-    public function getSeasonChanges()
+    public function getSeasonChanges() : \AppendIterator
     {
         $seasonChanges = new \AppendIterator();
         foreach ($this->getChangesByKey('season') as $change) {
@@ -60,9 +61,10 @@ class TVItemChanges extends ItemChanges
     }
 
     /**
-     * @return \AppendIterator|Results\ItemChange
+     * Get TV Episode Item Changes for this TV Show
+     * @return \AppendIterator|VfacTmdb\Results\ItemChange
      */
-    public function getEpisodeChanges()
+    public function getEpisodeChanges() : \AppendIterator
     {
         $episodeChanges = new \AppendIterator();
         foreach ($this->getSeasonChanges() as $seasonChange) {

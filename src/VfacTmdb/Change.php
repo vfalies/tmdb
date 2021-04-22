@@ -93,7 +93,7 @@ class Change
 
     /**
      * Get changed Movies
-     * @param array $options Array of options for the search
+     * @param array $options Array of options for the request
      * @return \Generator|Results\Change
      * @throws TmdbException
      */
@@ -109,7 +109,7 @@ class Change
 
     /**
      * Get changed TVShows
-     * @param array $options Array of options for the search
+     * @param array $options Array of options for the request
      * @return \Generator|Results\Change
      * @throws TmdbException
      */
@@ -125,7 +125,7 @@ class Change
 
     /**
      * Get changed People
-     * @param array $options Array of options for the search
+     * @param array $options Array of options for the request
      * @return \Generator|Results\Change
      * @throws TmdbException
      */

@@ -42,7 +42,7 @@ class ItemChange extends Results implements ItemChangeResultsInterface
     protected $action;
     /**
      * Time
-     * @var \DateTime
+     * @var string
      */
     protected $time;
     /**
@@ -64,7 +64,7 @@ class ItemChange extends Results implements ItemChangeResultsInterface
      * Original value
      * @var array
      */
-    protected $original_value = null;
+    protected $original_value;
 
     /**
      * Constructor
@@ -95,17 +95,16 @@ class ItemChange extends Results implements ItemChangeResultsInterface
      */
     private function initResultObject(\stdClass $result) : \stdClass
     {
-        if (!isset($result->original_value)) {
-            $result->original_value = null;
-        }
-        if (!isset($result->value)) {
-            $result->value = [];
-        }
-        if (is_object($result->value)) {
-            $result->value = get_object_vars($result->value);
-        }
-        if (!is_array($result->value)) {
-            $result->value = [$result->value];
+        foreach (['value', 'original_value'] as $key) {
+            if (!isset($result->{$key})) {
+                $result->{$key} = [];
+            }
+            if (is_object($result->{$key})) {
+                $result->{$key} = get_object_vars($result->{$key});
+            }
+            if (!is_array($result->{$key})) {
+                $result->{$key} = [$result->{$key}];
+            }
         }
         return $result;
     }
@@ -148,7 +147,6 @@ class ItemChange extends Results implements ItemChangeResultsInterface
 
     /**
      * Get iso_639_1
-     *
      * @return  string
      */
     public function getIso_639_1() : string
@@ -158,7 +156,6 @@ class ItemChange extends Results implements ItemChangeResultsInterface
 
     /**
      * Get iso_3166_1
-     *
      * @return  string
      */
     public function getIso_3166_1() : string
@@ -168,7 +165,6 @@ class ItemChange extends Results implements ItemChangeResultsInterface
 
     /**
      * Get value
-     *
      * @return  array
      */
     public function getValue() : array
@@ -178,10 +174,9 @@ class ItemChange extends Results implements ItemChangeResultsInterface
 
     /**
      * Get original value
-     *
-     * @return  array|null
+     * @return  array
      */
-    public function getOriginalValue() : ?array
+    public function getOriginalValue() : array
     {
         return $this->original_value;
     }
