@@ -21,7 +21,7 @@ class ItemChangeResultTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 

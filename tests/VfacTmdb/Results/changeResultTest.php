@@ -10,7 +10,7 @@ class ChangeResultTest extends TestCase
     protected $tmdb   = null;
     protected $result = null;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -20,7 +20,7 @@ class ChangeResultTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
@@ -43,7 +43,7 @@ class ChangeResultTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('int', $this->result->getId());
+        $this->assertIsInt($this->result->getId());
         $this->assertEquals(659860, $this->result->getId());
     }
 
@@ -54,7 +54,7 @@ class ChangeResultTest extends TestCase
     {
         $this->getRequestOk();
 
-        $this->assertInternalType('bool', $this->result->getAdult());
+        $this->assertIsBool($this->result->getAdult());
         $this->assertFalse($this->result->getAdult());
     }
 }
