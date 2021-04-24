@@ -124,4 +124,22 @@ interface TmdbInterface
      * @return void
      */
     public function checkOptionExternalSource(array $options, array &$return) : void;
+
+    /**
+     * Check date option
+     * @param  string $option
+     * @return bool
+     * @author Steve Richter <steve@nerdbra.in>
+     */
+    public function checkOptionDate(string $option) : bool;
+
+    /**
+     * Check date range options
+     * @param  array $options
+     * @param array &$return Return array to save valid options
+     * @return void
+     * @throws IncorrectParamException
+     * @author Steve Richter <steve@nerdbra.in>
+     */
+    public function checkOptionDateRange(array $options, array &$return) : void;
 }

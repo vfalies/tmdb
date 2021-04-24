@@ -258,4 +258,25 @@ class People extends Item implements PeopleInterface
         $credit = new PeopleTVShowCredit($this->tmdb, $this->id);
         return $credit->getCrew();
     }
+
+    /**
+     * Get the underlying ItemChanges object for this Item
+     * @param array $options Array of options for the request
+     * @return PeopleItemChanges
+     */
+    public function getItemChanges(array $options = array()) : PeopleItemChanges
+    {
+        return new PeopleItemChanges($this->tmdb, $this->id, $options);
+    }
+
+    /**
+     * Get this Item's Changes
+     * @param array $options Array of options for the request
+     * @return \Generator
+     */
+    public function getChanges(array $options = array()) : \Generator
+    {
+        $changes = $this->getItemChanges($options);
+        return $changes->getChanges();
+    }
 }

@@ -132,4 +132,25 @@ class TVSeason extends TVItem implements TVSeasonInterface
         }
         return '';
     }
+
+    /**
+     * Get the underlying ItemChanges object for this Item
+     * @param array $options Array of options for the request
+     * @return TVSeasonItemChanges
+     */
+    public function getItemChanges(array $options = array()) : TVSeasonItemChanges
+    {
+        return new TVSeasonItemChanges($this->tmdb, $this->getId(), $options);
+    }
+
+    /**
+     * Get this Item's Changes
+     * @param array $options Array of options for the request
+     * @return \Generator
+     */
+    public function getChanges(array $options = array()) : \Generator
+    {
+        $changes = $this->getItemChanges($options);
+        return $changes->getChanges();
+    }
 }

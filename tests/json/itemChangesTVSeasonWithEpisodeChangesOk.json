@@ -1,0 +1,20 @@
+{
+  "changes": [
+    {
+      "key": "episode",
+      "items": [
+        {
+          "id": "607ef3727776f000298d842d",
+          "action": "updated",
+          "time": "2021-04-20 15:29:54 UTC",
+          "iso_639_1": "",
+          "iso_3166_1": "",
+          "value": {
+            "episode_id": 63056,
+            "episode_number": 2
+          }
+        }
+      ]
+    }
+  ]
+}

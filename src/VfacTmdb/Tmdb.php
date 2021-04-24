@@ -355,4 +355,41 @@ class Tmdb implements TmdbInterface
             }
         }
     }
+
+    /*
+     * Check date option
+     * @param  string $option
+     * @param  string $format
+     * @return bool
+     * @author Steve Richter <steve@nerdbra.in>
+     */
+    public function checkOptionDate(string $option, string $format = 'Y-m-d') : bool
+    {
+        $date = \DateTime::createFromFormat($format, $option);
+
+        return $date && $date->format($format) === $option;
+    }
+
+    /**
+     * Check date range options
+     * @param  array $options
+     * @param  array &$return Return array to save valid options
+     * @return void
+     * @throws IncorrectParamException
+     * @author Steve Richter <steve@nerdbra.in>
+     */
+    public function checkOptionDateRange(array $options, array &$return) : void
+    {
+        foreach (['start_date', 'end_date'] as $optionName) {
+            if (isset($options[$optionName])) {
+                if ($this->checkOptionDate($options[$optionName])) {
+                    $return[$optionName] = $options[$optionName];
+                    continue;
+                }
+
+                $this->logger->error('Incorrect date param option', array($optionName => $options[$optionName]));
+                throw new IncorrectParamException;
+            }
+        }
+    }
 }

@@ -15,7 +15,7 @@
 namespace VfacTmdb\Interfaces\Results;
 
 /**
- * Interface for Collection results type object
+ * Interface for TVShow results type object
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
  * @copyright Copyright (c) 2017
