@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.10] - 2021-04-24
+### Updated
+
+Implementing Item Changes: Thanks to Steve Richter for implementation
+
+- Implement checkOptionDate and checkOptionDateRange in Tmdb & Tests
+- Implement Change and Change Result, Implement itemChangeGenerator
+- Add Tests for Change endpoint
+- PHPCSFixer changes, Fix comments in various files
+- Add Tests for Change Result
+- Refactor date option validation
+- Add Tests for Exceptions in Change class
+- Fix getAdult() in Change Result
+- Refactor Change class to better describe its purpose …
+- Add support for retrieving changes to an item …
+- Implement getChangeKeys method on ItemChanges Item Abstract
+- Clean up code/comments, Rename TVItemChanges -> TVShowItemChanges
+- Implement getItemChanges and getChanges methods on Items …
+- Add Tests
+- Apply Scrutinizer Fixes
+- Update tests
+
 ## [1.9] - 2020-09-27
 ### Added
 
