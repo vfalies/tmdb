@@ -270,47 +270,47 @@ class ItemChangesTest extends TestCase
     }
 
     /**
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
     public function testMovieItemChangesInvalidDate()
     {
+        $this->expectException(\VfacTmdb\Exceptions\TmdbException::class);
         new MovieItemChanges($this->tmdb, $this->movie_id, array('start_date' => '2020-02-30', 'end_date' => '2020-02-31'));
     }
 
     /**
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
     public function testTVShowItemChangesInvalidDate()
     {
+        $this->expectException(\VfacTmdb\Exceptions\TmdbException::class);
         new TVShowItemChanges($this->tmdb, $this->movie_id, array('start_date' => '2020-02-30', 'end_date' => '2020-02-31'));
     }
 
     /**
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
     public function testTVSeasonItemChangesInvalidDate()
     {
+        $this->expectException(\VfacTmdb\Exceptions\TmdbException::class);
         new TVSeasonItemChanges($this->tmdb, $this->movie_id, array('start_date' => '2020-02-30', 'end_date' => '2020-02-31'));
     }
 
     /**
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
     public function testTVEpisodeItemChangesInvalidDate()
     {
+        $this->expectException(\VfacTmdb\Exceptions\TmdbException::class);
         new TVEpisodeItemChanges($this->tmdb, $this->movie_id, array('start_date' => '2020-02-30', 'end_date' => '2020-02-31'));
     }
 
     /**
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
      * @test
      */
     public function testPeopleItemChangesInvalidDate()
     {
+        $this->expectException(\VfacTmdb\Exceptions\TmdbException::class);
         new PeopleItemChanges($this->tmdb, $this->movie_id, array('start_date' => '2020-02-30', 'end_date' => '2020-02-31'));
     }
 

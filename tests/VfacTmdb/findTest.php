@@ -60,12 +60,13 @@ class FindTest extends TestCase
 
     /**
      * @test
-     * @expectedException VfacTmdb\Exceptions\TmdbException
      */
     public function testFindFailure()
     {
         $json_object = json_decode('');
         $this->tmdb->method('sendRequest')->willReturn($json_object);
+
+        $this->expectException(\VfacTmdb\Exceptions\TmdbException::class);
 
         $find    = new Find($this->tmdb);
         $responses = $find->imdb('tt0076759', array('language' => 'fr-FR'));

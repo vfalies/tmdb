@@ -56,7 +56,6 @@ class MediaTest extends TestCase
 
     /**
      * @test
-     * @expectedException VfacTmdb\Exceptions\NotFoundException
      */
     public function testUrlNotFound()
     {
@@ -65,13 +64,13 @@ class MediaTest extends TestCase
 
         $path = "/yVaQ34IvVDAZAWxScNdeIkaepDq.jpg";
 
+        $this->expectException(\VfacTmdb\Exceptions\NotFoundException::class);
         $media = new Media($this->tmdb);
         $media->getBackdropUrl($path);
     }
 
     /**
      * @test
-     * @expectedException VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testUrlIncorrectParam()
     {
@@ -80,6 +79,7 @@ class MediaTest extends TestCase
 
         $path = "/yVaQ34IvVDAZAWxScNdeIkaepDq.jpg";
 
+        $this->expectException(\VfacTmdb\Exceptions\IncorrectParamException::class);
         $media = new Media($this->tmdb);
         $media->getBackdropUrl($path, 'incorrectsize');
     }

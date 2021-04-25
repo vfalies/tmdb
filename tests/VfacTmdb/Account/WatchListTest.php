@@ -142,9 +142,6 @@ class WatchListTest extends TestCase
         $this->assertInstanceOf(WatchList::class, $watchlist);
     }
 
-    /**
-     * @expectedException \VfacTmdb\Exceptions\ServerErrorException
-     */
     public function testAddMovieFailed()
     {
         $session_id = $this->createSession();
@@ -153,6 +150,7 @@ class WatchListTest extends TestCase
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
         $account = new Account($this->tmdb, $session_id);
 
+        $this->expectException(ServerErrorException::class);
         $this->tmdb->expects($this->at(0))->method('sendRequest')->will($this->throwException(new ServerErrorException));
         $fav = $account->getWatchList()->addMovie(11);
     }

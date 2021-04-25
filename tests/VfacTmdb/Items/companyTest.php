@@ -57,10 +57,10 @@ class CompanyTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testContructFailure()
     {
+        $this->expectException(\Exception::class);
         $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
 
         new Company($this->tmdb, $this->company_id);

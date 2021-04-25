@@ -57,13 +57,13 @@ class ImageTest extends TestCase
 
     /**
      * @test
-     * @expectedException \VfacTmdb\Exceptions\NotFoundException
      */
     public function testContructFailed()
     {
         $result               = new \stdClass();
         $result->not_property = 'test';
 
+        $this->expectException(\VfacTmdb\Exceptions\NotFoundException::class);
         new \VfacTmdb\Results\Image($this->tmdb, 10, $result);
     }
 

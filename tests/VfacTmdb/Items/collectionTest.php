@@ -57,12 +57,12 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
      */
     public function testContructFailure()
     {
         $this->tmdb->method('sendRequest')->will($this->throwException(new \VfacTmdb\Exceptions\TmdbException()));
 
+        $this->expectException(\VfacTmdb\Exceptions\TmdbException::class);
         new Collection($this->tmdb, $this->collection_id);
     }
 
@@ -81,12 +81,12 @@ class CollectionTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testGetNameFailure()
     {
         $this->setRequestCollectionEmpty();
 
+        $this->expectException(\Exception::class);
         $collection = new Collection($this->tmdb, $this->collection_id);
         $collection->getName();
     }

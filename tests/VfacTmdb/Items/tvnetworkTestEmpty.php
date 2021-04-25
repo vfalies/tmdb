@@ -57,7 +57,6 @@ class TvNetworkTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testContructFailure()
     {

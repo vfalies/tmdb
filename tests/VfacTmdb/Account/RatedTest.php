@@ -196,9 +196,6 @@ class RatedTest extends TestCase
         $this->assertInstanceOf(Rated::class, $res);
     }
 
-    /**
-     * @expectedException VfacTmdb\Exceptions\TmdbException
-     */
     public function testAddMovieRateFailed()
     {
         $session_id = $this->createSession();
@@ -207,13 +204,11 @@ class RatedTest extends TestCase
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
         $account = new Account($this->tmdb, $session_id);
 
+        $this->expectException(TmdbException::class);
         $this->tmdb->expects($this->at(0))->method('sendRequest')->will($this->throwException(new TmdbException));
         $res = $account->getRated()->addMovieRate(11, 8);
     }
 
-    /**
-     * @expectedException VfacTmdb\Exceptions\TmdbException
-     */
     public function testRemoveMovieRateFailed()
     {
         $session_id = $this->createSession();
@@ -222,6 +217,7 @@ class RatedTest extends TestCase
         $this->tmdb->expects($this->at(1))->method('sendRequest')->willReturn(json_decode(file_get_contents('tests/json/accountOk.json')));
         $account = new Account($this->tmdb, $session_id);
 
+        $this->expectException(TmdbException::class);
         $this->tmdb->expects($this->at(0))->method('sendRequest')->will($this->throwException(new TmdbException));
         $res = $account->getRated()->removeMovieRate(11);
     }
