@@ -55,10 +55,10 @@ class FavoriteTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $accountFavoriteMoviesOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $accountFavoriteMoviesOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -89,10 +89,10 @@ class FavoriteTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $accountFavoriteMoviesOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $accountFavoriteMoviesOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -116,10 +116,10 @@ class FavoriteTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $this->throwException(new ServerErrorException)
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $this->throwException(new ServerErrorException)
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -140,10 +140,10 @@ class FavoriteTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $accountFavoriteMoviesOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $accountFavoriteMoviesOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -166,10 +166,10 @@ class FavoriteTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $accountFavoriteMoviesOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $accountFavoriteMoviesOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -192,10 +192,10 @@ class FavoriteTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $accountFavoriteMoviesOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $accountFavoriteMoviesOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -218,10 +218,10 @@ class FavoriteTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $accountFavoriteMoviesOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $accountFavoriteMoviesOk
                    ));
 
         $this->auth = new Auth($this->tmdb);

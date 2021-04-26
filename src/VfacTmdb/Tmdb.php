@@ -89,7 +89,7 @@ class Tmdb implements TmdbInterface
      * @param LoggerInterface $logger Logger used in the class
      * @param HttpRequestInterface $http_request
      */
-    public function __construct(string $api_key, int $version = 3, LoggerInterface $logger, HttpRequestInterface $http_request)
+    public function __construct(string $api_key, int $version, LoggerInterface $logger, HttpRequestInterface $http_request)
     {
         $this->api_key      = $api_key;
         $this->logger       = $logger;

@@ -54,9 +54,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -76,9 +76,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -96,9 +96,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -117,9 +117,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -138,9 +138,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -159,9 +159,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -180,9 +180,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -201,9 +201,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -222,9 +222,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -243,9 +243,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);
@@ -264,9 +264,9 @@ class AccountTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk
                    ));
 
         $this->auth = new Auth($this->tmdb);

@@ -55,10 +55,10 @@ class WatchListTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $watchlist
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $watchlist
                    ));
         $this->auth = new Auth($this->tmdb);
         $session_id = $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
@@ -82,10 +82,10 @@ class WatchListTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $watchlist
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $watchlist
                    ));
         $this->auth = new Auth($this->tmdb);
         $session_id = $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
@@ -110,10 +110,10 @@ class WatchListTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $watchlist
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $watchlist
                    ));
         $this->auth = new Auth($this->tmdb);
         $session_id = $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
@@ -135,10 +135,10 @@ class WatchListTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $watchlist
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $watchlist
                    ));
         $this->auth = new Auth($this->tmdb);
         $session_id = $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
@@ -160,10 +160,10 @@ class WatchListTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $watchlist
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $watchlist
                    ));
         $this->auth = new Auth($this->tmdb);
         $session_id = $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
@@ -185,10 +185,10 @@ class WatchListTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $watchlist
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $watchlist
                    ));
         $this->auth = new Auth($this->tmdb);
         $session_id = $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
@@ -209,10 +209,10 @@ class WatchListTest extends TestCase
 
         $this->tmdb->method('sendRequest')
                    ->will($this->onConsecutiveCalls(
-                        $sessionOk,
-                        $configurationOk,
-                        $accountOk,
-                        $this->throwException(new ServerErrorException)
+                       $sessionOk,
+                       $configurationOk,
+                       $accountOk,
+                       $this->throwException(new ServerErrorException)
                    ));
         $this->auth = new Auth($this->tmdb);
         $session_id = $this->auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
