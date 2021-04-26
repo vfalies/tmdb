@@ -7,10 +7,7 @@ build:
             tests:
                 override:
                     -
-                        command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
-                        coverage:
-                            file: 'coverage.clover'
-                            format: 'clover'
+                        command: 'vendor/bin/phpunit'
 
         php8:
             environment:
@@ -19,7 +16,4 @@ build:
             tests:
                 override:
                     -
-                        command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
-                        coverage:
-                            file: 'coverage.clover'
-                            format: 'clover'
+                        command: 'vendor/bin/phpunitr'
