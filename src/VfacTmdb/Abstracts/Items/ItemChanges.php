@@ -60,6 +60,8 @@ abstract class ItemChanges
             $this->tmdb   = $tmdb;
             $this->logger = $tmdb->getLogger();
 
+            $this->logger->debug('Starting Item Changes', array('item_type' => $item_type, 'item_id' => $item_id, 'options' => $options));
+
             $this->tmdb->checkOptionDateRange($options, $this->params);
 
             $this->data = $this->tmdb->getRequest($item_type . '/' . $item_id . '/changes', $this->params);
