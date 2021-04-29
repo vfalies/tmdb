@@ -29,13 +29,13 @@ class TVShowItemChanges extends ItemChanges
     /**
      * Constructor
      * @param TmdbInterface $tmdb
-     * @param int $movie_id
+     * @param int $tv_id
      * @param array $options
      */
-    public function __construct(TmdbInterface $tmdb, int $movie_id, array $options = array())
+    public function __construct(TmdbInterface $tmdb, int $tv_id, array $options = array())
     {
         try {
-            parent::__construct($tmdb, 'tv', $movie_id, $options);
+            parent::__construct($tmdb, 'tv', $tv_id, $options);
         } catch (TmdbException $ex) {
             throw $ex;
         }
