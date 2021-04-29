@@ -78,7 +78,6 @@ class AuthTest extends TestCase
 
     /**
      * @test
-     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
      */
     public function testConnectInvalidRedirection()
     {
@@ -86,19 +85,20 @@ class AuthTest extends TestCase
 
         $this->tmdb->method('sendRequest')->willReturn($this->createRequestTokenValid());
 
+        $this->expectException(\VfacTmdb\Exceptions\IncorrectParamException::class);
         $Auth = new Auth($this->tmdb);
         $Auth->connect('991c25974a2fcf3d923ae722f46e9c44788ff3ea', $redirect_url);
     }
 
     /**
      * @test
-     * @expectedException \VfacTmdb\Exceptions\InvalidResponseException
      */
     public function testConnectInvalidRequestToken()
     {
         $json_object = json_decode(file_get_contents('tests/json/requestTokenNok.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
+        $this->expectException(\VfacTmdb\Exceptions\InvalidResponseException::class);
         $Auth = new Auth($this->tmdb);
         $Auth->getRequestToken();
     }
@@ -121,23 +121,24 @@ class AuthTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testCreateSessionNok()
     {
         $json_object = json_decode(file_get_contents('tests/json/sessionNok.json'));
         $this->tmdb->method('sendRequest')->willReturn($json_object);
 
+        $this->expectException(\Exception::class);
         $Auth = new Auth($this->tmdb);
         $Auth->createSession('991c25974a2fcf3d923ae722f46e9c44788ff3ea');
     }
 
     /**
      * @test
-     * @expectedException \VfacTmdb\Exceptions\NotFoundException
      */
     public function testMagicalGet()
     {
+        $this->expectException(\VfacTmdb\Exceptions\NotFoundException::class);
+
         $Auth = new Auth($this->tmdb);
         $Auth->unknown;
     }

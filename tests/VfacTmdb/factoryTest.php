@@ -37,11 +37,11 @@ class FactoryTest extends TestCase
             $this->getBuilder('stdClass', 'php/php')
         ));
     }
-    /**
-     * @expectedException VfacTmdb\Exceptions\MissingDependencyException
-     */
+
     public function testCheckMissingDependency()
     {
+        $this->expectException(\VfacTmdb\Exceptions\MissingDependencyException::class);
+
         $factory = new Factory();
         $factory->checkDependency(
             $this->getBuilder('IDontExist', 'php/php')

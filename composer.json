@@ -17,16 +17,15 @@
             "email": "vincent@vfac.fr"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">= 7.1",
-        "psr/log": "~1.0",
+        "psr/log": "~1.1.3",
         "guzzlehttp/guzzle": ">= 6.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "7.5",
-        "friendsofphp/php-cs-fixer": "~2.15.3",
-        "monolog/monolog": "~1.25.1"
+        "phpunit/phpunit": ">=7.0 <9.5.4",
+        "friendsofphp/php-cs-fixer": ">=2.15.3",
+        "monolog/monolog": ">1.25.1"
     },
     "suggest": {
         "monolog/monolog": "Allows more advanced logging of the application flow"

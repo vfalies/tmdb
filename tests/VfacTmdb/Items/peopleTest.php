@@ -60,10 +60,10 @@ class PeopleTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testContructFailure()
     {
+        $this->expectException(\Exception::class);
         $this->tmdb->method('sendRequest')->will($this->throwException(new \Exception()));
 
         new People($this->tmdb, $this->people_id);
@@ -406,20 +406,18 @@ class PeopleTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
-     */
     public function testPeopleMovieCreditConstructorFailed()
     {
+        $this->expectException(TmdbException::class);
+
         $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException));
         $peopleMovieCredit = new Items\PeopleMovieCredit($this->tmdb, 12);
     }
 
-    /**
-     * @expectedException \VfacTmdb\Exceptions\TmdbException
-     */
     public function testPeopleTVShowCreditConstructorFailed()
     {
+        $this->expectException(TmdbException::class);
+
         $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException));
         $peopleMovieCredit = new Items\PeopleTVShowCredit($this->tmdb, 12);
     }

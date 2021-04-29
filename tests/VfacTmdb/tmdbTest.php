@@ -20,15 +20,13 @@ class TmdbTest extends TestCase
         $this->assertEquals(2017, $result['year']);
     }
 
-    /**
-     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
-     */
     public function testCheckOptionLanguageIncorrect()
     {
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
 
         $options['language'] = 'not_good_language';
         $result = [];
+        $this->expectException(\VfacTmdb\Exceptions\IncorrectParamException::class);
         $tmdb->checkOptionLanguage($options, $result);
     }
 
@@ -83,9 +81,6 @@ class TmdbTest extends TestCase
         $this->assertEquals('created_at.asc', $result['sort_by']);
     }
 
-    /**
-     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
-     */
     public function testCheckOptionSortByIncorrect()
     {
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
@@ -93,6 +88,7 @@ class TmdbTest extends TestCase
         $options['sort_by'] = 'bad_value';
         $result = [];
 
+        $this->expectException(\VfacTmdb\Exceptions\IncorrectParamException::class);
         $tmdb->checkOptionSortBy($options, $result);
     }
 
@@ -110,9 +106,6 @@ class TmdbTest extends TestCase
         $this->assertEquals('2020-01-02', $result['end_date']);
     }
 
-    /**
-     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
-     */
     public function testCheckOptionDateRangeStartDateIncorrect()
     {
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
@@ -121,12 +114,10 @@ class TmdbTest extends TestCase
         $options['end_date']   = '2020-01-01';
         $result = [];
 
+        $this->expectException(\VfacTmdb\Exceptions\IncorrectParamException::class);
         $tmdb->checkOptionDateRange($options, $result);
     }
 
-    /**
-     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
-     */
     public function testCheckOptionDateRangeEndDateIncorrect()
     {
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
@@ -135,12 +126,10 @@ class TmdbTest extends TestCase
         $options['end_date']   = 'bad_value';
         $result = [];
 
+        $this->expectException(\VfacTmdb\Exceptions\IncorrectParamException::class);
         $tmdb->checkOptionDateRange($options, $result);
     }
 
-    /**
-     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
-     */
     public function testCheckOptionExternalSourceIncorrect()
     {
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
@@ -148,15 +137,15 @@ class TmdbTest extends TestCase
         $options['external_source'] = 'bad_value';
         $result = [];
 
+        $this->expectException(\VfacTmdb\Exceptions\IncorrectParamException::class);
         $tmdb->checkOptionExternalSource($options, $result);
     }
 
-    /**
-     * @expectedException \VfacTmdb\Exceptions\IncorrectParamException
-     */
     public function testMagicalGetterNok()
     {
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), new HttpClient(new \GuzzleHttp\Client()));
+
+        $this->expectException(\VfacTmdb\Exceptions\IncorrectParamException::class);
         $tmdb->test;
     }
 
@@ -182,7 +171,6 @@ class TmdbTest extends TestCase
 
     /**
      * @test
-     * @expectedException VfacTmdb\Exceptions\TmdbException
      */
     public function testGetConfigurationNOK()
     {
@@ -193,12 +181,12 @@ class TmdbTest extends TestCase
 
         $tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
+        $this->expectException(\VfacTmdb\Exceptions\TmdbException::class);
         $tmdb->getConfiguration();
     }
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testgetRequestHttpError()
     {
@@ -213,12 +201,13 @@ class TmdbTest extends TestCase
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
+
+        $this->expectException(\Exception::class);
         $tmdb->getRequest('fake/');
     }
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testgetRequestExecError()
     {
@@ -234,12 +223,13 @@ class TmdbTest extends TestCase
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
         $tmdb->base_api_url = 'invalid_url';
+
+        $this->expectException(\Exception::class);
         $tmdb->getRequest('action');
     }
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testgetRequestHttpErrorNotJson()
     {
@@ -256,6 +246,8 @@ class TmdbTest extends TestCase
         $http_request->method('getResponse')->willReturn($guzzleclient);
 
         $tmdb = new Tmdb('fake_api_key', 3, new \Monolog\Logger('Tmdb', [new \Monolog\Handler\StreamHandler('logs/unittest.log')]), $http_request);
+
+        $this->expectException(\Exception::class);
         $tmdb->getRequest('action');
     }
 

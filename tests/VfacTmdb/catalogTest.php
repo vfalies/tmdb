@@ -64,36 +64,36 @@ class CatalogTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testGetMovieGenresNok()
     {
         $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
+        $this->expectException(\Exception::class);
         $genres = new Catalog($this->tmdb);
         $genres->getMovieGenres(array('language' => 'fr-FR'));
     }
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testGetMovieListNok()
     {
         $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
+        $this->expectException(\Exception::class);
         $genres = new Catalogs\Genres($this->tmdb);
         $genres->getMovieList(array('language' => 'fr-FR'));
     }
 
     /**
      * @test
-     * @expectedException \Exception
      */
     public function testGetTVListNok()
     {
         $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
+        $this->expectException(\Exception::class);
         $genres = new Catalog($this->tmdb);
         $genres->getTVShowGenres(array('language' => 'fr-FR'));
     }
@@ -137,12 +137,12 @@ class CatalogTest extends TestCase
 
     /**
      * @test
-     * @expectedException VfacTmdb\Exceptions\TmdbException
      */
     public function tetsGetJobsNok()
     {
         $this->tmdb->method('sendRequest')->will($this->throwException(new TmdbException()));
 
+        $this->expectException(\VfacTmdb\Exceptions\TmdbException::class);
         $jobs = new Catalog($this->tmdb);
         $list = $jobs->getJobsList(array('wrong option'));
     }

@@ -7,11 +7,7 @@ build:
             tests:
                 override:
                     -
-                        command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
-                        coverage:
-                            file: 'coverage.clover'
-                            format: 'clover'
-
+                        command: 'vendor/bin/phpunit'
         php72:
             environment:
                 php:
@@ -19,11 +15,7 @@ build:
             tests:
                 override:
                     -
-                        command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
-                        coverage:
-                            file: 'coverage.clover'
-                            format: 'clover'
-
+                        command: 'vendor/bin/phpunit'
         php73:
             environment:
                 php:
@@ -31,7 +23,20 @@ build:
             tests:
                 override:
                     -
-                        command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
-                        coverage:
-                            file: 'coverage.clover'
-                            format: 'clover'
+                        command: 'vendor/bin/phpunit'
+        php74:
+            environment:
+                php:
+                    version: 7.4
+            tests:
+                override:
+                    -
+                        command: 'vendor/bin/phpunit'
+        php8:
+            environment:
+                php:
+                    version: 8.0
+            tests:
+                override:
+                    -
+                        command: 'vendor/bin/phpunit'
