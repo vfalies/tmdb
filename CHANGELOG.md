@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.11] - 2021-04-29
+### Updated
+- Compatibility code & tests from PHP 7.1 to PHP 8.0
+
+### Added
+
+- Add log to change items
+
 ## [1.10] - 2021-04-24
 ### Updated
 
