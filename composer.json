@@ -37,6 +37,10 @@
     },
     "scripts": {
             "install-hook": "chmod +x pre-commit.sh && cp pre-commit.sh .git/hooks/pre-commit",
-            "pre-autoload-dump": "composer install-hook"
+            "pre-autoload-dump": "composer install-hook",
+            "test": "vendor/bin/phpunit",
+            "coverage": "vendor/bin/phpunit --coverage-html=logs/build/coverage",
+            "view-coverage": "open logs/build/coverage/index.html",
+            "clean": "rm -rf logs/build/*"
     }
 }
