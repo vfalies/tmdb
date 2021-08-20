@@ -58,17 +58,6 @@ class CastTest extends TestCase
     /**
      * @test
      */
-    public function testGetCastId()
-    {
-        $this->getRequestOk();
-
-        $this->assertIsInt($this->cast->getCastId());
-        $this->assertEquals(4, $this->cast->getCastId());
-    }
-
-    /**
-     * @test
-     */
     public function getCreditId()
     {
         $this->getRequestOk();

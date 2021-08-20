@@ -48,6 +48,17 @@ class TVEpisodeTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
+    private function setRequestTVEpisodeCredit()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_tvepisodeOk = json_decode(file_get_contents('tests/json/TVEpisodeOk.json'));
+        $json_creditOk = json_decode(file_get_contents('tests/json/creditOk.json'));
+
+        $this->tmdb->method('sendRequest')->will($this->onConsecutiveCalls($json_tvepisodeOk, $json_creditOk));
+    }
+
     private function setRequestConfigurationEmpty()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationEmptyOk.json'));
@@ -304,7 +315,7 @@ class TVEpisodeTest extends TestCase
      */
     public function testGetCrew()
     {
-        $this->setRequestOk();
+        $this->setRequestTVEpisodeCredit();
 
         $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
         $Crew      = $TVEpisode->getCrew();
@@ -312,6 +323,22 @@ class TVEpisodeTest extends TestCase
         $this->assertInstanceOf(\Generator::class, $Crew);
         foreach ($Crew as $c) {
             $this->assertInstanceOf(\VfacTmdb\Results\Crew::class, $c);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function testGetCast()
+    {
+        $this->setRequestTVEpisodeCredit();
+
+        $TVEpisode = new TVEpisode($this->tmdb, $this->tv_id, $this->season_number, $this->episode_number);
+        $Cast      = $TVEpisode->getCast();
+
+        $this->assertInstanceOf(\Generator::class, $Cast);
+        foreach ($Cast as $c) {
+            $this->assertInstanceOf(\VfacTmdb\Results\Cast::class, $c);
         }
     }
 

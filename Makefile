@@ -1,7 +1,7 @@
 all: clean coverage
 
 test:
-	vendor/bin/phpunit
+	vendor/bin/phpunit --do-not-cache-result
 
 coverage:
 	vendor/bin/phpunit --coverage-html=logs/build/coverage
