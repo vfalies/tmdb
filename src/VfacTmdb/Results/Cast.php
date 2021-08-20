@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  *
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2021
  */
 
 namespace VfacTmdb\Results;
@@ -21,7 +21,7 @@ use VfacTmdb\Interfaces\TmdbInterface;
  * Class to manipulate a movie or tv show cast result
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2021
  */
 class Cast extends Results implements CastResultsInterface
 {
@@ -40,11 +40,7 @@ class Cast extends Results implements CastResultsInterface
      * @var string
      */
     protected $credit_id = null;
-    /**
-     * Cast Id
-     * @var int
-     */
-    protected $cast_id = null;
+
     /**
      * Name
      * @var string
@@ -79,7 +75,6 @@ class Cast extends Results implements CastResultsInterface
         $this->character    = $this->data->character;
         $this->gender       = $this->data->gender;
         $this->credit_id    = $this->data->credit_id;
-        $this->cast_id      = $this->data->cast_id;
         $this->name         = $this->data->name;
         $this->profile_path = $this->data->profile_path;
         $this->order        = $this->data->order;
@@ -119,15 +114,6 @@ class Cast extends Results implements CastResultsInterface
     public function getGender() : int
     {
         return $this->gender;
-    }
-
-    /**
-     * Get Cast Id
-     * @return int
-     */
-    public function getCastId() : int
-    {
-        return $this->cast_id;
     }
 
     /**

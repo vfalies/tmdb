@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  *
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2021
  */
 
 
@@ -18,7 +18,7 @@ namespace VfacTmdb\Interfaces\Results;
  * Interface for Cast results type object
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2021
  */
 interface CastResultsInterface
 {
@@ -41,11 +41,6 @@ interface CastResultsInterface
      */
     public function getGender() : int;
 
-    /**
-     * Cast Id
-     * @return int
-     */
-    public function getCastId() : int;
 
     /**
      * Name

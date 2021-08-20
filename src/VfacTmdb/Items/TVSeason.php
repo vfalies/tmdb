@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  *
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2021
  */
 
 
@@ -24,7 +24,7 @@ use VfacTmdb\Interfaces\TmdbInterface;
  * TVSeason class
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2021
  */
 class TVSeason extends TVItem implements TVSeasonInterface
 {
@@ -152,5 +152,26 @@ class TVSeason extends TVItem implements TVSeasonInterface
     {
         $changes = $this->getItemChanges($options);
         return $changes->getChanges();
+    }
+
+
+    /**
+     * Get TVShow Season crew
+     * @return \Generator|Results\Crew
+     */
+    public function getCrew() : \Generator
+    {
+        $credit = new TVSeasonCredit($this->tmdb, $this->tv_id, $this->season_number);
+        return $credit->getCrew();
+    }
+
+    /**
+     * Get TVShow Season cast
+     * @return \Generator|Results\Cast
+     */
+    public function getCast() : \Generator
+    {
+        $cast = new TVSeasonCredit($this->tmdb, $this->tv_id, $this->season_number);
+        return $cast->getCast();
     }
 }

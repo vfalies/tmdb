@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  *
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2021
  */
 
 
@@ -24,7 +24,7 @@ use VfacTmdb\Results;
  * TVShow class
  * @package Tmdb
  * @author Vincent Faliès <vincent@vfac.fr>
- * @copyright Copyright (c) 2017
+ * @copyright Copyright (c) 2017-2021
  */
 class TVShow extends Item implements TVShowInterface
 {
@@ -238,6 +238,27 @@ class TVShow extends Item implements TVShowInterface
             $tvshow = new Results\TVShow($this->tmdb, $t);
             yield $tvshow;
         }
+    }
+
+
+    /**
+     * Get TVShow crew
+     * @return \Generator|Results\Crew
+     */
+    public function getCrew() : \Generator
+    {
+        $credit = new TVShowCredit($this->tmdb, $this->id);
+        return $credit->getCrew();
+    }
+
+    /**
+     * Get TVShow cast
+     * @return \Generator|Results\Cast
+     */
+    public function getCast() : \Generator
+    {
+        $cast = new TVShowCredit($this->tmdb, $this->id);
+        return $cast->getCast();
     }
 
     /**

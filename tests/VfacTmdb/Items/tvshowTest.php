@@ -36,6 +36,17 @@ class TVShowTest extends TestCase
         $this->tmdb->method('sendRequest')->willReturn($json_object);
     }
 
+    private function setRequestTVShowCredit()
+    {
+        $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
+        $this->tmdb->method('getConfiguration')->willReturn($json_object);
+
+        $json_tvshowOk = json_decode(file_get_contents('tests/json/TVShowOk.json'));
+        $json_creditOk = json_decode(file_get_contents('tests/json/creditOk.json'));
+
+        $this->tmdb->method('sendRequest')->will($this->onConsecutiveCalls($json_tvshowOk, $json_creditOk));
+    }
+
     private function setRequestTVShowEmpty()
     {
         $json_object = json_decode(file_get_contents('tests/json/configurationOk.json'));
@@ -427,6 +438,38 @@ class TVShowTest extends TestCase
         foreach ($similar as $s) {
             $this->assertEquals('/3/tv/'.$this->tv_id.'/similar', parse_url($this->tmdb->url, PHP_URL_PATH));
             $this->assertInstanceOf(\VfacTmdb\Results\TVShow::class, $s);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function testGetCrew()
+    {
+        $this->setRequestTVShowCredit();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+        $Crew      = $TVShow->getCrew();
+
+        $this->assertInstanceOf(\Generator::class, $Crew);
+        foreach ($Crew as $c) {
+            $this->assertInstanceOf(\VfacTmdb\Results\Crew::class, $c);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function testGetCast()
+    {
+        $this->setRequestTVShowCredit();
+
+        $TVShow = new TVShow($this->tmdb, $this->tv_id);
+        $Cast      = $TVShow->getCast();
+
+        $this->assertInstanceOf(\Generator::class, $Cast);
+        foreach ($Cast as $c) {
+            $this->assertInstanceOf(\VfacTmdb\Results\Cast::class, $c);
         }
     }
 }
